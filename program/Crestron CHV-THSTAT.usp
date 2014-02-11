@@ -4,7 +4,7 @@
  */
 
 #SYMBOL_NAME "Crestron CHV-THSTAT"
-#CATEGORY "22" // HVAC
+#CATEGORY "46" "Crescendo Devices" // Custom
 #DEFAULT_VOLATILE
 #ENABLE_DYNAMIC
 

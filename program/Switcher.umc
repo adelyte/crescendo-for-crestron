@@ -34,8 +34,8 @@ FltTmp=1
 FpCS=0
 EnType=3
 ZeroOnIoOk=0
-Cmn1=Subzone\\Crescendo Framework\\\\For documentation see wiki at\\https:
-Cmn2=//code.google.com/p/crescendo-framework/wiki/Zones#Subzones
+Cmn1=Subzone\\Crescendo \\\\For documentation see wiki at\\https:
+Cmn2=//code.google.com/p/crescendo-/wiki/Zones#Subzones
 ]
 [
 ObjTp=Bk
@@ -72,7 +72,7 @@ MinVariableOutputsList2=0
 MinVariableOutputsList3=0
 MinVariableParams=0
 SymbolTree=46
-UserSymTreeName=Crescendo Framework
+UserSymTreeName=Crescendo
 InputSigType1=Digital
 InputSigType2=Digital|Analog|Serial|String
 InputSigType3=Digital|Analog|Serial|String
