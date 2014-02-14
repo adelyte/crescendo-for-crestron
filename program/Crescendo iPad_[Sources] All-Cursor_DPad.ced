@@ -1,0 +1,82 @@
+[
+Version=1
+]
+[
+ObjTp=FSgntr
+Sgntr=FlashComposite
+RelVrs=1
+IntStrVrs=1
+VTProeVer=5.3.19
+]
+
+[
+ObjTp=Symbol
+Name=Crescendo iPad_[Sources] All-Cursor_DPad.ced
+Hint=DPad (Smart Object ID = 51)
+Code=1
+SmplCName=Crescendo iPad_[Sources] All-Cursor_DPad.ced
+SMWRev=3.01.26
+Expand=expand_random
+; define the number of inputs, outputs and parameters
+MinVariableInputs=5
+MaxVariableInputs=5
+MinVariableOutputs=5
+MaxVariableOutputs=5
+NumFixedParams=1
+MinVariableInputsList2=0
+MaxVariableInputsList2=0
+MinVariableOutputsList2=0
+MaxVariableOutputsList2=0
+MinVariableInputsList3=0
+MaxVariableInputsList3=0
+MinVariableOutputsList3=0
+MaxVariableOutputsList3=0
+; define the cues, and signal types  each input, output and parameter.
+InputCue1=[~UNUSED3~]
+InputSigType1=Digital
+OutputCue1=Up
+OutputSigType1=Digital
+InputCue2=[~UNUSED3~]
+InputSigType2=Digital
+OutputCue2=Down
+OutputSigType2=Digital
+InputCue3=[~UNUSED3~]
+InputSigType3=Digital
+OutputCue3=Left
+OutputSigType3=Digital
+InputCue4=[~UNUSED3~]
+InputSigType4=Digital
+OutputCue4=Right
+OutputSigType4=Digital
+InputCue5=[~UNUSED3~]
+InputSigType5=Digital
+OutputCue5=OK
+OutputSigType5=Digital
+ParamCue1=SmartObjectId
+ParamSigType1=Constant
+MPp=1
+Pp1=1
+]
+
+; Parameter Properties for Smart Object ID
+[
+ObjTp=Dp
+H=1
+Tp=1
+HD=TRUE
+DV=51d
+NF=1
+DNF=1
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+
+; Smart Objects Definition section
+[
+ObjTp=CED
+H=1
+Name=Crescendo iPad_[Sources] All-Cursor_DPad.ced
+CedVer=1
+]
+

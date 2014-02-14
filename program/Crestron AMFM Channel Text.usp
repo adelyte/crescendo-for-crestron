@@ -1,0 +1,98 @@
+/*
+ *
+ * Adelyte Company
+ * www.adelyte.com
+ *
+ */
+
+// Compiler Directives
+
+#SYMBOL_NAME "Crestron AMFM Channel Text"
+#CATEGORY "37" // Tuners
+#DEFAULT_VOLATILE
+
+
+// Constants
+
+#DEFINE_CONSTANT FM_CEILING_FREQUENCY 10800
+#DEFINE_CONSTANT FM_FLOOR_FREQUENCY    8750
+
+#DEFINE_CONSTANT AM_CEILING_FREQUENCY  1710
+#DEFINE_CONSTANT AM_FLOOR_FREQUENCY     530
+
+#DEFINE_CONSTANT WX_CEILING_FREQUENCY     7
+#DEFINE_CONSTANT WX_FLOOR_FREQUENCY       1
+
+// Inputs and Outputs
+
+DIGITAL_INPUT Band_Is_FM, Band_Is_AM, Band_Is_WX;
+ANALOG_INPUT  ai_Frequency[22];  // Maximum number of presets + 1.
+
+STRING_OUTPUT so_Frequency[22];
+
+
+// Global Data
+
+
+
+
+// FUNCTIONS
+
+FUNCTION MakeFMFrequency(INTEGER index)
+{
+    MAKESTRING(so_Frequency[index], "%u.%u", ai_Frequency[index] / 100, (ai_Frequency[index] / 10) MOD 10);
+}
+
+FUNCTION MakeAMFrequency(INTEGER index)
+{
+    MAKESTRING(so_Frequency[index], "%u", ai_Frequency[index]);
+}
+
+FUNCTION MakeWXFrequency(INTEGER index)
+{
+    MAKESTRING(so_Frequency[index], "%u", ai_Frequency[index]);
+}
+
+
+// Event Handlers
+
+CHANGE ai_Frequency
+{
+    INTEGER index;
+
+    index = GETLASTMODIFIEDARRAYINDEX();
+
+    IF(Band_Is_FM)
+    {
+        MakeFMFrequency(index);
+    }
+    ELSE IF(Band_Is_AM)
+    {
+        MakeAMFrequency(index);
+    }
+    ELSE IF(Band_Is_WX)
+    {
+        MakeWXFrequency(index);
+    }
+    ELSE
+    {
+        // PRINT("ERROR: Crestron C2N-TFM Station Feedback.usp\n");
+        // PRINT("    ai_Frequency[%u] = %u\n", index, ai_Frequency[index]);
+        // PRINT("    is invalid.\n");
+    }
+}
+
+
+// Runtime
+
+FUNCTION MAIN()
+{
+    SIGNED_INTEGER returnError;
+
+    returnError = WAITFORINITIALIZATIONCOMPLETE();
+
+    IF(returnError < 0)
+    {
+        PRINT("Error waiting for initialization.\n");
+    }
+}

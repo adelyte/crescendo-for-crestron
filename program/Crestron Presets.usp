@@ -1,0 +1,238 @@
+/*
+ *
+ * Adelyte Company
+ * www.adelyte.com
+ *
+ */
+
+// Help
+
+#HELP_BEGIN
+Copyright Notice:
+This work is in the public domain.
+
+
+INPUTS:
+di_Preset_Next  - Cycles to the next preset where ai_Preset_Value has a non-zero value, .
+
+di_Preset_Prev  - Cycles to the previous preset where ai_Preset_Value has a non-zero value.
+
+di_Preset       - When pressed and held for the hold time, it sets do_Save_Preset high, ao_Value to the index, and do_Save_Preset low.
+                  When pressed and released before the hold time is reached, it sets do_Trigger_Preset high, ao_Value to ai_Preset_Value[index], and do_Trigger_Preset low.
+
+                  Hold time is determined by the [Symbol Reference Name] parameter.
+
+ai_Preset_Value - This is the value of the preset.
+                  EXAMPLES:
+                    Satellite / Cable - Channel Number
+                    Crestron C2N-TXM  - Index of the preset.
+
+
+OUTPUTS:
+ao_Value          - When di_Preset is pressed and released, this is the value of ai_Preset_Value[index].
+
+ao_Index          - When di_Preset is released (held or not), this is the index.
+
+do_Trigger_Preset - When di_Preset is pressed and released, this output will go high, ao_Value will change 
+                    to ai_Preset_Value[index], ao_Index will change to the current index, and then this 
+                    output will go low.
+
+do_Save_Preset    - When di_Preset is pressed and held, this output will go high, ao_Index will change to 
+                    the current index, and then this output will go low.
+
+do_Preset         - When di_Preset is released (held or not), the output corresponding to the current index
+                    is pulsed.
+
+
+PARAMETERS:
+holdTime - When saving a preset, this is the hold time for FUNCTION PressAndHold().
+#HELP_END
+
+
+// Compiler Directives
+#SYMBOL_NAME "Crestron Presets"
+#CATEGORY "37" // Tuners
+#DEFAULT_VOLATILE
+
+
+// Constants
+
+#DEFINE_CONSTANT DEBUG 1  // Comment out line to stop print statements.
+
+#DEFINE_CONSTANT MAX_PRESETS  20
+
+#DEFINE_CONSTANT PULSE_TIME   10
+#DEFINE_CONSTANT DELAY_TIME   40
+
+
+// Inputs and Outputs
+
+DIGITAL_INPUT  di_Preset_Next, 
+               di_Preset_Prev, 
+               di_Preset[MAX_PRESETS];
+ANALOG_INPUT   ai_Preset_Value[MAX_PRESETS];
+
+DIGITAL_OUTPUT do_Trigger_Preset, 
+               do_Save_Preset, 
+               do_Preset[MAX_PRESETS];
+
+ANALOG_OUTPUT  ao_Preset_Mode,
+			   ao_Value, 
+               ao_Index;
+
+
+// Global Data
+
+INTEGER_PARAMETER holdTime;
+
+INTEGER CurrentPreset;
+
+INTEGER EndPress;
+
+
+// Functions
+
+INTEGER_FUNCTION PressAndHold()
+{
+    INTEGER c;
+
+    EndPress = 0;
+
+    IF(holdTime = 0)
+    {
+        RETURN(0);
+    }
+
+    FOR(c = 1 TO holdTime)
+    {
+        DELAY(1);
+
+        IF(EndPress)
+        {
+            RETURN(0);
+
+            BREAK;
+        }
+        ELSE
+        {
+            // PASS.
+        }
+    }
+
+    RETURN(1);
+}
+
+
+FUNCTION TriggerPreset()
+{
+    ao_Index = 65535;  // Causes the analog value to change if trying to save to the same preset index multiple times in a row.
+    do_Trigger_Preset = 1;
+    ao_Value = ai_Preset_Value[CurrentPreset];
+
+    PROCESSLOGIC();
+
+    ao_Index = CurrentPreset - 1;  // Crestron C2N-TFM presets are zero-indexed.
+    PULSE(PULSE_TIME, do_Preset[CurrentPreset]);
+
+    PROCESSLOGIC();
+
+    do_Trigger_Preset = 0;
+}
+
+
+FUNCTION SavePreset()
+{
+    ao_Index = 65535;  // Causes the analog value to change if trying to save to the same preset index multiple times in a row.
+    do_Save_Preset = 1;
+	ao_Preset_Mode = 1;
+
+    PROCESSLOGIC();
+
+    ao_Index = CurrentPreset - 1;  // Crestron C2N-TFM presets are zero-indexed.
+    PULSE(PULSE_TIME, do_Preset[CurrentPreset]);
+
+    PROCESSLOGIC();
+
+    do_Save_Preset = 0;
+	ao_Preset_Mode = 0;
+}
+
+
+// Commands
+
+PUSH di_Preset_Next
+{
+    INTEGER i;
+
+    FOR(i = 1 TO MAX_PRESETS)
+    {
+        CurrentPreset = CurrentPreset MOD MAX_PRESETS + 1;
+
+        IF(ai_Preset_Value[CurrentPreset] > 0)
+        {
+            TriggerPreset();
+
+            BREAK;
+        }
+    }
+}
+
+
+PUSH di_Preset_Prev
+{
+    INTEGER i;
+
+    FOR(i = 1 TO MAX_PRESETS)
+    {
+        CurrentPreset = (CurrentPreset + MAX_PRESETS - 2) MOD MAX_PRESETS + 1;
+
+        IF(ai_Preset_Value[CurrentPreset] > 0)
+        {
+            TriggerPreset();
+
+            BREAK;
+        }
+    }
+}
+
+
+PUSH di_Preset
+{
+    INTEGER index;
+
+    index = GETLASTMODIFIEDARRAYINDEX();
+
+    CurrentPreset = index;
+
+    EndPress = 0;
+
+    IF(PressAndHold())
+    {
+        SavePreset();
+    }
+    ELSE
+    {
+        TriggerPreset();
+    }
+}
+
+
+RELEASE di_Preset
+{
+    EndPress = 1;
+}
+
+
+// Runtime
+
+FUNCTION Main()
+{
+    SIGNED_INTEGER error;
+
+    error = WAITFORINITIALIZATIONCOMPLETE();
+
+    IF(error < 0)
+    {
+
+    }
+}

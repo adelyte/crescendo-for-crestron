@@ -1,0 +1,75 @@
+[
+Version=1
+]
+[
+ObjTp=FSgntr
+Sgntr=FlashComposite
+RelVrs=1
+IntStrVrs=1
+VTProeVer=5.3.19
+]
+
+[
+ObjTp=Symbol
+Name=Crescendo iPad_[Sources] [Media Players] Media Player_Media Player Application.ced
+Hint=Media Player Application (Smart Object ID = 50)
+Code=1
+SmplCName=Crescendo iPad_[Sources] [Media Players] Media Player_Media Player Application.ced
+SMWRev=3.01.26
+Expand=expand_random
+; define the number of inputs, outputs and parameters
+MinVariableInputs=2
+MaxVariableInputs=2
+MinVariableOutputs=2
+MaxVariableOutputs=2
+NumFixedParams=1
+MinVariableInputsList2=0
+MaxVariableInputsList2=0
+MinVariableOutputsList2=0
+MaxVariableOutputsList2=0
+MinVariableInputsList3=1
+MaxVariableInputsList3=1
+MinVariableOutputsList3=1
+MaxVariableOutputsList3=1
+; define the cues, and signal types  each input, output and parameter.
+InputCue1=Refresh
+InputSigType1=Digital
+OutputCue1=[~UNUSED3~]
+OutputSigType1=Digital
+InputCue2=Offline
+InputSigType2=Digital
+OutputCue2=[~UNUSED3~]
+OutputSigType2=Digital
+InputList3Cue1=CRPC_FB
+InputList3SigType1=Serial
+OutputList3Cue1=CRPC
+OutputList3SigType1=Serial
+ParamCue1=SmartObjectId
+ParamSigType1=Constant
+MPp=1
+Pp1=1
+]
+
+; Parameter Properties for Smart Object ID
+[
+ObjTp=Dp
+H=1
+Tp=1
+HD=TRUE
+DV=50d
+NF=1
+DNF=1
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+
+; Smart Objects Definition section
+[
+ObjTp=CED
+H=1
+Name=Crescendo iPad_[Sources] [Media Players] Media Player_Media Player Application.ced
+CedVer=1
+CedMod=Core3 Media Object Router v1.0.cmc
+]
+
