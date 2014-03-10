@@ -1,27 +1,25 @@
 [
-Version=1
-]
-[
 ObjTp=FSgntr
 Sgntr=FlashComposite
-RelVrs=1
+;Increment this version when CED file format changes
+RelVrs=2
 IntStrVrs=1
-VTProeVer=5.3.19
+VTProeVer=5.4.17
 ]
-
 [
 ObjTp=Symbol
 Name=Crescendo iPad_[Sources] [TV] Presets_Icon List Vertical.ced
-Hint=Icon List Vertical (Smart Object ID = 55)
-Code=1
+Hint=Icon List Vertical (Smart Object ID=55)
+Code=2
+GUID=6C62C392-2C0A-4C40-938B-9C27BA2C0554
 SmplCName=Crescendo iPad_[Sources] [TV] Presets_Icon List Vertical.ced
-SMWRev=3.01.26
+SMWRev=4.02.19
 Expand=expand_random
-; define the number of inputs, outputs and parameters
-MinVariableInputs=48
-MaxVariableInputs=48
-MinVariableOutputs=48
-MaxVariableOutputs=48
+;Define the number of inputs, outputs and parameters
+MinVariableInputs=9
+MaxVariableInputs=9
+MinVariableOutputs=9
+MaxVariableOutputs=9
 NumFixedParams=1
 MinVariableInputsList2=6
 MaxVariableInputsList2=6
@@ -31,7 +29,7 @@ MinVariableInputsList3=0
 MaxVariableInputsList3=0
 MinVariableOutputsList3=0
 MaxVariableOutputsList3=0
-; define the cues, and signal types  each input, output and parameter.
+;Define the cues, and signal types  each input, output and parameter.
 InputCue1=[~UNUSED3~]
 InputSigType1=Digital
 OutputCue1=Item 1 Pressed
@@ -68,162 +66,6 @@ InputCue9=[~UNUSED3~]
 InputSigType9=Digital
 OutputCue9=Item 9 Pressed
 OutputSigType9=Digital
-InputCue10=[~UNUSED3~]
-InputSigType10=Digital
-OutputCue10=Item 10 Pressed
-OutputSigType10=Digital
-InputCue11=[~UNUSED3~]
-InputSigType11=Digital
-OutputCue11=Item 11 Pressed
-OutputSigType11=Digital
-InputCue12=[~UNUSED3~]
-InputSigType12=Digital
-OutputCue12=Item 12 Pressed
-OutputSigType12=Digital
-InputCue13=[~UNUSED3~]
-InputSigType13=Digital
-OutputCue13=Item 13 Pressed
-OutputSigType13=Digital
-InputCue14=[~UNUSED3~]
-InputSigType14=Digital
-OutputCue14=Item 14 Pressed
-OutputSigType14=Digital
-InputCue15=[~UNUSED3~]
-InputSigType15=Digital
-OutputCue15=Item 15 Pressed
-OutputSigType15=Digital
-InputCue16=[~UNUSED3~]
-InputSigType16=Digital
-OutputCue16=Item 16 Pressed
-OutputSigType16=Digital
-InputCue17=[~UNUSED3~]
-InputSigType17=Digital
-OutputCue17=Item 17 Pressed
-OutputSigType17=Digital
-InputCue18=[~UNUSED3~]
-InputSigType18=Digital
-OutputCue18=Item 18 Pressed
-OutputSigType18=Digital
-InputCue19=[~UNUSED3~]
-InputSigType19=Digital
-OutputCue19=Item 19 Pressed
-OutputSigType19=Digital
-InputCue20=[~UNUSED3~]
-InputSigType20=Digital
-OutputCue20=Item 20 Pressed
-OutputSigType20=Digital
-InputCue21=[~UNUSED3~]
-InputSigType21=Digital
-OutputCue21=Item 21 Pressed
-OutputSigType21=Digital
-InputCue22=[~UNUSED3~]
-InputSigType22=Digital
-OutputCue22=Item 22 Pressed
-OutputSigType22=Digital
-InputCue23=[~UNUSED3~]
-InputSigType23=Digital
-OutputCue23=Item 23 Pressed
-OutputSigType23=Digital
-InputCue24=[~UNUSED3~]
-InputSigType24=Digital
-OutputCue24=Item 24 Pressed
-OutputSigType24=Digital
-InputCue25=[~UNUSED3~]
-InputSigType25=Digital
-OutputCue25=Item 25 Pressed
-OutputSigType25=Digital
-InputCue26=[~UNUSED3~]
-InputSigType26=Digital
-OutputCue26=Item 26 Pressed
-OutputSigType26=Digital
-InputCue27=[~UNUSED3~]
-InputSigType27=Digital
-OutputCue27=Item 27 Pressed
-OutputSigType27=Digital
-InputCue28=[~UNUSED3~]
-InputSigType28=Digital
-OutputCue28=Item 28 Pressed
-OutputSigType28=Digital
-InputCue29=[~UNUSED3~]
-InputSigType29=Digital
-OutputCue29=Item 29 Pressed
-OutputSigType29=Digital
-InputCue30=[~UNUSED3~]
-InputSigType30=Digital
-OutputCue30=Item 30 Pressed
-OutputSigType30=Digital
-InputCue31=[~UNUSED3~]
-InputSigType31=Digital
-OutputCue31=Item 31 Pressed
-OutputSigType31=Digital
-InputCue32=[~UNUSED3~]
-InputSigType32=Digital
-OutputCue32=Item 32 Pressed
-OutputSigType32=Digital
-InputCue33=[~UNUSED3~]
-InputSigType33=Digital
-OutputCue33=Item 33 Pressed
-OutputSigType33=Digital
-InputCue34=[~UNUSED3~]
-InputSigType34=Digital
-OutputCue34=Item 34 Pressed
-OutputSigType34=Digital
-InputCue35=[~UNUSED3~]
-InputSigType35=Digital
-OutputCue35=Item 35 Pressed
-OutputSigType35=Digital
-InputCue36=[~UNUSED3~]
-InputSigType36=Digital
-OutputCue36=Item 36 Pressed
-OutputSigType36=Digital
-InputCue37=[~UNUSED3~]
-InputSigType37=Digital
-OutputCue37=Item 37 Pressed
-OutputSigType37=Digital
-InputCue38=[~UNUSED3~]
-InputSigType38=Digital
-OutputCue38=Item 38 Pressed
-OutputSigType38=Digital
-InputCue39=[~UNUSED3~]
-InputSigType39=Digital
-OutputCue39=Item 39 Pressed
-OutputSigType39=Digital
-InputCue40=[~UNUSED3~]
-InputSigType40=Digital
-OutputCue40=Item 40 Pressed
-OutputSigType40=Digital
-InputCue41=[~UNUSED3~]
-InputSigType41=Digital
-OutputCue41=Item 41 Pressed
-OutputSigType41=Digital
-InputCue42=[~UNUSED3~]
-InputSigType42=Digital
-OutputCue42=Item 42 Pressed
-OutputSigType42=Digital
-InputCue43=[~UNUSED3~]
-InputSigType43=Digital
-OutputCue43=Item 43 Pressed
-OutputSigType43=Digital
-InputCue44=[~UNUSED3~]
-InputSigType44=Digital
-OutputCue44=Item 44 Pressed
-OutputSigType44=Digital
-InputCue45=[~UNUSED3~]
-InputSigType45=Digital
-OutputCue45=Item 45 Pressed
-OutputSigType45=Digital
-InputCue46=[~UNUSED3~]
-InputSigType46=Digital
-OutputCue46=Item 46 Pressed
-OutputSigType46=Digital
-InputCue47=[~UNUSED3~]
-InputSigType47=Digital
-OutputCue47=Item 47 Pressed
-OutputSigType47=Digital
-InputCue48=[~UNUSED3~]
-InputSigType48=Digital
-OutputCue48=Item 48 Pressed
-OutputSigType48=Digital
 InputList2Cue1=Select Item
 InputList2SigType1=Analog
 OutputList2Cue1=[~UNUSED3~]
@@ -251,13 +93,14 @@ OutputList2SigType6=Analog
 ParamCue1=SmartObjectId
 ParamSigType1=Constant
 MPp=1
-Pp1=1
+Pp1=2
+CedH=2
+SmartObjId=55d
 ]
-
 ; Parameter Properties for Smart Object ID
 [
 ObjTp=Dp
-H=1
+H=2
 Tp=1
 HD=TRUE
 DV=55d
@@ -267,12 +110,12 @@ EncFmt=0
 DVLF=1
 Sgn=0
 ]
-
 ; Smart Objects Definition section
 [
 ObjTp=CED
-H=1
+H=2
 Name=Crescendo iPad_[Sources] [TV] Presets_Icon List Vertical.ced
+;Cedver is the version of the Smart Graphics control, not the CED file format.
+;If the control definition changes, increment this.
 CedVer=1
 ]
-

@@ -1,27 +1,25 @@
 [
-Version=1
-]
-[
 ObjTp=FSgntr
 Sgntr=FlashComposite
-RelVrs=1
+;Increment this version when CED file format changes
+RelVrs=2
 IntStrVrs=1
-VTProeVer=5.3.19
+VTProeVer=5.4.17
 ]
-
 [
 ObjTp=Symbol
 Name=Crescendo iPad_[Sources] [TV] Tabs_Tab Button Horizontal.ced
-Hint=Tab Button Horizontal (Smart Object ID = 9)
-Code=1
+Hint=Tab Button Horizontal (Smart Object ID=9)
+Code=4
+GUID=F1531132-73A0-4C84-8309-6915482C21CB
 SmplCName=Crescendo iPad_[Sources] [TV] Tabs_Tab Button Horizontal.ced
-SMWRev=3.01.26
+SMWRev=4.02.19
 Expand=expand_random
-; define the number of inputs, outputs and parameters
-MinVariableInputs=12
-MaxVariableInputs=12
-MinVariableOutputs=12
-MaxVariableOutputs=12
+;Define the number of inputs, outputs and parameters
+MinVariableInputs=4
+MaxVariableInputs=4
+MinVariableOutputs=4
+MaxVariableOutputs=4
 NumFixedParams=1
 MinVariableInputsList2=0
 MaxVariableInputsList2=0
@@ -31,7 +29,7 @@ MinVariableInputsList3=0
 MaxVariableInputsList3=0
 MinVariableOutputsList3=0
 MaxVariableOutputsList3=0
-; define the cues, and signal types  each input, output and parameter.
+;Define the cues, and signal types  each input, output and parameter.
 InputCue1=[~UNUSED3~]
 InputSigType1=Digital
 OutputCue1=Tab Button 1 Press
@@ -48,48 +46,17 @@ InputCue4=Tab Button 2 Select
 InputSigType4=Digital
 OutputCue4=[~UNUSED3~]
 OutputSigType4=Digital
-InputCue5=[~UNUSED3~]
-InputSigType5=Digital
-OutputCue5=Tab Button 3 Press
-OutputSigType5=Digital
-InputCue6=Tab Button 3 Select
-InputSigType6=Digital
-OutputCue6=[~UNUSED3~]
-OutputSigType6=Digital
-InputCue7=[~UNUSED3~]
-InputSigType7=Digital
-OutputCue7=Tab Button 4 Press
-OutputSigType7=Digital
-InputCue8=Tab Button 4 Select
-InputSigType8=Digital
-OutputCue8=[~UNUSED3~]
-OutputSigType8=Digital
-InputCue9=[~UNUSED3~]
-InputSigType9=Digital
-OutputCue9=Tab Button 5 Press
-OutputSigType9=Digital
-InputCue10=Tab Button 5 Select
-InputSigType10=Digital
-OutputCue10=[~UNUSED3~]
-OutputSigType10=Digital
-InputCue11=[~UNUSED3~]
-InputSigType11=Digital
-OutputCue11=Tab Button 6 Press
-OutputSigType11=Digital
-InputCue12=Tab Button 6 Select
-InputSigType12=Digital
-OutputCue12=[~UNUSED3~]
-OutputSigType12=Digital
 ParamCue1=SmartObjectId
 ParamSigType1=Constant
 MPp=1
-Pp1=1
+Pp1=4
+CedH=4
+SmartObjId=9d
 ]
-
 ; Parameter Properties for Smart Object ID
 [
 ObjTp=Dp
-H=1
+H=4
 Tp=1
 HD=TRUE
 DV=9d
@@ -99,12 +66,12 @@ EncFmt=0
 DVLF=1
 Sgn=0
 ]
-
 ; Smart Objects Definition section
 [
 ObjTp=CED
-H=1
+H=4
 Name=Crescendo iPad_[Sources] [TV] Tabs_Tab Button Horizontal.ced
+;Cedver is the version of the Smart Graphics control, not the CED file format.
+;If the control definition changes, increment this.
 CedVer=1
 ]
-
