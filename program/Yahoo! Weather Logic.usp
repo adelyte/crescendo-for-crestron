@@ -188,7 +188,7 @@ FUNCTION ConnectToServer(INTEGER wait_time)
     {
       WAIT(wait_time, CONNECT_WAIT)
       {
-        SOCKETCONNECTCLIENT(struct_TCP, "xml.weather.yahoo.com", 80, #NO);
+        SOCKETCONNECTCLIENT(struct_TCP, "weather.yahooapis.com", 80, #NO);
       }
     }
     ELSE
@@ -198,7 +198,7 @@ FUNCTION ConnectToServer(INTEGER wait_time)
   }
   ELSE
   {
-    SOCKETCONNECTCLIENT(struct_TCP, "xml.weather.yahoo.com", 80, #NO);
+    SOCKETCONNECTCLIENT(struct_TCP, "weather.yahooapis.com", 80, #NO);
   }
 }
 
@@ -210,7 +210,7 @@ SOCKETCONNECT struct_TCP
   SOCKETGETADDRESSASREQUESTED(struct_TCP, connected_address);
   TRACE("Weather | SOCKETCONNECT(%s)", connected_address);
   
-  MAKESTRING(tcp_tx, "GET /forecastrss?p=%s&u=%s HTTP/1.1\nHost: xml.weather.yahoo.com\n\n", ZipCode, param_Units); // The feed does not provide a Last-Modified header field and seems to ignore the If-Modified-Since header field.
+  MAKESTRING(tcp_tx, "GET /forecastrss?p=%s&u=%s HTTP/1.1\nHost: weather.yahooapis.com\n\n", ZipCode, param_Units); // The feed does not provide a Last-Modified header field and seems to ignore the If-Modified-Since header field.
 
   SOCKETSEND(struct_TCP, tcp_tx);
   TRACE("Weather | SOCKETSEND('%s')", tcp_tx);
