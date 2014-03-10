@@ -28,7 +28,7 @@ DIGITAL_OUTPUT HumidifierAuto, HumidifierOff;
 ANALOG_OUTPUT  _SKIP_;
 ANALOG_OUTPUT  SetHeatSetpoint, SetCoolSetpoint, SetHumiditySetpoint;
 STRING_OUTPUT  SettingsTX;
-STRING_OUTPUT  Description, Mode, CurrentTempText, SetpointText;
+STRING_OUTPUT  Description, Mode, CurrentTempText, SetpointText, HeatSetpointText, CoolSetpointText;
 
 
 PUSH SendSettings
@@ -190,12 +190,14 @@ FUNCTION UpdateStatus()
 		MAKESTRING(Description, "%s %u°", Calling, CurrentTemperature / 10);
 		MAKESTRING(Mode, "Heat");
 		MAKESTRING(SetpointText, "%u°", HeatSetpoint / 10);
+        MAKESTRING(HeatSetpointText, "%u°", HeatSetpoint / 10);
 	}
     ELSE IF(ModeIsCool)
     {
 	    MAKESTRING(Description, "%s %u°", Calling, CurrentTemperature / 10);
 		MAKESTRING(Mode, "Cool");
 		MAKESTRING(SetpointText, "%u°", CoolSetpoint / 10);
+        MAKESTRING(CoolSetpointText, "%u°", CoolSetpoint / 10);
 	}
     ELSE IF(ModeIsAuto)
     {
@@ -203,12 +205,16 @@ FUNCTION UpdateStatus()
 		//MAKESTRING(Description, "%u° Auto(%u-%u) %s", CurrentTemperature / 10, HeatSetpoint / 10, CoolSetpoint / 10, Calling);
 		MAKESTRING(Mode, "Auto");
 		MAKESTRING(SetpointText, "%u°-%u°", HeatSetpoint / 10, CoolSetpoint / 10);
+        MAKESTRING(HeatSetpointText, "%u°", HeatSetpoint / 10);
+        MAKESTRING(CoolSetpointText, "%u°", CoolSetpoint / 10);
 	}
     ELSE IF(ModeIsOff)
     {
 	    MAKESTRING(Description, "%u° Off", CurrentTemperature / 10);
 		MAKESTRING(Mode, "Off");
 		MAKESTRING(SetpointText, "N/A");
+        MAKESTRING(HeatSetpointText, "N/A");
+        MAKESTRING(CoolSetpointText, "N/A");
 	}
     ELSE // Error reading thermostat state.
         MAKESTRING(Description, "Undefined");

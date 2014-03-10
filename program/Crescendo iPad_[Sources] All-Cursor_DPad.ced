@@ -1,23 +1,21 @@
 [
-Version=1
-]
-[
 ObjTp=FSgntr
 Sgntr=FlashComposite
-RelVrs=1
+;Increment this version when CED file format changes
+RelVrs=2
 IntStrVrs=1
-VTProeVer=5.3.19
+VTProeVer=5.4.17
 ]
-
 [
 ObjTp=Symbol
 Name=Crescendo iPad_[Sources] All-Cursor_DPad.ced
-Hint=DPad (Smart Object ID = 51)
+Hint=DPad (Smart Object ID=51)
 Code=1
+GUID=F16C3513-D6C5-4325-8630-8B8FFE459136
 SmplCName=Crescendo iPad_[Sources] All-Cursor_DPad.ced
-SMWRev=3.01.26
+SMWRev=4.02.19
 Expand=expand_random
-; define the number of inputs, outputs and parameters
+;Define the number of inputs, outputs and parameters
 MinVariableInputs=5
 MaxVariableInputs=5
 MinVariableOutputs=5
@@ -31,7 +29,7 @@ MinVariableInputsList3=0
 MaxVariableInputsList3=0
 MinVariableOutputsList3=0
 MaxVariableOutputsList3=0
-; define the cues, and signal types  each input, output and parameter.
+;Define the cues, and signal types  each input, output and parameter.
 InputCue1=[~UNUSED3~]
 InputSigType1=Digital
 OutputCue1=Up
@@ -56,8 +54,9 @@ ParamCue1=SmartObjectId
 ParamSigType1=Constant
 MPp=1
 Pp1=1
+CedH=1
+SmartObjId=51d
 ]
-
 ; Parameter Properties for Smart Object ID
 [
 ObjTp=Dp
@@ -71,12 +70,12 @@ EncFmt=0
 DVLF=1
 Sgn=0
 ]
-
 ; Smart Objects Definition section
 [
 ObjTp=CED
 H=1
 Name=Crescendo iPad_[Sources] All-Cursor_DPad.ced
+;Cedver is the version of the Smart Graphics control, not the CED file format.
+;If the control definition changes, increment this.
 CedVer=1
 ]
-

@@ -1,0 +1,185 @@
+/*
+ *
+  Adelyte Company
+  www.adelyte.com
+ *
+ */
+
+#HELP_BEGIN
+XML Parsing Library
+
+Released by Adelyte Company into the public domain under the Creative Commons Zero license.
+
+Authors:
+  - David Massey (lead) <david@adelyte.com>
+#HELP_END
+
+INTEGER_FUNCTION XMLRootEndTagFound(STRING xml_feed)
+{
+  INTEGER start_pos, end_pos;
+  STRING  root_element[48];
+
+  IF(FIND("<?", xml_feed))
+    start_pos = FIND("<", xml_feed, 32) + 1;
+  ELSE
+    start_pos = FIND("<", xml_feed) + 1;
+
+  end_pos = MIN(FIND(">", xml_feed, start_pos) - 1, FIND(" ", xml_feed, start_pos) - 1);
+
+  IF(end_pos - start_pos < LEN(xml_feed))
+    root_element = MID(xml_feed, start_pos, end_pos - start_pos + 1);
+
+  TRACE("WaitForXMLRootClose()\n");
+  TRACE("    root_element = '%s'", root_element);
+
+  MAKESTRING(root_element, "</%s>", root_element);
+
+  RETURN(!!FIND(root_element, xml_feed));
+}
+
+FUNCTION XMLFindElement(STRING element_names[], BYREF INTEGER breadth, STRING xml_feed, BYREF INTEGER start_pos, BYREF INTEGER end_pos)
+{
+  INTEGER depth, deepest_element, find_pos, name_len;
+  STRING element_tag[48];
+
+  end_pos = LEN(xml_feed);
+
+  // Catch uninitialized data errors.
+  IF(start_pos > end_pos || start_pos = 0)
+    start_pos = 1;
+
+  IF(breadth > end_pos)
+    breadth = 0;
+
+  // Find element.
+  FOR(deepest_element = 0 TO GETNUMARRAYROWS(element_names))
+  {
+    IF(LEN(element_names[deepest_element]) = 0)
+    {
+      BREAK;
+    }
+  }
+
+  deepest_element = deepest_element - 1;
+
+  FOR(depth = 0 TO deepest_element)
+  {
+    MAKESTRING(element_tag, "<%s", element_names[depth]);
+    find_pos = FIND(element_tag, xml_feed, start_pos);
+    name_len = LEN(element_names[depth]);
+
+    IF(find_pos > end_pos || find_pos = 0)
+    {
+      breadth = 0;
+      start_pos = 0;
+      end_pos = 0;
+      RETURN;
+    }
+
+    IF(MID(xml_feed, find_pos + name_len + 1, 1) = ">")
+    {
+      MAKESTRING(element_tag, "</%s>", element_names[depth]);
+    }
+    ELSE IF(MID(xml_feed, find_pos + name_len + 1, 1) = " ")
+    {
+      element_tag = "/>";
+    }
+    ELSE
+    {
+      element_tag = "";
+      start_pos = 0;
+      end_pos = 0;
+      breadth = 0;
+      RETURN;
+    }
+
+    start_pos = find_pos;
+    end_pos = FIND(element_tag, xml_feed, start_pos);
+  }
+
+  IF(breadth > 1)
+  {
+    depth = deepest_element;
+    MAKESTRING(element_tag, "<%s", element_names[depth]);
+
+    FOR(breadth = breadth - 1 TO 1 STEP -1)
+      find_pos = FIND(element_tag, xml_feed, find_pos + 1);
+
+    MAKESTRING(element_tag, "</%s>", element_names[depth]);
+
+    start_pos = find_pos;
+    end_pos = MIN(FIND(element_tag, xml_feed, start_pos) - 1, FIND("/>", xml_feed, start_pos) - 1) + 1;
+  }
+  ELSE IF(breadth = 0)
+  {
+    depth = depth - 1;
+    MAKESTRING(element_tag, "<%s", element_names[depth]);
+
+    DO
+    {
+      find_pos = FIND(element_tag, xml_feed, find_pos + 1);
+      breadth = breadth + 1;
+    }
+    UNTIL(find_pos = 0);
+  }
+}
+
+STRING_FUNCTION XMLGetAttributeData(STRING attribute_name, STRING attributes)
+{
+  INTEGER find_pos, start_pos, end_pos;
+
+  find_pos = FIND(attribute_name, attributes);
+  start_pos = FIND("=\"", attributes, find_pos) + 2;
+
+  end_pos = FIND("\"", attributes, start_pos);
+
+  RETURN(MID(attributes, start_pos, end_pos - start_pos));
+}
+
+FUNCTION XMLGetElementData(STRING element_names[], INTEGER breadth, STRING xml_feed, BYREF STRING content, BYREF STRING attributes)
+{
+  INTEGER depth, element_start, element_end, name_len, start_pos, end_pos;
+  STRING  element_tag[48];
+
+  element_start = 0;
+  element_end = 0;
+
+  XMLFindElement(element_names, breadth, xml_feed, element_start, element_end);
+
+  IF(element_end = 0)
+    RETURN;
+
+  // Parse element attributes.
+  FOR(depth = 0 TO GETNUMARRAYROWS(element_names))
+  {
+    IF(LEN(element_names[depth]) = 0)
+    {
+      BREAK;
+    }
+  }
+
+  depth = depth - 1;
+
+  name_len = LEN(element_names[depth]);
+
+  end_pos = FIND(">", xml_feed, element_start + name_len);
+
+  IF(end_pos > element_start + 1 + name_len)
+  {
+    start_pos = element_start + 1 + name_len + 1;
+
+    IF(MID(xml_feed, end_pos - 1, 1) = "/")
+    {
+      end_pos = end_pos - 1;
+      element_end = end_pos + 1;
+    }
+
+    attributes = MID(xml_feed, start_pos, end_pos - start_pos);
+  }
+
+  // Parse element content.
+  start_pos = end_pos + 1;
+  end_pos = element_end;
+
+  content = MID(xml_feed, start_pos, end_pos - start_pos);
+}

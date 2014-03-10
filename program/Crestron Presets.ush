@@ -6,7 +6,7 @@
   Sgntr=UserSPlus
   RelVrs=1
   IntStrVrs=1
-  SPlusVrs=4.02.21
+  SPlusVrs=4.02.24
   CrossCplrVrs=1.3
 [END]
 [BEGIN]
@@ -107,6 +107,7 @@
   SymJam=NonExclusive
   FileName=Crestron Presets.ush
   SIMPLPlusModuleEncoding=0
+  Usl1=lib xml.usl
 [END]
 [BEGIN]
   ObjTp=Dp
