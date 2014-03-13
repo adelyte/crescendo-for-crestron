@@ -19,11 +19,12 @@ S0Nd=1
 S1Nd=2
 SLNd=3
 PrNm=Crescendo 3-Series Demo.smw
-CmVr=3.00
+CmVr=3.03
 DbVr=44.00.002.00
 DvcDbVr=54.05.004.00
+OpVr=MC3 1.008.0040
 PgmNm=Adelyte Company
-CltNm=EH Peachtree
+CltNm=Crescendo Demo System
 SmVr=888
 DvVr=888
 TpN1=1
@@ -7063,6 +7064,20 @@ Sy1=0
 Mx1=0
 ]
 [
+ObjTp=Bw
+H=1
+Lx=0
+Ly=0
+Rx=1450
+Ry=1035
+Xm=-1
+Ym=-1
+SH=288
+Z=100
+Ht=1
+Hi=5
+]
+[
 ObjTp=Et
 H=1
 DvH=1671
@@ -13864,8 +13879,6 @@ GrpStI97=1
 GrpStI98=1
 GrpStI99=1
 GrpStI100=5
-NGrpStO=1
-GrpStO1=0
 ]
 [
 ObjTp=Sm
@@ -14034,8 +14047,6 @@ GrpStI97=1
 GrpStI98=1
 GrpStI99=1
 GrpStI100=5
-NGrpStO=1
-GrpStO1=0
 ]
 [
 ObjTp=Sm
@@ -14188,8 +14199,6 @@ GrpStI97=1
 GrpStI98=1
 GrpStI99=1
 GrpStI100=5
-NGrpStO=1
-GrpStO1=0
 ]
 [
 ObjTp=Sm
@@ -14345,8 +14354,6 @@ GrpStI97=1
 GrpStI98=1
 GrpStI99=1
 GrpStI100=5
-NGrpStO=1
-GrpStO1=0
 ]
 [
 ObjTp=Sm
@@ -14485,8 +14492,6 @@ GrpStI97=1
 GrpStI98=1
 GrpStI99=1
 GrpStI100=5
-NGrpStO=1
-GrpStO1=0
 ]
 [
 ObjTp=Sm
@@ -14620,8 +14625,6 @@ GrpStI97=1
 GrpStI98=1
 GrpStI99=1
 GrpStI100=5
-NGrpStO=1
-GrpStO1=0
 ]
 [
 ObjTp=Sm
@@ -14769,8 +14772,6 @@ GrpStI97=1
 GrpStI98=1
 GrpStI99=1
 GrpStI100=5
-NGrpStO=1
-GrpStO1=0
 ]
 [
 ObjTp=Sm
@@ -14914,8 +14915,6 @@ GrpStI97=1
 GrpStI98=1
 GrpStI99=1
 GrpStI100=5
-NGrpStO=1
-GrpStO1=0
 ]
 [
 ObjTp=Sm
@@ -50593,8 +50592,6 @@ GrpStI97=1
 GrpStI98=1
 GrpStI99=1
 GrpStI100=5
-NGrpStO=1
-GrpStO1=0
 ]
 [
 ObjTp=Sm
@@ -50737,8 +50734,6 @@ GrpStI97=1
 GrpStI98=1
 GrpStI99=1
 GrpStI100=5
-NGrpStO=1
-GrpStO1=0
 ]
 [
 ObjTp=Sm
@@ -50753,10 +50748,10 @@ n1O=1
 Cmn1=MA-02  Home - Theater\\
 mI=100
 I2=28
-I3=743
-I4=124
-I5=842
-I6=1754
+I3=124
+I4=842
+I5=1949
+I6=270
 mO=1
 tO=1
 O1=277
@@ -50870,8 +50865,6 @@ GrpStI97=1
 GrpStI98=1
 GrpStI99=1
 GrpStI100=5
-NGrpStO=1
-GrpStO1=0
 ]
 [
 ObjTp=Sm
@@ -60614,8 +60607,6 @@ GrpStI97=1
 GrpStI98=1
 GrpStI99=1
 GrpStI100=5
-NGrpStO=1
-GrpStO1=0
 ]
 [
 ObjTp=CED
