@@ -20,7 +20,7 @@ DIGITAL_INPUT Is_Connected;
 DIGITAL_INPUT Page_Up, Page_Down;
 DIGITAL_INPUT Select_Item[#ITEMS_MAX];
 ANALOG_INPUT  Content, Highlight_Route[#TYPES_MAX];
-ANALOG_INPUT  Item_Route_A[#ITEMS_MAX], Item_Route_B[#ITEMS_MAX];
+ANALOG_INPUT  Item_Route_A[#ITEMS_MAX], Item_Route_B[#ITEMS_MAX], Item_Route_C[#ITEMS_MAX];
 
 DIGITAL_OUTPUT Page_Up_Visible, Page_Down_Visible;
 DIGITAL_OUTPUT Focused_Page[#PAGES_MAX], Highlighted_Item[#ITEMS_MAX];
@@ -110,6 +110,15 @@ FUNCTION SelectItem(INTEGER item)
     
 	route_type = (Item_Route_B[item] & 0x0F00) >> 8;
     route_id   =  Item_Route_B[item] & 0x00FF;
+    
+    MAKESTRING(Set_Route[route_type], "%c%c", route_type + 0xD0, route_id);
+    
+    // Route C
+    IF(Item_Route_C[item] = 0)
+        RETURN;
+    
+	route_type = (Item_Route_C[item] & 0x0F00) >> 8;
+    route_id   =  Item_Route_C[item] & 0x00FF;
     
     MAKESTRING(Set_Route[route_type], "%c%c", route_type + 0xD0, route_id);
 }
