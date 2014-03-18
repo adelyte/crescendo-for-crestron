@@ -11,18 +11,16 @@
 [END]
 [BEGIN]
   ObjTp=Hd
-  Cmn1=XML Parsing Library\\\\Released by Adelyte Company into the public||1
-  Cmn2=domain under the Creative Commons Zero license.\\\\Authors:\\  -
-  Cmn3=||1David Massey (lead) <david@adelyte.com>\\\\Yahoo! Weather\\\\Released||1
-  Cmn4=by Adelyte Company into the public domain under the Creative Commons||1
-  Cmn5=Zero license.\\\\Authors:\\  - David Massey (lead) <david@adelyte.
-  Cmn6=com>\\  - Chris Massey <chris@adelyte.com>\\
+  Cmn1=Yahoo! Weather\\\\Released by Adelyte Company into the public domain||1
+  Cmn2=under the Creative Commons Zero license.\\\\Authors:\\  - David||1
+  Cmn3=Massey (lead) <david@adelyte.com>\\  - Chris Massey <chris@adelyte.
+  Cmn4=com>\\
 [END]
 [BEGIN]
   ObjTp=Symbol
   Exclusions=1,19,20,21,88,89,167,168,179,213,214,215,216,217,225,226,248,249,266,267,310,718,756,854,
-  Exclusions_CDS=5
-  Inclusions_CDS=6
+  Exclusions_CDS=
+  Inclusions_CDS=5,6
   Name=Yahoo! Weather
   SmplCName=Yahoo! Weather Logic.usp
   Code=1
@@ -188,15 +186,15 @@
   OutputList2SigType58=Serial
   OutputList2Cue59=out_Forecast_Description[5]
   OutputList2SigType59=Serial
-  OutputList2Cue60=out_Forecast_Date[1]
+  OutputList2Cue60=out_Forecast_Day[1]
   OutputList2SigType60=Serial
-  OutputList2Cue61=out_Forecast_Date[2]
+  OutputList2Cue61=out_Forecast_Day[2]
   OutputList2SigType61=Serial
-  OutputList2Cue62=out_Forecast_Date[3]
+  OutputList2Cue62=out_Forecast_Day[3]
   OutputList2SigType62=Serial
-  OutputList2Cue63=out_Forecast_Date[4]
+  OutputList2Cue63=out_Forecast_Day[4]
   OutputList2SigType63=Serial
-  OutputList2Cue64=out_Forecast_Date[5]
+  OutputList2Cue64=out_Forecast_Day[5]
   OutputList2SigType64=Serial
   OutputList2Cue65=out_Preset_ZIP_Code[1]
   OutputList2SigType65=Serial
