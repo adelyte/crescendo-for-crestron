@@ -68,7 +68,6 @@
   SymJam=NonExclusive
   FileName=Crestron AMFM Channel Text.ush
   SIMPLPlusModuleEncoding=0
-  Usl1=lib xml.usl
 [END]
 [BEGIN]
   ObjTp=Dp

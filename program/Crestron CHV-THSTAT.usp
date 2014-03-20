@@ -176,7 +176,7 @@ FUNCTION UpdateStatus()
 {
     STRING Calling[7];
 
-	MAKESTRING(CurrentTempText, "%u°F", CurrentTemperature / 10);
+	MAKESTRING(CurrentTempText, "%u°", CurrentTemperature / 10);
     
     IF(CallingHeat1 || CallingHeat2 || CallingAuxHeat)
         MAKESTRING(Calling, "Heating");

@@ -107,7 +107,6 @@
   SymJam=NonExclusive
   FileName=Crestron Presets.ush
   SIMPLPlusModuleEncoding=0
-  Usl1=lib xml.usl
 [END]
 [BEGIN]
   ObjTp=Dp

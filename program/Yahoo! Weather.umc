@@ -45,35 +45,6 @@ Sy1=0
 Mx1=0
 ]
 [
-ObjTp=Bw
-H=1
-Lx=0
-Ly=517
-Rx=1450
-Ry=1034
-Xm=-1
-Ym=-1
-SH=15
-Z=100
-Ht=3
-Hi=2
-]
-[
-ObjTp=Bw
-H=1
-Lx=0
-Ly=0
-Rx=1450
-Ry=517
-Xm=-1
-Ym=-1
-SH=7
-Z=100
-P=72
-Ht=1
-Hi=9
-]
-[
 ObjTp=Symbol
 Name=Yahoo! Weather
 Code=1
@@ -420,7 +391,7 @@ SmC=156
 Nm=Logic
 ObjVer=1
 CF=2
-mC=7
+mC=8
 C1=12
 C2=8
 C3=15
@@ -428,6 +399,7 @@ C4=7
 C5=9
 C6=10
 C7=11
+C8=13
 ]
 [
 ObjTp=Sm
@@ -733,7 +705,7 @@ mP=4
 P1=
 P2=#Local ZIP Code
 P3=#Units
-P4=200d
+P4=150d
 ]
 [
 ObjTp=Sm
@@ -801,6 +773,7 @@ ObjVer=1
 PrH=4
 CF=2
 n1I=35
+Cmn1=Info\\
 mI=35
 I1=143
 I2=144
@@ -3618,6 +3591,32 @@ GrpStO1299=5
 ]
 [
 ObjTp=Sm
+H=13
+SmC=858
+Nm=Make String Permanent
+ObjVer=1
+PrH=4
+CF=2
+n1I=12
+Cmn1=Presets\\
+mI=12
+I1=252
+I2=203
+I3=204
+I4=216
+I5=253
+I6=255
+I7=260
+I8=261
+I9=262
+I10=263
+I11=264
+I12=265
+mP=1
+P1=128d
+]
+[
+ObjTp=Sm
 H=15
 SmC=103
 Nm=Yahoo! Weather Logic.usp
@@ -3755,7 +3754,7 @@ mP=4
 P1=
 P2=#Local ZIP Code
 P3=#Units
-P4=200d
+P4=150d
 ]
 [
 ObjTp=Sm

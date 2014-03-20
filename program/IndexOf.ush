@@ -267,7 +267,6 @@
   SymJam=NonExclusive
   FileName=IndexOf.ush
   SIMPLPlusModuleEncoding=0
-  Usl1=lib xml.usl
 [END]
 [BEGIN]
   ObjTp=Dp

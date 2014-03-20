@@ -89,7 +89,6 @@
   SymJam=NonExclusive
   FileName=Numpad.ush
   SIMPLPlusModuleEncoding=0
-  Usl1=lib xml.usl
 [END]
 [BEGIN]
   ObjTp=Dp
