@@ -150,7 +150,11 @@ PUSH Is_Connected
 		        {
 		            TRACE("Item_Route_A[%u] = %04X", i, Item_Route_A[i]);
 		            
-		            IF(Content = 5) // Only highlight source items.
+		            IF(Content = 1) // Only highlights rooms.
+		            {
+		                HighlightItem(i);
+		            }
+                    ELSE IF(Content = 5) // Only highlight sources.
 		            {
 		                HighlightItem(i);
 		            }
