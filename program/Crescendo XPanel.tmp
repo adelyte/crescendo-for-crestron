@@ -342,11 +342,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo XPanel_[Subpages] Menu Rooms_Button List Vertical.ced
+Name=Crescendo XPanel_[Home] Room List_Button List Vertical.ced
 Hint=Button List Vertical (Smart Object ID=11)
 Code=5
 GUID=FD642AC8-EFB0-4C78-84D3-19720CF07CEF
-SmplCName=Crescendo XPanel_[Subpages] Menu Rooms_Button List Vertical.ced
+SmplCName=Crescendo XPanel_[Home] Room List_Button List Vertical.ced
 SMWRev=4.02.19
 Expand=expand_random
 ;Define the number of inputs, outputs and parameters
@@ -796,7 +796,7 @@ Sgn=0
 [
 ObjTp=CED
 H=5
-Name=Crescendo XPanel_[Subpages] Menu Rooms_Button List Vertical.ced
+Name=Crescendo XPanel_[Home] Room List_Button List Vertical.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1

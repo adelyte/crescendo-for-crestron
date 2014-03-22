@@ -15,8 +15,8 @@
 [BEGIN]
   ObjTp=Symbol
   Exclusions=1,19,20,21,88,89,167,168,179,213,214,215,216,217,225,226,248,249,266,267,310,718,756,854,
-  Exclusions_CDS=5
-  Inclusions_CDS=6
+  Exclusions_CDS=
+  Inclusions_CDS=5,6
   Name=TimeDate
   SmplCName=TimeDate.usp
   Code=1
@@ -39,7 +39,7 @@
   ParamCue1=[Reference Name]
   ParamCue2=param_Daylight_Saving,1d,0d
   ParamSigType2=List
-  ParamCue3=param_Date_Format,0d,1d,2d,11d,12d,21d,22d
+  ParamCue3=param_Date_Format,0d,1d,2d,11d,12d,21d,22d,31d
   ParamSigType3=List
   MinVariableInputs=0
   MaxVariableInputs=0
@@ -115,7 +115,7 @@
   NoS=True
   DNF=1
   VVS=2
-  VN=7
+  VN=8
   Val1=0d
   Lbl1=YYYY-MM-DD (ISO 8601)
   Val2=1d
@@ -130,4 +130,6 @@
   Lbl6=DD-MM-YY
   Val7=22d
   Lbl7=MM-DD-YY
+  Val8=31d
+  Lbl8=D MMMM
 [END]

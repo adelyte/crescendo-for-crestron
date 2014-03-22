@@ -87,22 +87,9 @@ FUNCTION HighlightItem(INTEGER item)
 	}
 }
 
-FUNCTION SelectItem(INTEGER item)
+FUNCTION SelectSubItem(INTEGER item)
 {
     INTEGER route_type, route_id;
-    
-	TRACE("SelectItem(%u)", item);
-    
-    IF(item = 0)        
-        RETURN; // Invalid argument: only item > 0 can be selected.
-    
-	HighlightItem(item);
-	
-    // Route A
-	route_type = (Item_Route_A[item] & 0x0F00) >> 8;
-    route_id   =  Item_Route_A[item] & 0x00FF;
-    
-    MAKESTRING(Set_Route[route_type], "%c%c", route_type + 0xD0, route_id);
     
     // Route B
     IF(Item_Route_B[item] = 0)
@@ -122,6 +109,26 @@ FUNCTION SelectItem(INTEGER item)
     
     MAKESTRING(Set_Route[route_type], "%c%c", route_type + 0xD0, route_id);
 }
+
+FUNCTION SelectMainItem(INTEGER item)
+{
+    INTEGER route_type, route_id;
+    
+	TRACE("SelectItem(%u)", item);
+    
+    IF(item = 0)        
+        RETURN; // Invalid argument: only item > 0 can be selected.
+    
+	HighlightItem(item);
+	
+    // Route A
+	route_type = (Item_Route_A[item] & 0x0F00) >> 8;
+    route_id   =  Item_Route_A[item] & 0x00FF;
+    
+    MAKESTRING(Set_Route[route_type], "%c%c", route_type + 0xD0, route_id);
+    
+    SelectSubItem(item);
+}    
 
 PUSH Is_Connected
 {
@@ -153,6 +160,7 @@ PUSH Is_Connected
 		            IF(Content = 1) // Only highlights rooms.
 		            {
 		                HighlightItem(i);
+                        SelectSubItem(i);
 		            }
                     ELSE IF(Content = 5) // Only highlight sources.
 		            {
@@ -160,7 +168,7 @@ PUSH Is_Connected
 		            }
 		            ELSE
 		            {
-		                SelectItem(i);
+		                SelectMainItem(i);
 		            }
 		            
 		            TERMINATEEVENT;
@@ -177,7 +185,7 @@ PUSH Select_Item
     item = GETLASTMODIFIEDARRAYINDEX();
     
     IF(Item_Route_A[item] != 0)
-        SelectItem(item);
+        SelectMainItem(item);
 }
 
 CHANGE Highlight_Route

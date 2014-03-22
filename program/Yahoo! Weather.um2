@@ -45,6 +45,34 @@ Sy1=0
 Mx1=0
 ]
 [
+ObjTp=Bw
+H=1
+Lx=0
+Ly=517
+Rx=1450
+Ry=1034
+Xm=-1
+Ym=-1
+SH=8
+Z=100
+Ht=3
+Hi=3
+]
+[
+ObjTp=Bw
+H=1
+Lx=0
+Ly=0
+Rx=1450
+Ry=517
+Xm=-1
+Ym=-1
+SH=15
+Z=100
+Ht=1
+Hi=1
+]
+[
 ObjTp=Symbol
 Name=Yahoo! Weather
 Code=1
@@ -392,12 +420,12 @@ Nm=Logic
 ObjVer=1
 CF=2
 mC=8
-C1=12
-C2=8
-C3=15
-C4=7
-C5=9
-C6=10
+C1=19
+C2=12
+C3=8
+C4=15
+C5=7
+C6=9
 C7=11
 C8=13
 ]
@@ -728,8 +756,8 @@ O7=220
 mP=3
 P1=
 P2=1d
-P3=2d
-Plb3=MMMM D, YYYY
+P3=31d
+Plb3=D MMMM
 ]
 [
 ObjTp=Sm
@@ -751,30 +779,15 @@ O1=112
 ]
 [
 ObjTp=Sm
-H=10
-SmC=156
-Nm=SUBSYSTEM
-ObjVer=1
-PrH=4
-CF=2
-Cmn1=Signal Mapping\\INPUTS\\Signals that may originate from the argument||1
-Cmn2=definition or crosspoint routing.\\\\OUTPUTS\\Signals that may terminate||1
-Cmn3=at the argument definition or crosspoint routing.\\Signals that||1
-Cmn4=may be read back.\\Signals that are ends of SIMPL logic sequences.
-mC=1
-C1=19
-]
-[
-ObjTp=Sm
 H=11
 SmC=858
 Nm=Make String Permanent
 ObjVer=1
 PrH=4
 CF=2
-n1I=35
+n1I=37
 Cmn1=Info\\
-mI=35
+mI=37
 I1=143
 I2=144
 I3=148
@@ -810,6 +823,8 @@ I32=138
 I33=224
 I34=227
 I35=228
+I36=200
+I37=220
 mP=1
 P1=255d
 ]
@@ -3762,11 +3777,11 @@ H=19
 SmC=46
 Nm=Analog Buffer
 ObjVer=1
-PrH=10
+PrH=4
 CF=2
 n1I=60
 n1O=59
-Cmn1=Analog/Serial Outputs\\
+Cmn1=Signal Mapping\\
 mI=60
 I1=2
 I2=34

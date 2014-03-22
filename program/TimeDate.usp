@@ -61,7 +61,7 @@ INTEGER_PARAMETER param_Date_Format;
 
     propDEFAULTVALUE = 0d;
     propDEFAULTUNIT = unitDECIMAL;
-    propLIST = {0d, "YYYY-MM-DD (ISO 8601)"}, {1d, "D MMMM YYYY"}, {2d, "MMMM D, YYYY"}, {11d, "DD/MM/YY"}, {12d, "MM/DD/YY"}, {21d, "DD-MM-YY"}, {22d, "MM-DD-YY"};
+    propLIST = {0d, "YYYY-MM-DD (ISO 8601)"}, {1d, "D MMMM YYYY"}, {2d, "MMMM D, YYYY"}, {11d, "DD/MM/YY"}, {12d, "MM/DD/YY"}, {21d, "DD-MM-YY"}, {22d, "MM-DD-YY"}, {31d, "D MMMM"};
 
 #END_PARAMETER_PROPERTIES
 
@@ -103,6 +103,10 @@ FUNCTION PrintDate()
         CASE(22):
         {
             MAKESTRING(out_Date, "%02u/%02u/%02u", GETMONTHNUM(), GETDATENUM(), GETYEARNUM() MOD 100);
+        }
+        CASE(31):
+        {
+            MAKESTRING(out_Date, "%u %s", GETDATENUM(), MONTH());
         }
     }
 }
@@ -152,6 +156,9 @@ FUNCTION PrintTime()
 
 FUNCTION Main()
 {
+    PrintDate();
+	PrintDay();
+    
     WHILE(1)
     {
         IF(GETMINUTESNUM() = 0)
@@ -162,10 +169,6 @@ FUNCTION Main()
                 {
                     PrintDate();
 					PrintDay();
-                }
-                CASE(2): // 2:00 am
-                {
-                    //
                 }
             }
         }

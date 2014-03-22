@@ -55,8 +55,8 @@ Xm=-1
 Ym=-1
 SH=8
 Z=100
-Ht=4
-Hi=7
+Ht=3
+Hi=2
 ]
 [
 ObjTp=Symbol
@@ -742,8 +742,8 @@ O7=220
 mP=3
 P1=
 P2=1d
-P3=2d
-Plb3=MMMM D, YYYY
+P3=31d
+Plb3=D MMMM
 ]
 [
 ObjTp=Sm
@@ -771,9 +771,9 @@ Nm=Make String Permanent
 ObjVer=1
 PrH=4
 CF=2
-n1I=35
+n1I=37
 Cmn1=Info\\
-mI=35
+mI=37
 I1=143
 I2=144
 I3=148
@@ -809,6 +809,8 @@ I32=138
 I33=224
 I34=227
 I35=228
+I36=200
+I37=220
 mP=1
 P1=255d
 ]
@@ -982,7 +984,7 @@ O430=245
 O431=7
 O435=120
 mP=5
-P1=Weather
+P1=Yahoo! Weather
 P2=FE
 P3=12d
 P4=12d
