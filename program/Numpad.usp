@@ -1,0 +1,200 @@
+/*
+ *
+ * Adelyte Company
+ * www.adelyte.com
+ *
+ */
+
+#HELP_BEGIN
+Author: Chris Massey <chris@adelyte.com>
+Revisions by Austin Hatchett
+#HELP_END
+
+
+// Compiler Directives
+#SYMBOL_NAME "Numpad"
+#CATEGORY "11" // Counters
+#DEFAULT_VOLATILE
+
+
+// Constants
+#DEFINE_CONSTANT #MAX_LEN 6
+#DEFINE_CONSTANT #MAX_LEN_FORMATTED 8 // Always 2 greater than #MAXIMUM_LENGTH
+
+
+// Inputs and Outputs
+DIGITAL_OUTPUT do_Subpage, do_Eval;
+
+DIGITAL_INPUT  di_Enter, di_Clear, di_Number[10];
+
+ANALOG_OUTPUT  ao_Active_Value;
+STRING_OUTPUT  so_Active_Text, so_Active_Asterisks;
+
+ANALOG_OUTPUT  ao_Final_Value;
+STRING_OUTPUT  so_Final_Text, so_Final_Asterisks;
+
+ANALOG_INPUT   param_Scale, param_Precision, 
+               param_Subpage_Timeout, param_Value_Timeout;
+
+
+// Functions
+STRING_FUNCTION FormatNumber(STRING value)
+{
+    STRING text[#MAX_LEN_FORMATTED];
+    INTEGER i, value_len;
+    
+    IF(param_Scale > 0)
+    {
+	    value_len = LEN(value);
+        
+        IF(value_len <= param_Scale)
+        {
+            text = LEFT("0.000000", param_Scale + 2);
+            SETSTRING(value, param_Scale + 3 - value_len, text);
+        }
+        ELSE
+        {
+            MAKESTRING(text, "%s.%s", LEFT(value, value_len - param_Scale), RIGHT(value, param_Scale));
+        }
+    }
+    ELSE
+    {
+        text = value;
+    }
+    
+    RETURN(text);
+}
+
+STRING_FUNCTION HideNumber(STRING value)
+{
+    STRING asterisks[#MAX_LEN];
+    
+    asterisks = "******";
+    
+    asterisks = LEFT(asterisks, LEN(value));
+    
+    RETURN(asterisks);
+}
+
+STRING FinalNumber[#MAX_LEN];
+FUNCTION SetFinalNumber(STRING value)
+{
+    FinalNumber = value;
+    
+    ao_Final_Value = ATOI(FinalNumber);
+    so_Final_Text = FormatNumber(FinalNumber);
+    so_Final_Asterisks = HideNumber(FinalNumber);
+}
+
+STRING ActiveNumber[#MAX_LEN];
+FUNCTION SetActiveNumber(STRING value)
+{
+    ActiveNumber = value;
+    
+    ao_Active_Value = ATOI(ActiveNumber);
+    so_Active_Text = FormatNumber(ActiveNumber);
+    so_Active_Asterisks = HideNumber(ActiveNumber);
+}
+
+INTEGER WaitSubpage;
+FUNCTION TimeoutSubpage()
+{
+    IF(WaitSubpage = 0)
+    {
+        WaitSubpage = 1;
+        
+	    WAIT(param_Subpage_Timeout, WAIT_SUB)
+		{
+		    do_Subpage = 0;
+            
+            WaitSubpage = 0;
+		}
+    }
+    ELSE
+    {
+        RETIMEWAIT(param_Subpage_Timeout, WAIT_SUB);
+    }
+}
+
+INTEGER WaitValue;
+FUNCTION TimeoutValue()
+{
+    IF(WaitValue = 0)
+    {
+        WaitValue = 1;
+        
+	    WAIT(param_Value_Timeout, WAIT_VAL)
+	    {
+	        SetActiveNumber("");
+            SetFinalNumber("");
+            
+            WaitValue = 0;
+	    }
+    }
+    ELSE
+    {
+        RETIMEWAIT(param_Value_Timeout, WAIT_VAL);
+    }
+}
+
+
+
+// Events
+PUSH di_Enter
+{
+    SetFinalNumber(ActiveNumber);
+    PROCESSLOGIC();
+    
+    do_Eval = 1;
+    PROCESSLOGIC();
+    
+    do_Eval = 0;
+
+    //PulseNumber(FinalNumber);
+    SetActiveNumber("");
+}
+
+PUSH di_Clear
+{
+    SetActiveNumber("");
+}
+
+PUSH di_Number
+{
+    STRING active_number[#MAX_LEN];
+    INTEGER number;
+    
+    number = GETLASTMODIFIEDARRAYINDEX() - 1; // Map 1..10 to 0..9
+    
+    IF(LEN(ActiveNumber) = param_Precision)
+    {
+        MAKESTRING(active_number, "%s%u", RIGHT(ActiveNumber, param_Precision - 1), number);
+    }
+    ELSE
+    {
+        MAKESTRING(active_number, "%s%u", ActiveNumber, number);
+    }
+    
+    SetActiveNumber(active_number);
+}
+
+PUSH di_Clear, di_Number
+{
+    do_Subpage = 1;
+    
+    TimeoutSubpage();
+    TimeoutValue();
+}
+
+
+// Runtime
+FUNCTION Main()
+{
+    WAITFORINITIALIZATIONCOMPLETE();
+    
+    SetFinalNumber("");
+    SetActiveNumber("");
+    
+    WaitSubpage = 0;
+    WaitValue = 0;
+}

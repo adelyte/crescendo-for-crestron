@@ -1,0 +1,179 @@
+/*
+ *
+  Adelyte Company
+  www.adelyte.com
+ *
+ */
+
+#HELP_BEGIN
+#HELP_END
+
+/*
+ *
+  Compiler Directives
+ *
+ */
+
+#SYMBOL_NAME "TimeDate"
+#CATEGORY "16" // Time/Date
+#DEFAULT_VOLATILE
+#ENABLE_DYNAMIC
+
+/*
+ *
+  Constants
+ *
+ */
+
+
+
+/*
+ *
+  Outputs
+ *
+ */
+
+DIGITAL_OUTPUT out_Time_PM;
+ANALOG_OUTPUT  out_24_Hour_Time, out_12_Hour_Time, out_Day_Num;
+
+STRING_OUTPUT  out_TOD$;
+STRING_OUTPUT  out_Day, out_Date;
+
+/*
+ *
+  Parameters
+ *
+ */
+
+INTEGER_PARAMETER param_Daylight_Saving;
+
+#BEGIN_PARAMETER_PROPERTIES param_Daylight_Saving
+
+    propDEFAULTVALUE = 1d;
+    propDEFAULTUNIT = unitDECIMAL;
+    propLIST = {1d, "Yes"}, {0d, "No"};
+
+#END_PARAMETER_PROPERTIES
+
+INTEGER_PARAMETER param_Date_Format;
+
+#BEGIN_PARAMETER_PROPERTIES param_Date_Format
+
+    propDEFAULTVALUE = 0d;
+    propDEFAULTUNIT = unitDECIMAL;
+    propLIST = {0d, "YYYY-MM-DD (ISO 8601)"}, {1d, "D MMMM YYYY"}, {2d, "MMMM D, YYYY"}, {11d, "DD/MM/YY"}, {12d, "MM/DD/YY"}, {21d, "DD-MM-YY"}, {22d, "MM-DD-YY"}, {31d, "D MMMM"};
+
+#END_PARAMETER_PROPERTIES
+
+
+/*
+ *
+  Time
+ *
+ */
+
+FUNCTION PrintDate()
+{
+    SWITCH(param_Date_Format)
+    {
+        CASE(0):
+        {
+            MAKESTRING(out_Date, "%u-%02u-%02u", GETYEARNUM(), GETMONTHNUM(), GETDATENUM());
+        }
+        CASE(1):
+        {
+            MAKESTRING(out_Date, "%u %s %u", GETDATENUM(), MONTH(), GETYEARNUM());
+        }
+        CASE(2):
+        {
+            MAKESTRING(out_Date, "%s %u, %u", MONTH(), GETDATENUM(), GETYEARNUM());
+        }
+        CASE(11):
+        {
+            MAKESTRING(out_Date, "%02u-%02u-%02u", GETDATENUM(), GETMONTHNUM(), GETYEARNUM() MOD 100);
+        }
+        CASE(12):
+        {
+            MAKESTRING(out_Date, "%02u-%02u-%02u", GETMONTHNUM(), GETDATENUM(), GETYEARNUM() MOD 100);
+        }
+        CASE(21):
+        {
+            MAKESTRING(out_Date, "%02u/%02u/%02u", GETDATENUM(), GETMONTHNUM(), GETYEARNUM() MOD 100);
+        }
+        CASE(22):
+        {
+            MAKESTRING(out_Date, "%02u/%02u/%02u", GETMONTHNUM(), GETDATENUM(), GETYEARNUM() MOD 100);
+        }
+        CASE(31):
+        {
+            MAKESTRING(out_Date, "%u %s", GETDATENUM(), MONTH());
+        }
+    }
+}
+
+FUNCTION PrintDay()
+{
+	out_Day_Num = GETDAYOFWEEKNUM();
+	out_Day = DAY();
+}
+
+FUNCTION PrintTime()
+{
+    INTEGER hseconds, seconds, minutes, hours;
+    
+    minutes = GETMINUTESNUM();
+    hours   = GETHOURNUM();
+    
+    MAKESTRING(out_TOD$, "%02u%02u%04u%02u%02u000000", GETMONTHNUM(), GETDATENUM(), GETYEARNUM(), hours, minutes);
+    
+    out_24_Hour_Time = hours * 60 + minutes;
+    out_12_Hour_Time = (out_24_Hour_Time + 660) MOD 720 + 60;
+    
+    
+    IF(hours > 11)
+    {
+        out_Time_PM = 1;
+    }
+    ELSE
+    {
+        out_Time_PM = 0;
+    }
+    
+    seconds  = GETSECONDSNUM();
+    hseconds = seconds * 100;
+    
+    DELAY(6000 - hseconds);
+}
+
+
+
+
+/*
+ *
+  Runtime
+ *
+ */
+
+FUNCTION Main()
+{
+    PrintDate();
+	PrintDay();
+    
+    WHILE(1)
+    {
+        IF(GETMINUTESNUM() = 0)
+        {
+            SWITCH(GETHOURNUM())
+            {
+                CASE(0): // 12:00 am
+                {
+                    PrintDate();
+					PrintDay();
+                }
+            }
+        }
+        
+        PrintTime();
+    }
+}
+

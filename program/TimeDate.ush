@@ -1,0 +1,135 @@
+[BEGIN]
+  Version=1
+[END]
+[BEGIN]
+  ObjTp=FSgntr
+  Sgntr=UserSPlus
+  RelVrs=1
+  IntStrVrs=1
+  SPlusVrs=4.02.24
+  CrossCplrVrs=1.3
+[END]
+[BEGIN]
+  ObjTp=Hd
+[END]
+[BEGIN]
+  ObjTp=Symbol
+  Exclusions=1,19,20,21,88,89,167,168,179,213,214,215,216,217,225,226,248,249,266,267,310,718,756,854,
+  Exclusions_CDS=5
+  Inclusions_CDS=6
+  Name=TimeDate
+  SmplCName=TimeDate.usp
+  Code=1
+  SysRev5=4.000
+  SMWRev=2.02.00
+  OutputCue1=out_Time_PM
+  OutputSigType1=Digital
+  OutputList2Cue1=out_24_Hour_Time
+  OutputList2SigType1=Analog
+  OutputList2Cue2=out_12_Hour_Time
+  OutputList2SigType2=Analog
+  OutputList2Cue3=out_Day_Num
+  OutputList2SigType3=Analog
+  OutputList2Cue4=out_TOD$
+  OutputList2SigType4=Serial
+  OutputList2Cue5=out_Day
+  OutputList2SigType5=Serial
+  OutputList2Cue6=out_Date
+  OutputList2SigType6=Serial
+  ParamCue1=[Reference Name]
+  ParamCue2=param_Daylight_Saving,1d,0d
+  ParamSigType2=List
+  ParamCue3=param_Date_Format,0d,1d,2d,11d,12d,21d,22d,31d
+  ParamSigType3=List
+  MinVariableInputs=0
+  MaxVariableInputs=0
+  MinVariableInputsList2=0
+  MaxVariableInputsList2=0
+  MinVariableOutputs=1
+  MaxVariableOutputs=1
+  MinVariableOutputsList2=6
+  MaxVariableOutputsList2=6
+  MinVariableParams=2
+  MaxVariableParams=2
+  Expand=expand_separately
+  Expand2=expand_separately
+  ProgramTree=Logic
+  SymbolTree=16
+  Hint=
+  PdfHelp=
+  HelpID= 
+  Render=4
+  Smpl-C=16
+  CompilerCode=-48
+  CompilerParamCode=27
+  CompilerParamCode5=14
+  NumFixedParams=1
+  Pp1=1
+  Pp2=2
+  Pp3=3
+  MPp=3
+  NVStorage=10
+  ParamSigType1=String
+  SmplCInputCue1=o#
+  SmplCOutputCue1=i#
+  SmplCInputList2Cue1=an#
+  SmplCOutputList2Cue1=ai#
+  SPlus2CompiledName=S2_TimeDate
+  SymJam=NonExclusive
+  FileName=TimeDate.ush
+  SIMPLPlusModuleEncoding=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=1
+  Tp=1
+  NoS=False
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=2
+  Tp=1
+  HD=True
+  DV=1d
+  Sgn=0
+  Lng=False
+  NF=63
+  NoS=True
+  DNF=1
+  VVS=2
+  VN=2
+  Val1=1d
+  Lbl1=Yes
+  Val2=0d
+  Lbl2=No
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=3
+  Tp=1
+  HD=True
+  DV=0d
+  Sgn=0
+  Lng=False
+  NF=63
+  NoS=True
+  DNF=1
+  VVS=2
+  VN=8
+  Val1=0d
+  Lbl1=YYYY-MM-DD (ISO 8601)
+  Val2=1d
+  Lbl2=D MMMM YYYY
+  Val3=2d
+  Lbl3=MMMM D, YYYY
+  Val4=11d
+  Lbl4=DD/MM/YY
+  Val5=12d
+  Lbl5=MM/DD/YY
+  Val6=21d
+  Lbl6=DD-MM-YY
+  Val7=22d
+  Lbl7=MM-DD-YY
+  Val8=31d
+  Lbl8=D MMMM
+[END]

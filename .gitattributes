@@ -1,0 +1,6 @@
+*.adr text eol=crlf
+*.usp text eol=crlf
+*.ush text eol=crlf
+*.smw -diff -merge eol=crlf
+*.umc -diff -merge eol=crlf
+*.um2 -diff -merge eol=crlf

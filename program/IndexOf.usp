@@ -1,0 +1,140 @@
+/*
+ * Adelyte Company
+ * www.adelyte.com
+ */
+
+#SYMBOL_NAME "IndexOf"
+#CATEGORY "46" "Crescendo" // Custom
+#DEFAULT_VOLATILE
+#ENABLE_DYNAMIC
+// #ENABLE_TRACE
+
+
+// Constants
+
+#DEFINE_CONSTANT #ELEMENT_LEN   16
+#DEFINE_CONSTANT #ELEMENTS_SIZE 65
+
+#DEFINE_CONSTANT #SEARCH_EQUAL 0x0A
+#DEFINE_CONSTANT #SEARCH_MATCH 0x0B
+
+
+// Inputs and Outputs
+
+STRING_INPUT  Search$[#ELEMENT_LEN];
+
+DIGITAL_OUTPUT Found_First, Found_Other;
+ANALOG_OUTPUT  Index;
+STRING_OUTPUT  Index$;
+
+INTEGER_PARAMETER Search_Type;
+
+	#BEGIN_PARAMETER_PROPERTIES Search_Type
+
+		propValidUnits = unitHex;
+		// propList = { 0xA, "Equal ==" }, { 0xB, "Match =~" }; TODO: 2012-03-02 shows "10h" and "11h" in SIMPL
+
+	#END_PARAMETER_PROPERTIES
+
+STRING_PARAMETER  Elements[#ELEMENTS_SIZE][#ELEMENT_LEN];
+
+	#BEGIN_PARAMETER_PROPERTIES Elements
+
+		propValidUnits = unitString;
+
+	#END_PARAMETER_PROPERTIES
+
+
+// Functions
+
+INTEGER __Initialized__, __ElementsSize__;
+STRING  __SearchString__[#ELEMENT_LEN];
+
+FUNCTION Initialize()
+{
+    FOR(__ElementsSize__ = #ELEMENTS_SIZE TO 1 STEP -1)
+	{
+		IF(Elements[__ElementsSize__] != "")
+			BREAK;
+	}
+
+    __Initialized__ = 1;
+
+    TRACE("%s Initialize() __ElementsSize__ = %u", GETSYMBOLINSTANCENAME(), __ElementsSize__);
+}
+
+
+// Events
+
+CHANGE Search$
+{
+    INTEGER i;
+
+    __SearchString__ = Search$;
+
+    IF(__SearchString__ = "")
+        TERMINATEEVENT;
+
+    IF(__Initialized__ = 0)
+        Initialize();
+
+    IF(__SearchString__ = "Initialize()")
+    {
+        Initialize();
+        TERMINATEEVENT;
+    }
+
+    CSWITCH(Search_Type)
+	{
+		CASE(#SEARCH_EQUAL):
+		{
+    		FOR(i = 1 TO __ElementsSize__)
+				IF(Elements[i] = __SearchString__)
+				{
+					IF(i = 1)
+                        Found_First = 1;
+                    ELSE
+                        Found_Other = 1;
+
+                    Index  = i - 1;
+                    Index$ = CHR(Index);
+                    PROCESSLOGIC();
+
+                    Found_First = 0;
+                    Found_Other = 0;
+					TERMINATEEVENT;
+				}
+
+			BREAK;
+		}
+		CASE(#SEARCH_MATCH):
+		{
+			FOR(i = 1 TO __ElementsSize__)
+				IF(FIND(__SearchString__, Elements[i]) > 0)
+        		{
+            		IF(i = 1)
+                        Found_First = 1;
+                    ELSE
+                        Found_Other = 1;
+
+                    Index  = i - 1;
+                    Index$ = CHR(Index);
+                    PROCESSLOGIC();
+
+                    Found_First = 0;
+                    Found_Other = 0;
+					TERMINATEEVENT;
+        		}
+
+			BREAK;
+		}
+    }
+}
+
+
+// Runtime
+
+FUNCTION Main()
+{
+    __Initialized__ = 0;
+}

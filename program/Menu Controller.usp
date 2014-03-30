@@ -1,0 +1,239 @@
+/*
+ * Adelyte Company
+ * www.adelyte.com
+ */
+
+#SYMBOL_NAME "Menu Controller"
+#CATEGORY "46" "Crescendo" // Custom
+#DEFAULT_VOLATILE
+#ENABLE_DYNAMIC
+// #ENABLE_TRACE
+
+
+// Inputs and Outputs
+
+#DEFINE_CONSTANT #PAGES_MAX 16
+#DEFINE_CONSTANT #ITEMS_MAX 48
+#DEFINE_CONSTANT #TYPES_MAX 15
+
+DIGITAL_INPUT Is_Connected;
+DIGITAL_INPUT Page_Up, Page_Down;
+DIGITAL_INPUT Select_Item[#ITEMS_MAX];
+ANALOG_INPUT  Content, Highlight_Route[#TYPES_MAX];
+ANALOG_INPUT  Item_Route_A[#ITEMS_MAX], Item_Route_B[#ITEMS_MAX], Item_Route_C[#ITEMS_MAX];
+
+DIGITAL_OUTPUT Page_Up_Visible, Page_Down_Visible;
+DIGITAL_OUTPUT Focused_Page[#PAGES_MAX], Highlighted_Item[#ITEMS_MAX];
+ANALOG_OUTPUT  Pages_Count, Items_Count, Highlight;
+STRING_OUTPUT  Caption, Set_Route[#TYPES_MAX];
+
+INTEGER_PARAMETER Items_Per_Page;
+
+
+// Events
+
+INTEGER FocusedPage, HighlightedItem;
+
+FUNCTION FocusPage(INTEGER page)
+{
+    STRING text[8];
+    
+    IF(page < 1 || Pages_Count < page)
+        RETURN;
+        
+    IF(page = 1)
+        Page_Up_Visible = 0;
+    ELSE
+        Page_Up_Visible = 1;
+    
+    IF(page = Pages_Count)
+        Page_Down_Visible = 0;
+    ELSE
+        Page_Down_Visible = 1;
+        
+    MAKESTRING(text, "%u of %u", page, Pages_Count);
+    Caption = text;
+    
+    IF(page = FocusedPage)
+        RETURN;
+    
+    SETARRAY(Focused_Page, 0);
+    FocusedPage = page;
+    
+    PROCESSLOGIC(); // Break before make.
+    Focused_Page[page] = 1;
+}
+
+FUNCTION HighlightItem(INTEGER item)
+{
+    TRACE("HighlightItem(%u)", item);
+    
+    IF(item = HighlightedItem)
+        RETURN;
+    
+    SETARRAY(Highlighted_Item, 0);
+    HighlightedItem = item;
+    
+    IF(item = 0)
+        RETURN;
+    
+    FocusPage((item - 1) / Items_Per_Page + 1);
+    
+	IF(Content > 0)
+	{
+    	PROCESSLOGIC(); // Break before make.
+    	Highlighted_Item[item] = 1;
+        Highlight = item;
+	}
+}
+
+FUNCTION SelectSubItem(INTEGER item)
+{
+    INTEGER route_type, route_id;
+    
+    // Route B
+    IF(Item_Route_B[item] = 0)
+        RETURN;
+    
+	route_type = (Item_Route_B[item] & 0x0F00) >> 8;
+    route_id   =  Item_Route_B[item] & 0x00FF;
+    
+    MAKESTRING(Set_Route[route_type], "%c%c", route_type + 0xD0, route_id);
+    
+    // Route C
+    IF(Item_Route_C[item] = 0)
+        RETURN;
+    
+	route_type = (Item_Route_C[item] & 0x0F00) >> 8;
+    route_id   =  Item_Route_C[item] & 0x00FF;
+    
+    MAKESTRING(Set_Route[route_type], "%c%c", route_type + 0xD0, route_id);
+}
+
+FUNCTION SelectMainItem(INTEGER item)
+{
+    INTEGER route_type, route_id;
+    
+	TRACE("SelectItem(%u)", item);
+    
+    IF(item = 0)        
+        RETURN; // Invalid argument: only item > 0 can be selected.
+    
+	HighlightItem(item);
+	
+    // Route A
+	route_type = (Item_Route_A[item] & 0x0F00) >> 8;
+    route_id   =  Item_Route_A[item] & 0x00FF;
+    
+    MAKESTRING(Set_Route[route_type], "%c%c", route_type + 0xD0, route_id);
+    
+    SelectSubItem(item);
+}    
+
+PUSH Is_Connected
+{
+    INTEGER i;
+    
+    TRACE("PUSH Is_Connected, Content = %u", Content);
+	
+    FOR(i = #ITEMS_MAX TO 1 STEP -1)
+        IF(Item_Route_A[i] > 0)
+        {
+            Pages_Count = (i - 1) / Items_Per_Page + 1;
+            Items_Count = i;
+            BREAK;
+        }
+    
+	PROCESSLOGIC();
+	IF(Content = 0)
+		TERMINATEEVENT;
+	
+	TRACE("Highlight_Route[%u] = %04X", Content, Highlight_Route[Content]);
+
+    IF(0 < Content)
+	    IF(Highlight_Route[Content] != 0)
+			FOR(i = 1 TO Items_Count)
+		        IF(Highlight_Route[Content] = Item_Route_A[i])
+		        {
+		            TRACE("Item_Route_A[%u] = %04X", i, Item_Route_A[i]);
+		            
+		            IF(Content = 1) // Only highlights rooms.
+		            {
+		                HighlightItem(i);
+                        SelectSubItem(i);
+		            }
+                    ELSE IF(Content = 5) // Only highlight sources.
+		            {
+		                HighlightItem(i);
+		            }
+		            ELSE
+		            {
+		                SelectMainItem(i);
+		            }
+		            
+		            TERMINATEEVENT;
+		        }
+    
+    HighlightItem(0);
+    FocusPage(1);
+}
+
+PUSH Select_Item
+{
+    INTEGER item;
+
+    item = GETLASTMODIFIEDARRAYINDEX();
+    
+    IF(Item_Route_A[item] != 0)
+        SelectMainItem(item);
+}
+
+CHANGE Highlight_Route
+{
+    INTEGER i, highlight_type;
+    
+    IF(Is_Connected = 0)
+        TERMINATEEVENT;
+        
+    highlight_type = GETLASTMODIFIEDARRAYINDEX();
+    
+	TRACE("CHANGE Highlight_Route[%u]", highlight_type);
+    
+    IF(highlight_type != Content)
+        TERMINATEEVENT;
+    
+    IF(Highlight_Route[Content] = 0)
+    {
+        HighlightItem(0);
+        
+        TERMINATEEVENT;
+    }
+    
+    FOR(i = 1 TO Items_Count)
+        IF(Highlight_Route[Content] = Item_Route_A[i])
+        {
+            HighlightItem(i);
+            TERMINATEEVENT;
+        }
+    
+    HighlightItem(0);
+	FocusPage(1);
+}
+
+PUSH Page_Up
+{   
+    FocusPage(FocusedPage - 1);
+}
+
+PUSH Page_Down
+{
+    FocusPage(FocusedPage + 1);
+}
+
+// Initialization
+
+FUNCTION Main()
+{
+    FocusedPage = 0;
+    HighlightedItem = 0;
+}

@@ -1,0 +1,239 @@
+/*
+ * Adelyte Company
+ * www.adelyte.com
+ */
+
+#SYMBOL_NAME "Crestron CHV-THSTAT"
+#CATEGORY "46" "Crescendo Devices" // Custom
+#DEFAULT_VOLATILE
+#ENABLE_DYNAMIC
+
+
+#DEFINE_CONSTANT #MESSAGE_LEN 20 // LEN("Auto 65-72 Fan Auto\r")
+
+DIGITAL_INPUT Booted, SendSettings;
+DIGITAL_INPUT ModeIsHeat, ModeIsCool, ModeIsAuto, ModeIsOff;
+DIGITAL_INPUT CallingHeat1, CallingHeat2, CallingAuxHeat, CallingCool1, CallingCool2, CallingFan, CallingHumidifier, CallingSlabHeat;
+DIGITAL_INPUT FanIsAuto, FanIsOn;
+DIGITAL_INPUT HumidifierIsAuto, HumidifierIsOff;
+ANALOG_INPUT  CurrentTemperature;
+ANALOG_INPUT  HeatSetpoint, CoolSetpoint, HumiditySetpoint;
+BUFFER_INPUT  SettingsRX[255];
+
+DIGITAL_OUTPUT _SKIP_, _SKIP_;
+DIGITAL_OUTPUT ModeHeat, ModeCool, ModeAuto, ModeOff;
+DIGITAL_OUTPUT _SKIP_, _SKIP_, _SKIP_, _SKIP_, _SKIP_, _SKIP_, _SKIP_, _SKIP_;
+DIGITAL_OUTPUT FanAuto, FanOn;
+DIGITAL_OUTPUT HumidifierAuto, HumidifierOff;
+ANALOG_OUTPUT  _SKIP_;
+ANALOG_OUTPUT  SetHeatSetpoint, SetCoolSetpoint, SetHumiditySetpoint;
+STRING_OUTPUT  SettingsTX;
+STRING_OUTPUT  Description, Mode, CurrentTempText, SetpointText, HeatSetpointText, CoolSetpointText;
+
+
+PUSH SendSettings
+{
+    STRING message[#MESSAGE_LEN];
+    
+    message = "";
+    
+    IF(ModeIsHeat)
+        MAKESTRING(message, "Heat %u", HeatSetpoint / 10);
+    ELSE IF(ModeIsCool)
+        MAKESTRING(message, "Cool %u", CoolSetpoint / 10);
+    ELSE IF(ModeIsAuto)
+        MAKESTRING(message, "Auto %u-%u", HeatSetpoint / 10, CoolSetpoint / 10);
+    ELSE IF(ModeIsOff)
+        message = "Off ";
+    
+    IF(FanIsAuto)
+        message = message + " Fan Auto";
+    ELSE IF(FanIsOn)
+        message = message + " Fan On";
+    
+    /*IF(HumidifierIsAuto)
+        MAKESTRING(message, "%s Hum Auto %u%%", message, HumiditySetpoint / 10);
+    ELSE IF(HumidifierIsOff)
+        message = message + " Hum Off";*/
+        
+    SettingsTX = message + "\r";
+}
+
+INTEGER Parsing;
+CHANGE SettingsRX
+{
+    STRING message[#MESSAGE_LEN], mode[4], heat_setpoint[2], cool_setpoint[2], fan[4], humidifier[4], humidity_setpoint[2];
+    INTEGER start, count;
+    
+    IF(Parsing)
+        TERMINATEEVENT;
+    
+    Parsing = 1;
+    
+    WHILE(LEN(SettingsRX) > 1)
+    {
+        message = REMOVE("\r", SettingsRX);
+        
+        mode = LEFT(message, 4);
+        
+        IF(mode = "Heat")
+        {
+            heat_setpoint = MID(message, 6, 2);
+            
+            ModeHeat = 1;
+            PROCESSLOGIC();
+            ModeHeat = 0;
+            
+            SetHeatSetpoint = ATOI(heat_setpoint) * 10;
+        }
+        ELSE IF(mode = "Cool")
+        {
+            cool_setpoint = MID(message, 6, 2);
+            
+            ModeCool = 1;
+            PROCESSLOGIC();
+            ModeCool = 0;
+            
+            SetCoolSetpoint = ATOI(cool_setpoint) * 10;
+        }
+        ELSE IF(mode = "Auto")
+        {
+            heat_setpoint = MID(message, 6, 2);
+            cool_setpoint = MID(message, 9, 2);
+            
+            ModeAuto = 1;
+            PROCESSLOGIC();
+            ModeAuto = 0;
+            
+            SetHeatSetpoint = ATOI(heat_setpoint) * 10;
+            SetCoolSetpoint = ATOI(cool_setpoint) * 10;
+        }
+        ELSE IF(mode = "Off ")
+        {
+            ModeOff = 1;
+            PROCESSLOGIC();
+            ModeOff = 0;
+        }
+        
+        start = FIND("Fan", message);
+        start = FIND(" ", message, start);
+        
+        count = FIND(" ", message, start);
+        IF(count = 0)
+            count = FIND("\r", message, start);
+        
+        count = count - start;
+        
+        fan = MID(message, start, count);
+        
+        IF(fan = "Auto")
+        {
+            FanAuto = 1;
+            PROCESSLOGIC();
+            FanAuto = 0;
+        }
+        ELSE IF(fan = "On")
+        {
+            FanOn = 1;
+            PROCESSLOGIC();
+            FanOn = 0;
+        }
+        
+        start = FIND("Hum", message);
+        start = FIND(" ", message, start);
+        
+        count = FIND(" ", message, start);
+        IF(count = 0)
+            count = FIND("\r", message, start);
+        
+        count = count - start;
+        
+        humidifier = MID(message, start, count);
+        
+        IF(humidifier = "Auto")
+        {
+            humidity_setpoint = RIGHT(message, 3);
+            
+            HumidifierAuto = 1;
+            PROCESSLOGIC();
+            HumidifierAuto = 0;
+            
+            SetHumiditySetpoint = ATOI(humidity_setpoint);
+        }
+        ELSE IF(humidifier = "Off")
+        {
+            HumidifierOff = 1;
+            PROCESSLOGIC();
+            HumidifierOff = 0;
+        }
+    }
+    
+    Parsing = 0;
+}
+
+// Status
+FUNCTION UpdateStatus()
+{
+    STRING Calling[7];
+
+	MAKESTRING(CurrentTempText, "%u°", CurrentTemperature / 10);
+    
+    IF(CallingHeat1 || CallingHeat2 || CallingAuxHeat)
+        MAKESTRING(Calling, "Heating");
+    ELSE IF(CallingCool1 || CallingCool2)
+        MAKESTRING(Calling, "Cooling");
+    ELSE
+        MAKESTRING(Calling, "Idle");
+        
+    IF(ModeIsHeat)
+    {
+		MAKESTRING(Description, "%s %u°", Calling, CurrentTemperature / 10);
+		MAKESTRING(Mode, "Heat");
+		MAKESTRING(SetpointText, "%u°", HeatSetpoint / 10);
+        MAKESTRING(HeatSetpointText, "%u°", HeatSetpoint / 10);
+	}
+    ELSE IF(ModeIsCool)
+    {
+	    MAKESTRING(Description, "%s %u°", Calling, CurrentTemperature / 10);
+		MAKESTRING(Mode, "Cool");
+		MAKESTRING(SetpointText, "%u°", CoolSetpoint / 10);
+        MAKESTRING(CoolSetpointText, "%u°", CoolSetpoint / 10);
+	}
+    ELSE IF(ModeIsAuto)
+    {
+	    MAKESTRING(Description, "%s %u°", Calling, CurrentTemperature / 10);
+		//MAKESTRING(Description, "%u° Auto(%u-%u) %s", CurrentTemperature / 10, HeatSetpoint / 10, CoolSetpoint / 10, Calling);
+		MAKESTRING(Mode, "Auto");
+		MAKESTRING(SetpointText, "%u°-%u°", HeatSetpoint / 10, CoolSetpoint / 10);
+        MAKESTRING(HeatSetpointText, "%u°", HeatSetpoint / 10);
+        MAKESTRING(CoolSetpointText, "%u°", CoolSetpoint / 10);
+	}
+    ELSE IF(ModeIsOff)
+    {
+	    MAKESTRING(Description, "%u° Off", CurrentTemperature / 10);
+		MAKESTRING(Mode, "Off");
+		MAKESTRING(SetpointText, "N/A");
+        MAKESTRING(HeatSetpointText, "N/A");
+        MAKESTRING(CoolSetpointText, "N/A");
+	}
+    ELSE // Error reading thermostat state.
+        MAKESTRING(Description, "Undefined");
+}
+
+CHANGE ModeIsHeat, ModeIsCool, ModeIsAuto, ModeIsOff, 
+       CallingHeat1, CallingHeat2, CallingAuxHeat, CallingCool1, CallingCool2, CallingFan, CallingHumidifier, CallingSlabHeat, 
+       CurrentTemperature, HeatSetpoint, CoolSetpoint
+{
+    IF(Booted)
+        UpdateStatus();
+}
+
+PUSH Booted
+{
+    UpdateStatus();
+}
+
+FUNCTION Main()
+{
+    Parsing = 0;
+}
