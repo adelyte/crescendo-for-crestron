@@ -4,7 +4,7 @@ Version=1
 [
 ObjTp=FSgntr
 Sgntr=SimplWindow
-RelVrs=4.02.38
+RelVrs=4.02.56
 IntStrVrs=2
 MinSMWVrs=4.02.22
 MinTIOVrs=537
@@ -20,13 +20,13 @@ S1Nd=2
 SLNd=3
 PrNm=Crescendo 3-Series Demo.smw
 CmVr=3.03
-DbVr=44.05.005.00
-DvcDbVr=55.05.004.00
+DbVr=48.05.003.00
+DvcDbVr=61.00.002.00
 OpVr=MC3 1.008.0040
 PgmNm=Adelyte Company
 CltNm=Crescendo Demo System
-SmVr=891
-DvVr=891
+SmVr=913
+DvVr=913
 TpN1=1
 TpN2=2
 TpN3=3
@@ -40,6 +40,7 @@ ZeroOnIoOk=0
 PIT=Main
 SgRefresh=1
 SGMethod=1
+LabelOverrideStatus=2
 Cmn1=Copyright © 2011\\Adelyte Company\\www.adelyte.com\\\\
 ]
 [
@@ -5171,7 +5172,7 @@ ObjVer=1
 SlC=144
 Ad=01
 SmH=327
-RelStat=Discontinued
+RelStat=Release
 ProdLine=Digital Media
 mC=2
 C1=1803
@@ -5299,7 +5300,7 @@ ObjVer=1
 SlC=144
 Ad=02
 SmH=330
-RelStat=Discontinued
+RelStat=Release
 ProdLine=Digital Media
 mC=2
 C1=1815
@@ -5530,7 +5531,7 @@ C1=1836
 ]
 [
 ObjTp=Dv
-Nm=In Use By Slot-02.IP-ID-80.Slot-17.Slot-01.Slot-01 : DM-RMC-100-C
+Nm=In Use By Slot-02.IP-ID-80.Outputs 1 - 4.Outputs 1 - 2.Output 1 : DM-RMC-100-C
 H=1834
 PrH=389
 DvC=1580
@@ -5689,7 +5690,7 @@ Ad=02
 ]
 [
 ObjTp=Dv
-Nm=In Use By Slot-02.IP-ID-80.Slot-17.Slot-01.Slot-02 : DM-RMC-100-C
+Nm=In Use By Slot-02.IP-ID-80.Outputs 1 - 4.Outputs 1 - 2.Output 2 : DM-RMC-100-C
 H=1846
 PrH=390
 DvC=1580
@@ -5847,7 +5848,7 @@ Ad=02
 ]
 [
 ObjTp=Dv
-Nm=In Use By Slot-02.IP-ID-80.Slot-17.Slot-02.Slot-01 : DM-RMC-100-C
+Nm=In Use By Slot-02.IP-ID-80.Outputs 1 - 4.Outputs 3 - 4.Output 3 : DM-RMC-100-C
 H=1858
 PrH=391
 DvC=1580
@@ -5992,7 +5993,7 @@ Ad=02
 ]
 [
 ObjTp=Dv
-Nm=In Use By Slot-02.IP-ID-80.Slot-17.Slot-02.Slot-02 : DM-RMC-100-C
+Nm=In Use By Slot-02.IP-ID-80.Outputs 1 - 4.Outputs 3 - 4.Output 4 : DM-RMC-100-C
 H=1869
 PrH=392
 DvC=1580
@@ -13083,8 +13084,6 @@ GrpStI147=2
 GrpStI148=2
 GrpStI149=2
 GrpStI150=6
-NGrpStO=1
-GrpStO1=0
 ]
 [
 ObjTp=Sm
@@ -22745,7 +22744,6 @@ SmC=1309
 Nm=Serial/Analog Logic Wave Pulse
 ObjVer=1
 PrH=68
-CF=2
 n1I=2
 n1O=2
 OpF=0
@@ -47931,8 +47929,6 @@ GrpStI147=2
 GrpStI148=2
 GrpStI149=2
 GrpStI150=6
-NGrpStO=1
-GrpStO1=0
 ]
 [
 ObjTp=Sm
@@ -48118,8 +48114,6 @@ GrpStI147=2
 GrpStI148=2
 GrpStI149=2
 GrpStI150=6
-NGrpStO=1
-GrpStO1=0
 ]
 [
 ObjTp=Sm
@@ -60729,8 +60723,6 @@ GrpStI147=2
 GrpStI148=2
 GrpStI149=2
 GrpStI150=6
-NGrpStO=1
-GrpStO1=0
 ]
 [
 ObjTp=Sm
