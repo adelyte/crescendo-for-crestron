@@ -10,7 +10,7 @@
 #CATEGORY "8" // Media Resource
 #DEFAULT_VOLATILE
 #ENABLE_DYNAMIC // Dynamic arrays are NOT used, but supposedly this directive improves memory allocation.
-#ENABLE_TRACE
+//#ENABLE_TRACE
 //#USER_LIBRARY "lib xml"
 
 
