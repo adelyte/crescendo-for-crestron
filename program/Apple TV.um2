@@ -43,6 +43,20 @@ Sy1=0
 Mx1=0
 ]
 [
+ObjTp=Bw
+H=1
+Lx=0
+Ly=0
+Rx=1424
+Ry=1008
+Xm=-1
+Ym=-1
+SH=6
+Z=100
+Ht=4
+Hi=1
+]
+[
 ObjTp=Symbol
 Name=Apple TV
 Code=1
@@ -86,7 +100,7 @@ OutputSigType12=Digital
 ParamSigType1=String
 ParamSigType2=String
 InputCue1=[~UNUSED~]
-OutputCue1=Meta~
+OutputCue1=Meta
 OutputCue2=[~UNUSED~]
 OutputCue3=[~UNUSED~]
 OutputCue4=Up
@@ -2879,7 +2893,7 @@ GrpStO1299=6
 [
 ObjTp=Sg
 H=4
-Nm=Meta~
+Nm=Meta
 SgTp=4
 ]
 [
