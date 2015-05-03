@@ -53,8 +53,8 @@ Xm=-1
 Ym=-1
 SH=7
 Z=100
-Ht=3
-Hi=8
+Ht=1
+Hi=400
 ]
 [
 ObjTp=Symbol
@@ -540,13 +540,11 @@ SmC=156
 Nm=Logic
 ObjVer=1
 CF=2
-mC=6
+mC=4
 C1=7
 C2=21
-C3=25
-C4=28
-C5=19
-C6=22
+C3=28
+C4=25
 ]
 [
 ObjTp=Sm
@@ -4134,10 +4132,11 @@ H=19
 SmC=1477
 Nm=Multiple Serial Send
 ObjVer=1
-PrH=4
+PrH=21
 CF=2
 n1I=1
 n1O=16
+Cmn1=Names 1-16\\
 mI=1
 I1=70
 mO=16
@@ -4202,11 +4201,13 @@ Nm=SUBSYSTEM
 ObjVer=1
 PrH=4
 CF=2
-Cmn1=Preset Macro
-mC=3
+Cmn1=Presets\\
+mC=5
 C1=9
 C2=8
 C3=15
+C4=19
+C5=22
 ]
 [
 ObjTp=Sm
@@ -4214,7 +4215,7 @@ H=22
 SmC=858
 Nm=Make String Permanent
 ObjVer=1
-PrH=4
+PrH=21
 CF=2
 n1I=16
 mI=16
@@ -4245,7 +4246,7 @@ Nm=SUBSYSTEM
 ObjVer=1
 PrH=4
 CF=2
-Cmn1=Chan / Page Up-Dn
+Cmn1=CH / PAGE\\
 mC=4
 C1=29
 C2=30
@@ -4297,10 +4298,9 @@ ObjVer=1
 PrH=4
 CF=2
 Cmn1=Numpad Display
-mC=3
+mC=2
 C1=34
 C2=35
-C3=36
 ]
 [
 ObjTp=Sm
@@ -4443,24 +4443,6 @@ P1=0d
 P2=3d
 P3=3s
 P4=3s
-]
-[
-ObjTp=Sm
-H=36
-SmC=46
-Nm=Analog Buffer
-ObjVer=1
-PrH=28
-n1I=2
-n1O=1
-OpF=0
-Cmn1=Final\\
-mI=2
-I1=71
-I2=72
-mO=1
-tO=1
-O1=148
 ]
 [
 ObjTp=Sg
@@ -4792,17 +4774,6 @@ SgTp=4
 ObjTp=Sg
 H=70
 Nm=__S__Cable__Initialized!
-]
-[
-ObjTp=Sg
-H=71
-Nm=__S__Cable__Numpad_Eval
-]
-[
-ObjTp=Sg
-H=72
-Nm=__S__Cable__Final_Number
-SgTp=6
 ]
 [
 ObjTp=Sg
