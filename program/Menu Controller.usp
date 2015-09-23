@@ -95,19 +95,19 @@ FUNCTION SelectSubItem(INTEGER item)
     IF(Item_Route_B[item] = 0)
         RETURN;
     
-	route_type = (Item_Route_B[item] & 0x0F00) >> 8;
+	route_type = (Item_Route_B[item] & 0xF000) >> 8;
     route_id   =  Item_Route_B[item] & 0x00FF;
     
-    MAKESTRING(Set_Route[route_type], "%c%c", route_type + 0xD0, route_id);
+    MAKESTRING(Set_Route[route_type >> 4], "%c%c", route_type, route_id);
     
     // Route C
     IF(Item_Route_C[item] = 0)
         RETURN;
     
-	route_type = (Item_Route_C[item] & 0x0F00) >> 8;
+	route_type = (Item_Route_C[item] & 0xF000) >> 8;
     route_id   =  Item_Route_C[item] & 0x00FF;
     
-    MAKESTRING(Set_Route[route_type], "%c%c", route_type + 0xD0, route_id);
+    MAKESTRING(Set_Route[route_type >> 4], "%c%c", route_type, route_id);
 }
 
 FUNCTION SelectMainItem(INTEGER item)
@@ -122,10 +122,10 @@ FUNCTION SelectMainItem(INTEGER item)
 	HighlightItem(item);
 	
     // Route A
-	route_type = (Item_Route_A[item] & 0x0F00) >> 8;
+	route_type = (Item_Route_A[item] & 0xF000) >> 8;
     route_id   =  Item_Route_A[item] & 0x00FF;
     
-    MAKESTRING(Set_Route[route_type], "%c%c", route_type + 0xD0, route_id);
+    MAKESTRING(Set_Route[route_type >> 4], "%c%c", route_type, route_id);
     
     SelectSubItem(item);
 }    

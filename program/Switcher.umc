@@ -4,7 +4,7 @@ Version=1
 [
 ObjTp=FSgntr
 Sgntr=UserMacro
-RelVrs=4.02.56
+RelVrs=4.03.15
 IntStrVrs=2
 MinSMWVrs=2.07.04
 MinTIOVrs=0
@@ -16,14 +16,14 @@ S0Nd=1
 S1Nd=2
 SLNd=3
 PrNm=Switcher.umc
-DbVr=49.06.005.00
-DvcDbVr=63.00.002.00
+DbVr=52.05.013.00
+DvcDbVr=67.07.003.00
 PgmNm=Adelyte Company
 CltNm=Switcher
 Incl=362,378,380,405,407,408,409,478,522,537,554,586,590,611,624,767,830,883,1032,1062,1079,1134,1157,1199,1220,1222,1299,1348,1439,1472,1473,1499,1746,1803,1975,2229,2354,2514,2523,2532,3708,3902,3912,3918,3925,1766,2574,2651,2817,2886,2938,2947,3181,3197,3233,3710,3735,3736,3816,
 McNm=Switcher
-SmVr=927
-DvVr=927
+SmVr=959
+DvVr=959
 TpN1=1
 TpN2=2
 TpN3=3
@@ -549,13 +549,12 @@ SmC=156
 Nm=Logic
 ObjVer=1
 CF=2
-mC=6
+mC=5
 C1=52
 C2=39
 C3=10
 C4=38
-C5=43
-C6=68
+C5=68
 ]
 [
 ObjTp=Sm
@@ -1471,7 +1470,7 @@ H=43
 SmC=156
 Nm=SUBSYSTEM
 ObjVer=1
-PrH=4
+PrH=52
 CF=2
 Cmn1=Status\\
 mC=2
@@ -1690,9 +1689,10 @@ ObjVer=1
 PrH=4
 CF=2
 Cmn1=Model\\
-mC=2
+mC=3
 C1=53
 C2=56
+C3=43
 ]
 [
 ObjTp=Sm
@@ -1742,6 +1742,7 @@ Cmn1=45[ID]h\\
 mI=253
 mO=147
 tO=252
+O1=54
 O54=35
 O159=63
 O160=22
@@ -1781,7 +1782,7 @@ CF=2
 n1I=143
 n2I=72
 n1O=143
-Cmn1=D4[ID]h\\
+Cmn1=40[ID]h\\
 mI=290
 I32=29
 I47=43
@@ -1810,7 +1811,7 @@ O241=39
 O257=24
 O277=7
 mP=1
-P1=D4\[#ID\]h
+P1=40\[#ID\]h
 ]
 [
 ObjTp=Sm
@@ -2331,6 +2332,11 @@ ObjTp=Sg
 H=53
 Nm=__X__Input_Changes
 SgTp=2
+]
+[
+ObjTp=Sg
+H=54
+Nm=//__X__Source_Connected?
 ]
 [
 ObjTp=Sg

@@ -1,0 +1,461 @@
+/*
+ * Adelyte Company
+ * www.adelyte.com
+ */
+
+#SYMBOL_NAME "Rooms-Sources Controller"
+#CATEGORY "46" "Crescendo" // Custom
+#DEFAULT_VOLATILE
+#ENABLE_DYNAMIC
+// #ENABLE_TRACE
+
+// Constants
+#DEFINE_CONSTANT #TEXT_LEN    48
+#DEFINE_CONSTANT #ITEMS_MAX   48
+#DEFINE_CONSTANT #ROOMS_MAX   99
+#DEFINE_CONSTANT #SOURCES_MAX 99
+
+// Inputs and Outputs
+DIGITAL_INPUT Initialize;
+DIGITAL_INPUT Move_Room[#ITEMS_MAX];
+DIGITAL_INPUT Watch_Source[#ITEMS_MAX];
+DIGITAL_INPUT Listen_Source[#ITEMS_MAX];
+DIGITAL_INPUT Share_Source[#ITEMS_MAX], Share_Power_Off[#ITEMS_MAX], Share_Volume_Up[#ITEMS_MAX], Share_Volume_Down[#ITEMS_MAX], Share_Volume_Mute_Toggle[#ITEMS_MAX];
+DIGITAL_INPUT Room_Volume_Mute_Is_On[#ROOMS_MAX];
+DIGITAL_INPUT Source_In_Use[#SOURCES_MAX], Source_Has_Audio[#SOURCES_MAX], Source_Has_Video[#SOURCES_MAX];
+
+DIGITAL_OUTPUT Move_Room_Matches[#ITEMS_MAX];
+DIGITAL_OUTPUT Watch_Source_Matches[#ITEMS_MAX], Watch_Source_In_Use[#ITEMS_MAX];
+DIGITAL_OUTPUT Listen_Source_Matches[#ITEMS_MAX], Listen_Source_In_Use[#ITEMS_MAX];
+DIGITAL_OUTPUT Share_Visible[#ITEMS_MAX], Share_Source_Matches[#ITEMS_MAX], Share_Power_Is_On[#ITEMS_MAX], Share_Volume_Mute_Is_On[#ITEMS_MAX];
+DIGITAL_OUTPUT Room_Power_Off[#ROOMS_MAX], Room_Volume_Up[#ROOMS_MAX], Room_Volume_Down[#ROOMS_MAX], Room_Volume_Mute_Toggle[#ROOMS_MAX];
+
+ANALOG_INPUT Room_Is, Source_Is;
+ANALOG_INPUT Room_Source_Is[#ROOMS_MAX], Room_Volume_Is[#ROOMS_MAX];
+ANALOG_INPUT Source_Icon_Is[#SOURCES_MAX];
+
+STRING_OUTPUT Room_Set; // NOTE: SIMPL+ should be case sensitive
+
+ANALOG_OUTPUT Moves_Size, Watches_Size, Listens_Size, Shares_Size;
+ANALOG_OUTPUT Move_Source_Icon_Is[#ITEMS_MAX];
+ANALOG_OUTPUT Watch_Source_Icon_Is[#ITEMS_MAX];
+ANALOG_OUTPUT Listen_Source_Icon_Is[#ITEMS_MAX];
+ANALOG_OUTPUT Share_Source_Icon_Is[#ITEMS_MAX];
+
+STRING_INPUT Room_Name_Is[#ROOMS_MAX][#TEXT_LEN], Room_Sources_Is[#ROOMS_MAX][#ITEMS_MAX];
+STRING_INPUT Source_Name_Is[#SOURCES_MAX][#TEXT_LEN];
+
+STRING_OUTPUT Move_Room_Name_Is[#ITEMS_MAX], Move_Source_Name_Is[#ITEMS_MAX];
+STRING_OUTPUT Watch_Source_Name_Is[#ITEMS_MAX], Watch_Source_Room_Names_Is[#ITEMS_MAX];
+STRING_OUTPUT Listen_Source_Name_Is[#ITEMS_MAX], Listen_Source_Room_Names_Is[#ITEMS_MAX];
+STRING_OUTPUT Share_Room_Name_Is[#ITEMS_MAX], Share_Source_Name_Is[#ITEMS_MAX], Share_Volume_Is[#ITEMS_MAX];
+STRING_OUTPUT Room_Source[#ROOMS_MAX];
+
+STRING_PARAMETER Rooms[#ITEMS_MAX];
+
+// List Functions
+INTEGER __Room_Sources__[#ROOMS_MAX][#SOURCES_MAX];
+INTEGER __Move_Room__[#ITEMS_MAX], __Room_Move__[#ROOMS_MAX];
+INTEGER __Watch_Source__[#ITEMS_MAX], __Source_Watch__[#SOURCES_MAX];
+INTEGER __Listen_Source__[#ITEMS_MAX], __Source_Listen__[#SOURCES_MAX];
+INTEGER __Share_Room__[#ITEMS_MAX], __Room_Share__[#ROOMS_MAX];
+
+INTEGER_FUNCTION MoveToRoom(INTEGER move)
+{
+    INTEGER room;
+
+    room = __Move_Room__[move];
+
+    RETURN(room);
+}
+
+INTEGER_FUNCTION RoomToMove(INTEGER room)
+{
+    INTEGER move;
+
+    move = __Room_Move__[room];
+
+    RETURN(move);
+}
+
+INTEGER_FUNCTION WatchToSource(INTEGER watch)
+{
+    INTEGER source;
+
+    source = __Watch_Source__[watch];
+
+    RETURN(source);
+}
+
+INTEGER_FUNCTION SourceToWatch(INTEGER source)
+{
+    INTEGER watch;
+
+    watch = __Source_Watch__[source];
+
+    RETURN(watch);
+}
+
+INTEGER_FUNCTION ListenToSource(INTEGER listen)
+{
+    INTEGER source;
+
+    source = __Listen_Source__[listen];
+
+    RETURN(source);
+}
+
+INTEGER_FUNCTION SourceToListen(INTEGER source)
+{
+    INTEGER listen;
+
+    listen = __Source_Listen__[source];
+
+    RETURN(listen);
+}
+
+INTEGER_FUNCTION ShareToRoom(INTEGER share)
+{
+    INTEGER room;
+
+    room = __Share_Room__[share];
+
+    RETURN(room);
+}
+
+INTEGER_FUNCTION RoomToShare(INTEGER room)
+{
+    INTEGER share;
+
+    share = __Room_Share__[room];
+
+    RETURN(share);
+}
+
+// User Events
+PUSH Move_Room
+{
+    INTEGER move, room;
+
+    move = GETLASTMODIFIEDARRAYINDEX();
+    room = MoveToRoom(move);
+
+    IF(room = 0) TERMINATEEVENT;
+
+    MAKESTRING(Room_Set, "\x10%c", room);
+}
+
+PUSH Watch_Source
+{
+    INTEGER watch, source;
+
+    watch = GETLASTMODIFIEDARRAYINDEX();
+    source = WatchToSource(watch);
+
+    IF(source = 0) TERMINATEEVENT;
+
+    MAKESTRING(Room_Source[Room_Is], "\x50%c", source);
+}
+
+PUSH Listen_Source
+{
+    INTEGER listen, source;
+
+    listen = GETLASTMODIFIEDARRAYINDEX();
+    source = ListenToSource(listen);
+
+    IF(source = 0) TERMINATEEVENT;
+
+    MAKESTRING(Room_Source[Room_Is], "\x50%c", source);
+}
+
+PUSH Share_Source
+{
+    INTEGER share, room;
+
+    share = GETLASTMODIFIEDARRAYINDEX();
+    room = ShareToRoom(share);
+
+    IF(room = 0) TERMINATEEVENT;
+
+    MAKESTRING(Room_Source[room], "\x50%c", Source_Is);
+}
+
+PUSH Share_Power_Off
+{
+    INTEGER share, room;
+
+    share = GETLASTMODIFIEDARRAYINDEX();
+    room = ShareToRoom(share);
+
+    IF(room = 0) TERMINATEEVENT;
+
+    Room_Power_Off[room] = 1;
+    PROCESSLOGIC();
+    Room_Power_Off[room] = 0;
+}
+
+CHANGE Share_Volume_Up
+{
+    INTEGER share, room, state;
+
+    share = GETLASTMODIFIEDARRAYINDEX();
+    room = ShareToRoom(share);
+
+    IF(room = 0) TERMINATEEVENT;
+
+    state = Share_Volume_Up[share];
+    Room_Volume_Up[room] = state;
+}
+
+CHANGE Share_Volume_Down
+{
+    INTEGER share, room, state;
+
+    share = GETLASTMODIFIEDARRAYINDEX();
+    room = ShareToRoom(share);
+
+    IF(room = 0) TERMINATEEVENT;
+
+    state = Share_Volume_Down[share];
+    Room_Volume_Down[room] = state;
+}
+
+PUSH Share_Volume_Mute_Toggle
+{
+    INTEGER share, room, state;
+
+    share = GETLASTMODIFIEDARRAYINDEX();
+    room = ShareToRoom(share);
+
+    IF(room = 0) TERMINATEEVENT;
+
+    Room_Volume_Mute_Toggle[room] = 1;
+    PROCESSLOGIC();
+    Room_Volume_Mute_Toggle[room] = 0;
+}
+
+// Move List
+FUNCTION UpdateMoveRoom()
+{
+    SETARRAY(Move_Room_Matches, 0);
+
+    Move_Room_Matches[Room_Is] = 1;
+}
+
+FUNCTION UpdateMoveSource(INTEGER room)
+{
+    INTEGER move, source;
+
+    move = RoomToMove(room);
+    source = Room_Source_Is[room];
+
+    IF(source > 0)
+    {
+        Move_Source_Name_Is[move] = Source_Name_Is[source];
+        Move_Source_Icon_Is[move] = Source_Icon_Is[source];
+    }
+    ELSE
+    {
+        Move_Source_Name_Is[move] = "Off";
+        Move_Source_Icon_Is[move] = 0;
+    }
+}
+
+FUNCTION UpdateMove()
+{
+    INTEGER item, room;
+
+    FOR(item = 1 TO Moves_Size)
+    {
+        room = BYTE(Rooms, item);
+
+        __Move_Room__[item] = room;
+        __Room_Move__[room] = item;
+
+        UpdateMoveSource(room);
+    }
+
+    UpdateMoveRoom();
+}
+
+// Watch and Listen Lists
+FUNCTION UpdateWatchListen()
+{
+    INTEGER i, source;
+
+    Watches_Size = 0;
+    Listens_Size = 0;
+
+    FOR(i = 1 TO LEN(Room_Sources_Is[Room_Is]))
+    {
+        source = BYTE(Room_Sources_Is[Room_Is], i);
+
+        IF(Source_Has_Audio[source])
+        {
+            Listens_Size = Listens_Size + 1;
+            __Listen_Source__[Listens_Size] = source;
+            __Source_Listen__[source] = Listens_Size;
+        }
+        ELSE // IF(Source_Has_Video[source])
+        {
+            Watches_Size = Watches_Size + 1;
+            __Watch_Source__[Watches_Size] = source;
+            __Source_Watch__[source] = Watches_Size;
+        }
+    }
+}
+
+// Share Source List
+FUNCTION UpdateShareSource(INTEGER room)
+{
+    INTEGER share, source;
+
+    share = RoomToShare(room);
+    IF(share = 0) RETURN;
+
+    source = Room_Source_Is[room];
+    IF(source > 0)
+    {
+        Share_Source_Name_Is[share] = Source_Name_Is[source];
+        Share_Source_Icon_Is[share] = Source_Icon_Is[source];
+    }
+    ELSE
+    {
+        Share_Source_Name_Is[share] = "Off";
+        Share_Source_Icon_Is[share] = 0;
+    }
+}
+
+FUNCTION UpdateShareVisible(INTEGER room)
+{
+    INTEGER share;
+
+    share = RoomToShare(room);
+    IF(share = 0) RETURN;
+
+    Share_Visible[share] = FIND(CHR(Source_Is), Room_Sources_Is[room]);
+}
+
+FUNCTION UpdateShareVolume(INTEGER room)
+{
+    INTEGER share;
+
+    share = RoomToShare(room);
+    IF(share = 0) RETURN;
+
+     MAKESTRING(Share_Volume_Is[share], "%u", Room_Volume_Is[room] / 655);
+}
+                                                                  
+FUNCTION UpdateShareVolumeMute(INTEGER room)
+{
+    INTEGER share;
+
+    share = RoomToShare(room);
+    IF(share = 0) RETURN;
+
+    Share_Volume_Mute_Is_On[share] = Room_Volume_Mute_Is_On[room];
+}
+
+FUNCTION UpdateShare()
+{
+    INTEGER item, room;
+
+    FOR(item = 1 TO Shares_Size)
+    {
+        room = BYTE(Rooms, item);
+
+        __Share_Room__[item] = room;
+        __Room_Share__[room] = item;
+
+        UpdateShareSource(room);
+        UpdateShareVolume(room);
+        UpdateShareVolumeMute(room);
+        UpdateShareVisible(item);
+    }
+}
+
+// Events
+CHANGE Room_Is
+{
+    UpdateMoveRoom();
+    UpdateWatchListen();
+}
+
+CHANGE Source_Is
+{
+    UpdateShare();
+}
+
+CHANGE Room_Source_Is
+{
+    INTEGER room;
+
+    room = GETLASTMODIFIEDARRAYINDEX();
+
+    UpdateMoveSource(room);
+    UpdateShareSource(room);
+}
+
+CHANGE Room_Volume_Is
+{
+    INTEGER room;
+
+    room = GETLASTMODIFIEDARRAYINDEX();
+
+    UpdateShareVolume(room);
+}
+
+CHANGE Room_Volume_Mute_Is_On
+{
+    INTEGER room;
+
+    room = GETLASTMODIFIEDARRAYINDEX();
+
+    UpdateShareVolumeMute(room);
+}
+
+// Initialization
+FUNCTION __Init__()
+{
+    INTEGER item, room, source;
+
+    SETARRAY(__Move_Room__, 0);
+    SETARRAY(__Room_Move__, 0);
+    SETARRAY(__Watch_Source__, 0);
+    SETARRAY(__Source_Watch__, 0);
+    SETARRAY(__Listen_Source__, 0);
+    SETARRAY(__Source_Listen__, 0);
+    SETARRAY(__Share_Room__, 0);
+    SETARRAY(__Room_Share__, 0);
+
+    Moves_Size = LEN(Rooms);
+    Shares_Size = Moves_Size;
+
+    FOR(item = 1 TO Moves_Size)
+    {
+        room = BYTE(Rooms, item);
+
+        __Move_Room__[item] = room;
+        __Room_Move__[room] = item;
+        __Share_Room__[item] = room;
+        __Room_Share__[room] = item;
+
+        Move_Room_Name_Is[item] = Room_Name_Is[room];
+        Share_Room_Name_Is[item] = Room_Name_Is[room];
+    }
+
+    UpdateMove();
+    UpdateWatchListen();
+    UpdateShare();
+}
+
+CHANGE Initialize
+{
+    __Init__();
+}
+
+FUNCTION Main()
+{
+    WAITFORINITIALIZATIONCOMPLETE();
+}

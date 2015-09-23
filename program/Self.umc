@@ -4,7 +4,7 @@ Version=1
 [
 ObjTp=FSgntr
 Sgntr=UserMacro
-RelVrs=4.02.20
+RelVrs=4.03.15
 IntStrVrs=2
 MinSMWVrs=0
 MinTIOVrs=0
@@ -17,14 +17,14 @@ S1Nd=2
 SLNd=3
 PrNm=Self.umc
 CmVr=3.00
-DbVr=42.00.004.00
-DvcDbVr=52.05.003.00
+DbVr=52.05.013.00
+DvcDbVr=67.07.003.00
 PgmNm=Adelyte Company
 CltNm=__Self__
 Incl=362,378,380,405,407,408,409,478,522,537,554,586,590,611,624,767,830,883,1032,1062,1079,1134,1157,1199,1220,1222,1299,1348,1439,1472,1473,1499,1746,1803,1975,2229,2354,2514,2523,2532,3235,3427,3454,1766,2574,2651,2817,2886,2938,2947,
 McNm=Self
-SmVr=879
-DvVr=879
+SmVr=959
+DvVr=959
 TpN1=1
 TpN2=2
 TpN3=3
@@ -43,20 +43,6 @@ Nm1=\
 Sx1=0
 Sy1=0
 Mx1=0
-]
-[
-ObjTp=Bw
-H=1
-Lx=0
-Ly=0
-Rx=1096
-Ry=885
-Xm=-1
-Ym=-1
-SH=20
-Z=100
-Ht=1
-Hi=1
 ]
 [
 ObjTp=Symbol
@@ -393,7 +379,7 @@ mO=1
 tO=1
 O1=13
 mP=1
-P1=\xD\[#Type\]\x\[#ID\]
+P1=\x\[#Type\]0\x\[#ID\]
 ]
 [
 ObjTp=Sm
@@ -447,7 +433,7 @@ O4=26
 O5=27
 mP=5
 P1=\[#ID\]h
-P2=D\[#Type\]\[#ID\]h
+P2=\[#Type\]0\[#ID\]h
 P3=#Page
 P4=#Icon
 P5=#Color

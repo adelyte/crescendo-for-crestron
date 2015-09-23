@@ -4,9 +4,9 @@ Version=1
 [
 ObjTp=FSgntr
 Sgntr=UserMacro
-RelVrs=4.02.56
+RelVrs=4.03.15
 IntStrVrs=2
-MinSMWVrs=2.11.03
+MinSMWVrs=2.07.04
 MinTIOVrs=0
 SavedBy=SMW3.02.04
 ]
@@ -16,14 +16,14 @@ S0Nd=1
 S1Nd=2
 SLNd=3
 PrNm=Room.umc
-DbVr=50.00.004.00
-DvcDbVr=63.07.002.00
+DbVr=52.05.013.00
+DvcDbVr=67.07.003.00
 PgmNm=Adelyte Company
 CltNm=Room
 Incl=362,378,380,405,407,408,409,478,522,537,554,586,590,611,624,767,830,883,1032,1062,1079,1134,1157,1199,1220,1222,1299,1348,1439,1472,1473,1499,1746,1803,1975,2229,2354,2514,2523,2532,3708,3902,3912,3918,3925,1766,2574,2651,2817,2886,2938,2947,3181,3197,3233,3710,3735,3736,3816,
 McNm=Room
-SmVr=933
-DvVr=933
+SmVr=959
+DvVr=959
 TpN1=1
 TpN2=2
 TpN3=3
@@ -45,20 +45,6 @@ Sy1=0
 Mx1=0
 ]
 [
-ObjTp=Bw
-H=1
-Lx=0
-Ly=0
-Rx=1390
-Ry=1008
-Xm=-1
-Ym=-1
-SH=6
-Z=100
-Ht=3
-Hi=10
-]
-[
 ObjTp=Symbol
 Name=Room
 Code=1
@@ -67,7 +53,7 @@ Smpl-C=3
 CompilerTimePrecision=Single_Or_Double_Precision
 Exclusions=1,19,20,21,88,89,167,168,179,216,225,248,249,266,302,305,
 Hint=Room
-SMWRev=2.11.03
+SMWRev=2.07.04
 TIORev=0
 HelpID=1055
 APg=1
@@ -76,7 +62,7 @@ FltTmp=1
 FpCS=0
 NumFixedInputs=72
 NumFixedOutputs=72
-NumFixedParams=10
+NumFixedParams=11
 MinVariableInputs=0
 MinVariableInputsList2=0
 MinVariableInputsList3=0
@@ -229,6 +215,7 @@ ParamSigType7=String
 ParamSigType8=String
 ParamSigType9=String
 ParamSigType10=String
+ParamSigType11=String
 InputCue1=[~BEGINGROUP~]Self
 InputCue2=[~UNUSED~]
 InputCue3=[~UNUSED~]
@@ -379,21 +366,23 @@ ParamCue3=Audio Switchers
 ParamCue4=Video Switchers
 ParamCue5=Video Menu
 ParamCue6=Audio Menu
-ParamCue7=Lights
-ParamCue8=Shades
-ParamCue9=Climate
-ParamCue10=Default Source
-MPp=10
+ParamCue7=Sources
+ParamCue8=Lights
+ParamCue9=Shades
+ParamCue10=Climate
+ParamCue11=Default Source
+MPp=11
 Pp1=1
 Pp2=2
 Pp3=5
 Pp4=3
 Pp5=4
 Pp6=6
-Pp7=7
-Pp8=8
-Pp9=10
-Pp10=9
+Pp7=11
+Pp8=7
+Pp9=8
+Pp10=10
+Pp11=9
 FileName=Room.umc
 EncodingType=3
 ZeroOnIoOk=0
@@ -631,28 +620,30 @@ O69=15
 O70=15
 O71=15
 O72=121
-mP=10
+mP=11
 P1=Name
 P2=ID
 P3=Audio Switchers
 P4=Video Switchers
 P5=Video Menu
 P6=Audio Menu
-P7=Lights
-P8=Shades
-P9=Climate
-P10=Default Source
-MPp=10
+P7=Sources
+P8=Lights
+P9=Shades
+P10=Climate
+P11=Default Source
+MPp=11
 Pp1=1
 Pp2=2
 Pp3=5
 Pp4=3
 Pp5=4
 Pp6=6
-Pp7=7
-Pp8=8
-Pp9=10
-Pp10=9
+Pp7=11
+Pp8=7
+Pp9=8
+Pp10=10
+Pp11=9
 ]
 [
 ObjTp=Sm
@@ -847,9 +838,9 @@ PrH=4
 CF=2
 Cmn1=Configuration\\
 mC=3
-C1=81
-C2=83
-C3=35
+C1=94
+C2=35
+C3=81
 ]
 [
 ObjTp=Sm
@@ -1186,7 +1177,7 @@ I1=45
 I2=130
 mP=2
 P1=13\[#ID\]h
-P2=D4
+P2=40
 ]
 [
 ObjTp=Sm
@@ -1284,7 +1275,7 @@ I1=45
 I2=136
 mP=2
 P1=12\[#ID\]h
-P2=D4
+P2=40
 ]
 [
 ObjTp=Sm
@@ -1932,7 +1923,7 @@ tO=1
 O1=34
 mP=2
 P1=256d
-P2=\xD5
+P2=\x50
 ]
 [
 ObjTp=Sm
@@ -2035,7 +2026,7 @@ CF=2
 n1I=511
 n2I=242
 n1O=511
-Cmn1=D1[ID]h\\
+Cmn1=10[ID]h\\
 mI=1063
 I33=29
 I34=52
@@ -2064,6 +2055,8 @@ I552=40
 I562=62
 I766=12
 I769=13
+I815=7
+I816=132
 I836=68
 mO=753
 tO=1062
@@ -2083,7 +2076,7 @@ O86=140
 O779=34
 O795=11
 mP=1
-P1=D1\[#ID\]h
+P1=10\[#ID\]h
 ]
 [
 ObjTp=Sm
@@ -2154,21 +2147,17 @@ O1=128
 [
 ObjTp=Sm
 H=81
-SmC=89
-Nm=Serial Send
+SmC=858
+Nm=Make String Permanent
 ObjVer=1
 PrH=17
 CF=2
 n1I=1
-n1O=1
-Cmn1=Audio Switcher IDs~\\
+Cmn1=Sources\\
 mI=1
-I1=49
-mO=1
-tO=1
-O1=136
+I1=7
 mP=1
-P1=#Audio Switchers
+P1=99d
 ]
 [
 ObjTp=Sm
@@ -2219,25 +2208,6 @@ O732=125
 O733=31
 mP=1
 P1=15\[#ID\]h
-]
-[
-ObjTp=Sm
-H=83
-SmC=89
-Nm=Serial Send
-ObjVer=1
-PrH=17
-CF=2
-n1I=1
-n1O=1
-Cmn1=Video Switcher IDs~\\
-mI=1
-I1=49
-mO=1
-tO=1
-O1=130
-mP=1
-P1=#Video Switchers
 ]
 [
 ObjTp=Sm
@@ -2418,6 +2388,29 @@ tO=1
 O1=145
 ]
 [
+ObjTp=Sm
+H=94
+SmC=1477
+Nm=Multiple Serial Send
+ObjVer=1
+PrH=17
+CF=2
+n1I=1
+n1O=3
+Cmn1=Many Associations\\
+mI=1
+I1=49
+mO=3
+tO=3
+O1=130
+O2=136
+O3=7
+mP=3
+P1=#Video Switchers
+P2=#Audio Switchers
+P3=#Sources
+]
+[
 ObjTp=Sg
 H=4
 Nm=[Power_On]
@@ -2431,6 +2424,12 @@ Nm=__R__Video_Zone_Volume_Up
 ObjTp=Sg
 H=6
 Nm=__R__Volume_Control_Is_Audio_Zone?
+]
+[
+ObjTp=Sg
+H=7
+Nm=__R__Sources$
+SgTp=4
 ]
 [
 ObjTp=Sg
@@ -3283,6 +3282,19 @@ Sgn=0
 ObjTp=Dp
 H=10
 Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=11
+Tp=1
+FD1=String of ID byte values or blank.
+SD=/[\x00-\x99]{2}|""/
+HD=TRUE
+DV=""
 NoS=FALSE
 EncFmt=0
 DVLF=1
