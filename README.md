@@ -19,38 +19,40 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 ## Standards and Style
 ### Crosspoint Routing
 #### Equipment Routes
-# | Model    | Route
-:-|:---------|---------:
-1 | Rooms    | 1000
-1 | Room     | 10[ID]
-2 | Audio    | 20[ID]
-3 | Video    | 30[ID]
-4 | Switcher | 40[ID]
-5 | Sources  | 5000
-5 | Source   | 50[ID]
-6 | Lighting | 60[ID]
-7 | Shades   | 70[ID]
-8 | Climate  | 80[ID]
-9 | Generic  | 90[ID]
-A | Menu A   | A0[ID]
-B | Menu B   | B0[ID]
-C | Menu C   | C0[ID]
+
+| # | Model    | Route    |
+|:--|:---------|---------:|
+| 1 | Rooms    | 1000     |
+| 1 | Room     | 10[ID]   |
+| 2 | Audio    | 20[ID]   |
+| 3 | Video    | 30[ID]   |
+| 4 | Switcher | 40[ID]   |
+| 5 | Sources  | 5000     |
+| 5 | Source   | 50[ID]   |
+| 6 | Lighting | 60[ID]   |
+| 7 | Shades   | 70[ID]   |
+| 8 | Climate  | 80[ID]   |
+| 9 | Generic  | 90[ID]   |
+| A | Menu A   | A0[ID]   |
+| B | Menu B   | B0[ID]   |
+| C | Menu C   | C0[ID]   |
 
 #### Control Routes
-# | Model      | Target   | Route
-:-|:-----------|:---------|---------:
-1 | Rooms      | Room     | 10[ID]
-1 | Area       | Room     | 11[ID]
-1 | Room       | Audio    | 12[ID]
-1 | Room       | Video    | 13[ID]
-1 | Room       | Source   | 15[ID]
-4 | Switcher   | Source   | 45[ID]
-5 | Sources    | Source   | 50[ID]
-A | Touchpanel | Rooms    | A0[ID]
-A | Touchpanel | Room     | A1[ID]
-A | Touchpanel | Generic  | A9[ID]
-A | Touchpanel | Menu A   | AA[ID]
-A | Touchpanel | Menu B   | AB[ID]
-A | Touchpanel | Menu C   | AC[ID]
-B | Remote     | Room     | B1[ID]
-B | Remote     | Generic  | B9[ID]
+
+| # | Model      | Target   | Route    |
+|:--|:-----------|:---------|---------:|
+| 1 | Rooms      | Room     | 10[ID]   |
+| 1 | Area       | Room     | 11[ID]   |
+| 1 | Room       | Audio    | 12[ID]   |
+| 1 | Room       | Video    | 13[ID]   |
+| 1 | Room       | Source   | 15[ID]   |
+| 4 | Switcher   | Source   | 45[ID]   |
+| 5 | Sources    | Source   | 50[ID]   |
+| A | Touchpanel | Rooms    | A0[ID]   |
+| A | Touchpanel | Room     | A1[ID]   |
+| A | Touchpanel | Generic  | A9[ID]   |
+| A | Touchpanel | Menu A   | AA[ID]   |
+| A | Touchpanel | Menu B   | AB[ID]   |
+| A | Touchpanel | Menu C   | AC[ID]   |
+| B | Remote     | Room     | B1[ID]   |
+| B | Remote     | Generic  | B9[ID]   |
