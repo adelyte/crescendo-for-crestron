@@ -95,16 +95,60 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 | Preset_01 ... Preset_10 |               | 
 
 
+#### Area
 
-|       |       |       |
-|:------|:------|:------|
-|       |       |       |
-|       |       |       |
-|       |       |       |
-|       |       |       |
-|       |       |       |
-|       |       |       |
-|       |       |       |
-|       |       |       |
-|       |       |       |
-|       |       |       |
+| Inputs                  |  Outputs      |
+|:------------------------|:--------------|
+| **Self**                                |
+|                         | Meta~         |
+|                         | Name$         |
+|                         | Description$  |
+| **Common_Controls**                     |
+| Source_ID~              |               |
+| Powered_By_Rooms        |               |
+| Power_On/Off            |               |
+| Power_On                | Power_On_Fb   |
+| Power_Off               | Power_Off_Fb  |
+| Volume~                 |               |
+| Volume_Up               |               |
+| Volume_Down             |               |
+| Mute                    |               |
+| Mute_On                 |               |
+| Mute_Off                |               |
+| Play                    |               |
+| Stop                    |               |
+| Pause                   |               |
+| Scan_Forward            |               |
+| Scan_Back               |               |
+| Skip_Forward            |               |
+| Skip_Back               |               |
+| Channel_Up              |               |
+| Channel_Down            |               |
+| Preset_01 ... Preset_10 |               | 
+
+
+#### Switcher
+
+| Inputs                  |  Outputs              |
+|:------------------------|:----------------------|
+| **Self**                                        |
+|                         | Meta~                 |
+|                         | Initialized!          |
+| **Device**                                      |
+| Source_Route~           | Source_ID             |
+| Power_Fb                | Powered               |
+| Power_On/Off            |                       |
+|                         | Power_On/Off          |
+| Set_Power_On            | Power_On              |
+| Set_Power_Off           | Power_Off             |
+| Volume_Is               | Volume~               |
+| Volume_Control_Is       | Volume_Up             |
+|                         | Volume_Down           |
+| Mute_Fb                 | Muted                 |
+|                         | Mute_On/Off           |
+|                         | Mute_On               |
+|                         | Mute_Off              |
+| Input_Is                | Input                 |
+|                         | Input~                |
+|                         | Input_01 ... Input_16 |
+
