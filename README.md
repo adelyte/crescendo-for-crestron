@@ -92,7 +92,21 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 | Skip_Back               |               |
 | Channel_Up              |               |
 | Channel_Down            |               |
-| Preset_01 ... Preset_10 |               | 
+| Preset_01 ... Preset_10 |               |
+
+| Parameters      |
+|:----------------|
+| Name            |
+| ID              |
+| Audio Switchers |
+| Video Switchers |
+| Video Menu      |
+| Audio Menu      |
+| Sources         |
+| Lights          |
+| Shades          |
+| Climate         |
+| Default Source  |
 
 
 #### Area
