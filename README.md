@@ -68,7 +68,7 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 ##### Room 01
 | Inputs                  |  Outputs      |
 |:------------------------|:--------------|
-| Self                                    |
+|                       Self              |
 +-------------------------+---------------+
 |                         | Meta~         |
 |                         | Name$         |
