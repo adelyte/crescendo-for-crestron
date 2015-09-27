@@ -140,6 +140,18 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 | Channel_Down            |               |
 | Preset_01 ... Preset_10 |               | 
 
+| Parameters      |
+|:----------------|
+| Name            |
+| ID              |
+| Rooms           |
+| Video Menu      |
+| Audio Menu      |
+| Lights          |
+| Shades          |
+| Climate         |
+| Default Source  |
+
 
 #### Switcher
 
@@ -165,4 +177,15 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 | Input_Is                | Input                 |
 |                         | Input~                |
 |                         | Input_01 ... Input_16 |
+
+| Parameters                    |
+|:------------------------------|
+| Name                          |
+| ID                            |
+| Warm-up Time                  |
+| Volume Control                |
+| Input Changes                 |
+| Sources for Power Off         |
+| Sources for Input 01 ... 64   |
+
 
