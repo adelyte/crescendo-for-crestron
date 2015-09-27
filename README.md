@@ -60,15 +60,83 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 ### Modules
 #### Rooms
 
+| Outputs                                           |
+|:--------------------------------------------------|
+| //R-xx__Room_01_Exists ... //R-xx__Room_99_Exists |
+
+#### Room
+##### Room 01
 | Inputs | Outputs |
-|:----|:----|
-|  | //R-xx__Room_01_Exists ... //R-xx__Room_99_Exists |
+|:-----------|:----------|
+| Self                   |
+| | Meta~ |
+| | Name$ |
+| | Description$ |
+| Common_Controls       |
+| Source_ID~ | Source_ID_Fb |
+| Power_On/Off | |
+| Power_On | Power_On_Fb |
+| Power_Off | Power_Off_Fb |
+| Volume~ | Volume_Fb|
+| Volume_Up | |
+| Volume_Down | |
+| Mute | |
+| Mute_On | Mute_Fb |
+| Mute_Off | |
+| Play | |
+| Stop | |
+| Pause | |
+| Scan_Forward | |
+| Scan_Back | |
+| Skip_Forward | |
+| Skip_Back | |
+| Channel_Up | |
+| Channel_Down | |
+| Preset_01 ... Preset_10 | | 
 
 
 
-| Inputs | Outputs |
-|Self                                               |
 
+|       |       |       |
+|:------|:------|:------|
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+
+
+|       |       |       |
+|:------|:------|:------|
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+
+
+|       |       |       |
+|:------|:------|:------|
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
+|       |       |       |
 
 |Common Controls                                    |
 
