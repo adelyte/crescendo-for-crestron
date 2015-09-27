@@ -94,7 +94,7 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 | Channel_Down            |               |
 | Preset_01 ... Preset_10 |               |
 
-| Parameters      |
+| Room Parameters |
 |:----------------|
 | Name            |
 | ID              |
@@ -140,7 +140,7 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 | Channel_Down            |               |
 | Preset_01 ... Preset_10 |               | 
 
-| Parameters      |
+| Area Parameters |
 |:----------------|
 | Name            |
 | ID              |
@@ -178,7 +178,7 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 |                         | Input~                |
 |                         | Input_01 ... Input_16 |
 
-| Parameters                    |
+| Switcher Parameters           |
 |:------------------------------|
 | Name                          |
 | ID                            |
@@ -188,4 +188,156 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 | Sources for Power Off         |
 | Sources for Input 01 ... 64   |
 
+
+#### Source
+
+| Inputs                  |  Outputs              |
+|:------------------------|:----------------------|
+| **Self**                                        |
+|                         | Meta~                 |
+| Initialize              | Initialized           |
+|                         | Initialized!          |
+|                         | Connected             |
+|                         | Connected!            |
+|                         | Disconnected!         |
+|                         | Name$                 |
+| Set_Status              | Status$               |
+| Set_Color               |                       |
+| **Common_Controls**                             |
+|                         | Cursor_Up             |
+|                         | Cursor_Down           |
+|                         | Cursor_Left           |
+|                         | Cursor_Right          |
+|                         | Cursor_Select         |
+|                         | Guide                 |
+|                         | Info                  |
+|                         | Menu                  |
+|                         | Exit                  |
+| Playing                 | Play                  |
+| Stopped                 | Stop                  |
+| Paused                  | Pause                 |
+| Scanning_Forward        | Scan_Forward          |
+| Scanning_Back           | Scan_Back             |
+|                         | Skip_Forward          |
+|                         | Skip_Back             |
+|                         | Record                |
+|                         | Page_Up               |
+|                         | Page_Down             |
+|                         | Number_0 ... Number_9 |
+|                         | Number_Enter          |
+|                         | Number_Clear          |
+|                         | Channel_Up            |
+|                         | Channel_Down          |
+|                         | Channel_Recall        |
+|                         | Return                |
+|                         | Red                   |
+|                         | Green                 |
+|                         | Yellow                |
+|                         | Blue                  |
+|                         | List                  |
+|                         | Live                  |
+|                         | Fav                   |
+|                         | F1 ... F10            |
+|                         | Power_On              |
+|                         | Power_Off             |
+| **Digitals**            |                       |
+| Digital_101_Fb          | Digital_101           |
+| ...                     | ...                   |
+| Digital_298_Fb          | Digital_298           |
+| **Analogs**             |                       |
+| Analog_101_Fb           |                       |
+| ...                     |                       |
+| Analog_398_Fb           |                       |
+| **Serials**             |                       |
+| Serial_101_Fb           | Serial_101            |
+| ...                     | ...                   |
+| Serial_110_Fb           | Serial_110            |
+| Serial_111_Fb           |                       |
+| ...                     |                       |
+| Serial_398_Fb           |                       |
+
+| Source Parameters     |
+|:----------------------|
+| Volume                | 
+| ID                    |
+| Output                |
+| Volume Control        |
+| Page                  |
+| Icon                  |
+| Color                 |
+| Auto Power            |
+
+
+#### Touchpanel
+
+| Inputs                  |  Outputs              |
+|:------------------------|:----------------------|
+|                         | Source_01_Exists      |
+|                         | ...                   |
+|                         | Source_99_Exists      |
+
+| Inputs                  |  Outputs              |
+|:------------------------|:----------------------|
+| **Self**                                        |
+|                         | Meta~                 |
+| Initialize              | Initialized           |
+|                         | Initialized!          |
+|                         | Connected             |
+|                         | Connected!            |
+|                         | Disconnected!         |
+|                         | Name$                 |
+| Set_Status              | Status$               |
+| Set_Color               |                       |
+| **Common_Controls**                             |
+|                         | Cursor_Up             |
+|                         | Cursor_Down           |
+|                         | Cursor_Left           |
+|                         | Cursor_Right          |
+|                         | Cursor_Select         |
+|                         | Guide                 |
+|                         | Info                  |
+|                         | Menu                  |
+|                         | Exit                  |
+| Playing                 | Play                  |
+| Stopped                 | Stop                  |
+| Paused                  | Pause                 |
+| Scanning_Forward        | Scan_Forward          |
+| Scanning_Back           | Scan_Back             |
+|                         | Skip_Forward          |
+|                         | Skip_Back             |
+|                         | Record                |
+|                         | Page_Up               |
+|                         | Page_Down             |
+|                         | Number_0 ... Number_9 |
+|                         | Number_Enter          |
+|                         | Number_Clear          |
+|                         | Channel_Up            |
+|                         | Channel_Down          |
+|                         | Channel_Recall        |
+|                         | Return                |
+|                         | Red                   |
+|                         | Green                 |
+|                         | Yellow                |
+|                         | Blue                  |
+|                         | List                  |
+|                         | Live                  |
+|                         | Fav                   |
+|                         | F1 ... F10            |
+|                         | Power_On              |
+|                         | Power_Off             |
+| **Digitals**            |                       |
+| Digital_101_Fb          | Digital_101           |
+| ...                     | ...                   |
+| Digital_298_Fb          | Digital_298           |
+| **Analogs**             |                       |
+| Analog_101_Fb           |                       |
+| ...                     |                       |
+| Analog_398_Fb           |                       |
+| **Serials**             |                       |
+| Serial_101_Fb           | Serial_101            |
+| ...                     | ...                   |
+| Serial_110_Fb           | Serial_110            |
+| Serial_111_Fb           |                       |
+| ...                     |                       |
+| Serial_398_Fb           |                       |
 
