@@ -65,18 +65,14 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 | //R-xx__Room_01_Exists ... //R-xx__Room_99_Exists |
 
 #### Room
-##### Room 01, Self
 
 | Inputs                  |  Outputs      |
 |:------------------------|:--------------|
+| *Self*                                  |
 |                         | Meta~         |
 |                         | Name$         |
 |                         | Description$  |
-
-##### Room 01, Common_Controls
-
-| Inputs                  |  Outputs      |
-|:------------------------|:--------------|
+| *Common_Controls*                       |
 | Source_ID~              | Source_ID_Fb  |
 | Power_On/Off            |               |
 | Power_On                | Power_On_Fb   |
