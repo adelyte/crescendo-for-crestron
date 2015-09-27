@@ -56,3 +56,23 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 | A | Touchpanel | Menu C   | AC[ID]   |
 | B | Remote     | Room     | B1[ID]   |
 | B | Remote     | Generic  | B9[ID]   |
+
+### Modules
+#### Rooms
+
+| Inputs | Outputs |
+|:----|:----|
+|  | //R-xx__Room_01_Exists ... //R-xx__Room_99_Exists |
+
+
+
+| Inputs | Outputs |
+|Self                                               |
+
+
+|Common Controls                                    |
+
+
+
+|Parameters  table |
+
