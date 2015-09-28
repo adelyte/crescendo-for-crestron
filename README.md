@@ -257,66 +257,134 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 |                         | Source_01_Exists ... Source_99_Exists |
 
 
-#### Touchpanel
+#### Touchscreen
 
-| Inputs                                |  Outputs              |
-|:--------------------------------------|:----------------------|
-| **Self**                                                      |
-|                                       | Meta~                 |
-| Initialize                            | Initialized           |
-|                                       | Initialized!          |
-|                                       | Connected             |
-|                                       | Connected!            |
-|                                       | Disconnected!         |
-|                                       | Name$                 |
-| Set_Status                            | Status$               |
-| Set_Color                             |                       |
-| **Common_Controls**                                           |
-|                                       | Cursor_Up             |
-|                                       | Cursor_Down           |
-|                                       | Cursor_Left           |
-|                                       | Cursor_Right          |
-|                                       | Cursor_Select         |
-|                                       | Guide                 |
-|                                       | Info                  |
-|                                       | Menu                  |
-|                                       | Exit                  |
-| Playing                               | Play                  |
-| Stopped                               | Stop                  |
-| Paused                                | Pause                 |
-| Scanning_Forward                      | Scan_Forward          |
-| Scanning_Back                         | Scan_Back             |
-|                                       | Skip_Forward          |
-|                                       | Skip_Back             |
-|                                       | Record                |
-|                                       | Page_Up               |
-|                                       | Page_Down             |
-|                                       | Number_0 ... Number_9 |
-|                                       | Number_Enter          |
-|                                       | Number_Clear          |
-|                                       | Channel_Up            |
-|                                       | Channel_Down          |
-|                                       | Channel_Recall        |
-|                                       | Return                |
-|                                       | Red                   |
-|                                       | Green                 |
-|                                       | Yellow                |
-|                                       | Blue                  |
-|                                       | List                  |
-|                                       | Live                  |
-|                                       | Fav                   |
-|                                       | F1 ... F10            |
-|                                       | Power_On              |
-|                                       | Power_Off             |
-| **Digitals**                          |                       |
-| Digital_101_Fb                        | Digital_101           |
-| ...                                   | ...                   |
-| Digital_298_Fb                        | Digital_298           |
-| **Analogs**                           |                       |
-| Analog_101_Fb ... Analog_398_Fb       |                       |
-| **Serials**                           |                       |
-| Serial_101_Fb                         | Serial_101            |
-| ...                                   | ...                   |
-| Serial_110_Fb                         | Serial_110            |
-| Serial_111_Fb ... Serial_398_Fb       |                       |
+| Inputs                                |  Outputs                                                      |
+|:--------------------------------------|:--------------------------------------------------------------|
+| **Self**                                                                                              |
+| Route~                                | Initialized!                                                  |
+| Generic_Route~                        |                                                               |
+|                                       | Source_Has_Audio                                              |
+|                                       | Source_Has_Video                                              |
+| **Digitals**                          |                                                               |
+| Power_On/Off                          |                                                               |
+| Power_On                              | Power_On_Fb                                                   |
+| Power_Off                             | Power_Off_Fb                                                  |
+| Power_Subpage_Show                    | Power_Subpage_Showing                                         |
+| Power_Subpage_Hide                    |                                                               |
+| Sleep_Cancel                          |                                                               |
+| Sleep_In_30_Set                       | Sleep_In_30_Active                                            |
+| Sleep_In_60_Set                       | Sleep_In_60_Active                                            |
+| Sleep_In_90_Set                       | Sleep_In_90_Active                                            |
+| Sleep_In_120_Set                      | Sleep_In_120_Active                                           |
+|                                       | Volume_Subpage_Showing                                        |
+| Volume_Up                             |                                                               |
+| Volume_Down                           |                                                               |
+| Volume_Sliding                        |                                                               |
+| Mute                                  | Mute_Fb                                                       |
+| Mute_On                               | Volume_Control_Is_Absolute                                    |
+| Mute_Off                              | Volume_Control_Is_Relative                                    |
+|                                       | Volume_Control_Is_Area                                        |
+| Control_Source                        |                                                               |
+| Digital_101 ... Digital_298           | Digital_101_Fb ... Digital_298_Fb                             |
+| Cursor_Up                             |                                                               |
+| Cursor_Down                           |                                                               |
+| Cursor_Left                           |                                                               |
+| Cursor_Right                          |                                                               |
+| Cursor_Select                         |                                                               |
+| Guide                                 |                                                               |
+| Info                                  |                                                               |
+| Menu                                  |                                                               |
+| Exit                                  |                                                               |
+| Play                                  | Playing                                                       |
+| Stop                                  | Stopped                                                       |
+| Pause                                 | Paused                                                        |
+| Scan_Forward                          | Scanning_Forward                                              |
+| Scan_Back                             | Scanning_Back                                                 |
+| Skip_Forward                          |                                                               |
+| Skip_Back                             |                                                               |
+| Record                                | Recording                                                     |
+| Page_Up                               |                                                               |
+| Page_Down                             |                                                               |
+| Number_0 ... Number_9                 |                                                               |
+| Number_Enter                          |                                                               |
+| Number_Clear                          |                                                               |
+| Channel_Up                            |                                                               |
+| Channel_Down                          |                                                               |
+| Channel_Recall                        |                                                               |
+| Back                                  |                                                               |
+| Red                                   |                                                               |
+| Green                                 |                                                               |
+| Yellow                                |                                                               |
+| Blue                                  |                                                               |
+| List                                  |                                                               |
+| Live                                  |                                                               |
+| Format                                |                                                               |
+| Menu_A_Item_01 ... Menu_A_Item_48     | Menu_A_Item_01_Highlighted ... Menu_A_Item_48_Highlighted     |
+| Menu_A_Back                           | Menu_A_Back_Showing                                           |
+| Menu_A_Page_Up                        | Menu_A_Page_Up_Showing                                        |
+| Menu_A_Page_Down                      | Menu_A_Page_Down_Showing                                      |
+|                                       | Menu_A_Page_01_Focused ... Menu_A_Page_16_Focused             |
+| Menu_B_Item_01 ... Menu_B_Item_48     | Menu_B_Item_01_Highlighted ... Menu_B_Item_48_Highlighted     |
+| Menu_B_Back                           | Menu_B_Back_Showing                                           |
+| Menu_B_Page_Up                        | Menu_B_Page_Up_Showing                                        |
+| Menu_B_Page_Down                      | Menu_B_Page_Down_Showing                                      |
+|                                       | Menu_B_Page_01_Focused ... Menu_B_Page_16_Focused             |
+| Menu_C_Item_01 ... Menu_B_Item_48     | Menu_C_Item_01_Highlighted ... Menu_C_Item_48_Highlighted     |
+| Menu_C_Back                           | Menu_C_Back_Showing                                           |
+| Menu_C_Page_Up                        | Menu_C_Page_Up_Showing                                        |
+| Menu_C_Page_Down                      | Menu_C_Page_Down_Showing                                      |
+|                                       | Menu_C_Page_01_Focused ... Menu_C_Page_16_Focused             |
+| Page_Clear                            |                                                               |
+| Page_Home                             | Page_01_Showing                                               |
+|                                       | Page_02_Showing ... Page_88_Showing                           |
+| Subpage_1 ... Subpage_6               | Subpage_1_Showing ... Subpage_6_Showing                       |
+| **Analogs**                           |                                                               |
+|                                       | Room_Route                                                    |
+|                                       | Source_Route                                                  |
+|                                       | Room_Icon                                                     |
+| Volume                                | Volume_Fb                                                     |
+|                                       | Mute_Mode                                                     |
+| Analog_101 ... Analog_110             | Analog_101_Fb ... Analog_110_Fb                               |
+|                                       | Analog_111_Fb ... Analog_298_Fb                               |
+|                                       | Menu_A_Item_01_Icon ... Menu_A_Item_48_Icon                   |
+|                                       | Menu_A_Item_01_Color ... Menu_A_Item_48_Color                 |
+|                                       | Menu_B_Item_01_Icon ... Menu_B_Item_48_Icon                   |
+|                                       | Menu_B_Item_01_Color ... Menu_B_Item_48_Color                 |
+|                                       | Menu_C_Item_01_Icon ... Menu_C_Item_48_Icon                   |
+|                                       | Menu_C_Item_01_Color ... Menu_C_Item_48_Color                 |
+|                                       | Menu_A_Item_Count                                             |
+|                                       | Menu_A_Highlight                                              |
+|                                       | Menu_B_Item_Count                                             |
+|                                       | Menu_B_Highlight                                              |
+|                                       | Menu_C_Item_Count                                             |
+|                                       | Menu_C_Highlight                                              |
+| **Serials**                           | Room_Name$                                                    |
+|                                       | Source_Name$                                                  |
+|                                       | Generic_Name$                                                 |
+|                                       | Sleep_Message                                                 |
+|                                       | Volume$                                                       |
+|                                       | Serial_101_Fb ... Serial_298_Fb                               |
+|                                       | Menu_A_Title                                                  |
+|                                       | Menu_A_Item_01_Title ... Menu_A_Item_48_Title                 |
+|                                       | Menu_A_Item_01_Description ... Menu_A_Item_48_Description     |
+|                                       | Menu_A_Description                                            |
+|                                       | Menu_B_Title                                                  |
+|                                       | Menu_B_Item_01_Title ... Menu_A_Item_48_Title                 |
+|                                       | Menu_B_Item_01_Description ... Menu_A_Item_48_Description     |
+|                                       | Menu_B_Description                                            |
+|                                       | Menu_C_Title                                                  |
+|                                       | Menu_C_Item_01_Title ... Menu_A_Item_48_Title                 |
+|                                       | Menu_C_Item_01_Description ... Menu_A_Item_48_Description     |
+|                                       | Menu_C_Description                                            |
+
+| Touchscreen Parameters        |
+|-------------------------------|
+| Name                          |
+| ID                            |
+| Default Room                  |
+| Default Menu A                |
+| Default Menu B                |
+| Default Menu C                |
+| Rooms                         |
 
