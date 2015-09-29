@@ -280,6 +280,30 @@ FUNCTION UpdateMove()
 }
 
 // Watch and Listen Lists
+FUNCTION UpdateWatch(INTEGER source)
+{
+    INTEGER item;
+
+    item = SourceToWatch(source);
+
+    Watch_Source_Name_Is[item] = Source_Name_Is[source];
+    Watch_Source_Icon_Is[item] = Source_Icon_Is[source];
+    Watch_Source_In_Use[item] = 0; // FIXME
+    Watch_Source_Room_Names_Is[item] = ""; // FIXME
+}
+
+FUNCTION UpdateListen(INTEGER source)
+{
+    INTEGER item;
+
+    item = SourceToListen(source);
+
+    Listen_Source_Name_Is[item] = Source_Name_Is[source];
+    Listen_Source_Icon_Is[item] = Source_Icon_Is[source];
+    Listen_Source_In_Use[item] = 0; // FIXME
+    Listen_Source_Room_Names_Is[item] = ""; // FIXME
+}
+
 FUNCTION UpdateWatchListen()
 {
     INTEGER i, source;
@@ -291,17 +315,21 @@ FUNCTION UpdateWatchListen()
     {
         source = BYTE(Room_Sources_Is[Room_Is], i);
 
-        IF(Source_Has_Audio[source])
-        {
-            Listens_Size = Listens_Size + 1;
-            __Listen_Source__[Listens_Size] = source;
-            __Source_Listen__[source] = Listens_Size;
-        }
-        ELSE // IF(Source_Has_Video[source])
+        IF(Source_Has_Video[source])
         {
             Watches_Size = Watches_Size + 1;
             __Watch_Source__[Watches_Size] = source;
             __Source_Watch__[source] = Watches_Size;
+
+            UpdateWatch(source);
+        }
+        ELSE // IF(Source_Has_Audio[source])
+        {
+            Listens_Size = Listens_Size + 1;
+            __Listen_Source__[Listens_Size] = source;
+            __Source_Listen__[source] = Listens_Size;
+
+            UpdateListen(source);
         }
     }
 }
