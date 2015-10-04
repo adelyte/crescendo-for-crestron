@@ -248,7 +248,7 @@ FUNCTION UpdateMoveSource(INTEGER room)
     INTEGER move, source;
 
     move = RoomToMove(room);
-    source = Room_Source_Is[room];
+    source = Room_Source_Is[room] & 0xFF;
 
     IF(source > 0)
     {
@@ -282,14 +282,62 @@ FUNCTION UpdateMove()
 // Watch and Listen Lists
 FUNCTION UpdateWatch(INTEGER source)
 {
-    INTEGER item;
+    INTEGER item, room, rooms_count;
+    STRING room_names[60];
 
     item = SourceToWatch(source);
 
     Watch_Source_Name_Is[item] = Source_Name_Is[source];
     Watch_Source_Icon_Is[item] = Source_Icon_Is[source];
-    Watch_Source_In_Use[item] = 0; // FIXME
-    Watch_Source_Room_Names_Is[item] = ""; // FIXME
+
+    rooms_count = 0;
+    FOR(room = 1 TO LEN(Rooms))
+    {
+        IF((Room_Source_Is[room] & 0xFF) = source)
+        {
+            rooms_count = rooms_count + 1;
+            CSWITCH(rooms_count)
+            {
+                CASE(1):
+                {
+                    room_names = Room_Name_Is[room];
+                    BREAK;
+                }
+                CASE(2):
+                {
+                    room_names = room_names + ", " + Room_Name_Is[room];
+                    BREAK;
+                }
+            }
+        }
+    }
+
+    CSWITCH(rooms_count)
+    {
+        CASE(0):
+        {
+            Watch_Source_In_Use[item] = 0;
+            Watch_Source_Room_Names_Is[item] = "Not In Use";
+            BREAK;
+        }
+        CASE(1):
+        {
+            Watch_Source_In_Use[item] = 1;
+            Watch_Source_Room_Names_Is[item] = room_names;
+            BREAK;
+        }
+        CASE(2):
+        {
+            Watch_Source_In_Use[item] = 1;
+            Watch_Source_Room_Names_Is[item] = room_names;
+            BREAK;
+        }
+        DEFAULT:
+        {
+            Watch_Source_In_Use[item] = 1;
+            MAKESTRING(Watch_Source_Room_Names_Is[item], "%s, and %u more", room_names, rooms_count - 2);
+        }
+    }
 }
 
 FUNCTION UpdateListen(INTEGER source)
@@ -342,7 +390,7 @@ FUNCTION UpdateShareSource(INTEGER room)
     share = RoomToShare(room);
     IF(share = 0) RETURN;
 
-    source = Room_Source_Is[room];
+    source = Room_Source_Is[room] & 0xFF;
     IF(source > 0)
     {
         Share_Source_Name_Is[share] = Source_Name_Is[source];
@@ -415,14 +463,45 @@ CHANGE Source_Is
     UpdateShare();
 }
 
+INTEGER __Room_Source_Was__[#ROOMS_MAX];
+
 CHANGE Room_Source_Is
 {
-    INTEGER room;
+    INTEGER room, source, item;
 
     room = GETLASTMODIFIEDARRAYINDEX();
 
     UpdateMoveSource(room);
     UpdateShareSource(room);
+
+    source = __Room_Source_Was__[room];
+
+    item = SourceToWatch(source);
+    IF(item > 0)
+    {
+        UpdateWatch(source);
+    }
+
+    item = SourceToListen(source);
+    IF(item > 0)
+    {
+        UpdateListen(source);
+    }
+
+    source = Room_Source_Is[room] & 0xFF;
+    __Room_Source_Was__[room] = source;
+
+    item = SourceToWatch(source);
+    IF(item > 0)
+    {
+        UpdateWatch(source);
+    }
+
+    item = SourceToListen(source);
+    IF(item > 0)
+    {
+        UpdateListen(source);
+    }
 }
 
 CHANGE Room_Volume_Is
@@ -456,6 +535,7 @@ FUNCTION __Init__()
     SETARRAY(__Source_Listen__, 0);
     SETARRAY(__Share_Room__, 0);
     SETARRAY(__Room_Share__, 0);
+    SETARRAY(__Room_Source_Was__, 0);
 
     Moves_Size = LEN(Rooms);
     Shares_Size = Moves_Size;
