@@ -31,6 +31,7 @@ DIGITAL_OUTPUT Share_Visible[#ITEMS_MAX], Share_Source_Matches[#ITEMS_MAX], Shar
 DIGITAL_OUTPUT Room_Power_Off[#ROOMS_MAX], Room_Volume_Up[#ROOMS_MAX], Room_Volume_Down[#ROOMS_MAX], Room_Volume_Mute_Toggle[#ROOMS_MAX];
 
 ANALOG_INPUT Room_Is, Source_Is;
+STRING_INPUT Default_Available_Rooms[#ROOMS_MAX], Default_Available_Sources[#SOURCES_MAX];
 ANALOG_INPUT Room_Source_Is[#ROOMS_MAX], Room_Volume_Is[#ROOMS_MAX];
 ANALOG_INPUT Source_Icon_Is[#SOURCES_MAX];
 
@@ -265,10 +266,22 @@ FUNCTION UpdateMoveSource(INTEGER room)
 FUNCTION UpdateMove()
 {
     INTEGER item, room;
+    STRING  rooms_list[#ROOMS_MAX];
+
+    IF(Rooms = "")
+    {
+        Moves_Size = LEN(Default_Available_Rooms);
+        rooms_list = Default_Available_Rooms;
+    }
+    ELSE
+    {
+        Moves_Size = LEN(Rooms);
+        rooms_list = Rooms;
+    }
 
     FOR(item = 1 TO Moves_Size)
     {
-        room = BYTE(Rooms, item);
+        room = BYTE(rooms_list, item);
 
         __Move_Room__[item] = room;
         __Room_Move__[room] = item;
@@ -355,13 +368,27 @@ FUNCTION UpdateListen(INTEGER source)
 FUNCTION UpdateWatchListen()
 {
     INTEGER i, source;
+    STRING  sources_list[#SOURCES_MAX];
+
+    IF(Room_Sources_Is[Room_Is] = "")
+    {
+        sources_list = Default_Available_Sources;
+    }
+    ELSE IF(Room_Sources_Is[Room_Is] = "\x00")
+    {
+        sources_list = "";
+    }
+    ELSE
+    {
+        sources_list = Room_Sources_Is[Room_Is];
+    }
 
     Watches_Size = 0;
     Listens_Size = 0;
 
-    FOR(i = 1 TO LEN(Room_Sources_Is[Room_Is]))
+    FOR(i = 1 TO LEN(sources_list))
     {
-        source = BYTE(Room_Sources_Is[Room_Is], i);
+        source = BYTE(sources_list, i);
 
         IF(Source_Has_Video[source])
         {
@@ -436,6 +463,8 @@ FUNCTION UpdateShareVolumeMute(INTEGER room)
 FUNCTION UpdateShare()
 {
     INTEGER item, room;
+
+    Shares_Size = Moves_Size;
 
     FOR(item = 1 TO Shares_Size)
     {
@@ -536,9 +565,6 @@ FUNCTION __Init__()
     SETARRAY(__Share_Room__, 0);
     SETARRAY(__Room_Share__, 0);
     SETARRAY(__Room_Source_Was__, 0);
-
-    Moves_Size = LEN(Rooms);
-    Shares_Size = Moves_Size;
 
     FOR(item = 1 TO Moves_Size)
     {
