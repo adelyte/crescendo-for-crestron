@@ -270,14 +270,14 @@ FUNCTION UpdateMove()
 
     IF(Rooms = "")
     {
-        Moves_Size = LEN(Default_Available_Rooms);
         rooms_list = Default_Available_Rooms;
     }
     ELSE
     {
-        Moves_Size = LEN(Rooms);
         rooms_list = Rooms;
     }
+
+    Moves_Size = LEN(rooms_list);
 
     FOR(item = 1 TO Moves_Size)
     {
@@ -285,6 +285,11 @@ FUNCTION UpdateMove()
 
         __Move_Room__[item] = room;
         __Room_Move__[room] = item;
+        __Share_Room__[item] = room;
+        __Room_Share__[room] = item;
+
+        Move_Room_Name_Is[item] = Room_Name_Is[room];
+        Share_Room_Name_Is[item] = Room_Name_Is[room];
 
         UpdateMoveSource(room);
     }
@@ -554,8 +559,6 @@ CHANGE Room_Volume_Mute_Is_On
 // Initialization
 FUNCTION __Init__()
 {
-    INTEGER item, room, source;
-
     SETARRAY(__Move_Room__, 0);
     SETARRAY(__Room_Move__, 0);
     SETARRAY(__Watch_Source__, 0);
@@ -566,25 +569,12 @@ FUNCTION __Init__()
     SETARRAY(__Room_Share__, 0);
     SETARRAY(__Room_Source_Was__, 0);
 
-    FOR(item = 1 TO Moves_Size)
-    {
-        room = BYTE(Rooms, item);
-
-        __Move_Room__[item] = room;
-        __Room_Move__[room] = item;
-        __Share_Room__[item] = room;
-        __Room_Share__[room] = item;
-
-        Move_Room_Name_Is[item] = Room_Name_Is[room];
-        Share_Room_Name_Is[item] = Room_Name_Is[room];
-    }
-
     UpdateMove();
     UpdateWatchListen();
     UpdateShare();
 }
 
-CHANGE Initialize
+PUSH Initialize
 {
     __Init__();
 }
