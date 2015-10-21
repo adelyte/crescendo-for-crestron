@@ -301,15 +301,20 @@ FUNCTION UpdateMove()
 FUNCTION UpdateWatch(INTEGER source)
 {
     INTEGER item, room, rooms_count;
-    STRING room_names[60];
+    STRING  room_names[60];
 
     item = SourceToWatch(source);
+    IF(item = 0)
+    {
+        RETURN;
+    }
 
     Watch_Source_Name_Is[item] = Source_Name_Is[source];
     Watch_Source_Icon_Is[item] = Source_Icon_Is[source];
-
+    
+    room = 1;
     rooms_count = 0;
-    FOR(room = 1 TO LEN(Rooms))
+    WHILE(room <= #ROOMS_MAX && rooms_count < 3)
     {
         IF((Room_Source_Is[room] & 0xFF) = source)
         {
@@ -328,6 +333,8 @@ FUNCTION UpdateWatch(INTEGER source)
                 }
             }
         }
+
+        room = room + 1;
     }
 
     CSWITCH(rooms_count)
@@ -360,14 +367,69 @@ FUNCTION UpdateWatch(INTEGER source)
 
 FUNCTION UpdateListen(INTEGER source)
 {
-    INTEGER item;
+    INTEGER item, room, rooms_count;
+    STRING  room_names[60];
 
     item = SourceToListen(source);
+    IF(item = 0)
+    {
+        RETURN;
+    }
 
     Listen_Source_Name_Is[item] = Source_Name_Is[source];
     Listen_Source_Icon_Is[item] = Source_Icon_Is[source];
-    Listen_Source_In_Use[item] = 0; // FIXME
-    Listen_Source_Room_Names_Is[item] = ""; // FIXME
+    
+    room = 1;
+    rooms_count = 0;
+    WHILE(room <= #ROOMS_MAX && rooms_count < 3)
+    {
+        IF((Room_Source_Is[room] & 0xFF) = source)
+        {
+            rooms_count = rooms_count + 1;
+            CSWITCH(rooms_count)
+            {
+                CASE(1):
+                {
+                    room_names = Room_Name_Is[room];
+                    BREAK;
+                }
+                CASE(2):
+                {
+                    room_names = room_names + ", " + Room_Name_Is[room];
+                    BREAK;
+                }
+            }
+        }
+
+        room = room + 1;
+    }
+
+    CSWITCH(rooms_count)
+    {
+        CASE(0):
+        {
+            Listen_Source_In_Use[item] = 0;
+            Listen_Source_Room_Names_Is[item] = "Not In Use";
+            BREAK;
+        }
+        CASE(1):
+        {
+            Listen_Source_In_Use[item] = 1;
+            Listen_Source_Room_Names_Is[item] = room_names;
+            BREAK;
+        }
+        CASE(2):
+        {
+            Listen_Source_In_Use[item] = 1;
+            Listen_Source_Room_Names_Is[item] = room_names;
+            BREAK;
+        }
+        DEFAULT:
+        {
+            Listen_Source_In_Use[item] = 1;
+            MAKESTRING(Listen_Source_Room_Names_Is[item], "%s, and %u more", room_names, rooms_count - 2);
+        }
+    }
 }
 
 FUNCTION UpdateWatchListen()
@@ -495,7 +557,7 @@ FUNCTION UpdateShare()
     }
 }
 
-// Events
+// System Events
 CHANGE Room_Is
 {
     UpdateMoveRoom();
