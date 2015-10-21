@@ -468,12 +468,22 @@ FUNCTION UpdateShareVolumeMute(INTEGER room)
 FUNCTION UpdateShare()
 {
     INTEGER item, room;
+    STRING  rooms_list[#ROOMS_MAX];
+
+    IF(Rooms = "")
+    {
+        rooms_list = Default_Available_Rooms;
+    }
+    ELSE
+    {
+        rooms_list = Rooms;
+    }
 
     Shares_Size = Moves_Size;
 
     FOR(item = 1 TO Shares_Size)
     {
-        room = BYTE(Rooms, item);
+        room = BYTE(rooms_list, item);
 
         __Share_Room__[item] = room;
         __Room_Share__[room] = item;
