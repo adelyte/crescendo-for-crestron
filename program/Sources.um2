@@ -44,21 +44,6 @@ Sy1=0
 Mx1=0
 ]
 [
-ObjTp=Bw
-H=1
-Lx=0
-Ly=0
-Rx=913
-Ry=697
-Xm=-1
-Ym=-1
-SH=9
-Z=100
-P=23150
-Ht=1
-Hi=1718
-]
-[
 ObjTp=Symbol
 Name=Sources
 Code=1
@@ -7085,7 +7070,7 @@ ObjTp=Dp
 H=1
 Tp=1
 FD1=List of source IDs available to rooms by default.
-SD=Source IDs /[\x01-\x99]+|\x00/
+SD=Source IDs /[\x01-\x99]+|\x00|""/
 Nt1=A value of "\x00" means no sources are available to rooms by default.
 Nt2=||1A value of "" means all sources are available to rooms by default.
 HD=TRUE
