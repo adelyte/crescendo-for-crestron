@@ -335,7 +335,7 @@ FUNCTION UpdateWatch(INTEGER source)
     room = 1;
     rooms_count = 0;
 
-    WHILE(room <= #ROOMS_MAX && rooms_count < 3)
+    WHILE(room <= #ROOMS_MAX)
     {
         IF(IdToIndex(Room_Source_Is[room]) = source)
         {
@@ -403,7 +403,7 @@ FUNCTION UpdateListen(INTEGER source)
     room = 1;
     rooms_count = 0;
 
-    WHILE(room <= #ROOMS_MAX && rooms_count < 3)
+    WHILE(room <= #ROOMS_MAX)
     {
         IF(IdToIndex(Room_Source_Is[room]) = source)
         {
@@ -529,12 +529,28 @@ FUNCTION UpdateShareSource(INTEGER room)
 
 FUNCTION UpdateShareVisible(INTEGER room)
 {
-    INTEGER share;
+    INTEGER share, source;
+    STRING  sources_list[#SOURCES_MAX];
+
+    IF(Room_Sources_Is[room] = "")
+    {
+        sources_list = Default_Available_Sources;
+    }
+    ELSE IF(Room_Sources_Is[room] = "\x00")
+    {
+        sources_list = "";
+    }
+    ELSE
+    {
+        sources_list = Room_Sources_Is[room];
+    }
 
     share = RoomToShare(room);
     IF(share = 0) RETURN;
 
-    Share_Visible[share] = FIND(CHR(Source_Is), Room_Sources_Is[room]);
+    TRACE("UpdateShareVisible() room: %u source: 0x%02X", room, Source_Is);
+
+    Share_Visible[share] = FIND(CHR(Source_Is), sources_list);
 }
 
 FUNCTION UpdateShareVolume(INTEGER room)
@@ -584,7 +600,7 @@ FUNCTION UpdateShare()
         UpdateShareSource(room);
         UpdateShareVolume(room);
         UpdateShareVolumeMute(room);
-        UpdateShareVisible(item);
+        UpdateShareVisible(room);
     }
 }
 
