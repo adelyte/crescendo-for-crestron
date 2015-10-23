@@ -4891,11 +4891,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo XPanel_[Main] Listen_Rooms Menu_1.ced
-Hint=Rooms Menu_1 (Smart Object ID=2)
+Name=Crescendo XPanel_[Main] Listen_Listen Menu.ced
+Hint=Listen Menu (Smart Object ID=2)
 Code=3
-GUID=88ED35D2-F2AE-4AE7-80E7-5F8D6649B97B
-SmplCName=Crescendo XPanel_[Main] Listen_Rooms Menu_1.ced
+GUID=8B431D33-8EC1-4750-9AA5-C47F5E284795
+SmplCName=Crescendo XPanel_[Main] Listen_Listen Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -6266,7 +6266,7 @@ Sgn=0
 [
 ObjTp=CED
 H=3
-Name=Crescendo XPanel_[Main] Listen_Rooms Menu_1.ced
+Name=Crescendo XPanel_[Main] Listen_Listen Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
@@ -6274,11 +6274,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo XPanel_[Main] Watch_Rooms Menu_1.ced
-Hint=Rooms Menu_1 (Smart Object ID=3)
+Name=Crescendo XPanel_[Main] Watch_Watch Menu.ced
+Hint=Watch Menu (Smart Object ID=3)
 Code=4
-GUID=A3868BC9-AB47-4A60-A3F7-211D7B11528F
-SmplCName=Crescendo XPanel_[Main] Watch_Rooms Menu_1.ced
+GUID=6F335579-751B-4C1B-93A1-4D7062A6CCB9
+SmplCName=Crescendo XPanel_[Main] Watch_Watch Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -7649,7 +7649,7 @@ Sgn=0
 [
 ObjTp=CED
 H=4
-Name=Crescendo XPanel_[Main] Watch_Rooms Menu_1.ced
+Name=Crescendo XPanel_[Main] Watch_Watch Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
