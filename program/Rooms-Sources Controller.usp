@@ -258,9 +258,13 @@ PUSH Share_Volume_Mute_Toggle
 // Move List
 FUNCTION UpdateMoveRoom()
 {
+    INTEGER move;
+
     SETARRAY(Move_Room_Matches, 0);
 
-    Move_Room_Matches[Room_Is] = 1;
+    move = RoomToMove(IdToIndex(Room_Is));
+
+    Move_Room_Matches[move] = 1;
 }
 
 FUNCTION UpdateMoveSource(INTEGER room)
