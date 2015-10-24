@@ -579,11 +579,13 @@ FUNCTION UpdateShareSource(INTEGER room)
     {
         Share_Source_Name_Is[share] = Source_Name_Is[source];
         Share_Source_Icon_Is[share] = Source_Icon_Is[source];
+        Share_Power_Is_On[share] = 1;
     }
     ELSE
     {
         Share_Source_Name_Is[share] = "Off";
         Share_Source_Icon_Is[share] = 0;
+        Share_Power_Is_On[share] = 0;
     }
 }
 
