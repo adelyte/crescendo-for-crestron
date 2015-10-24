@@ -21,7 +21,7 @@
 
 // Inputs and Outputs
 
-STRING_INPUT  Search$[#ELEMENT_LEN];
+STRING_INPUT Search$[#ELEMENT_LEN];
 
 DIGITAL_OUTPUT Found_First, Found_Other;
 ANALOG_OUTPUT  Index;
@@ -36,7 +36,7 @@ INTEGER_PARAMETER Search_Type;
 
 	#END_PARAMETER_PROPERTIES
 
-STRING_PARAMETER  Elements[#ELEMENTS_SIZE][#ELEMENT_LEN];
+STRING_PARAMETER Elements[#ELEMENTS_SIZE][#ELEMENT_LEN];
 
 	#BEGIN_PARAMETER_PROPERTIES Elements
 
@@ -47,20 +47,20 @@ STRING_PARAMETER  Elements[#ELEMENTS_SIZE][#ELEMENT_LEN];
 
 // Functions
 
-INTEGER __Initialized__, __ElementsSize__;
-STRING  __SearchString__[#ELEMENT_LEN];
+INTEGER __Initialized__, __Elements_Size__;
+STRING  __Search_String__[#ELEMENT_LEN]; // NOTE: statically allocated local variable
 
 FUNCTION Initialize()
 {
-    FOR(__ElementsSize__ = #ELEMENTS_SIZE TO 1 STEP -1)
+    FOR(__Elements_Size__ = #ELEMENTS_SIZE TO 1 STEP -1)
 	{
-		IF(Elements[__ElementsSize__] != "")
+		IF(Elements[__Elements_Size__] != "")
 			BREAK;
 	}
 
     __Initialized__ = 1;
 
-    TRACE("%s Initialize() __ElementsSize__ = %u", GETSYMBOLINSTANCENAME(), __ElementsSize__);
+    TRACE("%s Initialize() __Elements_Size__ = %u", GETSYMBOLINSTANCENAME(), __Elements_Size__);
 }
 
 
@@ -70,31 +70,40 @@ CHANGE Search$
 {
     INTEGER i;
 
-    __SearchString__ = Search$;
+    __Search_String__ = Search$;
 
-    IF(__SearchString__ = "")
+    IF(__Search_String__ = "")
+    {
         TERMINATEEVENT;
+    }
 
-    IF(__Initialized__ = 0)
-        Initialize();
-
-    IF(__SearchString__ = "Initialize()")
+    IF(__Search_String__ = "Initialize()")
     {
         Initialize();
         TERMINATEEVENT;
+    }
+
+    IF(__Initialized__ = 0)
+    {
+        Initialize();
     }
 
     CSWITCH(Search_Type)
 	{
 		CASE(#SEARCH_EQUAL):
 		{
-    		FOR(i = 1 TO __ElementsSize__)
-				IF(Elements[i] = __SearchString__)
+    		FOR(i = 1 TO __Elements_Size__)
+            {
+				IF(Elements[i] = __Search_String__)
 				{
 					IF(i = 1)
+                    {
                         Found_First = 1;
+                    }
                     ELSE
+                    {
                         Found_Other = 1;
+                    }
 
                     Index  = i - 1;
                     Index$ = CHR(Index);
@@ -104,18 +113,24 @@ CHANGE Search$
                     Found_Other = 0;
 					TERMINATEEVENT;
 				}
+            }
 
 			BREAK;
 		}
 		CASE(#SEARCH_MATCH):
 		{
-			FOR(i = 1 TO __ElementsSize__)
-				IF(FIND(__SearchString__, Elements[i]) > 0)
+			FOR(i = 1 TO __Elements_Size__)
+            {
+				IF(FIND(__Search_String__, Elements[i]) > 0)
         		{
             		IF(i = 1)
+                    {
                         Found_First = 1;
+                    }
                     ELSE
+                    {
                         Found_Other = 1;
+                    }
 
                     Index  = i - 1;
                     Index$ = CHR(Index);
@@ -125,6 +140,7 @@ CHANGE Search$
                     Found_Other = 0;
 					TERMINATEEVENT;
         		}
+            }
 
 			BREAK;
 		}
