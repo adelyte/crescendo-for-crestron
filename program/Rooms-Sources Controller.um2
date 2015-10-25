@@ -42,20 +42,6 @@ Sy1=0
 Mx1=0
 ]
 [
-ObjTp=Bw
-H=1
-Lx=0
-Ly=0
-Rx=1093
-Ry=697
-Xm=-1
-Ym=-1
-SH=7
-Z=100
-Ht=1
-Hi=1
-]
-[
 ObjTp=Symbol
 Name=Rooms-Sources Controller
 Code=1
