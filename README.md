@@ -31,6 +31,7 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 | 5 | Source   | 50[ID]   |
 | 6 | Lighting | 60[ID]   |
 | 7 | Shades   | 70[ID]   |
+| 8 | Climates | 8000     |
 | 8 | Climate  | 80[ID]   |
 | 9 | Generic  | 90[ID]   |
 | A | Menu A   | A0[ID]   |
@@ -48,6 +49,7 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 | 1 | Room       | Source   | 15[ID]   |
 | 4 | Switcher   | Source   | 45[ID]   |
 | 5 | Sources    | Source   | 50[ID]   |
+| 5 | Sources    | Source   | 80[ID]   |
 | A | Touchpanel | Rooms    | A0[ID]   |
 | A | Touchpanel | Room     | A1[ID]   |
 | A | Touchpanel | Generic  | A9[ID]   |

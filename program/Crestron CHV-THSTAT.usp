@@ -7,6 +7,7 @@
 #CATEGORY "46" "Crescendo Devices" // Custom
 #DEFAULT_VOLATILE
 #ENABLE_DYNAMIC
+// #ENABLE_TRACE
 
 
 #DEFINE_CONSTANT #MESSAGE_LEN 20 // LEN("Auto 65-72 Fan Auto\r")
