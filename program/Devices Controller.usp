@@ -20,9 +20,9 @@
 // Inputs and Outputs
 
 DIGITAL_INPUT Initialize;
-DIGITAL_INPUT Item_Select[#ITEMS_MAX];
+DIGITAL_INPUT _SKIP_, Item_Select[#ITEMS_MAX];
 
-DIGITAL_OUTPUT Item_Matches[#ITEMS_MAX];
+DIGITAL_OUTPUT _SKIP_, _SKIP_, Item_Matches[#ITEMS_MAX];
 
 ANALOG_INPUT Device_Is;
 STRING_INPUT Default_Available_Devices[#DEVICES_MAX];
@@ -105,11 +105,11 @@ PUSH Item_Select
     INTEGER item, device;
 
     item = GETLASTMODIFIEDARRAYINDEX();
-    device = ItemToDevice(device);
+    device = ItemToDevice(item);
 
     IF(device = 0) TERMINATEEVENT;
 
-    MAKESTRING(Device_Set, "%c%c", Device_Type, IndexToId(device));
+    MAKESTRING(Device_Set, "%c%c", Device_Type << 4, IndexToId(device));
 }
 
 
