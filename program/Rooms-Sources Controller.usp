@@ -39,7 +39,7 @@ STRING_INPUT Default_Available_Rooms[#ROOMS_MAX], Default_Available_Sources[#SOU
 ANALOG_INPUT Room_Source_Is[#ROOMS_MAX], Room_Volume_Is[#ROOMS_MAX];
 ANALOG_INPUT Source_Icon_Is[#SOURCES_MAX];
 
-STRING_OUTPUT Room_Set; // NOTE: If SIMPL+ were case sensitive, this would be `Room`.
+STRING_OUTPUT Room_Set, Control_Source_Set; // NOTE: If SIMPL+ were case sensitive, this would be `Room`.
 
 ANALOG_OUTPUT Moves_Size, Watches_Size, Listens_Size, Shares_Size;
 ANALOG_OUTPUT Move_Source_Icon_Is[#ITEMS_MAX];
@@ -194,6 +194,7 @@ PUSH Watch_Source
     IF(source = 0) TERMINATEEVENT;
 
     MAKESTRING(Room_Source[Room_Is], "\x50%c", IndexToId(source));
+	MAKESTRING(Control_Source_Set, "\x50%c", IndexToId(source));
 }
 
 PUSH Listen_Source
@@ -206,6 +207,7 @@ PUSH Listen_Source
     IF(source = 0) TERMINATEEVENT;
 
     MAKESTRING(Room_Source[Room_Is], "\x50%c", IndexToId(source));
+	MAKESTRING(Control_Source_Set, "\x50%c", IndexToId(source));
 }
 
 PUSH Share_Source
