@@ -4,7 +4,7 @@ Version=1
 [
 ObjTp=FSgntr
 Sgntr=SimplWindow
-RelVrs=4.03.15
+RelVrs=4.03.20
 IntStrVrs=2
 MinSMWVrs=4.02.53
 MinTIOVrs=412
@@ -19,13 +19,13 @@ S1Nd=2
 SLNd=3
 PrNm=Crescendo MC3.smw
 CmVr=3.03
-DbVr=53.00.007.00
-DvcDbVr=68.07.002.00
+DbVr=53.05.005.00
+DvcDbVr=69.00.002.00
 OpVr=MC3 1.010.0060
 PgmNm=Adelyte Company
 CltNm=Crescendo 2.0 Test
-SmVr=964
-DvVr=964
+SmVr=965
+DvVr=965
 TpN1=1
 TpN2=2
 TpN3=3
@@ -14764,11 +14764,11 @@ I201=2
 mO=899
 tO=899
 O2=1791
-O31=1136
-O32=1137
-O33=1138
-O34=1139
-O35=495
+O31=2837
+O32=2838
+O33=2839
+O34=2840
+O35=2841
 O96=23
 O97=1371
 mP=8
@@ -61847,6 +61847,31 @@ ObjTp=Sg
 H=2836
 Nm=T-01__Control_Source~
 SgTp=4
+]
+[
+ObjTp=Sg
+H=2837
+Nm=//S-01__Cursor_Up
+]
+[
+ObjTp=Sg
+H=2838
+Nm=//S-01__Cursor_Down
+]
+[
+ObjTp=Sg
+H=2839
+Nm=//S-01__Cursor_Left
+]
+[
+ObjTp=Sg
+H=2840
+Nm=//S-01__Cursor_Right
+]
+[
+ObjTp=Sg
+H=2841
+Nm=//S-01__Cursor_Select
 ]
 [
 ObjTp=Sg
