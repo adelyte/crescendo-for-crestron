@@ -2,7 +2,9 @@
 ObjTp=FSgntr
 Sgntr=SGD
 RelVrs=1
-VTProeVer=5.9.05
+VTProeVer=6.0.01
+Schema=1
+CRCGUID=1167BC63-25D1-4AB3-8DD4-C837C6618877
 ]
 ;================================================================================
 [
@@ -44,7 +46,7 @@ InputList3SigType1=Serial
 OutputList3SigType1=Serial
 
 ;Define the cues, and signal types  each input, output and parameter.
-InputCue1=[~UNUSED2~]
+InputCue1=[~UNUSED3~]
 InputSigType1=Digital
 InputCue2=[~UNUSED2~]
 InputSigType2=Digital
@@ -752,7 +754,7 @@ InputCue4255=fb240
 InputSigType4255=Digital
 InputCue4256=[~EndGroup~]fb
 InputSigType4256=Digital
-OutputCue1=[~UNUSED2~]
+OutputCue1=Is Moving
 OutputSigType1=Digital
 OutputCue2=[~UNUSED2~]
 OutputSigType2=Digital
@@ -2771,7 +2773,7 @@ InputList3SigType1=Serial
 OutputList3SigType1=Serial
 
 ;Define the cues, and signal types  each input, output and parameter.
-InputCue1=[~UNUSED2~]
+InputCue1=[~UNUSED3~]
 InputSigType1=Digital
 InputCue2=[~UNUSED2~]
 InputSigType2=Digital
@@ -3095,7 +3097,7 @@ InputCue4063=fb48
 InputSigType4063=Digital
 InputCue4064=[~EndGroup~]fb
 InputSigType4064=Digital
-OutputCue1=[~UNUSED2~]
+OutputCue1=Is Moving
 OutputSigType1=Digital
 OutputCue2=[~UNUSED2~]
 OutputSigType2=Digital
@@ -4154,7 +4156,7 @@ InputList3SigType1=Serial
 OutputList3SigType1=Serial
 
 ;Define the cues, and signal types  each input, output and parameter.
-InputCue1=[~UNUSED2~]
+InputCue1=[~UNUSED3~]
 InputSigType1=Digital
 InputCue2=[~UNUSED2~]
 InputSigType2=Digital
@@ -4574,7 +4576,7 @@ InputCue4111=fb96
 InputSigType4111=Digital
 InputCue4112=[~EndGroup~]fb
 InputSigType4112=Digital
-OutputCue1=[~UNUSED2~]
+OutputCue1=Is Moving
 OutputSigType1=Digital
 OutputCue2=[~UNUSED2~]
 OutputSigType2=Digital
@@ -5729,7 +5731,7 @@ InputList3SigType1=Serial
 OutputList3SigType1=Serial
 
 ;Define the cues, and signal types  each input, output and parameter.
-InputCue1=[~UNUSED2~]
+InputCue1=[~UNUSED3~]
 InputSigType1=Digital
 InputCue2=[~UNUSED2~]
 InputSigType2=Digital
@@ -6149,7 +6151,7 @@ InputCue4111=fb96
 InputSigType4111=Digital
 InputCue4112=[~EndGroup~]fb
 InputSigType4112=Digital
-OutputCue1=[~UNUSED2~]
+OutputCue1=Is Moving
 OutputSigType1=Digital
 OutputCue2=[~UNUSED2~]
 OutputSigType2=Digital
@@ -7304,7 +7306,7 @@ InputList3SigType1=Serial
 OutputList3SigType1=Serial
 
 ;Define the cues, and signal types  each input, output and parameter.
-InputCue1=[~UNUSED2~]
+InputCue1=[~UNUSED3~]
 InputSigType1=Digital
 InputCue2=[~UNUSED2~]
 InputSigType2=Digital
@@ -7628,7 +7630,7 @@ InputCue4063=fb48
 InputSigType4063=Digital
 InputCue4064=[~EndGroup~]fb
 InputSigType4064=Digital
-OutputCue1=[~UNUSED2~]
+OutputCue1=Is Moving
 OutputSigType1=Digital
 OutputCue2=[~UNUSED2~]
 OutputSigType2=Digital
@@ -8687,7 +8689,7 @@ InputList3SigType1=Serial
 OutputList3SigType1=Serial
 
 ;Define the cues, and signal types  each input, output and parameter.
-InputCue1=[~UNUSED2~]
+InputCue1=[~UNUSED3~]
 InputSigType1=Digital
 InputCue2=[~UNUSED2~]
 InputSigType2=Digital
@@ -9011,7 +9013,7 @@ InputCue4063=fb48
 InputSigType4063=Digital
 InputCue4064=[~EndGroup~]fb
 InputSigType4064=Digital
-OutputCue1=[~UNUSED2~]
+OutputCue1=Is Moving
 OutputSigType1=Digital
 OutputCue2=[~UNUSED2~]
 OutputSigType2=Digital
