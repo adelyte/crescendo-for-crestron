@@ -39,23 +39,25 @@ Crescendo is a free (both _gratis_ and _libre_) software framework for Crestron 
 
 #### Control Routes
 
-| # | Model      | Target   | Route    |
-|:--|:-----------|:---------|---------:|
-| 1 | Rooms      | Room     | 10[ID]   |
-| 1 | Area       | Room     | 11[ID]   |
-| 1 | Room       | Audio    | 12[ID]   |
-| 1 | Room       | Video    | 13[ID]   |
-| 1 | Room       | Source   | 15[ID]   |
-| 4 | Switcher   | Source   | 45[ID]   |
-| 5 | Sources    | Source   | 50[ID]   |
-| 5 | Sources    | Source   | 80[ID]   |
-| A | Controller | Rooms    | A1[ID]   |
-| A | Controller | Sources  | A5[ID]   |
-| A | Controller | Lights   | A6[ID]   |
-| A | Controller | Shades   | A7[ID]   |
-| A | Controller | Climates | A8[ID]   |
-| 9 | Touchpanel | Room     | 91[ID]   |
-| 9 | Touchpanel | Source   | 95[ID]   |
-| 9 | Touchpanel | Device   | 99[ID]   |
-| B | Remote     | Room     | B1[ID]   |
-| B | Remote     | Generic  | B9[ID]   |
+| # | Control     | Target   | Route    |
+|:--|:----------- |:---------|---------:|
+| 1 | Rooms       | Room     | 10[ID]   |
+| 1 | Area        | Room     | 11[ID]   |
+| 1 | Room        | Audio    | 12[ID]   |
+| 1 | Room        | Video    | 13[ID]   |
+| 1 | Room        | Source   | 15[ID]   |
+| 4 | Switcher    | Source   | 45[ID]   |
+| 5 | Sources     | Source   | 50[ID]   |
+| 6 | Lights      | Light    | 60[ID]   |
+| 7 | Shades      | Shade    | 70[ID]   |
+| 8 | Climates    | Climate  | 80[ID]   |
+| 9 | Touchpanel  | Room     | 91[ID]   |
+| 9 | Touchpanel  | Source   | 95[ID]   |
+| 9 | Touchpanel  | Device   | 99[ID]   |
+| A | Controller  | Rooms    | A1[ID]   |
+| A | Controller  | Sources  | A5[ID]   |
+| A | Controller  | Lights   | A6[ID]   |
+| A | Controller  | Shades   | A7[ID]   |
+| A | Controller  | Climates | A8[ID]   |
+| B | Remote      | Room     | B1[ID]   |
+| B | Remote      | Generic  | B9[ID]   |
