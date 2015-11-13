@@ -4,7 +4,7 @@ Version=1
 [
 ObjTp=FSgntr
 Sgntr=UserMacro
-RelVrs=4.03.15
+RelVrs=4.03.20
 IntStrVrs=2
 MinSMWVrs=2.02.00
 MinTIOVrs=0
@@ -17,14 +17,14 @@ S1Nd=2
 SLNd=3
 PrNm=Devices Controller.umc
 CmVr=3.03
-DbVr=53.00.007.00
-DvcDbVr=68.07.002.00
+DbVr=53.05.005.00
+DvcDbVr=69.00.002.00
 PgmNm=Adelyte Company
 CltNm=Devices Controller
 Incl=362,378,380,405,407,408,409,478,522,537,554,586,590,611,624,767,830,883,1032,1062,1079,1134,1157,1199,1220,1222,1299,1348,1439,1472,1473,1499,1746,1803,1975,2229,2354,2514,2523,2532,3708,3902,3912,3918,3925,1766,2574,2651,2817,2886,2938,2947,3181,3197,3233,3710,3735,3736,3816,3888,4176,4308,4476,4591,4769,
 McNm=Devices Controller
-SmVr=964
-DvVr=964
+SmVr=965
+DvVr=965
 TpN1=1
 TpN2=2
 TpN3=3
@@ -75,7 +75,7 @@ SymbolTree=32
 InputSigType1=Digital
 InputSigType2=Digital|Analog|Serial|String
 InputSigType3=Analog
-InputSigType4=Digital|Analog|Serial|String
+InputSigType4=Analog
 InputSigType5=Digital|Analog|Serial|String
 InputSigType6=Digital
 InputSigType7=Digital|Analog|Serial|String
@@ -488,7 +488,7 @@ ParamSigType3=String
 InputCue1=Initialized
 InputCue2=[~UNUSED~]
 InputCue3=Device_Is
-InputCue4=[~UNUSED~]
+InputCue4=Default_Device_Is
 InputCue5=[~UNUSED~]
 InputCue6=[~BeginGroup~]Device_List
 InputCue7=[~UNUSED~]
@@ -957,11 +957,12 @@ SmC=156
 Nm=Logic
 ObjVer=1
 CF=2
-mC=4
+mC=5
 C1=7
 C2=8
 C3=9
 C4=15
+C5=16
 ]
 [
 ObjTp=Sm
@@ -994,7 +995,7 @@ mI=205
 I1=4
 I2=5
 I3=8
-I4=5
+I4=12
 I5=5
 I6=6
 I7=5
@@ -2604,6 +2605,18 @@ mP=1
 P1=100d
 ]
 [
+ObjTp=Sm
+H=16
+SmC=472
+Nm=Analog Force
+ObjVer=1
+PrH=4
+CF=2
+n1I=1
+mI=1
+I1=12
+]
+[
 ObjTp=Sg
 H=4
 Nm=Initialized
@@ -2646,6 +2659,12 @@ Nm=//__Devices__Disconnect
 ObjTp=Sg
 H=11
 Nm=__Devices__Connected?
+]
+[
+ObjTp=Sg
+H=12
+Nm=Default_Device_Is
+SgTp=2
 ]
 [
 ObjTp=Sg
