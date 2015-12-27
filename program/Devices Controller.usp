@@ -7,7 +7,7 @@
 #CATEGORY "46" "Crescendo" // Custom
 #DEFAULT_VOLATILE
 #ENABLE_DYNAMIC
-// #ENABLE_TRACE
+#ENABLE_TRACE
 
 
 // Constants
@@ -20,11 +20,11 @@
 // Inputs and Outputs
 
 DIGITAL_INPUT Initialize;
-DIGITAL_INPUT _SKIP_, Item_Select[#ITEMS_MAX];
+DIGITAL_INPUT Device_Default_Select, Item_Select[#ITEMS_MAX];
 
 DIGITAL_OUTPUT _SKIP_, _SKIP_, Item_Matches[#ITEMS_MAX];
 
-ANALOG_INPUT Device_Is;
+ANALOG_INPUT Device_Is, Device_Default;
 STRING_INPUT Default_Available_Devices[#DEVICES_MAX];
 ANALOG_INPUT Device_Icon_Is[#DEVICES_MAX];
 STRING_INPUT  Device_Name_Is[#DEVICES_MAX][#TEXT_LEN], Device_Description_Is[#DEVICES_MAX][#TEXT_LEN];
@@ -92,7 +92,11 @@ INTEGER_FUNCTION DeviceToItem(INTEGER device)
 {
     INTEGER item;
 
+    device = LOW(device); // Extract only the ID from the route
+
     item = __Device_Item__[device];
+
+    TRACE("DeviceToItem(%02X) = %u", device, item);
 
     RETURN(item);
 }
@@ -112,6 +116,11 @@ PUSH Item_Select
     MAKESTRING(Device_Set, "%c%c", Device_Type << 4, IndexToId(device));
 }
 
+PUSH Device_Default_Select
+{
+    MAKESTRING(Device_Set, "%c%c", Device_Type << 4, LOW(Device_Default));
+}
+
 
 // Move List
 
@@ -124,7 +133,12 @@ FUNCTION UpdateItemMatches()
     item = DeviceToItem(IdToIndex(Device_Is));
     IF(item = 0)
     {
-        RETURN;
+        item = DeviceToItem(IdToIndex(Device_Default));
+        
+        IF(item = 0)
+        {
+            RETURN;
+        }
     }
 
     Item_Matches[item] = 1;
@@ -206,6 +220,13 @@ FUNCTION UpdateList()
 
 CHANGE Device_Is
 {
+    TRACE("CHANGE Device_Is");
+    UpdateItemMatches();
+}
+
+CHANGE Device_Default
+{
+    TRACE("CHANGE Device_Default");
     UpdateItemMatches();
 }
 

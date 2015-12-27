@@ -15,8 +15,8 @@
 [BEGIN]
   ObjTp=Symbol
   Exclusions=1,19,20,21,88,89,167,168,179,213,214,215,216,217,225,226,248,249,266,267,310,718,756,854,
-  Exclusions_CDS=5
-  Inclusions_CDS=6
+  Exclusions_CDS=
+  Inclusions_CDS=5,6
   Name=Rooms-Sources Controller
   SmplCName=Rooms-Sources Controller.usp
   Code=1
@@ -5113,6 +5113,8 @@
   ParamCue1=[Reference Name]
   ParamCue2=Rooms
   ParamSigType2=String
+  ParamCue3=Shareable_Rooms
+  ParamSigType3=String
   MinVariableInputs=683
   MaxVariableInputs=781
   MinVariableInputsList2=500
@@ -5121,8 +5123,8 @@
   MaxVariableOutputs=828
   MinVariableOutputsList2=631
   MaxVariableOutputsList2=729
-  MinVariableParams=1
-  MaxVariableParams=1
+  MinVariableParams=2
+  MaxVariableParams=2
   Expand=expand_separately
   Expand2=expand_separately
   ProgramTree=Logic
@@ -5139,7 +5141,8 @@
   NumFixedParams=1
   Pp1=1
   Pp2=2
-  MPp=2
+  Pp3=3
+  MPp=3
   NVStorage=10
   ParamSigType1=String
   SmplCInputCue1=o#
@@ -5160,6 +5163,14 @@
 [BEGIN]
   ObjTp=Dp
   H=2
+  Tp=1
+  HD=False
+  NoS=False
+  VVS=0
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=3
   Tp=1
   HD=False
   NoS=False
