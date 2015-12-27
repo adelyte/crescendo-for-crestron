@@ -59,9 +59,9 @@ APg=1
 StdCmd=0
 FltTmp=1
 FpCS=0
-NumFixedInputs=172
-NumFixedOutputs=172
-NumFixedParams=137
+NumFixedInputs=147
+NumFixedOutputs=147
+NumFixedParams=113
 MinVariableInputs=0
 MinVariableInputsList2=0
 MinVariableInputsList3=0
@@ -69,8 +69,7 @@ MinVariableOutputs=0
 MinVariableOutputsList2=0
 MinVariableOutputsList3=0
 MinVariableParams=0
-SymbolTree=46
-UserSymTreeName=Crescendo
+SymbolTree=0
 InputSigType1=Digital|Analog|Serial|String
 InputSigType2=Digital|Analog|Serial|String
 InputSigType3=Digital|Analog|Serial|String
@@ -320,31 +319,6 @@ OutputSigType144=Analog
 OutputSigType145=Analog
 OutputSigType146=Analog
 OutputSigType147=Digital|Analog|Serial|String
-OutputSigType148=Analog
-OutputSigType149=Analog
-OutputSigType150=Analog
-OutputSigType151=Analog
-OutputSigType152=Analog
-OutputSigType153=Analog
-OutputSigType154=Analog
-OutputSigType155=Analog
-OutputSigType156=Analog
-OutputSigType157=Analog
-OutputSigType158=Analog
-OutputSigType159=Analog
-OutputSigType160=Analog
-OutputSigType161=Analog
-OutputSigType162=Analog
-OutputSigType163=Analog
-OutputSigType164=Analog
-OutputSigType165=Analog
-OutputSigType166=Analog
-OutputSigType167=Analog
-OutputSigType168=Analog
-OutputSigType169=Analog
-OutputSigType170=Analog
-OutputSigType171=Analog
-OutputSigType172=Digital|Analog|Serial|String
 ParamSigType1=String
 ParamSigType2=String
 ParamSigType3=String
@@ -458,30 +432,6 @@ ParamSigType110=Constant
 ParamSigType111=Constant
 ParamSigType112=Constant
 ParamSigType113=Constant
-ParamSigType114=Percent|Constant
-ParamSigType115=Time|Percent|Constant
-ParamSigType116=Time|Percent|Constant
-ParamSigType117=Time|Percent|Constant
-ParamSigType118=Time|Percent|Constant
-ParamSigType119=Time|Percent|Constant
-ParamSigType120=Time|Percent|Constant
-ParamSigType121=Time|Percent|Constant
-ParamSigType122=Constant
-ParamSigType123=Constant
-ParamSigType124=Constant
-ParamSigType125=Constant
-ParamSigType126=Constant
-ParamSigType127=Constant
-ParamSigType128=Constant
-ParamSigType129=Constant
-ParamSigType130=Constant
-ParamSigType131=Constant
-ParamSigType132=Constant
-ParamSigType133=Constant
-ParamSigType134=Constant
-ParamSigType135=Constant
-ParamSigType136=Constant
-ParamSigType137=Constant
 InputCue1=[~BEGINGROUP~]Self
 InputCue2=[~UNUSED~]
 InputCue3=[~UNUSED~]
@@ -628,32 +578,7 @@ InputCue143=[~UNUSED~]
 InputCue144=[~UNUSED~]
 InputCue145=[~UNUSED~]
 InputCue146=[~UNUSED~]
-InputCue147=[~UNUSED~]
-InputCue148=[~UNUSED~]
-InputCue149=[~UNUSED~]
-InputCue150=[~UNUSED~]
-InputCue151=[~UNUSED~]
-InputCue152=[~UNUSED~]
-InputCue153=[~UNUSED~]
-InputCue154=[~UNUSED~]
-InputCue155=[~UNUSED~]
-InputCue156=[~UNUSED~]
-InputCue157=[~UNUSED~]
-InputCue158=[~UNUSED~]
-InputCue159=[~UNUSED~]
-InputCue160=[~UNUSED~]
-InputCue161=[~UNUSED~]
-InputCue162=[~UNUSED~]
-InputCue163=[~UNUSED~]
-InputCue164=[~UNUSED~]
-InputCue165=[~UNUSED~]
-InputCue166=[~UNUSED~]
-InputCue167=[~UNUSED~]
-InputCue168=[~UNUSED~]
-InputCue169=[~UNUSED~]
-InputCue170=[~UNUSED~]
-InputCue171=[~UNUSED~]
-InputCue172=[~ENDGROUP~]Device
+InputCue147=[~ENDGROUP~]Device
 OutputCue1=[~BEGINGROUP~]Self
 OutputCue2=[~UNUSED~]
 OutputCue3=[~UNUSED~]
@@ -800,32 +725,7 @@ OutputCue143=Output_5_Volume_Minimum
 OutputCue144=Output_6_Volume_Minimum
 OutputCue145=Output_7_Volume_Minimum
 OutputCue146=Output_8_Volume_Minimum
-OutputCue147=[~UNUSED~]
-OutputCue148=Input_01_Compensation
-OutputCue149=Input_02_Compensation
-OutputCue150=Input_03_Compensation
-OutputCue151=Input_04_Compensation
-OutputCue152=Input_05_Compensation
-OutputCue153=Input_06_Compensation
-OutputCue154=Input_07_Compensation
-OutputCue155=Input_08_Compensation
-OutputCue156=Input_09_Compensation
-OutputCue157=Input_10_Compensation
-OutputCue158=Input_11_Compensation
-OutputCue159=Input_12_Compensation
-OutputCue160=Input_13_Compensation
-OutputCue161=Input_14_Compensation
-OutputCue162=Input_15_Compensation
-OutputCue163=Input_16_Compensation
-OutputCue164=Input_17_Compensation
-OutputCue165=Input_18_Compensation
-OutputCue166=Input_19_Compensation
-OutputCue167=Input_20_Compensation
-OutputCue168=Input_21_Compensation
-OutputCue169=Input_22_Compensation
-OutputCue170=Input_23_Compensation
-OutputCue171=Input_24_Compensation
-OutputCue172=[~ENDGROUP~]Device
+OutputCue147=[~ENDGROUP~]Device
 ParamCue1=Output 1 Name
 ParamCue2=Output 2 Name
 ParamCue3=Output 3 Name
@@ -939,31 +839,7 @@ ParamCue110=Output 5 Startup Volume
 ParamCue111=Output 6 Startup Volume
 ParamCue112=Output 7 Startup Volume
 ParamCue113=Output 8 Startup Volume
-ParamCue114=Input 01 Compensation
-ParamCue115=Input 02 Compensation
-ParamCue116=Input 03 Compensation
-ParamCue117=Input 04 Compensation
-ParamCue118=Input 05 Compensation
-ParamCue119=Input 06 Compensation
-ParamCue120=Input 07 Compensation
-ParamCue121=Input 08 Compensation
-ParamCue122=Input 09 Compensation
-ParamCue123=Input 10 Compensation
-ParamCue124=Input 11 Compensation
-ParamCue125=Input 12 Compensation
-ParamCue126=Input 13 Compensation
-ParamCue127=Input 14 Compensation
-ParamCue128=Input 15 Compensation
-ParamCue129=Input 16 Compensation
-ParamCue130=Input 17 Compensation
-ParamCue131=Input 18 Compensation
-ParamCue132=Input 19 Compensation
-ParamCue133=Input 20 Compensation
-ParamCue134=Input 21 Compensation
-ParamCue135=Input 22 Compensation
-ParamCue136=Input 23 Compensation
-ParamCue137=Input 24 Compensation
-MPp=121
+MPp=105
 Pp1=1
 Pp2=96
 Pp3=97
@@ -1058,14 +934,6 @@ Pp102=75
 Pp103=76
 Pp104=77
 Pp105=78
-Pp114=43
-Pp115=44
-Pp116=45
-Pp117=46
-Pp118=47
-Pp119=48
-Pp120=79
-Pp121=80
 FileName=Crestron SWAMPE.umc
 EncodingType=0
 ZeroOnIoOk=0
@@ -1158,9 +1026,9 @@ Nm=Argument Definition
 ObjVer=1
 PrH=5
 CF=2
-n1I=172
-n1O=172
-mI=172
+n1I=147
+n1O=147
+mI=147
 I1=146
 I2=5
 I3=5
@@ -1307,34 +1175,9 @@ I143=5
 I144=5
 I145=5
 I146=5
-I147=5
-I148=5
-I149=5
-I150=5
-I151=5
-I152=5
-I153=5
-I154=5
-I155=5
-I156=5
-I157=5
-I158=5
-I159=5
-I160=5
-I161=5
-I162=5
-I163=5
-I164=5
-I165=5
-I166=5
-I167=5
-I168=5
-I169=5
-I170=5
-I171=5
-I172=44
-mO=172
-tO=172
+I147=44
+mO=147
+tO=147
 O1=146
 O2=5
 O3=5
@@ -1481,33 +1324,8 @@ O143=94
 O144=122
 O145=123
 O146=125
-O147=5
-O148=319
-O149=101
-O150=102
-O151=103
-O152=104
-O153=105
-O154=106
-O155=92
-O156=99
-O157=12
-O158=20
-O159=22
-O160=27
-O161=41
-O162=43
-O163=70
-O164=72
-O165=74
-O166=76
-O167=108
-O168=124
-O169=130
-O170=131
-O171=132
-O172=44
-mP=137
+O147=44
+mP=113
 P1=Output 1 Name
 P2=Output 2 Name
 P3=Output 3 Name
@@ -1621,31 +1439,7 @@ P110=Output 5 Startup Volume
 P111=Output 6 Startup Volume
 P112=Output 7 Startup Volume
 P113=Output 8 Startup Volume
-P114=Input 01 Compensation
-P115=Input 02 Compensation
-P116=Input 03 Compensation
-P117=Input 04 Compensation
-P118=Input 05 Compensation
-P119=Input 06 Compensation
-P120=Input 07 Compensation
-P121=Input 08 Compensation
-P122=Input 09 Compensation
-P123=Input 10 Compensation
-P124=Input 11 Compensation
-P125=Input 12 Compensation
-P126=Input 13 Compensation
-P127=Input 14 Compensation
-P128=Input 15 Compensation
-P129=Input 16 Compensation
-P130=Input 17 Compensation
-P131=Input 18 Compensation
-P132=Input 19 Compensation
-P133=Input 20 Compensation
-P134=Input 21 Compensation
-P135=Input 22 Compensation
-P136=Input 23 Compensation
-P137=Input 24 Compensation
-MPp=121
+MPp=105
 Pp1=1
 Pp2=96
 Pp3=97
@@ -1740,14 +1534,6 @@ Pp102=75
 Pp103=76
 Pp104=77
 Pp105=78
-Pp114=43
-Pp115=44
-Pp116=45
-Pp117=46
-Pp118=47
-Pp119=48
-Pp120=79
-Pp121=80
 ]
 [
 ObjTp=Sm
@@ -1758,10 +1544,9 @@ ObjVer=1
 PrH=4
 CF=2
 Cmn1=Common\\
-mC=3
+mC=2
 C1=8
 C2=9
-C3=10
 ]
 [
 ObjTp=Sm
@@ -1802,74 +1587,9 @@ mI=3
 I1=34
 mO=2
 tO=2
-O1=35
+O1=258
 mP=1
 P1=1d
-]
-[
-ObjTp=Sm
-H=10
-SmC=32
-Nm=Analog Initialize
-ObjVer=1
-PrH=7
-CF=2
-n1I=1
-n1O=24
-Cmn1=Input Compensation\\
-mI=1
-I1=35
-mO=24
-tO=24
-O1=319
-O2=101
-O3=102
-O4=103
-O5=104
-O6=105
-O7=106
-O8=92
-O9=99
-O10=12
-O11=20
-O12=22
-O13=27
-O14=41
-O15=43
-O16=70
-O17=72
-O18=74
-O19=76
-O20=108
-O21=124
-O22=130
-O23=131
-O24=132
-mP=24
-P1=#Input 01 Compensation
-P2=#Input 02 Compensation
-P3=#Input 03 Compensation
-P4=#Input 04 Compensation
-P5=#Input 05 Compensation
-P6=#Input 06 Compensation
-P7=#Input 07 Compensation
-P8=#Input 08 Compensation
-P9=#Input 09 Compensation
-P10=#Input 10 Compensation
-P11=#Input 11 Compensation
-P12=#Input 12 Compensation
-P13=#Input 13 Compensation
-P14=#Input 14 Compensation
-P15=#Input 15 Compensation
-P16=#Input 16 Compensation
-P17=#Input 17 Compensation
-P18=#Input 18 Compensation
-P19=#Input 19 Compensation
-P20=#Input 20 Compensation
-P21=#Input 21 Compensation
-P22=#Input 22 Compensation
-P23=#Input 23 Compensation
-P24=#Input 24 Compensation
 ]
 [
 ObjTp=Sm
@@ -6271,12 +5991,6 @@ Nm=__X__Audio__Output_1_Initialized
 ]
 [
 ObjTp=Sg
-H=12
-Nm=Input_10_Compensation
-SgTp=2
-]
-[
-ObjTp=Sg
 H=13
 Nm=Output_1_Volume
 SgTp=2
@@ -6313,20 +6027,8 @@ Nm=Output_6_Loudness
 ]
 [
 ObjTp=Sg
-H=20
-Nm=Input_11_Compensation
-SgTp=2
-]
-[
-ObjTp=Sg
 H=21
 Nm=Output_7_Loudness
-]
-[
-ObjTp=Sg
-H=22
-Nm=Input_12_Compensation
-SgTp=2
 ]
 [
 ObjTp=Sg
@@ -6347,12 +6049,6 @@ Nm=Output_1_Mono
 ObjTp=Sg
 H=26
 Nm=Output_2_Mono
-]
-[
-ObjTp=Sg
-H=27
-Nm=Input_13_Compensation
-SgTp=2
 ]
 [
 ObjTp=Sg
@@ -6393,11 +6089,6 @@ Nm=__X__Audio__Outputs_Are_Initialized
 ]
 [
 ObjTp=Sg
-H=35
-Nm=__X__Audio__Outputs_Initialized
-]
-[
-ObjTp=Sg
 H=36
 Nm=//__X__Audio__Output_1_Power_On
 ]
@@ -6425,20 +6116,8 @@ SgTp=2
 ]
 [
 ObjTp=Sg
-H=41
-Nm=Input_14_Compensation
-SgTp=2
-]
-[
-ObjTp=Sg
 H=42
 Nm=Output_1_Startup_Volume
-SgTp=2
-]
-[
-ObjTp=Sg
-H=43
-Nm=Input_15_Compensation
 SgTp=2
 ]
 [
@@ -6594,20 +6273,8 @@ SgTp=2
 ]
 [
 ObjTp=Sg
-H=70
-Nm=Input_16_Compensation
-SgTp=2
-]
-[
-ObjTp=Sg
 H=71
 Nm=[Output_1_Mute]
-]
-[
-ObjTp=Sg
-H=72
-Nm=Input_17_Compensation
-SgTp=2
 ]
 [
 ObjTp=Sg
@@ -6617,20 +6284,8 @@ SgTp=2
 ]
 [
 ObjTp=Sg
-H=74
-Nm=Input_18_Compensation
-SgTp=2
-]
-[
-ObjTp=Sg
 H=75
 Nm=Output_6_Balance
-SgTp=2
-]
-[
-ObjTp=Sg
-H=76
-Nm=Input_19_Compensation
 SgTp=2
 ]
 [
@@ -6725,12 +6380,6 @@ SgTp=2
 ]
 [
 ObjTp=Sg
-H=92
-Nm=Input_08_Compensation
-SgTp=2
-]
-[
-ObjTp=Sg
 H=93
 Nm=Output_4_Volume_Minimum
 SgTp=2
@@ -6766,62 +6415,14 @@ SgTp=2
 ]
 [
 ObjTp=Sg
-H=99
-Nm=Input_09_Compensation
-SgTp=2
-]
-[
-ObjTp=Sg
 H=100
 Nm=Output_6_Bass
 SgTp=2
 ]
 [
 ObjTp=Sg
-H=101
-Nm=Input_02_Compensation
-SgTp=2
-]
-[
-ObjTp=Sg
-H=102
-Nm=Input_03_Compensation
-SgTp=2
-]
-[
-ObjTp=Sg
-H=103
-Nm=Input_04_Compensation
-SgTp=2
-]
-[
-ObjTp=Sg
-H=104
-Nm=Input_05_Compensation
-SgTp=2
-]
-[
-ObjTp=Sg
-H=105
-Nm=Input_06_Compensation
-SgTp=2
-]
-[
-ObjTp=Sg
-H=106
-Nm=Input_07_Compensation
-SgTp=2
-]
-[
-ObjTp=Sg
 H=107
 Nm=Output_7_Bass
-SgTp=2
-]
-[
-ObjTp=Sg
-H=108
-Nm=Input_20_Compensation
 SgTp=2
 ]
 [
@@ -6913,12 +6514,6 @@ SgTp=2
 ]
 [
 ObjTp=Sg
-H=124
-Nm=Input_21_Compensation
-SgTp=2
-]
-[
-ObjTp=Sg
 H=125
 Nm=Output_8_Volume_Minimum
 SgTp=2
@@ -6944,24 +6539,6 @@ Nm=[Output_1_Mute_Off]
 ObjTp=Sg
 H=129
 Nm=__X__Audio__Output_1_Set_Volume
-SgTp=2
-]
-[
-ObjTp=Sg
-H=130
-Nm=Input_22_Compensation
-SgTp=2
-]
-[
-ObjTp=Sg
-H=131
-Nm=Input_23_Compensation
-SgTp=2
-]
-[
-ObjTp=Sg
-H=132
-Nm=Input_24_Compensation
 SgTp=2
 ]
 [
@@ -7648,6 +7225,11 @@ Nm=__X__Audio__Output_8_Pass_Startup_Volume
 ]
 [
 ObjTp=Sg
+H=258
+Nm=//__digital_reserved__
+]
+[
+ObjTp=Sg
 H=265
 Nm=[Output_7_Power]
 ]
@@ -7665,12 +7247,6 @@ Nm=[Output_8_Power]
 ObjTp=Sg
 H=286
 Nm=[Output_8_Mute]
-]
-[
-ObjTp=Sg
-H=319
-Nm=Input_01_Compensation
-SgTp=2
 ]
 [
 ObjTp=Sg
@@ -8269,78 +7845,6 @@ Sgn=0
 ]
 [
 ObjTp=Dp
-H=43
-Tp=1
-HD=TRUE
-DV=0%
-NF=5
-DNF=4
-EncFmt=0
-DVLF=1
-Sgn=0
-]
-[
-ObjTp=Dp
-H=44
-Tp=1
-HD=TRUE
-DV=0%
-NF=63
-DNF=4
-EncFmt=0
-DVLF=1
-Sgn=0
-]
-[
-ObjTp=Dp
-H=45
-Tp=1
-HD=TRUE
-DV=0%
-NF=63
-DNF=4
-EncFmt=0
-DVLF=1
-Sgn=0
-]
-[
-ObjTp=Dp
-H=46
-Tp=1
-HD=TRUE
-DV=0%
-NF=63
-DNF=4
-EncFmt=0
-DVLF=1
-Sgn=0
-]
-[
-ObjTp=Dp
-H=47
-Tp=1
-HD=TRUE
-DV=0%
-NF=63
-DNF=4
-EncFmt=0
-DVLF=1
-Sgn=0
-]
-[
-ObjTp=Dp
-H=48
-Tp=1
-HD=TRUE
-DV=0%
-NF=63
-DNF=4
-EncFmt=0
-DVLF=1
-Sgn=0
-]
-[
-ObjTp=Dp
 H=49
 Tp=1
 NoS=FALSE
@@ -8672,30 +8176,6 @@ Sgn=0
 [
 ObjTp=Dp
 H=78
-Tp=1
-HD=TRUE
-DV=0%
-NF=63
-DNF=4
-EncFmt=0
-DVLF=1
-Sgn=0
-]
-[
-ObjTp=Dp
-H=79
-Tp=1
-HD=TRUE
-DV=0%
-NF=63
-DNF=4
-EncFmt=0
-DVLF=1
-Sgn=0
-]
-[
-ObjTp=Dp
-H=80
 Tp=1
 HD=TRUE
 DV=0%
