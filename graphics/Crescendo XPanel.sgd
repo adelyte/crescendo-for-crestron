@@ -4,7 +4,7 @@ Sgntr=SGD
 RelVrs=1
 VTProeVer=6.0.02
 Schema=1
-CRCGUID=3776351F-03FC-49E8-B5FC-CBBF9674FF9A
+CRCGUID=F380AC50-1C2D-4258-9B47-8D705BAB4653
 ]
 ;================================================================================
 [
@@ -15,11 +15,11 @@ VtpGuid=81361C93-DE2F-4AD1-8706-11664AACDA52
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo XPanel_[Main] _Main_Menu Home.ced
+Name=Crescendo XPanel_[Device] _Device_Header_Menu Home.ced
 Hint=Menu Home (Smart Object ID=5)
 Code=1
-GUID=731C5954-3E19-4447-B507-48637217B3BE
-SmplCName=Crescendo XPanel_[Main] _Main_Menu Home.ced
+GUID=7930D19A-84F3-4321-B644-A058C1A41A80
+SmplCName=Crescendo XPanel_[Device] _Device_Header_Menu Home.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10113
@@ -502,7 +502,7 @@ Sgn=0
 [
 ObjTp=CED
 H=1
-Name=Crescendo XPanel_[Main] _Main_Menu Home.ced
+Name=Crescendo XPanel_[Device] _Device_Header_Menu Home.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
