@@ -229,7 +229,7 @@ PrH=4
 CF=2
 n1I=899
 n1O=899
-Cmn1=D5[#ID]h\\
+Cmn1=50[#ID]h\\
 mI=899
 I40=10
 I41=13
@@ -238,7 +238,6 @@ I43=14
 I44=15
 mO=899
 tO=899
-O2=20
 O31=45
 O32=5
 O33=6
@@ -2139,12 +2138,6 @@ Nm=Replay
 ObjTp=Sg
 H=19
 Nm=Advance
-]
-[
-ObjTp=Sg
-H=20
-Nm=//__serial_reserved__
-SgTp=4
 ]
 [
 ObjTp=Sg
