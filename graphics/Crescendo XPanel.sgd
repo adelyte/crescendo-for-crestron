@@ -9,17 +9,17 @@ CRCGUID=3776351F-03FC-49E8-B5FC-CBBF9674FF9A
 ;================================================================================
 [
 ObjTp=Hd
-ProjectFile=Crescendo Xpanel.vtp
+ProjectFile=Crescendo XPanel.vtp
 VtpGuid=81361C93-DE2F-4AD1-8706-11664AACDA52
 ]
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo Xpanel_[Main] _Main_Menu Home.ced
+Name=Crescendo XPanel_[Main] _Main_Menu Home.ced
 Hint=Menu Home (Smart Object ID=5)
 Code=1
 GUID=731C5954-3E19-4447-B507-48637217B3BE
-SmplCName=Crescendo Xpanel_[Main] _Main_Menu Home.ced
+SmplCName=Crescendo XPanel_[Main] _Main_Menu Home.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10113
@@ -502,7 +502,7 @@ Sgn=0
 [
 ObjTp=CED
 H=1
-Name=Crescendo Xpanel_[Main] _Main_Menu Home.ced
+Name=Crescendo XPanel_[Main] _Main_Menu Home.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
@@ -510,11 +510,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo Xpanel_[Device] Climate_Climate Menu.ced
+Name=Crescendo XPanel_[Device] Climate_Climate Menu.ced
 Hint=Climate Menu (Smart Object ID=8)
 Code=2
 GUID=A39ACB88-BADB-40F9-AD37-E3928A835AE4
-SmplCName=Crescendo Xpanel_[Device] Climate_Climate Menu.ced
+SmplCName=Crescendo XPanel_[Device] Climate_Climate Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -1885,7 +1885,7 @@ Sgn=0
 [
 ObjTp=CED
 H=2
-Name=Crescendo Xpanel_[Device] Climate_Climate Menu.ced
+Name=Crescendo XPanel_[Device] Climate_Climate Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
@@ -1893,11 +1893,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo Xpanel_[Device] Lighting_Lighting Menu.ced
+Name=Crescendo XPanel_[Device] Lighting_Lighting Menu.ced
 Hint=Lighting Menu (Smart Object ID=6)
 Code=3
 GUID=FA1ED667-7E09-4897-8F66-9AB20C496788
-SmplCName=Crescendo Xpanel_[Device] Lighting_Lighting Menu.ced
+SmplCName=Crescendo XPanel_[Device] Lighting_Lighting Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -3268,7 +3268,7 @@ Sgn=0
 [
 ObjTp=CED
 H=3
-Name=Crescendo Xpanel_[Device] Lighting_Lighting Menu.ced
+Name=Crescendo XPanel_[Device] Lighting_Lighting Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
@@ -3276,11 +3276,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo Xpanel_[Main] Listen_Listen Menu.ced
+Name=Crescendo XPanel_[Main] Listen_Listen Menu.ced
 Hint=Listen Menu (Smart Object ID=2)
 Code=4
 GUID=46718228-EED7-44BC-9ECA-6F90E21AA91B
-SmplCName=Crescendo Xpanel_[Main] Listen_Listen Menu.ced
+SmplCName=Crescendo XPanel_[Main] Listen_Listen Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -4843,7 +4843,7 @@ Sgn=0
 [
 ObjTp=CED
 H=4
-Name=Crescendo Xpanel_[Main] Listen_Listen Menu.ced
+Name=Crescendo XPanel_[Main] Listen_Listen Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
@@ -4851,11 +4851,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo Xpanel_[Main] Room_Rooms Menu.ced
+Name=Crescendo XPanel_[Main] Room_Rooms Menu.ced
 Hint=Rooms Menu (Smart Object ID=1)
 Code=5
 GUID=58DAA8BA-AAF8-4ABE-8BAF-5DFA62D13C87
-SmplCName=Crescendo Xpanel_[Main] Room_Rooms Menu.ced
+SmplCName=Crescendo XPanel_[Main] Room_Rooms Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -6226,7 +6226,7 @@ Sgn=0
 [
 ObjTp=CED
 H=5
-Name=Crescendo Xpanel_[Main] Room_Rooms Menu.ced
+Name=Crescendo XPanel_[Main] Room_Rooms Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
@@ -6234,11 +6234,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo Xpanel_[Main] Watch_Watch Menu.ced
+Name=Crescendo XPanel_[Main] Watch_Watch Menu.ced
 Hint=Watch Menu (Smart Object ID=3)
 Code=6
 GUID=B1CC74DE-EB21-449B-AF8B-C32CEDD4BA66
-SmplCName=Crescendo Xpanel_[Main] Watch_Watch Menu.ced
+SmplCName=Crescendo XPanel_[Main] Watch_Watch Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -7801,7 +7801,7 @@ Sgn=0
 [
 ObjTp=CED
 H=6
-Name=Crescendo Xpanel_[Main] Watch_Watch Menu.ced
+Name=Crescendo XPanel_[Main] Watch_Watch Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
@@ -7809,11 +7809,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo Xpanel_[Source] _Source_Sharing_Sharing Menu.ced
+Name=Crescendo XPanel_[Source] _Source_Sharing_Sharing Menu.ced
 Hint=Sharing Menu (Smart Object ID=4)
 Code=7
 GUID=2C16488C-8BE1-4640-A8C6-1A0FFA29CAB9
-SmplCName=Crescendo Xpanel_[Source] _Source_Sharing_Sharing Menu.ced
+SmplCName=Crescendo XPanel_[Source] _Source_Sharing_Sharing Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -10528,7 +10528,7 @@ Sgn=0
 [
 ObjTp=CED
 H=7
-Name=Crescendo Xpanel_[Source] _Source_Sharing_Sharing Menu.ced
+Name=Crescendo XPanel_[Source] _Source_Sharing_Sharing Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
@@ -10536,11 +10536,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo Xpanel_[Source] Media Player_Media Player Application.ced
+Name=Crescendo XPanel_[Source] Media Player_Media Player Application.ced
 Hint=Media Player Application (Smart Object ID=10)
 Code=8
 GUID=2CE3B788-50EF-42A4-9F14-044D63E252CE
-SmplCName=Crescendo Xpanel_[Source] Media Player_Media Player Application.ced
+SmplCName=Crescendo XPanel_[Source] Media Player_Media Player Application.ced
 SMWRev=4.02.19
 Expand=expand_random
 HelpID=10040
@@ -10607,7 +10607,7 @@ Sgn=0
 [
 ObjTp=CED
 H=8
-Name=Crescendo Xpanel_[Source] Media Player_Media Player Application.ced
+Name=Crescendo XPanel_[Source] Media Player_Media Player Application.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1

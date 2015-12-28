@@ -1250,7 +1250,7 @@ O1=254
 O2=307
 O3=273
 O4=263
-O5=8
+O5=250
 mP=8
 P1=#Preset Pace
 P2=.1s
@@ -3716,11 +3716,6 @@ ObjTp=Sg
 H=4
 Nm=__S__DVR__Type_Is
 SgTp=2
-]
-[
-ObjTp=Sg
-H=8
-Nm=Cursor_Select
 ]
 [
 ObjTp=Sg
