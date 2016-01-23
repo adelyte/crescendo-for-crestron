@@ -4,7 +4,7 @@ Sgntr=SGD
 RelVrs=1
 VTProeVer=6.0.02
 Schema=1
-CRCGUID=F380AC50-1C2D-4258-9B47-8D705BAB4653
+CRCGUID=780425D7-6975-4E5F-8C30-90E0631F3B3E
 ]
 ;================================================================================
 [
@@ -510,11 +510,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo iPad_[Device] Climate_Climate Menu.ced
-Hint=Climate Menu (Smart Object ID=8)
+Name=Crescendo iPad_[Device] Climate_Lighting Menu.ced
+Hint=Lighting Menu (Smart Object ID=8)
 Code=2
-GUID=A39ACB88-BADB-40F9-AD37-E3928A835AE4
-SmplCName=Crescendo iPad_[Device] Climate_Climate Menu.ced
+GUID=B2A045E2-2396-4C75-851B-DDCCDD3CF5B5
+SmplCName=Crescendo iPad_[Device] Climate_Lighting Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -1885,7 +1885,7 @@ Sgn=0
 [
 ObjTp=CED
 H=2
-Name=Crescendo iPad_[Device] Climate_Climate Menu.ced
+Name=Crescendo iPad_[Device] Climate_Lighting Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
