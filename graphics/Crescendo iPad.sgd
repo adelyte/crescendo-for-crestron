@@ -4,13 +4,13 @@ Sgntr=SGD
 RelVrs=1
 VTProeVer=6.0.02
 Schema=1
-CRCGUID=780425D7-6975-4E5F-8C30-90E0631F3B3E
+CRCGUID=E0D120E5-3E85-4ABE-9D6F-10EA499DA261
 ]
 ;================================================================================
 [
 ObjTp=Hd
 ProjectFile=Crescendo iPad.vtp
-VtpGuid=81361C93-DE2F-4AD1-8706-11664AACDA52
+VtpGuid=227A1C22-08DE-49DF-875A-3514F2A4EB59
 ]
 ;================================================================================
 [
@@ -18,7 +18,7 @@ ObjTp=Symbol
 Name=Crescendo iPad_[Device] _Device_Header_Menu Home.ced
 Hint=Menu Home (Smart Object ID=5)
 Code=1
-GUID=7930D19A-84F3-4321-B644-A058C1A41A80
+GUID=8407CD8E-C0C2-41D9-BB67-1A45D9293113
 SmplCName=Crescendo iPad_[Device] _Device_Header_Menu Home.ced
 SMWRev=4.02.20
 Expand=expand_random
@@ -513,7 +513,7 @@ ObjTp=Symbol
 Name=Crescendo iPad_[Device] Climate_Climate Menu.ced
 Hint=Climate Menu (Smart Object ID=8)
 Code=2
-GUID=B2A045E2-2396-4C75-851B-DDCCDD3CF5B5
+GUID=F24A949B-5E12-459D-AA14-B181CC46D348
 SmplCName=Crescendo iPad_[Device] Climate_Climate Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
@@ -1896,7 +1896,7 @@ ObjTp=Symbol
 Name=Crescendo iPad_[Device] Lighting_Lighting Menu.ced
 Hint=Lighting Menu (Smart Object ID=6)
 Code=3
-GUID=FA1ED667-7E09-4897-8F66-9AB20C496788
+GUID=D223FEF7-6F16-4F66-AA26-D9052D5A05B8
 SmplCName=Crescendo iPad_[Device] Lighting_Lighting Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
@@ -3279,7 +3279,7 @@ ObjTp=Symbol
 Name=Crescendo iPad_[Main] Listen_Listen Menu.ced
 Hint=Listen Menu (Smart Object ID=2)
 Code=4
-GUID=46718228-EED7-44BC-9ECA-6F90E21AA91B
+GUID=D639B68A-5871-4F6B-BC9B-44D3F5166AFA
 SmplCName=Crescendo iPad_[Main] Listen_Listen Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
@@ -4854,7 +4854,7 @@ ObjTp=Symbol
 Name=Crescendo iPad_[Main] Room_Rooms Menu.ced
 Hint=Rooms Menu (Smart Object ID=1)
 Code=5
-GUID=58DAA8BA-AAF8-4ABE-8BAF-5DFA62D13C87
+GUID=BB280D63-1385-490A-A51D-8E8A20271FDB
 SmplCName=Crescendo iPad_[Main] Room_Rooms Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
@@ -6237,7 +6237,7 @@ ObjTp=Symbol
 Name=Crescendo iPad_[Main] Watch_Watch Menu.ced
 Hint=Watch Menu (Smart Object ID=3)
 Code=6
-GUID=B1CC74DE-EB21-449B-AF8B-C32CEDD4BA66
+GUID=A3694821-862F-4A96-980B-4D67386142B5
 SmplCName=Crescendo iPad_[Main] Watch_Watch Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
@@ -7812,7 +7812,7 @@ ObjTp=Symbol
 Name=Crescendo iPad_[Source] _Source_Sharing_Sharing Menu.ced
 Hint=Sharing Menu (Smart Object ID=4)
 Code=7
-GUID=2C16488C-8BE1-4640-A8C6-1A0FFA29CAB9
+GUID=CFDB3356-7A05-45CF-80D7-27F86E45DA78
 SmplCName=Crescendo iPad_[Source] _Source_Sharing_Sharing Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
@@ -10539,7 +10539,7 @@ ObjTp=Symbol
 Name=Crescendo iPad_[Source] Media Player_Media Player Application.ced
 Hint=Media Player Application (Smart Object ID=10)
 Code=8
-GUID=2CE3B788-50EF-42A4-9F14-044D63E252CE
+GUID=6F7AEB87-4708-4CAD-A3FF-000EF8D1890B
 SmplCName=Crescendo iPad_[Source] Media Player_Media Player Application.ced
 SMWRev=4.02.19
 Expand=expand_random

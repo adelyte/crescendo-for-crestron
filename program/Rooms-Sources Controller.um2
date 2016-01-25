@@ -4,7 +4,7 @@ Version=1
 [
 ObjTp=FSgntr
 Sgntr=UserMacro
-RelVrs=4.03.15
+RelVrs=4.03.20
 IntStrVrs=2
 MinSMWVrs=2.07.04
 MinTIOVrs=0
@@ -16,12 +16,12 @@ S0Nd=1
 S1Nd=2
 SLNd=3
 PrNm=Rooms-Sources Controller.umc
-DbVr=53.00.007.00
-DvcDbVr=68.07.002.00
+DbVr=54.00.012.00
+DvcDbVr=71.05.004.00
 Incl=362,378,380,405,407,408,409,478,522,537,554,586,590,611,624,767,830,883,1032,1062,1079,1134,1157,1199,1220,1222,1299,1348,1439,1472,1473,1499,1746,1803,1975,2229,2354,2514,2523,2532,3708,3902,3912,3918,3925,1766,2574,2651,2817,2886,2938,2947,3181,3197,3233,3710,3735,3736,3816,3888,4176,4308,4476,4591,4769,
 McNm=Rooms-Sources Controller
-SmVr=964
-DvVr=964
+SmVr=981
+DvVr=981
 TpN1=1
 TpN2=2
 TpN3=3
@@ -42,34 +42,6 @@ Sy1=0
 Mx1=0
 ]
 [
-ObjTp=Bw
-H=1
-Lx=0
-Ly=504
-Rx=1228
-Ry=1008
-Xm=-1
-Ym=-1
-SH=7
-Z=100
-Ht=4
-Hi=1
-]
-[
-ObjTp=Bw
-H=1
-Lx=0
-Ly=0
-Rx=1228
-Ry=504
-Xm=-1
-Ym=-1
-SH=6
-Z=100
-Ht=4
-Hi=4
-]
-[
 ObjTp=Symbol
 Name=Rooms-Sources Controller
 Code=1
@@ -85,9 +57,9 @@ APg=1
 StdCmd=0
 FltTmp=1
 FpCS=0
-NumFixedInputs=1099
-NumFixedOutputs=1099
-NumFixedParams=2
+NumFixedInputs=1098
+NumFixedOutputs=1098
+NumFixedParams=3
 MinVariableInputs=0
 MinVariableInputsList2=0
 MinVariableInputsList3=0
@@ -1047,7 +1019,7 @@ InputSigType948=Digital
 InputSigType949=Digital
 InputSigType950=Digital
 InputSigType951=Digital|Analog|Serial|String
-OutputSigType1=Digital|Analog|Serial|String
+OutputSigType1=Digital
 OutputSigType2=Digital|Analog|Serial|String
 OutputSigType3=Serial
 OutputSigType4=Serial
@@ -2147,6 +2119,7 @@ OutputSigType1097=Digital
 OutputSigType1098=Digital|Analog|Serial|String
 ParamSigType1=String
 ParamSigType2=String
+ParamSigType3=String
 InputCue1=Initialized
 InputCue2=[~UNUSED~]
 InputCue3=Room_Is
@@ -3244,9 +3217,8 @@ InputCue1094=[~UNUSED~]
 InputCue1095=[~UNUSED~]
 InputCue1096=[~UNUSED~]
 InputCue1097=[~UNUSED~]
-InputCue1098=[~UNUSED~]
-InputCue1099=[~EndGroup~]Share_Source_List
-OutputCue1=[~UNUSED~]
+InputCue1098=[~EndGroup~]Share_Source_List
+OutputCue1=Enable_Share
 OutputCue2=[~UNUSED~]
 OutputCue3=Room~
 OutputCue4=Control_Source~
@@ -4343,13 +4315,14 @@ OutputCue1094=[Share_45_Volume_Mute_Is_On]
 OutputCue1095=[Share_46_Volume_Mute_Is_On]
 OutputCue1096=[Share_47_Volume_Mute_Is_On]
 OutputCue1097=[Share_48_Volume_Mute_Is_On]
-OutputCue1098=[~UNUSED~]
-OutputCue1099=[~EndGroup~]Share_Source_List
+OutputCue1098=[~EndGroup~]Share_Source_List
 ParamCue1=ID
 ParamCue2=Available Rooms
-MPp=2
+ParamCue3=Shareable Rooms
+MPp=3
 Pp1=1
 Pp2=2
+Pp3=3
 FileName=Rooms-Sources Controller.umc
 EncodingType=0
 ZeroOnIoOk=0
@@ -4440,9 +4413,9 @@ Nm=Argument Definition
 ObjVer=1
 PrH=5
 CF=2
-n1I=1099
-n1O=1099
-mI=1099
+n1I=1098
+n1O=1098
+mI=1098
 I1=1481
 I2=242
 I3=2959
@@ -5540,11 +5513,10 @@ I1094=242
 I1095=242
 I1096=242
 I1097=242
-I1098=242
-I1099=5
-mO=1099
-tO=1099
-O1=242
+I1098=5
+mO=1098
+tO=1098
+O1=1251
 O2=242
 O3=2958
 O4=1241
@@ -6641,14 +6613,15 @@ O1094=2757
 O1095=2758
 O1096=2759
 O1097=2760
-O1098=242
-O1099=5
-mP=2
+O1098=5
+mP=3
 P1=ID
 P2=Available Rooms
-MPp=2
+P3=Shareable Rooms
+MPp=3
 Pp1=1
 Pp2=2
+Pp3=3
 ]
 [
 ObjTp=Sm
@@ -9600,9 +9573,10 @@ O1554=1377
 O1555=1378
 O1556=1379
 O1557=1380
-mP=2
+mP=3
 P1=
 P2=#Available Rooms
+P3=#Shareable Rooms
 ]
 [
 ObjTp=Sm
@@ -9615,7 +9589,7 @@ CF=2
 n1I=410
 n2I=309
 n1O=410
-Cmn1=A0[ID]h : Rooms\\
+Cmn1=A1[ID]h : Rooms\\
 mI=1718
 I12=837
 I13=1283
@@ -10612,7 +10586,7 @@ O928=538
 O929=639
 O1717=6
 mP=1
-P1=A0\[#ID\]h
+P1=A1\[#ID\]h
 ]
 [
 ObjTp=Sm
@@ -10648,7 +10622,7 @@ mI=2
 I1=539
 I2=1482
 mP=2
-P1=A0\[#ID\]h
+P1=A1\[#ID\]h
 P2=00
 ]
 [
@@ -11004,17 +10978,19 @@ Nm=Buffer
 ObjVer=1
 PrH=19
 CF=2
-n1I=3
-n1O=2
+n1I=4
+n1O=3
 Cmn1=Signal Map\\
-mI=3
+mI=4
 I1=2
 I2=1481
 I3=640
-mO=2
-tO=2
+I4=2378
+mO=3
+tO=3
 O1=641
 O2=646
+O3=1251
 ]
 [
 ObjTp=Sm
@@ -11590,10 +11566,11 @@ ObjVer=1
 PrH=4
 CF=2
 Cmn1=Initialize\\
-mC=3
+mC=4
 C1=14
 C2=21
 C3=22
+C4=26
 ]
 [
 ObjTp=Sm
@@ -11651,6 +11628,24 @@ tO=2
 O1=640
 mP=1
 P1=1d
+]
+[
+ObjTp=Sm
+H=26
+SmC=32
+Nm=Analog Initialize
+ObjVer=1
+PrH=19
+CF=2
+n1I=1
+n1O=1
+mI=1
+I1=1481
+mO=1
+tO=1
+O1=1249
+mP=1
+P1=2d
 ]
 [
 ObjTp=Sg
@@ -18396,6 +18391,17 @@ ObjTp=Sg
 H=1241
 Nm=Control_Source~
 SgTp=4
+]
+[
+ObjTp=Sg
+H=1249
+Nm=__Rooms-Sources__Constant_2d
+SgTp=2
+]
+[
+ObjTp=Sg
+H=1251
+Nm=Enable_Share
 ]
 [
 ObjTp=Sg
@@ -27795,6 +27801,21 @@ H=2
 Tp=1
 FD1=String of IDs or blank.
 SD=/[\x01-\xFF]+|""/
+HD=TRUE
+DV=""
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=3
+Tp=1
+FD1=String of IDs or blank.
+SD=/[\x01-\xFF]+|""/
+HD=TRUE
+DV=""
 NoS=FALSE
 EncFmt=0
 DVLF=1
