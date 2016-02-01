@@ -21,7 +21,7 @@ DvcDbVr=71.05.004.00
 PgmNm=Adelyte Company
 CltNm=Tablet
 Incl=362,378,380,405,407,408,409,478,522,537,554,586,590,611,624,767,830,883,1032,1062,1079,1134,1157,1199,1220,1222,1299,1348,1439,1472,1473,1499,1746,1803,1975,2229,2354,2514,2523,2532,3708,3902,3912,3918,3925,1766,2574,2651,2817,2886,2938,2947,3181,3197,3233,3710,3735,3736,3816,3888,4176,4308,4476,4591,4769,
-McNm=Touchscreen
+McNm=Tablet
 SmVr=981
 DvVr=981
 TpN1=1
@@ -16599,7 +16599,7 @@ CF=2
 n1I=15
 n1O=13
 mI=15
-I1=1645
+I1=620
 I3=1998
 I4=2000
 I5=2001
@@ -17934,7 +17934,7 @@ O2=1849
 O3=1849
 O4=1849
 O5=1849
-O6=177
+O6=168
 ]
 [
 ObjTp=Sm
@@ -17957,11 +17957,11 @@ tO=2
 O1=355
 mP=7
 P1=
-P2=App URL 1
-P3=App URL 2
-P4=App URL 3
-P5=App URL 4
-P6=App URL 5
+P2=\[#App URL 1\]
+P3=\[#App URL 2\]
+P4=\[#App URL 3\]
+P5=\[#App URL 4\]
+P6=\[#App URL 5\]
 P7=
 ]
 [
@@ -17973,11 +17973,14 @@ ObjVer=1
 PrH=84
 CF=2
 Cmn1=Feature Device\\
-mC=4
+mC=7
 C1=36
 C2=37
 C3=12
 C4=17
+C5=74
+C6=75
+C7=76
 ]
 [
 ObjTp=Sm
@@ -19912,6 +19915,7 @@ PrH=31
 CF=2
 n1I=3
 n1O=2
+Cmn1=Sharing Size\\
 mI=3
 I1=168
 I2=378
@@ -19920,6 +19924,60 @@ tO=2
 O1=408
 mP=1
 P1=1d
+]
+[
+ObjTp=Sm
+H=74
+SmC=3
+Nm=OR
+ObjVer=1
+PrH=34
+CF=2
+n1I=2
+n1O=1
+mI=2
+I1=1645
+I2=495
+mO=1
+tO=1
+O1=620
+]
+[
+ObjTp=Sm
+H=75
+SmC=1309
+Nm=Serial/Analog Logic Wave Pulse
+ObjVer=1
+PrH=34
+CF=2
+n1I=2
+n1O=2
+Cmn1=Device Chnged\\
+mI=2
+I1=18
+mO=2
+tO=2
+O1=538
+mP=1
+P1=1d
+]
+[
+ObjTp=Sm
+H=76
+SmC=16
+Nm=Delay
+ObjVer=1
+PrH=34
+CF=2
+n1I=2
+n1O=1
+mI=2
+I1=538
+mO=1
+tO=1
+O1=495
+mP=1
+P1=1s
 ]
 [
 ObjTp=Sm
@@ -22923,6 +22981,11 @@ Nm=__T__Room_Volume_13
 ]
 [
 ObjTp=Sg
+H=495
+Nm=__T__Device_Route!...
+]
+[
+ObjTp=Sg
 H=496
 Nm=__T__Room_Volume_14
 ]
@@ -23142,6 +23205,11 @@ Nm=Source_Digital_184_Is
 ObjTp=Sg
 H=537
 Nm=Device_Digital_023_Is
+]
+[
+ObjTp=Sg
+H=538
+Nm=__T__Device_Route!
 ]
 [
 ObjTp=Sg
@@ -23543,6 +23611,11 @@ Nm=Source_Digital_053
 ObjTp=Sg
 H=619
 Nm=Device_Digital_035_Is
+]
+[
+ObjTp=Sg
+H=620
+Nm=__T__Device_Extras_Close
 ]
 [
 ObjTp=Sg

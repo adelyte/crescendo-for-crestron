@@ -4,7 +4,7 @@ Sgntr=SGD
 RelVrs=1
 VTProeVer=6.0.02
 Schema=1
-CRCGUID=E0D120E5-3E85-4ABE-9D6F-10EA499DA261
+CRCGUID=5CF1E44F-2ACE-4C74-8132-A0D1085E7A38
 ]
 ;================================================================================
 [
@@ -15,11 +15,11 @@ VtpGuid=227A1C22-08DE-49DF-875A-3514F2A4EB59
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo iPad_[Device] _Device_Header_Menu Home.ced
+Name=Crescendo iPad_[Main] _Main_Menu Home.ced
 Hint=Menu Home (Smart Object ID=5)
 Code=1
-GUID=8407CD8E-C0C2-41D9-BB67-1A45D9293113
-SmplCName=Crescendo iPad_[Device] _Device_Header_Menu Home.ced
+GUID=22C17B60-6B48-453A-BA70-BED09C1379A9
+SmplCName=Crescendo iPad_[Main] _Main_Menu Home.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10113
@@ -502,7 +502,7 @@ Sgn=0
 [
 ObjTp=CED
 H=1
-Name=Crescendo iPad_[Device] _Device_Header_Menu Home.ced
+Name=Crescendo iPad_[Main] _Main_Menu Home.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
