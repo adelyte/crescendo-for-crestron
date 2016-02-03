@@ -17,7 +17,7 @@
 #DEFINE_CONSTANT #ROOMS_MAX   99
 #DEFINE_CONSTANT #SOURCES_MAX 99
 
-#DEFINE_CONSTANT #AUDIO_VIDEO_ID_OFFSET 0x50
+#DEFINE_CONSTANT #AUDIO_VIDEO_ID_OFFSET 0x40
 
 
 // Inputs and Outputs
@@ -99,7 +99,7 @@ INTEGER_FUNCTION IndexToId(INTEGER index)
 
 // List Functions
 
-STRING  __Rooms__[#ROOMS_MAX], __Sources__[#SOURCES_MAX];
+STRING  __Rooms__[#ROOMS_MAX], __Shareable_Rooms__[#ROOMS_MAX], __Sources__[#SOURCES_MAX];
 
 INTEGER __Room_Sources__[#ROOMS_MAX][#SOURCES_MAX];
 INTEGER __Move_Room__[#ITEMS_MAX], __Room_Move__[#ROOMS_MAX];
@@ -204,7 +204,7 @@ PUSH Watch_Source
     IF(source = 0) TERMINATEEVENT;
 
     MAKESTRING(Room_Source[Room_Is], "\x50%c", IndexToId(source));
-	MAKESTRING(Control_Source_Set, "\x50%c", IndexToId(source));
+    MAKESTRING(Control_Source_Set, "\x50%c", IndexToId(source));
 }
 
 PUSH Listen_Source
@@ -217,7 +217,7 @@ PUSH Listen_Source
     IF(source = 0) TERMINATEEVENT;
 
     MAKESTRING(Room_Source[Room_Is], "\x50%c", IndexToId(source));
-	MAKESTRING(Control_Source_Set, "\x50%c", IndexToId(source));
+    MAKESTRING(Control_Source_Set, "\x50%c", IndexToId(source));
 }
 
 PUSH Share_Source
@@ -333,24 +333,24 @@ FUNCTION UpdateMove()
 
     IF(__Rooms__ = "")
     {
-	    IF(Rooms != "")
-	    {
-	        __Rooms__ = Rooms;
-	    }
-	    ELSE IF(Default_Available_Rooms != "")
-	    {
-	        __Rooms__ = Default_Available_Rooms;
-	    }
-	    ELSE
-	    {
-	        FOR(i = 1 TO #ROOMS_MAX)
-	        {
-	            IF(Room_Name_Is[i] != "")
-	            {
-	                MAKESTRING(__Rooms__, "%s%c", __Rooms__, IndexToId(i));
-	            }
-	        }
-	    }
+        IF(Rooms != "")
+        {
+            __Rooms__ = Rooms;
+        }
+        ELSE IF(Default_Available_Rooms != "")
+        {
+            __Rooms__ = Default_Available_Rooms;
+        }
+        ELSE
+        {
+            FOR(i = 1 TO #ROOMS_MAX)
+            {
+                IF(Room_Name_Is[i] != "")
+                {
+                    MAKESTRING(__Rooms__, "%s%c", __Rooms__, IndexToId(i));
+                }
+            }
+        }
     }
 
     Moves_Size = LEN(__Rooms__);
@@ -388,23 +388,23 @@ FUNCTION UpdateWatch(INTEGER source)
     Watch_Source_Name_Is[item] = Source_Name_Is[source];
     Watch_Source_Icon_Is[item] = Source_Icon_Is[source];
 
-	matches = 0;
+    matches = 0;
     room = 1;
     rooms_count = 0;
 
-	// Listen Source
-	other_source = IndexToId(source) + #AUDIO_VIDEO_ID_OFFSET;
-	other_source = IdToIndex(other_source);
-	other_item = SourceToListen(other_source);
+    // Listen Source
+    other_source = IndexToId(source) + #AUDIO_VIDEO_ID_OFFSET;
+    other_source = IdToIndex(other_source);
+    other_item = SourceToListen(other_source);
 
     WHILE(room <= #ROOMS_MAX)
     {
         IF(IdToIndex(Room_Source_Is[room]) = source)
         {
-			IF(IdToIndex(Room_Is) = room)
-			{
-				matches = 1;
-			}
+            IF(IdToIndex(Room_Is) = room)
+            {
+                matches = 1;
+            }
 
             rooms_count = rooms_count + 1;
             CSWITCH(rooms_count)
@@ -424,32 +424,32 @@ FUNCTION UpdateWatch(INTEGER source)
             }
         }
 
-		IF(other_item > 0)
-		{
-			IF(IdToIndex(Room_Source_Is[room]) = other_source)
-			{
-	            CSWITCH(rooms_count)
-	            {
-	                CASE(1):
-	                {
-	                    room_names = Room_Name_Is[room];
-	
-	                    BREAK;
-	                }
-	                CASE(2):
-	                {
-	                    room_names = room_names + ", " + Room_Name_Is[room];
-	
-	                    BREAK;
-	                }
-	            }
-			}
-		}
+        IF(other_item > 0)
+        {
+            IF(IdToIndex(Room_Source_Is[room]) = other_source)
+            {
+                CSWITCH(rooms_count)
+                {
+                    CASE(1):
+                    {
+                        room_names = Room_Name_Is[room];
+    
+                        BREAK;
+                    }
+                    CASE(2):
+                    {
+                        room_names = room_names + ", " + Room_Name_Is[room];
+    
+                        BREAK;
+                    }
+                }
+            }
+        }
 
         room = room + 1;
     }
 
-	Watch_Source_Matches[item] = matches;
+    Watch_Source_Matches[item] = matches;
 
     CSWITCH(rooms_count)
     {
@@ -458,11 +458,11 @@ FUNCTION UpdateWatch(INTEGER source)
             Watch_Source_In_Use[item] = 0;
             Watch_Source_Room_Names_Is[item] = "Not In Use";
 
-			IF(other_item > 0)
-			{
-	            Listen_Source_In_Use[other_item] = 0;
-	            Listen_Source_Room_Names_Is[other_item] = "Not In Use";
-			}
+            IF(other_item > 0)
+            {
+                Listen_Source_In_Use[other_item] = 0;
+                Listen_Source_Room_Names_Is[other_item] = "Not In Use";
+            }
 
             BREAK;
         }
@@ -471,11 +471,11 @@ FUNCTION UpdateWatch(INTEGER source)
             Watch_Source_In_Use[item] = 1;
             Watch_Source_Room_Names_Is[item] = room_names;
 
-			IF(other_item > 0)
-			{
-	            Listen_Source_In_Use[other_item] = 1;
-	            Listen_Source_Room_Names_Is[other_item] = room_names;
-			}
+            IF(other_item > 0)
+            {
+                Listen_Source_In_Use[other_item] = 1;
+                Listen_Source_Room_Names_Is[other_item] = room_names;
+            }
 
             BREAK;
         }
@@ -484,11 +484,11 @@ FUNCTION UpdateWatch(INTEGER source)
             Watch_Source_In_Use[item] = 1;
             Watch_Source_Room_Names_Is[item] = room_names;
 
-			IF(other_item > 0)
-			{
-	            Listen_Source_In_Use[other_item] = 1;
-	            Listen_Source_Room_Names_Is[other_item] = room_names;
-			}
+            IF(other_item > 0)
+            {
+                Listen_Source_In_Use[other_item] = 1;
+                Listen_Source_Room_Names_Is[other_item] = room_names;
+            }
 
             BREAK;
         }
@@ -497,11 +497,11 @@ FUNCTION UpdateWatch(INTEGER source)
             Watch_Source_In_Use[item] = 1;
             MAKESTRING(Watch_Source_Room_Names_Is[item], "%s, and %u more", room_names, rooms_count - 2);
 
-			IF(other_item > 0)
-			{
-	            Listen_Source_In_Use[other_item] = 0;
-	            MAKESTRING(Listen_Source_Room_Names_Is[other_item], "%s, and %u more", room_names, rooms_count - 2);
-			}
+            IF(other_item > 0)
+            {
+                Listen_Source_In_Use[other_item] = 0;
+                MAKESTRING(Listen_Source_Room_Names_Is[other_item], "%s, and %u more", room_names, rooms_count - 2);
+            }
         }
     }
 }
@@ -520,23 +520,23 @@ FUNCTION UpdateListen(INTEGER source)
     Listen_Source_Name_Is[item] = Source_Name_Is[source];
     Listen_Source_Icon_Is[item] = Source_Icon_Is[source];
 
-	matches = 0;
+    matches = 0;
     room = 1;
     rooms_count = 0;
 
-	// Watch Source
-	other_source = IndexToId(source) - #AUDIO_VIDEO_ID_OFFSET;
-	other_source = IdToIndex(other_source);
-	other_item = SourceToWatch(other_source);
+    // Watch Source
+    other_source = IndexToId(source) - #AUDIO_VIDEO_ID_OFFSET;
+    other_source = IdToIndex(other_source);
+    other_item = SourceToWatch(other_source);
 
     WHILE(room <= #ROOMS_MAX)
     {
         IF(IdToIndex(Room_Source_Is[room]) = source)
         {
-			IF(IdToIndex(Room_Is) = room)
-			{
-				matches = 1;
-			}
+            IF(IdToIndex(Room_Is) = room)
+            {
+                matches = 1;
+            }
 
             rooms_count = rooms_count + 1;
             CSWITCH(rooms_count)
@@ -556,32 +556,32 @@ FUNCTION UpdateListen(INTEGER source)
             }
         }
 
-		IF(other_item > 0)
-		{
-			IF(IdToIndex(Room_Source_Is[room]) = other_source)
-			{
-	            CSWITCH(rooms_count)
-	            {
-	                CASE(1):
-	                {
-	                    room_names = Room_Name_Is[room];
-	
-	                    BREAK;
-	                }
-	                CASE(2):
-	                {
-	                    room_names = room_names + ", " + Room_Name_Is[room];
-	
-	                    BREAK;
-	                }
-	            }
-			}
-		}
+        IF(other_item > 0)
+        {
+            IF(IdToIndex(Room_Source_Is[room]) = other_source)
+            {
+                CSWITCH(rooms_count)
+                {
+                    CASE(1):
+                    {
+                        room_names = Room_Name_Is[room];
+    
+                        BREAK;
+                    }
+                    CASE(2):
+                    {
+                        room_names = room_names + ", " + Room_Name_Is[room];
+    
+                        BREAK;
+                    }
+                }
+            }
+        }
 
         room = room + 1;
     }
 
-	Listen_Source_Matches[item] = matches;
+    Listen_Source_Matches[item] = matches;
 
     CSWITCH(rooms_count)
     {
@@ -590,11 +590,11 @@ FUNCTION UpdateListen(INTEGER source)
             Listen_Source_In_Use[item] = 0;
             Listen_Source_Room_Names_Is[item] = "Not In Use";
 
-			IF(other_item > 0)
-			{
-	            Watch_Source_In_Use[other_item] = 0;
-	            Watch_Source_Room_Names_Is[other_item] = "Not In Use";
-			}
+            IF(other_item > 0)
+            {
+                Watch_Source_In_Use[other_item] = 0;
+                Watch_Source_Room_Names_Is[other_item] = "Not In Use";
+            }
 
             BREAK;
         }
@@ -603,11 +603,11 @@ FUNCTION UpdateListen(INTEGER source)
             Listen_Source_In_Use[item] = 1;
             Listen_Source_Room_Names_Is[item] = room_names;
 
-			IF(other_item > 0)
-			{
-	            Watch_Source_In_Use[other_item] = 1;
-	            Watch_Source_Room_Names_Is[other_item] = room_names;
-			}
+            IF(other_item > 0)
+            {
+                Watch_Source_In_Use[other_item] = 1;
+                Watch_Source_Room_Names_Is[other_item] = room_names;
+            }
 
             BREAK;
         }
@@ -616,11 +616,11 @@ FUNCTION UpdateListen(INTEGER source)
             Listen_Source_In_Use[item] = 1;
             Listen_Source_Room_Names_Is[item] = room_names;
 
-			IF(other_item > 0)
-			{
-	            Watch_Source_In_Use[other_item] = 1;
-	            Watch_Source_Room_Names_Is[other_item] = room_names;
-			}
+            IF(other_item > 0)
+            {
+                Watch_Source_In_Use[other_item] = 1;
+                Watch_Source_Room_Names_Is[other_item] = room_names;
+            }
 
             BREAK;
         }
@@ -629,11 +629,11 @@ FUNCTION UpdateListen(INTEGER source)
             Listen_Source_In_Use[item] = 1;
             MAKESTRING(Listen_Source_Room_Names_Is[item], "%s, and %u more", room_names, rooms_count - 2);
 
-			IF(other_item > 0)
-			{
-	            Watch_Source_In_Use[other_item] = 0;
-	            MAKESTRING(Watch_Source_Room_Names_Is[other_item], "%s, and %u more", room_names, rooms_count - 2);
-			}
+            IF(other_item > 0)
+            {
+                Watch_Source_In_Use[other_item] = 0;
+                MAKESTRING(Watch_Source_Room_Names_Is[other_item], "%s, and %u more", room_names, rooms_count - 2);
+            }
         }
     }
 }
@@ -780,35 +780,31 @@ FUNCTION UpdateShareVolumeMute(INTEGER room)
 FUNCTION UpdateShare()
 {
     INTEGER item, room;
-    STRING  __Rooms__[#ROOMS_MAX];
+    STRING  __Shareable_Rooms__[#ROOMS_MAX];
     
-	IF(Shareable_Rooms = "")
-	{
-	    IF(Rooms = "")
-	    {
-	        __Rooms__ = Default_Available_Rooms;
-	    }
-	    ELSE
-	    {
-	        __Rooms__ = Rooms;
-	    }
-	}
-	ELSE
-	{
-    	__Rooms__ = Shareable_Rooms;
-	}
+    IF(__Shareable_Rooms__ = "")
+    {
+        IF(Shareable_Rooms != "")
+        {
+            __Shareable_Rooms__ = Shareable_Rooms;
+        }
+        ELSE // NOTE: assumes UpdateMove() has been called first
+        {
+            __Shareable_Rooms__ = __Rooms__;
+        }
+    }
 
-    Shares_Size = LEN(__Rooms__);   
+    Shares_Size = LEN(__Shareable_Rooms__);   
 
     FOR(item = 1 TO Shares_Size)
     {
-        room = BYTE(__Rooms__, item);
+        room = BYTE(__Shareable_Rooms__, item);
         room = IdToIndex(room);
 
         __Share_Room__[item] = room;
         __Room_Share__[room] = item;
         
-		Share_Room_Name_Is[item] = Room_Name_Is[room];
+        Share_Room_Name_Is[item] = Room_Name_Is[room];
 
         UpdateShareSource(room);
         UpdateShareVolume(room);
