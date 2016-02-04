@@ -4,7 +4,7 @@ Sgntr=SGD
 RelVrs=1
 VTProeVer=6.0.02
 Schema=1
-CRCGUID=946C6AF2-DA71-485D-9EF6-92B9344687D2
+CRCGUID=A0187363-AE6F-4B09-B9EA-94362123FD84
 ]
 ;================================================================================
 [
@@ -15,11 +15,11 @@ VtpGuid=AFFEB46F-760C-4D13-BD5C-9CBCE5AE6878
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo iPhone_[Main] _Main_Footer_Menu Tabs.ced
+Name=Crescendo iPhone_[Main] _Main_Menu Tabs.ced
 Hint=Menu Tabs (Smart Object ID=5)
 Code=1
-GUID=4F1E1F19-3ED3-4770-9404-C264240F020D
-SmplCName=Crescendo iPhone_[Main] _Main_Footer_Menu Tabs.ced
+GUID=CDC48ADA-46B6-4482-A114-52788F84C2D0
+SmplCName=Crescendo iPhone_[Main] _Main_Menu Tabs.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10111
@@ -382,7 +382,7 @@ Sgn=0
 [
 ObjTp=CED
 H=1
-Name=Crescendo iPhone_[Main] _Main_Footer_Menu Tabs.ced
+Name=Crescendo iPhone_[Main] _Main_Menu Tabs.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
