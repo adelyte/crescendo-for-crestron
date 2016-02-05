@@ -229,7 +229,7 @@ OutputSigType50=Digital|Analog|Serial|String
 OutputSigType51=Digital|Analog|Serial|String
 OutputSigType52=Analog
 OutputSigType53=Analog
-OutputSigType54=Analog|Serial
+OutputSigType54=Analog
 OutputSigType55=Digital|Analog|Serial|String
 OutputSigType56=Digital|Analog|Serial|String
 OutputSigType57=Digital|Analog|Serial|String
@@ -992,11 +992,12 @@ ObjVer=1
 PrH=4
 CF=2
 Cmn1=Scaling\\
-mC=4
+mC=5
 C1=13
 C2=18
 C3=19
 C4=17
+C5=49
 ]
 [
 ObjTp=Sm
@@ -2115,6 +2116,23 @@ mP=1
 P1=80\[#ID\]h
 ]
 [
+ObjTp=Sm
+H=49
+SmC=46
+Nm=Analog Buffer
+ObjVer=1
+PrH=16
+CF=2
+n1I=2
+n1O=1
+mI=2
+I1=1
+I2=1
+mO=1
+tO=1
+O1=43
+]
+[
 ObjTp=Sg
 H=4
 Nm=[~ENDGROUP~]Self
@@ -2331,7 +2349,7 @@ SgTp=2
 ObjTp=Sg
 H=43
 Nm=Set_Auto_Setpoint
-SgTp=6
+SgTp=2
 ]
 [
 ObjTp=Sg

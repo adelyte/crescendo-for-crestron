@@ -412,7 +412,6 @@ I709=75
 I710=76
 mO=899
 tO=899
-O2=65
 O6=88
 O31=77
 O32=114
@@ -3063,12 +3062,6 @@ Nm=__S__DVR_Music__Power_Off
 ObjTp=Sg
 H=59
 Nm=__S__DVR_Music__Number_Show
-]
-[
-ObjTp=Sg
-H=65
-Nm=//__serial_reserved__
-SgTp=4
 ]
 [
 ObjTp=Sg
