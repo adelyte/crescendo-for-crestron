@@ -62,7 +62,7 @@ FltTmp=1
 FpCS=0
 NumFixedInputs=17
 NumFixedOutputs=17
-NumFixedParams=9
+NumFixedParams=10
 MinVariableInputs=0
 MinVariableInputsList2=0
 MinVariableInputsList3=0
@@ -111,6 +111,7 @@ ParamSigType6=String
 ParamSigType7=String
 ParamSigType8=String
 ParamSigType9=String
+ParamSigType10=Constant
 InputCue1=[Source~]
 InputCue2=[~UNUSED~]
 InputCue3=[~UNUSED~]
@@ -154,7 +155,8 @@ ParamCue6=Lights
 ParamCue7=Shades
 ParamCue8=Climate
 ParamCue9=Default Source
-MPp=9
+ParamCue10=Icon
+MPp=10
 Pp1=1
 Pp2=2
 Pp3=5
@@ -164,6 +166,7 @@ Pp6=7
 Pp7=8
 Pp8=10
 Pp9=9
+Pp10=4
 FileName=Room.umc
 EncodingType=3
 ZeroOnIoOk=0
@@ -219,7 +222,7 @@ H=4
 SmC=156
 Nm=Logic
 ObjVer=1
-CF=1
+CF=2
 mC=4
 C1=30
 C2=17
@@ -282,7 +285,7 @@ O6=32
 O7=15
 O8=15
 O9=15
-O10=40
+O10=63
 O11=15
 O12=15
 O13=15
@@ -290,7 +293,7 @@ O14=15
 O15=15
 O16=16
 O17=48
-mP=9
+mP=10
 P1=Name
 P2=ID
 P3=Audio Switchers
@@ -300,7 +303,8 @@ P6=Lights
 P7=Shades
 P8=Climate
 P9=Default Source
-MPp=9
+P10=Icon
+MPp=10
 Pp1=1
 Pp2=2
 Pp3=5
@@ -310,6 +314,7 @@ Pp6=7
 Pp7=8
 Pp8=10
 Pp9=9
+Pp10=4
 ]
 [
 ObjTp=Sm
@@ -332,13 +337,14 @@ SmC=156
 Nm=SUBSYSTEM
 ObjVer=1
 PrH=4
-CF=1
+CF=2
 Cmn1=Properties\\
-mC=4
+mC=5
 C1=9
-C2=41
-C3=58
-C4=62
+C2=28
+C3=41
+C4=58
+C5=62
 ]
 [
 ObjTp=Sm
@@ -349,15 +355,11 @@ ObjVer=1
 PrH=8
 CF=2
 Cmn1=Power\\
-mC=8
+mC=4
 C1=11
 C2=13
-C3=14
-C4=16
-C5=18
-C6=20
-C7=25
-C8=28
+C3=23
+C4=20
 ]
 [
 ObjTp=Sm
@@ -421,7 +423,7 @@ PrH=9
 CF=2
 n1I=2
 n1O=1
-Cmn1=Powered\\
+Cmn1=Power Is On\\
 mI=2
 I1=8
 I2=30
@@ -435,11 +437,11 @@ H=14
 SmC=409
 Nm=Logic Wave Pulse
 ObjVer=1
-PrH=9
+PrH=20
 CF=2
 n1I=3
 n1O=2
-Cmn1=User Power On/Off!\\
+Cmn1=Power On/Off!\\
 mI=3
 I1=51
 mO=2
@@ -483,26 +485,6 @@ P1=13\[#ID\]h
 ]
 [
 ObjTp=Sm
-H=16
-SmC=409
-Nm=Logic Wave Pulse
-ObjVer=1
-PrH=9
-CF=2
-n1I=3
-n1O=2
-OpF=0
-Cmn1=Powered On!\\
-mI=3
-I1=29
-mO=2
-tO=2
-O1=31
-mP=1
-P1=1d
-]
-[
-ObjTp=Sm
 H=17
 SmC=156
 Nm=SUBSYSTEM
@@ -514,26 +496,6 @@ mC=3
 C1=94
 C2=35
 C3=81
-]
-[
-ObjTp=Sm
-H=18
-SmC=409
-Nm=Logic Wave Pulse
-ObjVer=1
-PrH=9
-CF=2
-n1I=3
-n1O=2
-Cmn1=Powered Off!\\
-mI=3
-I1=45
-I2=29
-mO=2
-tO=2
-O1=37
-mP=1
-P1=1d
 ]
 [
 ObjTp=Sm
@@ -559,11 +521,12 @@ Nm=SUBSYSTEM
 ObjVer=1
 PrH=9
 CF=2
-Cmn1=Power On\\
-mC=3
-C1=21
-C2=23
-C3=24
+Cmn1=Power On/Off\\
+mC=4
+C1=14
+C2=21
+C3=29
+C4=27
 ]
 [
 ObjTp=Sm
@@ -607,10 +570,11 @@ H=23
 SmC=205
 Nm=NOT
 ObjVer=1
-PrH=20
+PrH=9
 CF=2
 n1I=1
 n1O=1
+Cmn1=Power Is Off\\
 mI=1
 I1=29
 mO=1
@@ -620,35 +584,66 @@ O1=52
 [
 ObjTp=Sm
 H=24
-SmC=77
-Nm=Analog to Serial
+SmC=28
+Nm=Truth Table
 ObjVer=1
-PrH=20
+PrH=41
 CF=2
-n1I=2
-n1O=1
-Cmn1=Default Source\\
-mI=2
-I1=57
-I2=60
-mO=1
-tO=1
-O1=34
-mP=2
-P1=100h
-P2=\x50
+n1I=6
+n1O=4
+Cmn1=Volume Control Is\\If room is off, then volume control is none.\\
+Cmn2=If room source output is video, then volume control is none.\\If||1
+Cmn3=video zone has volume control and room source output is audio/video,||1
+Cmn4=then video zone controls volume.\\If video zone does not have volume||1
+Cmn5=control, audio zone has volume control, and room source output is||1
+Cmn6=audio or audio/video, then audio zone controls volume.\\If audio||1
+Cmn7=zone and video zone do not have volume control and room source output||1
+Cmn8=is audio or audio/video, volume control is none and a configuration||1
+Cmn9=error is present.
+mI=6
+I1=52
+I2=62
+I3=80
+I4=88
+I5=55
+I6=64
+mO=4
+tO=4
+O1=91
+O2=76
+O3=77
+O4=60
+mP=10
+P1=H,L,L,L,L,L,L,L
+P2=X,L,L,H,H,L,H,L
+P3=X,L,H,L,L,H,L,H
+P4=X,H,L,L,L,L,L,L
+P5=X,X,H,H,L,L,L,L
+P6=X,X,X,L,H,H,L,L
+P7=H,H,L,L,L,L,H,H
+P8=L,L,L,L,H,H,L,L
+P9=L,L,H,H,L,L,L,L
+P10=L,L,L,H,L,L,H,H
 ]
 [
 ObjTp=Sm
 H=25
-SmC=156
-Nm=SUBSYSTEM
+SmC=20
+Nm=Buffer
 ObjVer=1
-PrH=9
+PrH=41
 CF=2
-Cmn1=Power Off\\
-mC=1
-C1=27
+n1I=3
+n1O=2
+Cmn1=Signal Map\\
+mI=3
+I1=2
+I2=91
+I3=60
+mO=2
+tO=2
+O1=1
+O2=1
 ]
 [
 ObjTp=Sm
@@ -689,7 +684,7 @@ H=27
 SmC=20
 Nm=Buffer
 ObjVer=1
-PrH=25
+PrH=20
 CF=2
 n1I=2
 n1O=1
@@ -707,34 +702,33 @@ H=28
 SmC=156
 Nm=SUBSYSTEM
 ObjVer=1
-PrH=9
+PrH=8
 CF=2
-Cmn1=Source~\\
-mC=6
-C1=29
-C2=31
-C3=33
-C4=34
-C5=36
-C6=39
+Cmn1=Source\\
+mC=4
+C1=86
+C2=34
+C3=36
+C4=39
 ]
 [
 ObjTp=Sm
 H=29
-SmC=96
-Nm=Serial to Analog
+SmC=89
+Nm=Serial Send
 ObjVer=1
-PrH=28
+PrH=20
 CF=2
 n1I=1
 n1O=1
+Cmn1=Power On with Default Source\\
 mI=1
-I1=53
+I1=57
 mO=1
 tO=1
-O1=54
+O1=14
 mP=1
-P1=0200h
+P1=\x\[#Default Source\]
 ]
 [
 ObjTp=Sm
@@ -752,20 +746,20 @@ C2=77
 [
 ObjTp=Sm
 H=31
-SmC=1309
-Nm=Serial/Analog Logic Wave Pulse
+SmC=3
+Nm=OR
 ObjVer=1
-PrH=28
+PrH=44
 CF=2
 n1I=2
-n1O=2
+n1O=1
+Cmn1=Audio Zone Has Volume Control\\
 mI=2
-I1=54
-mO=2
-tO=2
-O1=55
-mP=1
-P1=1d
+I1=17
+I2=26
+mO=1
+tO=1
+O1=64
 ]
 [
 ObjTp=Sm
@@ -777,7 +771,7 @@ PrH=7
 CF=2
 n1I=2
 mI=2
-I1=45
+I1=1
 I2=130
 mP=2
 P1=13\[#ID\]h
@@ -786,22 +780,20 @@ P2=40
 [
 ObjTp=Sm
 H=33
-SmC=77
-Nm=Analog to Serial
+SmC=3
+Nm=OR
 ObjVer=1
-PrH=28
+PrH=50
 CF=2
 n1I=2
 n1O=1
+Cmn1=Video Zone Has Volume Control\\
 mI=2
-I1=55
-I2=54
+I1=122
+I2=123
 mO=1
 tO=1
-O1=34
-mP=2
-P1=256d
-P2=\x50
+O1=55
 ]
 [
 ObjTp=Sm
@@ -813,15 +805,15 @@ PrH=28
 CF=2
 n1I=3
 n1O=2
+Cmn1=Source~ Is 00\\
 mI=3
-I1=53
-I3=45
+I1=14
 mO=2
 tO=2
 O2=56
 mP=3
 P1=
-P2=""
+P2=
 P3=\x00
 ]
 [
@@ -833,21 +825,19 @@ ObjVer=1
 PrH=17
 CF=2
 n1I=1
-n1O=4
-Cmn1=Lights, Climate, Shades, Default Source\\
+n1O=3
+Cmn1=Lights, Climate, Shades\\
 mI=1
 I1=49
-mO=4
-tO=4
+mO=3
+tO=3
 O1=81
 O2=84
 O3=85
-O4=60
-mP=4
+mP=3
 P1=60\[#Lights\]h
 P2=70\[#Shades\]h
 P3=80\[#Climate\]h
-P4=\[#Default Source\]h
 ]
 [
 ObjTp=Sm
@@ -859,6 +849,7 @@ PrH=28
 CF=2
 n1I=3
 n1O=2
+Cmn1=Source~ Is 00\\
 mI=3
 I1=56
 mO=2
@@ -877,7 +868,7 @@ PrH=12
 CF=2
 n1I=2
 mI=2
-I1=45
+I1=1
 I2=136
 mP=2
 P1=12\[#ID\]h
@@ -912,6 +903,7 @@ PrH=28
 CF=2
 n1I=2
 n1O=1
+Cmn1=Source~ Is 00 to Power Off\\
 mI=2
 I1=2
 I2=58
@@ -922,19 +914,15 @@ O1=28
 [
 ObjTp=Sm
 H=40
-SmC=46
-Nm=Analog Buffer
+SmC=156
+Nm=SUBSYSTEM
 ObjVer=1
-PrH=53
+PrH=41
 CF=2
-n1I=2
-n1O=1
-mI=2
-I1=2
-I2=6
-mO=1
-tO=1
-O1=78
+Cmn1=Subpage\\
+mC=2
+C1=42
+C2=43
 ]
 [
 ObjTp=Sm
@@ -945,72 +933,51 @@ ObjVer=1
 PrH=8
 CF=2
 Cmn1=Volume\\
-mC=8
-C1=42
-C2=43
-C3=44
-C4=50
-C5=53
-C6=55
-C7=56
-C8=57
+mC=6
+C1=25
+C2=53
+C3=24
+C4=44
+C5=50
+C6=40
 ]
 [
 ObjTp=Sm
 H=42
-SmC=28
-Nm=Truth Table
+SmC=1309
+Nm=Serial/Analog Logic Wave Pulse
 ObjVer=1
-PrH=41
+PrH=40
 CF=2
-n1I=6
-n1O=3
-Cmn1=Volume Control Is Audio Zone, Video Zone, or Source\\FIXME: Outputs||1
-Cmn2=are not break before make.
-mI=6
-I1=116
-I2=128
-I3=21
-I4=38
-I5=75
-I6=37
-mO=3
-tO=3
-O1=66
-O2=67
-O3=73
-mP=9
-P1=X,L,L,X
-P2=L,L,H,X
-P3=X,X,X,X
-P4=H,H,H,X
-P5=H,L,X,X
-P6=X,X,X,H
-P7=L,H,H,L
-P8=H,L,L,L
-P9=L,L,L,L
+n1I=2
+n1O=2
+Cmn1=Volume Is!\\
+mI=2
+I1=40
+mO=2
+tO=2
+O1=54
+mP=1
+P1=1d
 ]
 [
 ObjTp=Sm
 H=43
-SmC=19
-Nm=Interlock
+SmC=11
+Nm=Pulse Stretcher
 ObjVer=1
-PrH=41
+PrH=40
 CF=2
-n1I=5
-n1O=3
-Cmn1=Volume Control Is\\
-mI=5
-I1=74
-I3=66
-I4=67
-I5=73
-mO=3
-tO=3
-O1=76
-O2=77
-O3=79
+n1I=1
+n1O=2
+Cmn1=Showing for 2.0s\\
+mI=1
+I1=54
+mO=2
+tO=2
+O1=59
+mP=1
+P1=2.0s
 ]
 [
 ObjTp=Sm
@@ -1021,9 +988,10 @@ ObjVer=1
 PrH=41
 CF=2
 Cmn1=Audio Zone\\
-mC=2
-C1=45
-C2=46
+mC=3
+C1=31
+C2=45
+C3=46
 ]
 [
 ObjTp=Sm
@@ -1056,7 +1024,7 @@ O3=33
 O4=107
 O5=108
 O6=83
-O7=91
+O7=1
 O8=93
 O9=96
 O10=23
@@ -1078,7 +1046,7 @@ I2=129
 I3=11
 mO=2
 tO=2
-O1=86
+O1=40
 O2=144
 ]
 [
@@ -1146,9 +1114,10 @@ ObjVer=1
 PrH=41
 CF=2
 Cmn1=Video Zone\\
-mC=2
-C1=51
-C2=52
+mC=3
+C1=33
+C2=51
+C3=52
 ]
 [
 ObjTp=Sm
@@ -1181,7 +1150,7 @@ O3=127
 O4=119
 O5=120
 O6=83
-O7=91
+O7=1
 O8=93
 O9=96
 O10=23
@@ -1203,103 +1172,26 @@ I2=135
 I3=11
 mO=2
 tO=2
-O1=86
+O1=40
 O2=115
 ]
 [
 ObjTp=Sm
 H=53
-SmC=156
-Nm=SUBSYSTEM
-ObjVer=1
-PrH=41
-CF=2
-Cmn1=Source\\
-mC=2
-C1=54
-C2=40
-]
-[
-ObjTp=Sm
-H=54
-SmC=20
-Nm=Buffer
-ObjVer=1
-PrH=53
-CF=2
-n1I=5
-n1O=4
-Cmn1=Source Volume Control\\
-mI=5
-I1=79
-I2=21
-I3=42
-I4=36
-I5=27
-mO=4
-tO=4
-O1=91
-O2=93
-O3=96
-O4=23
-]
-[
-ObjTp=Sm
-H=55
-SmC=72
-Nm=Serial/Analog One-Shot
-ObjVer=1
-PrH=41
-CF=2
-n1I=1
-n1O=2
-Cmn1=Subpage Showing\\
-mI=1
-I1=86
-mO=2
-tO=2
-O1=59
-mP=1
-P1=2s
-]
-[
-ObjTp=Sm
-H=56
-SmC=3
-Nm=OR
+SmC=46
+Nm=Analog Buffer
 ObjVer=1
 PrH=41
 CF=2
 n1I=2
 n1O=1
+Cmn1=Signal Map\\
 mI=2
-I1=91
-I2=37
+I1=2
+I2=40
 mO=1
 tO=1
-O1=74
-]
-[
-ObjTp=Sm
-H=57
-SmC=20
-Nm=Buffer
-ObjVer=1
-PrH=41
-CF=2
-n1I=4
-n1O=3
-Cmn1=\\
-mI=4
-I1=37
-I2=1
-I3=1
-I4=1
-mO=3
-tO=3
-O1=93
-O2=96
-O3=23
+O1=63
 ]
 [
 ObjTp=Sm
@@ -1308,11 +1200,11 @@ SmC=156
 Nm=SUBSYSTEM
 ObjVer=1
 PrH=8
-CF=1
+CF=2
 Cmn1=Mute
 mC=2
-C1=59
-C2=61
+C1=61
+C2=59
 ]
 [
 ObjTp=Sm
@@ -1345,7 +1237,7 @@ I1=28
 I2=34
 mP=2
 P1=15\[#ID\]h
-P2=00
+P2=50
 ]
 [
 ObjTp=Sm
@@ -1354,10 +1246,12 @@ SmC=20
 Nm=Buffer
 ObjVer=1
 PrH=58
-CF=1
+CF=2
 n1I=3
 n1O=2
+Cmn1=Signal Map\\
 mI=3
+I1=2
 I2=83
 I3=87
 mO=2
@@ -1640,15 +1534,17 @@ mI=11
 mO=11
 tO=11
 O2=49
+O4=13
 O5=65
 O7=46
 O9=12
+O10=9
 mP=5
 P1=#Name
 P2=#ID
 P3=1
 P4=0d
-P5=17d
+P5=#Icon
 ]
 [
 ObjTp=Sm
@@ -1674,12 +1570,14 @@ I49=96
 I50=23
 I53=16
 I54=48
-I72=38
-I73=75
+I72=62
+I73=80
+I74=88
 I83=69
 I84=70
 I85=71
 I86=72
+I222=13
 I223=65
 I225=46
 I236=35
@@ -1688,6 +1586,7 @@ I238=84
 I239=85
 I252=40
 I434=12
+I435=9
 I483=7
 I504=68
 mO=421
@@ -1812,9 +1711,10 @@ O47=22
 O48=42
 O49=36
 O50=27
-O77=38
-O87=75
-O522=6
+O72=62
+O73=80
+O74=88
+O522=78
 O523=35
 mP=1
 P1=15\[#ID\]h
@@ -1885,6 +1785,26 @@ O4=28
 ]
 [
 ObjTp=Sm
+H=86
+SmC=63
+Nm=Serial Substring
+ObjVer=1
+PrH=28
+CF=2
+n1I=1
+n1O=1
+Cmn1=Source~\\
+mI=1
+I1=53
+mO=1
+tO=1
+O1=14
+mP=2
+P1=0d
+P2=1d
+]
+[
+ObjTp=Sm
 H=93
 SmC=20
 Nm=Buffer
@@ -1936,12 +1856,6 @@ Nm=__R__Video_Zone_Volume_Up
 ]
 [
 ObjTp=Sg
-H=6
-Nm=__R__Source_Is
-SgTp=2
-]
-[
-ObjTp=Sg
 H=7
 Nm=__R__Sources$
 SgTp=4
@@ -1949,7 +1863,13 @@ SgTp=4
 [
 ObjTp=Sg
 H=8
-Nm=__R__Audio_Zone_Power_Fb
+Nm=__R__Audio_Zone_Power_Is_On
+]
+[
+ObjTp=Sg
+H=9
+Nm=__R__Route_Is$
+SgTp=4
 ]
 [
 ObjTp=Sg
@@ -1966,6 +1886,18 @@ SgTp=4
 ObjTp=Sg
 H=12
 Nm=__R__Name_Is$
+SgTp=4
+]
+[
+ObjTp=Sg
+H=13
+Nm=__R__ID_Is
+SgTp=2
+]
+[
+ObjTp=Sg
+H=14
+Nm=__R__Source~
 SgTp=4
 ]
 [
@@ -2047,12 +1979,7 @@ Nm=__R__Power_Is_On
 [
 ObjTp=Sg
 H=30
-Nm=__R__Video_Zone_Power_Fb
-]
-[
-ObjTp=Sg
-H=31
-Nm=__R__Powered_On!
+Nm=__R__Video_Zone_Power_Is_On
 ]
 [
 ObjTp=Sg
@@ -2067,7 +1994,7 @@ Nm=__R__Audio_Zone_Mute
 [
 ObjTp=Sg
 H=34
-Nm=[Source_Route~]
+Nm=__R__Source_Route~
 SgTp=4
 ]
 [
@@ -2083,23 +2010,13 @@ Nm=__R__Source_Volume_Control_Is_Relative
 ]
 [
 ObjTp=Sg
-H=37
-Nm=__R__Powered_Off!
-]
-[
-ObjTp=Sg
-H=38
-Nm=__R__Source_Output_Has_Audio
-]
-[
-ObjTp=Sg
 H=39
 Nm=[Volume_Down]
 ]
 [
 ObjTp=Sg
 H=40
-Nm=[Volume_Is]
+Nm=__R__Volume_Is
 SgTp=2
 ]
 [
@@ -2172,13 +2089,12 @@ SgTp=4
 [
 ObjTp=Sg
 H=54
-Nm=__R__Source_ID#
-SgTp=2
+Nm=__R__Volume_Is!
 ]
 [
 ObjTp=Sg
 H=55
-Nm=__R__Source_ID!
+Nm=__R__Video_Zone_Has_Volume_Control
 ]
 [
 ObjTp=Sg
@@ -2203,8 +2119,7 @@ Nm=__R__Volume_Subpage_Showing
 [
 ObjTp=Sg
 H=60
-Nm=__R__Default_Source
-SgTp=2
+Nm=__R__Volume_Control_Is_Error
 ]
 [
 ObjTp=Sg
@@ -2213,19 +2128,25 @@ Nm=__R__Sleep_Cancel
 ]
 [
 ObjTp=Sg
-H=65
-Nm=__R__Route_Is
+H=62
+Nm=__R__Source_Output_Is_Audio
+]
+[
+ObjTp=Sg
+H=63
+Nm=[Volume_Is]
 SgTp=2
 ]
 [
 ObjTp=Sg
-H=66
-Nm=__R__Volume_Control_Is_Audio_Zone?
+H=64
+Nm=__R__Audio_Zone_Has_Volume_Control
 ]
 [
 ObjTp=Sg
-H=67
-Nm=__R__Volume_Control_Is_Video_Zone?
+H=65
+Nm=__R__Route_Is
+SgTp=2
 ]
 [
 ObjTp=Sg
@@ -2255,21 +2176,6 @@ Nm=__R__Sleep_In_120_Fb
 ]
 [
 ObjTp=Sg
-H=73
-Nm=__R__Volume_Control_Is_Source?
-]
-[
-ObjTp=Sg
-H=74
-Nm=__R__Volume_Control_Clear
-]
-[
-ObjTp=Sg
-H=75
-Nm=__R__Source_Output_Has_Video
-]
-[
-ObjTp=Sg
 H=76
 Nm=__R__Volume_Control_Is_Audio_Zone
 ]
@@ -2286,8 +2192,8 @@ SgTp=2
 ]
 [
 ObjTp=Sg
-H=79
-Nm=__R__Volume_Control_Is_Source
+H=80
+Nm=__R__Source_Output_Is_Audio/Video
 ]
 [
 ObjTp=Sg
@@ -2319,14 +2225,13 @@ SgTp=2
 ]
 [
 ObjTp=Sg
-H=86
-Nm=[Volume_Fb]
-SgTp=2
+H=87
+Nm=__R__Mute_Is_Off
 ]
 [
 ObjTp=Sg
-H=87
-Nm=__R__Mute_Is_Off
+H=88
+Nm=__R__Source_Output_Is_Video
 ]
 [
 ObjTp=Sg
@@ -2588,6 +2493,18 @@ Sgn=0
 ]
 [
 ObjTp=Dp
+H=4
+Tp=1
+HD=TRUE
+DV=0d
+NF=1
+DNF=1
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
 H=5
 Tp=1
 NoS=FALSE
@@ -2643,8 +2560,4 @@ NoS=FALSE
 EncFmt=0
 DVLF=1
 Sgn=0
-]
-[
-ObjTp=Status
-HeaderCompatible=False
 ]
