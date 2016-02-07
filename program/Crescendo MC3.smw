@@ -43971,8 +43971,8 @@ O1096=3638
 O1097=3640
 mP=3
 P1=01
-P2=""
-P3=""
+P2=\x01\x02\x03\x06
+P3=\x01\x02\x03\x06
 NGrpStI=1100
 GrpStI1=0
 GrpStI2=0
@@ -50653,7 +50653,7 @@ tO=2
 O1=3375
 O2=3376
 mP=2
-P1=** Disarmed **
+P1=System Disarmed
 P2=Ready to arm
 ]
 [
@@ -50673,7 +50673,7 @@ tO=2
 O1=3375
 O2=3376
 mP=2
-P1=** System Armed **
+P1=System Is Armed
 P2=You may exit now
 ]
 [
@@ -62964,6 +62964,7 @@ n1O=2
 Cmn1=Initialized!\\
 mI=3
 I1=2123
+I2=1420
 mO=2
 tO=2
 O1=1356
@@ -92909,6 +92910,11 @@ Nm=X-72__Volume_Up
 ObjTp=Sg
 H=1419
 Nm=X-72__Volume_Down
+]
+[
+ObjTp=Sg
+H=1420
+Nm=//Z-00__System_Reinitialize
 ]
 [
 ObjTp=Sg
