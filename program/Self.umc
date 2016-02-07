@@ -72,9 +72,8 @@ MinVariableOutputs=0
 MinVariableOutputsList2=0
 MinVariableOutputsList3=0
 MinVariableParams=0
-SymbolTree=0
-InputSigType1=Digital
-InputSigType2=Digital|Analog|Serial|String
+SymbolTree=32
+InputSigType1=Digital|Analog|Serial|String
 OutputSigType1=Digital
 OutputSigType2=Digital
 OutputSigType3=Digital|Analog|Serial|String
@@ -89,7 +88,7 @@ ParamSigType2=String
 ParamSigType3=String
 ParamSigType4=Constant
 ParamSigType5=Constant
-InputCue1=[Initialize]
+InputCue1=[~UNUSED~]
 InputCue2=[~UNUSED~]
 InputCue3=[~UNUSED~]
 InputCue4=[~UNUSED~]
@@ -213,7 +212,7 @@ CF=2
 n1I=11
 n1O=11
 mI=11
-I1=15
+I1=7
 I2=7
 I3=7
 I4=7
@@ -262,7 +261,7 @@ n1I=1
 n1O=1
 Cmn1=Name$\\
 mI=1
-I1=5
+I1=12
 mO=1
 tO=1
 O1=10
@@ -281,7 +280,7 @@ n1I=1
 n1O=1
 Cmn1=Route$\\
 mI=1
-I1=5
+I1=12
 mO=1
 tO=1
 O1=13
@@ -330,7 +329,7 @@ n1I=1
 n1O=4
 Cmn1=ID, Route, Icon, Page\\
 mI=1
-I1=6
+I1=8
 mO=4
 tO=4
 O1=24
@@ -355,10 +354,10 @@ n1I=2
 n1O=1
 Cmn1=Initialized?\\
 mI=2
-I1=11
+I1=14
 mO=1
 tO=1
-O1=6
+O1=8
 mP=1
 P1=\[#Type\]\[#ID\]h
 ]
@@ -415,12 +414,12 @@ n1O=3
 Cmn1=Signal Map\\
 mI=4
 I1=2
-I2=15
-I3=6
-I4=5
+I2=2
+I3=8
+I4=12
 mO=3
 tO=3
-O1=11
+O1=14
 O2=4
 O3=9
 ]
@@ -436,7 +435,7 @@ n1I=2
 n1O=1
 Cmn1=Page$\\
 mI=2
-I1=5
+I1=12
 I2=16
 mO=1
 tO=1
@@ -470,10 +469,10 @@ n1I=3
 n1O=2
 Cmn1=Initialized!\\
 mI=3
-I1=6
+I1=8
 mO=2
 tO=2
-O1=5
+O1=12
 mP=1
 P1=1d
 ]
@@ -499,19 +498,14 @@ Nm=[Initialized?]
 ]
 [
 ObjTp=Sg
-H=5
-Nm=__Self__Initialized!
-]
-[
-ObjTp=Sg
-H=6
-Nm=__Self__Initialized?
-]
-[
-ObjTp=Sg
 H=7
 Nm=[~UNUSED~]
 SgTp=31
+]
+[
+ObjTp=Sg
+H=8
+Nm=__Z__Initialized?
 ]
 [
 ObjTp=Sg
@@ -526,8 +520,8 @@ SgTp=4
 ]
 [
 ObjTp=Sg
-H=11
-Nm=__Self__Initialize
+H=12
+Nm=__Z__Initialized!
 ]
 [
 ObjTp=Sg
@@ -537,8 +531,8 @@ SgTp=4
 ]
 [
 ObjTp=Sg
-H=15
-Nm=[Initialize]
+H=14
+Nm=__Z__Initialize
 ]
 [
 ObjTp=Sg
