@@ -325,10 +325,9 @@ ObjVer=1
 PrH=10
 CF=2
 Cmn1=Video Zone Switchers\\
-mC=3
+mC=2
 C1=32
 C2=15
-C3=47
 ]
 [
 ObjTp=Sm
@@ -408,10 +407,9 @@ ObjVer=1
 PrH=10
 CF=2
 Cmn1=Audio Zone Switchers\\
-mC=3
+mC=2
 C1=37
 C2=26
-C3=48
 ]
 [
 ObjTp=Sm
@@ -475,9 +473,10 @@ mO=117
 tO=160
 O1=143
 O32=30
-O47=105
-O48=133
-O49=134
+O47=128
+O48=122
+O49=123
+O50=10
 O52=118
 O116=135
 mP=1
@@ -593,15 +592,15 @@ PrH=41
 CF=2
 n1I=6
 n1O=4
-Cmn1=Volume Control Is\\If room is off, then volume control is none.\\
-Cmn2=If room source output is video, then volume control is none.\\If||1
-Cmn3=video zone has volume control and room source output is audio/video,||1
-Cmn4=then video zone controls volume.\\If video zone does not have volume||1
-Cmn5=control, audio zone has volume control, and room source output is||1
-Cmn6=audio or audio/video, then audio zone controls volume.\\If audio||1
-Cmn7=zone and video zone do not have volume control and room source output||1
-Cmn8=is audio or audio/video, volume control is none and a configuration||1
-Cmn9=error is present.
+Cmn1=Volume Control Is Audio Zone, Video Zone, or None\\If room is off,||1
+Cmn2=then volume control is none.\\If room source output is video, then||1
+Cmn3=volume control is none.\\If video zone has volume control and room||1
+Cmn4=source output is audio/video, then video zone controls volume.\\
+Cmn5=If video zone does not have volume control, audio zone has volume||1
+Cmn6=control, and room source output is audio or audio/video, then audio||1
+Cmn7=zone controls volume.\\If audio zone and video zone do not have||1
+Cmn8=volume control and room source output is audio or audio/video, volume||1
+Cmn9=control is none and a configuration error is present.
 mI=6
 I1=52
 I2=62
@@ -672,9 +671,10 @@ mO=117
 tO=160
 O1=146
 O32=8
-O47=142
-O48=113
-O49=114
+O47=116
+O48=17
+O49=26
+O50=41
 O52=90
 O116=129
 mP=1
@@ -1031,62 +1031,6 @@ mO=2
 tO=2
 O1=40
 O2=144
-]
-[
-ObjTp=Sm
-H=47
-SmC=156
-Nm=SUBSYSTEM
-ObjVer=1
-PrH=7
-CF=2
-Cmn1=Volume\\
-mC=2
-C1=49
-C2=80
-]
-[
-ObjTp=Sm
-H=48
-SmC=156
-Nm=SUBSYSTEM
-ObjVer=1
-PrH=12
-CF=2
-Cmn1=Volume\\
-mC=2
-C1=78
-C2=79
-]
-[
-ObjTp=Sm
-H=49
-SmC=28
-Nm=Truth Table
-ObjVer=1
-PrH=47
-CF=2
-n1I=3
-n1O=4
-Cmn1=Volume Control\\
-mI=3
-I1=105
-I2=133
-I3=134
-mO=4
-tO=4
-O1=131
-O2=122
-O3=123
-O4=10
-mP=7
-P1=X,X,H
-P2=X,H,L
-P3=H,L,L
-P4=L,L,H
-P5=L,H,L
-P6=H,L,L
-P7=X,X,X
 ]
 [
 ObjTp=Sm
@@ -1594,72 +1538,6 @@ P1=10\[#ID\]h
 ]
 [
 ObjTp=Sm
-H=78
-SmC=28
-Nm=Truth Table
-ObjVer=1
-PrH=48
-CF=2
-n1I=3
-n1O=4
-Cmn1=Volume Control\\
-mI=3
-I1=142
-I2=113
-I3=114
-mO=4
-tO=4
-O1=103
-O2=17
-O3=26
-O4=41
-mP=7
-P1=X,X,H
-P2=X,H,L
-P3=H,L,L
-P4=L,L,H
-P5=L,H,L
-P6=H,L,L
-P7=X,X,X
-]
-[
-ObjTp=Sm
-H=79
-SmC=4
-Nm=NOR
-ObjVer=1
-PrH=48
-CF=2
-n1I=2
-n1O=1
-Cmn1=Volume Control Is None\\
-mI=2
-I1=17
-I2=26
-mO=1
-tO=1
-O1=116
-]
-[
-ObjTp=Sm
-H=80
-SmC=4
-Nm=NOR
-ObjVer=1
-PrH=47
-CF=2
-n1I=2
-n1O=1
-Cmn1=Volume Control Is None\\
-mI=2
-I1=122
-I2=123
-mO=1
-tO=1
-O1=128
-]
-[
-ObjTp=Sm
 H=81
 SmC=858
 Nm=Make String Permanent
@@ -1847,7 +1725,7 @@ Nm=__R__Audio_Zone_Power_Is_On
 [
 ObjTp=Sg
 H=9
-Nm=__R__Route_Is$
+Nm=__R__Route$
 SgTp=4
 ]
 [
@@ -1864,13 +1742,13 @@ SgTp=4
 [
 ObjTp=Sg
 H=12
-Nm=__R__Name_Is$
+Nm=__R__Name$
 SgTp=4
 ]
 [
 ObjTp=Sg
 H=13
-Nm=__R__ID_Is
+Nm=__R__ID
 SgTp=2
 ]
 [
@@ -2001,7 +1879,7 @@ Nm=//__digital_reserved__
 [
 ObjTp=Sg
 H=46
-Nm=__R__Icon_Is
+Nm=__R__Icon
 SgTp=2
 ]
 [
@@ -2099,7 +1977,7 @@ Nm=__R__Audio_Zone_Has_Volume_Control
 [
 ObjTp=Sg
 H=65
-Nm=__R__Route_Is
+Nm=__R__Route
 SgTp=2
 ]
 [
@@ -2254,16 +2132,6 @@ Nm=__R__Sleep_In_120_Done
 ]
 [
 ObjTp=Sg
-H=103
-Nm=//__R__Audio_Zone_Volume_Has_No_Control
-]
-[
-ObjTp=Sg
-H=105
-Nm=__R__Video_Switcher_Volume_Has_No_Control
-]
-[
-ObjTp=Sg
 H=107
 Nm=__R__Audio_Zone_Mute_On
 ]
@@ -2271,16 +2139,6 @@ Nm=__R__Audio_Zone_Mute_On
 ObjTp=Sg
 H=108
 Nm=__R__Audio_Zone_Mute_Off
-]
-[
-ObjTp=Sg
-H=113
-Nm=__R__Audio_Switcher_Volume_Is_Absolute
-]
-[
-ObjTp=Sg
-H=114
-Nm=__R__Audio_Switcher_Volume_Is_Relative
 ]
 [
 ObjTp=Sg
@@ -2347,21 +2205,6 @@ SgTp=4
 ]
 [
 ObjTp=Sg
-H=131
-Nm=//__R__Video_Zone_Volume_Has_No_Control
-]
-[
-ObjTp=Sg
-H=133
-Nm=__R__Video_Switcher_Volume_Is_Absolute
-]
-[
-ObjTp=Sg
-H=134
-Nm=__R__Video_Switcher_Volume_Is_Relative
-]
-[
-ObjTp=Sg
 H=135
 Nm=__R__Video_Zone_Volume_Is
 SgTp=2
@@ -2391,11 +2234,6 @@ Nm=__R__Sleep_In_90
 ObjTp=Sg
 H=140
 Nm=__R__Sleep_In_120
-]
-[
-ObjTp=Sg
-H=142
-Nm=__R__Audio_Switcher_Volume_Has_No_Control
 ]
 [
 ObjTp=Sg
