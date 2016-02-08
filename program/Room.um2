@@ -70,8 +70,7 @@ MinVariableOutputs=0
 MinVariableOutputsList2=0
 MinVariableOutputsList3=0
 MinVariableParams=0
-SymbolTree=46
-UserSymTreeName=Crescendo
+SymbolTree=32
 InputSigType1=Serial
 InputSigType2=Digital|Analog|Serial|String
 InputSigType3=Digital|Analog|Serial|String
@@ -358,7 +357,7 @@ Cmn1=Power\\
 mC=4
 C1=11
 C2=13
-C3=23
+C3=16
 C4=20
 ]
 [
@@ -485,6 +484,24 @@ P1=13\[#ID\]h
 ]
 [
 ObjTp=Sm
+H=16
+SmC=4
+Nm=NOR
+ObjVer=1
+PrH=9
+CF=2
+n1I=2
+n1O=1
+Cmn1=Power Is Off\\
+mI=2
+I1=8
+I2=30
+mO=1
+tO=1
+O1=52
+]
+[
+ObjTp=Sm
 H=17
 SmC=156
 Nm=SUBSYSTEM
@@ -565,23 +582,6 @@ O2=35
 mP=2
 P1=0d
 P2=0d
-]
-[
-ObjTp=Sm
-H=23
-SmC=205
-Nm=NOT
-ObjVer=1
-PrH=9
-CF=2
-n1I=1
-n1O=1
-Cmn1=Power Is Off\\
-mI=1
-I1=29
-mO=1
-tO=1
-O1=52
 ]
 [
 ObjTp=Sm
@@ -1459,7 +1459,6 @@ CF=2
 n1I=11
 n1O=11
 mI=11
-I1=6
 mO=11
 tO=11
 O2=49
@@ -1712,11 +1711,6 @@ Nm=[Power_On]
 ObjTp=Sg
 H=5
 Nm=__R__Video_Zone_Volume_Up
-]
-[
-ObjTp=Sg
-H=6
-Nm=//__R__Initialize
 ]
 [
 ObjTp=Sg

@@ -597,23 +597,6 @@ Pp8=4
 ]
 [
 ObjTp=Sm
-H=7
-SmC=3
-Nm=OR
-ObjVer=1
-PrH=36
-CF=2
-n1I=1
-n1O=1
-Cmn1=Power Fb\\
-mI=1
-I1=66
-mO=1
-tO=1
-O1=32
-]
-[
-ObjTp=Sm
 H=8
 SmC=20
 Nm=Buffer
@@ -705,17 +688,15 @@ Nm=Buffer
 ObjVer=1
 PrH=36
 CF=2
-n1I=3
-n1O=2
-Cmn1=Power On/Off, Input Found Other\\
-mI=3
+n1I=2
+n1O=1
+Cmn1=Power On/Off\\
+mI=2
 I1=57
-I2=71
-I3=66
-mO=2
-tO=2
-O1=66
-O2=4
+I2=66
+mO=1
+tO=1
+O1=4
 ]
 [
 ObjTp=Sm
@@ -727,7 +708,7 @@ PrH=32
 CF=2
 n1I=3
 n1O=2
-Cmn1=Power On/Off, Input Found First\\
+Cmn1=Power On/Off\\
 mI=3
 I1=29
 I2=68
@@ -1073,10 +1054,29 @@ ObjVer=1
 PrH=40
 CF=2
 Cmn1=Power Off\\
-mC=3
-C1=61
-C2=14
-C3=30
+mC=2
+C1=14
+C2=30
+]
+[
+ObjTp=Sm
+H=33
+SmC=20
+Nm=Buffer
+ObjVer=1
+PrH=40
+CF=2
+n1I=3
+n1O=2
+Cmn1=Power On, Power Off\\
+mI=3
+I1=2
+I2=71
+I3=41
+mO=2
+tO=2
+O1=13
+O2=19
 ]
 [
 ObjTp=Sm
@@ -1088,7 +1088,7 @@ PrH=40
 CF=2
 n1I=2
 n1O=2
-Cmn1=Powered\\
+Cmn1=Power Is On, Power Is Off\\
 mI=2
 I1=13
 I2=19
@@ -1127,11 +1127,9 @@ ObjVer=1
 PrH=40
 CF=2
 Cmn1=Power On\\
-mC=4
-C1=59
-C2=13
-C3=21
-C4=7
+mC=2
+C1=13
+C2=21
 ]
 [
 ObjTp=Sm
@@ -1192,12 +1190,13 @@ ObjVer=1
 PrH=38
 CF=2
 Cmn1=Power\\
-mC=5
+mC=6
 C1=22
-C2=34
-C3=36
-C4=32
-C5=18
+C2=33
+C3=34
+C4=36
+C5=32
+C6=18
 ]
 [
 ObjTp=Sm
@@ -1528,12 +1527,12 @@ n2I=72
 n1O=143
 Cmn1=40[ID]h\\
 mI=290
-I32=29
+I33=29
 I47=43
 I48=58
 I49=59
 I50=5
-I52=16
+I53=16
 I154=23
 I155=55
 I156=61
@@ -1594,25 +1593,6 @@ P1=1d
 ]
 [
 ObjTp=Sm
-H=59
-SmC=409
-Nm=Logic Wave Pulse
-ObjVer=1
-PrH=36
-CF=2
-n1I=3
-n1O=2
-Cmn1=Power On!\\
-mI=3
-I1=32
-mO=2
-tO=2
-O1=13
-mP=1
-P1=1d
-]
-[
-ObjTp=Sm
 H=60
 SmC=3
 Nm=OR
@@ -1628,25 +1608,6 @@ I2=67
 mO=1
 tO=1
 O1=72
-]
-[
-ObjTp=Sm
-H=61
-SmC=409
-Nm=Logic Wave Pulse
-ObjVer=1
-PrH=32
-CF=2
-n1I=3
-n1O=2
-Cmn1=Power Off!\\
-mI=3
-I1=68
-mO=2
-tO=2
-O1=19
-mP=1
-P1=1d
 ]
 [
 ObjTp=Sm
@@ -1872,7 +1833,7 @@ Nm=[Mute]
 [
 ObjTp=Sg
 H=16
-Nm=__X__Muted
+Nm=__X__Mute_Is_On
 ]
 [
 ObjTp=Sg
@@ -1941,17 +1902,12 @@ SgTp=2
 [
 ObjTp=Sg
 H=29
-Nm=__X__Powered
+Nm=__X__Power_Is_On
 ]
 [
 ObjTp=Sg
 H=30
 Nm=__X__Volume_Control_Allows_Mute
-]
-[
-ObjTp=Sg
-H=32
-Nm=__X__Power_On_Or
 ]
 [
 ObjTp=Sg
@@ -2076,7 +2032,7 @@ Nm=__X__Mute_On/Off_Model
 [
 ObjTp=Sg
 H=57
-Nm=__X__Powered*
+Nm=__X__Power_Is_Off
 ]
 [
 ObjTp=Sg
