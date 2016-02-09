@@ -20028,7 +20028,7 @@ mI=1
 I1=618
 mO=1
 tO=1
-O1=621
+O1=166
 mP=1
 P1=""
 ]
@@ -23662,12 +23662,6 @@ Nm=Device_Digital_035_Is
 ObjTp=Sg
 H=620
 Nm=__T__Device_Extras_Close
-]
-[
-ObjTp=Sg
-H=621
-Nm=Source_Name
-SgTp=4
 ]
 [
 ObjTp=Sg

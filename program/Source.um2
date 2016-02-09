@@ -6,7 +6,7 @@ ObjTp=FSgntr
 Sgntr=UserMacro
 RelVrs=4.03.20
 IntStrVrs=2
-MinSMWVrs=2.11.03
+MinSMWVrs=0
 MinTIOVrs=0
 SavedBy=SMW3.02.04
 ]
@@ -52,7 +52,7 @@ Smpl-C=3
 CompilerTimePrecision=Single_Or_Double_Precision
 Exclusions=1,19,20,21,88,89,167,168,179,216,225,248,249,266,302,305,
 Hint=Source
-SMWRev=2.11.03
+SMWRev=0
 TIORev=0
 HelpID=1055
 APg=1
@@ -69,8 +69,7 @@ MinVariableOutputs=0
 MinVariableOutputsList2=0
 MinVariableOutputsList3=0
 MinVariableParams=0
-SymbolTree=46
-UserSymTreeName=Crescendo
+SymbolTree=32
 InputSigType1=Digital|Analog|Serial|String
 InputSigType2=Digital|Analog|Serial|String
 InputSigType3=Digital|Analog|Serial|String
@@ -5598,7 +5597,7 @@ mO=1
 tO=1
 O1=9
 mP=1
-P1=1d
+P1=Bh
 ]
 [
 ObjTp=Sm
@@ -6699,6 +6698,7 @@ O370=33
 O371=35
 O378=57
 O379=28
+O1020=5
 O1131=333
 O1132=334
 O1133=335
@@ -6831,6 +6831,12 @@ P4=Dh
 ObjTp=Sg
 H=4
 Nm=[Initialized?]
+]
+[
+ObjTp=Sg
+H=5
+Nm=//__S__Connections~
+SgTp=4
 ]
 [
 ObjTp=Sg

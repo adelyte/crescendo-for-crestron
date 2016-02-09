@@ -5463,6 +5463,25 @@ O2=11
 ]
 [
 ObjTp=Sm
+H=9
+SmC=11
+Nm=Pulse Stretcher
+ObjVer=1
+PrH=12
+CF=2
+n1I=1
+n1O=2
+Cmn1=In Use...\\
+mI=1
+I1=36
+mO=2
+tO=2
+O1=6
+mP=1
+P1=120s
+]
+[
+ObjTp=Sm
 H=11
 SmC=156
 Nm=SUBSYSTEM
@@ -5484,9 +5503,10 @@ ObjVer=1
 PrH=23
 CF=2
 Cmn1=In Use\\
-mC=2
-C1=26
-C2=14
+mC=3
+C1=9
+C2=26
+C3=14
 ]
 [
 ObjTp=Sm
@@ -5524,7 +5544,7 @@ n1O=2
 Cmn1=In Use!*\\
 mI=3
 I1=1
-I2=36
+I2=6
 mO=2
 tO=2
 O1=16
@@ -5597,7 +5617,7 @@ mO=1
 tO=1
 O1=9
 mP=1
-P1=1d
+P1=Bh
 ]
 [
 ObjTp=Sm
@@ -6698,6 +6718,7 @@ O370=33
 O371=35
 O378=57
 O379=28
+O1020=5
 O1131=333
 O1132=334
 O1133=335
@@ -6723,7 +6744,7 @@ n1I=3
 n1O=2
 Cmn1=In Use!\\
 mI=3
-I1=36
+I1=6
 mO=2
 tO=2
 O1=654
@@ -6830,6 +6851,17 @@ P4=Dh
 ObjTp=Sg
 H=4
 Nm=[Initialized?]
+]
+[
+ObjTp=Sg
+H=5
+Nm=//__S__Connections~
+SgTp=4
+]
+[
+ObjTp=Sg
+H=6
+Nm=__S__Source_In_Use...
 ]
 [
 ObjTp=Sg
@@ -6966,7 +6998,7 @@ Nm=[F10]
 [
 ObjTp=Sg
 H=36
-Nm=__S__Source_In_Use?
+Nm=__S__Source_In_Use
 ]
 [
 ObjTp=Sg
