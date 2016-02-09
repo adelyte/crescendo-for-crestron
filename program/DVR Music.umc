@@ -43,21 +43,6 @@ Sy1=0
 Mx1=0
 ]
 [
-ObjTp=Bw
-H=1
-Lx=0
-Ly=0
-Rx=746
-Ry=633
-Xm=-1
-Ym=-1
-SH=7
-Z=100
-P=936
-Ht=4
-Hi=72
-]
-[
 ObjTp=Symbol
 Name=DVR Music
 Code=1
@@ -466,8 +451,6 @@ O42=141
 O43=142
 O67=55
 O68=56
-O70=212
-O71=213
 O110=145
 O201=146
 O202=147
@@ -3564,16 +3547,6 @@ Nm=__S__Select_Preset_42
 ObjTp=Sg
 H=189
 Nm=__S__Select_Preset_43
-]
-[
-ObjTp=Sg
-H=212
-Nm=__S__DVR_Music__List
-]
-[
-ObjTp=Sg
-H=213
-Nm=__S__DVR_Music__Active
 ]
 [
 ObjTp=Sg
