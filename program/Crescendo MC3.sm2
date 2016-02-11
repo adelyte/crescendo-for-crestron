@@ -20,13 +20,12 @@ S1Nd=2
 SLNd=3
 PrNm=Crescendo MC3.smw
 CmVr=3.03
-DbVr=54.00.012.00
-DvcDbVr=71.05.004.00
-OpVr=MC3 1.010.0060
+DbVr=54.05.005.00
+DvcDbVr=72.00.001.00
 PgmNm=Adelyte Company
-CltNm=Crescendo 2.0 Test
-SmVr=981
-DvVr=981
+CltNm=The Loft
+SmVr=982
+DvVr=982
 TpN1=1
 TpN2=2
 TpN3=3
@@ -5106,20 +5105,6 @@ Nm1=\
 Sx1=0
 Sy1=0
 Mx1=0
-]
-[
-ObjTp=Bw
-H=1
-Lx=0
-Ly=0
-Rx=1841
-Ry=1386
-Xm=-1
-Ym=-1
-SH=226
-Z=100
-Ht=1
-Hi=10
 ]
 [
 ObjTp=Et
@@ -72700,7 +72685,6 @@ SmC=155
 Nm=Rooms-Sources Controller.umc
 ObjVer=1
 PrH=164
-CF=2
 n1I=1098
 n1O=1098
 OpF=0
@@ -76367,7 +76351,6 @@ SmC=155
 Nm=Devices Controller.umc
 ObjVer=1
 PrH=164
-CF=2
 n1I=205
 n1O=205
 OpF=0
@@ -77045,7 +77028,6 @@ SmC=155
 Nm=Devices Controller.umc
 ObjVer=1
 PrH=164
-CF=2
 n1I=205
 n1O=205
 OpF=0
@@ -77723,7 +77705,6 @@ SmC=155
 Nm=Media Server Object Router v3.0.cmc
 ObjVer=1
 PrH=164
-CF=2
 n1I=60
 n1O=33
 OpF=0
@@ -77913,7 +77894,6 @@ SmC=101
 Nm=Serial I/O
 ObjVer=1
 PrH=164
-CF=2
 n1I=5
 n1O=2
 OpF=0
@@ -78473,6 +78453,7 @@ I1307=19235
 I1308=19236
 I1309=19237
 I1310=19238
+I3001=19239
 mO=3025
 tO=3025
 O12=19247
@@ -78983,8 +78964,6 @@ O1001=19751
 O1002=19752
 O1003=19753
 O1005=19754
-O1006=19755
-O1008=19756
 O1070=19757
 O1076=19758
 O1101=19759
@@ -82593,32 +82572,32 @@ GrpStI2996=1
 GrpStI2997=1
 GrpStI2998=1
 GrpStI2999=5
-GrpStI3000=4
-GrpStI3001=2
-GrpStI3002=2
-GrpStI3003=2
-GrpStI3004=2
-GrpStI3005=2
-GrpStI3006=2
-GrpStI3007=2
-GrpStI3008=2
-GrpStI3009=2
-GrpStI3010=2
-GrpStI3011=2
-GrpStI3012=2
-GrpStI3013=2
-GrpStI3014=2
-GrpStI3015=2
-GrpStI3016=2
-GrpStI3017=2
-GrpStI3018=2
-GrpStI3019=2
-GrpStI3020=2
-GrpStI3021=2
-GrpStI3022=2
-GrpStI3023=2
-GrpStI3024=2
-GrpStI3025=6
+GrpStI3000=3
+GrpStI3001=1
+GrpStI3002=1
+GrpStI3003=1
+GrpStI3004=1
+GrpStI3005=1
+GrpStI3006=1
+GrpStI3007=1
+GrpStI3008=1
+GrpStI3009=1
+GrpStI3010=1
+GrpStI3011=1
+GrpStI3012=1
+GrpStI3013=1
+GrpStI3014=1
+GrpStI3015=1
+GrpStI3016=1
+GrpStI3017=1
+GrpStI3018=1
+GrpStI3019=1
+GrpStI3020=1
+GrpStI3021=1
+GrpStI3022=1
+GrpStI3023=1
+GrpStI3024=1
+GrpStI3025=5
 NGrpStO=3025
 GrpStO1=3
 GrpStO2=1
@@ -85619,32 +85598,32 @@ GrpStO2996=1
 GrpStO2997=1
 GrpStO2998=1
 GrpStO2999=5
-GrpStO3000=4
-GrpStO3001=2
-GrpStO3002=2
-GrpStO3003=2
-GrpStO3004=2
-GrpStO3005=2
-GrpStO3006=2
-GrpStO3007=2
-GrpStO3008=2
-GrpStO3009=2
-GrpStO3010=2
-GrpStO3011=2
-GrpStO3012=2
-GrpStO3013=2
-GrpStO3014=2
-GrpStO3015=2
-GrpStO3016=2
-GrpStO3017=2
-GrpStO3018=2
-GrpStO3019=2
-GrpStO3020=2
-GrpStO3021=2
-GrpStO3022=2
-GrpStO3023=2
-GrpStO3024=2
-GrpStO3025=6
+GrpStO3000=3
+GrpStO3001=1
+GrpStO3002=1
+GrpStO3003=1
+GrpStO3004=1
+GrpStO3005=1
+GrpStO3006=1
+GrpStO3007=1
+GrpStO3008=1
+GrpStO3009=1
+GrpStO3010=1
+GrpStO3011=1
+GrpStO3012=1
+GrpStO3013=1
+GrpStO3014=1
+GrpStO3015=1
+GrpStO3016=1
+GrpStO3017=1
+GrpStO3018=1
+GrpStO3019=1
+GrpStO3020=1
+GrpStO3021=1
+GrpStO3022=1
+GrpStO3023=1
+GrpStO3024=1
+GrpStO3025=5
 ]
 [
 ObjTp=Sm
@@ -90488,12 +90467,6 @@ I1996=20354
 I1997=20355
 mO=1499
 tO=1531
-O1=19242
-O2=19243
-O3=19244
-O4=19245
-O5=19246
-O11=21813
 O52=18725
 O53=18726
 O56=18727
@@ -107346,7 +107319,6 @@ Nm=TSW-752 Buttons
 ObjVer=3
 DvH=815
 PrH=262
-CF=2
 n1I=5
 n1O=5
 OpF=0
@@ -109317,7 +109289,7 @@ PrH=268
 CF=2
 Cmn1=Crestron App Project Name
 mP=1
-P1=Crestron iPhone
+P1=Crescendo iPhone
 ]
 [
 ObjTp=Sm
@@ -113640,7 +113612,7 @@ PrH=281
 CF=2
 Cmn1=Crestron App Project Name
 mP=1
-P1=Crestron iPhone
+P1=Crescendo iPhone
 ]
 [
 ObjTp=Sm
@@ -225433,31 +225405,6 @@ SgTp=4
 ]
 [
 ObjTp=Sg
-H=19242
-Nm=T-06__Launch_App_1
-]
-[
-ObjTp=Sg
-H=19243
-Nm=T-06__Launch_App_2
-]
-[
-ObjTp=Sg
-H=19244
-Nm=T-06__Launch_App_3
-]
-[
-ObjTp=Sg
-H=19245
-Nm=T-06__Launch_App_4
-]
-[
-ObjTp=Sg
-H=19246
-Nm=T-06__Launch_App_5
-]
-[
-ObjTp=Sg
 H=19247
 Nm=T-06__Room_Has_Video
 ]
@@ -227998,18 +227945,6 @@ SgTp=2
 ObjTp=Sg
 H=19754
 Nm=T-06__Source_Is
-SgTp=2
-]
-[
-ObjTp=Sg
-H=19755
-Nm=T-06__Lighting_Is
-SgTp=2
-]
-[
-ObjTp=Sg
-H=19756
-Nm=T-06__Climate_Is
 SgTp=2
 ]
 [
@@ -239458,11 +239393,6 @@ Nm=T-06__Share_47_Volume_Mute_Is_On
 ObjTp=Sg
 H=21804
 Nm=T-06__Share_48_Volume_Mute_Is_On
-]
-[
-ObjTp=Sg
-H=21813
-Nm=T-06__Device_01_Select
 ]
 [
 ObjTp=Sg
