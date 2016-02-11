@@ -1507,6 +1507,7 @@ I86=72
 I222=13
 I223=65
 I225=46
+I226=6
 I236=35
 I237=81
 I238=84
@@ -1573,6 +1574,7 @@ O73=80
 O74=88
 O522=78
 O523=35
+O525=6
 mP=1
 P1=15\[#ID\]h
 ]
@@ -1692,6 +1694,12 @@ Nm=[Power_On]
 ObjTp=Sg
 H=5
 Nm=__R__Video_Zone_Volume_Up
+]
+[
+ObjTp=Sg
+H=6
+Nm=__R__Source_Icon
+SgTp=2
 ]
 [
 ObjTp=Sg
