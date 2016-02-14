@@ -23,7 +23,7 @@ CmVr=3.03
 DbVr=54.05.005.00
 DvcDbVr=72.00.001.00
 PgmNm=Adelyte Company
-CltNm=The Loft
+CltNm=Crescendo 2.0 "The Loft"
 SmVr=982
 DvVr=982
 TpN1=1
@@ -38,7 +38,7 @@ EnType=0
 ZeroOnIoOk=0
 PIT=Main
 SGMethod=1
-Cmn1=Copyright © 2015\\Adelyte Company\\www.adelyte.com\\\\
+Cmn1=Copyright © 2016\\Adelyte Company\\www.adelyte.com\\\\
 ]
 [
 ObjTp=Dv
