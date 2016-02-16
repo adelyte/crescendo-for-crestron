@@ -16,14 +16,14 @@ S0Nd=1
 S1Nd=2
 SLNd=3
 PrNm=Room.umc
-DbVr=54.00.012.00
-DvcDbVr=71.05.004.00
+DbVr=54.05.005.00
+DvcDbVr=72.00.001.00
 PgmNm=Adelyte Company
 CltNm=Room
 Incl=362,378,380,405,407,408,409,478,522,537,554,586,590,611,624,767,830,883,1032,1062,1079,1134,1157,1199,1220,1222,1299,1348,1439,1472,1473,1499,1746,1803,1975,2229,2354,2514,2523,2532,3708,3902,3912,3918,3925,1766,2574,2651,2817,2886,2938,2947,3181,3197,3233,3710,3735,3736,3816,3888,4176,4308,4476,4591,4769,
 McNm=Room
-SmVr=981
-DvVr=981
+SmVr=982
+DvVr=982
 TpN1=1
 TpN2=2
 TpN3=3
@@ -477,7 +477,7 @@ O47=128
 O48=122
 O49=123
 O50=10
-O52=118
+O53=118
 O116=135
 mP=1
 P1=13\[#ID\]h
@@ -516,6 +516,25 @@ C3=81
 ]
 [
 ObjTp=Sm
+H=18
+SmC=89
+Nm=Serial Send
+ObjVer=1
+PrH=19
+CF=2
+n1I=1
+n1O=1
+Cmn1=Off\\
+mI=1
+I1=52
+mO=1
+tO=1
+O1=22
+mP=1
+P1=Off
+]
+[
+ObjTp=Sm
 H=19
 SmC=156
 Nm=SUBSYSTEM
@@ -523,10 +542,12 @@ ObjVer=1
 PrH=10
 CF=2
 Cmn1=Source\\
-mC=3
+mC=5
 C1=60
 C2=82
 C3=22
+C4=18
+C5=23
 ]
 [
 ObjTp=Sm
@@ -540,8 +561,8 @@ Cmn1=Power On/Off\\
 mC=4
 C1=14
 C2=21
-C3=29
-C4=27
+C3=27
+C4=29
 ]
 [
 ObjTp=Sm
@@ -571,7 +592,7 @@ PrH=19
 CF=2
 n1I=1
 n1O=2
-Cmn1=Power Off to Source Is 00\\
+Cmn1=Off\\
 mI=1
 I1=52
 mO=2
@@ -581,6 +602,20 @@ O2=35
 mP=2
 P1=0d
 P2=0d
+]
+[
+ObjTp=Sm
+H=23
+SmC=858
+Nm=Make String Permanent
+ObjVer=1
+PrH=19
+CF=2
+n1I=1
+mI=1
+I1=22
+mP=1
+P1=48d
 ]
 [
 ObjTp=Sm
@@ -675,7 +710,7 @@ O47=116
 O48=17
 O49=26
 O50=41
-O52=90
+O53=90
 O116=129
 mP=1
 P1=12\[#ID\]h
@@ -723,7 +758,7 @@ PrH=20
 CF=2
 n1I=1
 n1O=1
-Cmn1=Power On with Default Source\\
+Cmn1=Default Source\\
 mI=1
 I1=57
 mO=1
@@ -1268,11 +1303,11 @@ tO=2
 O1=68
 mP=7
 P1=
-P2=No Sleep Timer Set
-P3=Sleep Timer 30min
-P4=Sleep Timer 60min
-P5=Sleep Timer 90min
-P6=Sleep Timer 120min
+P2=Timer Stopped
+P3=Off In 30 min
+P4=Off In 60 min
+P5=Off In 90 min
+P6=Off In 2 Hours
 P7=
 ]
 [
@@ -1507,14 +1542,15 @@ I86=72
 I222=13
 I223=65
 I225=46
-I226=6
 I236=35
 I237=81
 I238=84
 I239=85
+I246=6
 I252=40
 I434=12
 I435=9
+I458=22
 I483=7
 I504=68
 mO=421
@@ -1575,6 +1611,7 @@ O74=88
 O522=78
 O523=35
 O525=6
+O731=22
 mP=1
 P1=15\[#ID\]h
 ]
@@ -1777,6 +1814,12 @@ Nm=[Mute_On]
 ObjTp=Sg
 H=20
 Nm=[Mute_Off]
+]
+[
+ObjTp=Sg
+H=22
+Nm=__R__Current_Source$
+SgTp=4
 ]
 [
 ObjTp=Sg
