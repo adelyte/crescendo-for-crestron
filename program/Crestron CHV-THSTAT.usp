@@ -213,9 +213,9 @@ FUNCTION UpdateStatus()
     {
 	    MAKESTRING(Description, "%u° Off", CurrentTemperature / 10);
 		MAKESTRING(Mode, "Off");
-		MAKESTRING(SetpointText, "N/A");
-        MAKESTRING(HeatSetpointText, "N/A");
-        MAKESTRING(CoolSetpointText, "N/A");
+		MAKESTRING(SetpointText, " ");
+        MAKESTRING(HeatSetpointText, " ");
+        MAKESTRING(CoolSetpointText, " ");
 	}
     ELSE // Error reading thermostat state.
         MAKESTRING(Description, "Undefined");

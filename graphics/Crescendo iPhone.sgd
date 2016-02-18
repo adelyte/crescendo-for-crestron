@@ -15,11 +15,11 @@ VtpGuid=AFFEB46F-760C-4D13-BD5C-9CBCE5AE6878
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo iPhone_[Device] Lighting List_Lighting Menu.ced
+Name=Crescendo iPhone_[Device] _Device_List_Lighting_Lighting Menu.ced
 Hint=Lighting Menu (Smart Object ID=6)
 Code=1
 GUID=F0934FDF-6EAE-4506-A3E0-F5934C3256A6
-SmplCName=Crescendo iPhone_[Device] Lighting List_Lighting Menu.ced
+SmplCName=Crescendo iPhone_[Device] _Device_List_Lighting_Lighting Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -1390,7 +1390,7 @@ Sgn=0
 [
 ObjTp=CED
 H=1
-Name=Crescendo iPhone_[Device] Lighting List_Lighting Menu.ced
+Name=Crescendo iPhone_[Device] _Device_List_Lighting_Lighting Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
@@ -1398,11 +1398,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo iPhone_[Device] Climate List_Climate Menu.ced
+Name=Crescendo iPhone_[Device] _Device_List_Climate_Climate Menu.ced
 Hint=Climate Menu (Smart Object ID=8)
 Code=2
 GUID=F8197C9B-82A8-4745-A7FE-255EE18EEEE6
-SmplCName=Crescendo iPhone_[Device] Climate List_Climate Menu.ced
+SmplCName=Crescendo iPhone_[Device] _Device_List_Climate_Climate Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -2773,7 +2773,7 @@ Sgn=0
 [
 ObjTp=CED
 H=2
-Name=Crescendo iPhone_[Device] Climate List_Climate Menu.ced
+Name=Crescendo iPhone_[Device] _Device_List_Climate_Climate Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
@@ -2781,11 +2781,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo iPhone_[Main] Sharing_Sharing Menu.ced
+Name=Crescendo iPhone_[Main] Menu Share_Sharing Menu.ced
 Hint=Sharing Menu (Smart Object ID=4)
 Code=3
 GUID=53D30A6B-1824-4D47-84E9-63CC3714826E
-SmplCName=Crescendo iPhone_[Main] Sharing_Sharing Menu.ced
+SmplCName=Crescendo iPhone_[Main] Menu Share_Sharing Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -5500,7 +5500,7 @@ Sgn=0
 [
 ObjTp=CED
 H=3
-Name=Crescendo iPhone_[Main] Sharing_Sharing Menu.ced
+Name=Crescendo iPhone_[Main] Menu Share_Sharing Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
@@ -5508,11 +5508,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo iPhone_[Main] Watch_Watch Menu.ced
+Name=Crescendo iPhone_[Main] Menu Watch_Watch Menu.ced
 Hint=Watch Menu (Smart Object ID=3)
 Code=4
 GUID=12F46F98-98E3-44CD-988B-39CD1DB2077F
-SmplCName=Crescendo iPhone_[Main] Watch_Watch Menu.ced
+SmplCName=Crescendo iPhone_[Main] Menu Watch_Watch Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -7075,7 +7075,7 @@ Sgn=0
 [
 ObjTp=CED
 H=4
-Name=Crescendo iPhone_[Main] Watch_Watch Menu.ced
+Name=Crescendo iPhone_[Main] Menu Watch_Watch Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
@@ -7083,11 +7083,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo iPhone_[Main] Listen_Listen Menu.ced
+Name=Crescendo iPhone_[Main] Menu Listen_Listen Menu.ced
 Hint=Listen Menu (Smart Object ID=2)
 Code=5
 GUID=EAEC100D-896B-4BC6-AA32-034096C8A9D1
-SmplCName=Crescendo iPhone_[Main] Listen_Listen Menu.ced
+SmplCName=Crescendo iPhone_[Main] Menu Listen_Listen Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -8650,7 +8650,7 @@ Sgn=0
 [
 ObjTp=CED
 H=5
-Name=Crescendo iPhone_[Main] Listen_Listen Menu.ced
+Name=Crescendo iPhone_[Main] Menu Listen_Listen Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
@@ -8658,11 +8658,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo iPhone_[Main] Room_Rooms Menu.ced
+Name=Crescendo iPhone_[Main] Menu Room_Rooms Menu.ced
 Hint=Rooms Menu (Smart Object ID=1)
 Code=6
 GUID=856C4727-F9A9-42EC-988C-1383480C6322
-SmplCName=Crescendo iPhone_[Main] Room_Rooms Menu.ced
+SmplCName=Crescendo iPhone_[Main] Menu Room_Rooms Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -10033,7 +10033,7 @@ Sgn=0
 [
 ObjTp=CED
 H=6
-Name=Crescendo iPhone_[Main] Room_Rooms Menu.ced
+Name=Crescendo iPhone_[Main] Menu Room_Rooms Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
