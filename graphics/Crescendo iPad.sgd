@@ -95,11 +95,11 @@ CedMod=Media Server Object Router v3.0.cmc
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo iPad_[Main] Watch_Watch Menu.ced
+Name=Crescendo iPad_[Main] Menu_Watch_Watch Menu.ced
 Hint=Watch Menu (Smart Object ID=3)
 Code=2
 GUID=A3694821-862F-4A96-980B-4D67386142B5
-SmplCName=Crescendo iPad_[Main] Watch_Watch Menu.ced
+SmplCName=Crescendo iPad_[Main] Menu_Watch_Watch Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -1662,7 +1662,7 @@ Sgn=0
 [
 ObjTp=CED
 H=2
-Name=Crescendo iPad_[Main] Watch_Watch Menu.ced
+Name=Crescendo iPad_[Main] Menu_Watch_Watch Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
@@ -1670,11 +1670,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo iPad_[Main] Room_Rooms Menu.ced
+Name=Crescendo iPad_[Main] Menu_Room_Rooms Menu.ced
 Hint=Rooms Menu (Smart Object ID=1)
 Code=3
 GUID=BB280D63-1385-490A-A51D-8E8A20271FDB
-SmplCName=Crescendo iPad_[Main] Room_Rooms Menu.ced
+SmplCName=Crescendo iPad_[Main] Menu_Room_Rooms Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -3045,7 +3045,7 @@ Sgn=0
 [
 ObjTp=CED
 H=3
-Name=Crescendo iPad_[Main] Room_Rooms Menu.ced
+Name=Crescendo iPad_[Main] Menu_Room_Rooms Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
@@ -3053,11 +3053,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo iPad_[Main] Listen_Listen Menu.ced
+Name=Crescendo iPad_[Main] Menu_Listen_Listen Menu.ced
 Hint=Listen Menu (Smart Object ID=2)
 Code=4
 GUID=D639B68A-5871-4F6B-BC9B-44D3F5166AFA
-SmplCName=Crescendo iPad_[Main] Listen_Listen Menu.ced
+SmplCName=Crescendo iPad_[Main] Menu_Listen_Listen Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -4620,7 +4620,7 @@ Sgn=0
 [
 ObjTp=CED
 H=4
-Name=Crescendo iPad_[Main] Listen_Listen Menu.ced
+Name=Crescendo iPad_[Main] Menu_Listen_Listen Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
@@ -4628,11 +4628,11 @@ CedVer=1
 ;================================================================================
 [
 ObjTp=Symbol
-Name=Crescendo iPad_[Main] Sharing_Sharing Menu.ced
+Name=Crescendo iPad_[Main] Menu_Sharing_Sharing Menu.ced
 Hint=Sharing Menu (Smart Object ID=4)
 Code=5
 GUID=8B3F709E-5A21-42CC-B18E-D8501974B8D2
-SmplCName=Crescendo iPad_[Main] Sharing_Sharing Menu.ced
+SmplCName=Crescendo iPad_[Main] Menu_Sharing_Sharing Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
 HelpID=10125
@@ -7347,7 +7347,7 @@ Sgn=0
 [
 ObjTp=CED
 H=5
-Name=Crescendo iPad_[Main] Sharing_Sharing Menu.ced
+Name=Crescendo iPad_[Main] Menu_Sharing_Sharing Menu.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
