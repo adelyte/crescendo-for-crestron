@@ -748,7 +748,14 @@ FUNCTION UpdateShareVisible(INTEGER room)
         RETURN;
     }
 
-    Share_Visible[share] = FIND(CHR(Source_Is), __Sources__);
+    IF(room = Room_Is)
+    {
+        Share_Visible[share] = 0;
+    }
+    ELSE
+    {
+        Share_Visible[share] = FIND(CHR(Source_Is), __Sources__);
+    }
 }
 
 FUNCTION UpdateShareVolume(INTEGER room)
