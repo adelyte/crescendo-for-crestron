@@ -763,7 +763,7 @@ mI=1
 I1=57
 mO=1
 tO=1
-O1=14
+O1=34
 mP=1
 P1=\x\[#Default Source\]
 ]
@@ -844,7 +844,7 @@ n1I=3
 n1O=2
 Cmn1=Source~ Is 00\\
 mI=3
-I1=14
+I1=34
 mO=2
 tO=2
 O2=56
@@ -1686,7 +1686,7 @@ mI=1
 I1=53
 mO=1
 tO=1
-O1=14
+O1=34
 mP=2
 P1=0d
 P2=1d
@@ -1769,12 +1769,6 @@ ObjTp=Sg
 H=13
 Nm=__R__ID
 SgTp=2
-]
-[
-ObjTp=Sg
-H=14
-Nm=__R__Source~
-SgTp=4
 ]
 [
 ObjTp=Sg

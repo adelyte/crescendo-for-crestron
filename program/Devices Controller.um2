@@ -76,7 +76,7 @@ InputSigType1=Digital
 InputSigType2=Digital|Analog|Serial|String
 InputSigType3=Analog
 InputSigType4=Analog
-InputSigType5=Digital|Analog|Serial|String
+InputSigType5=Digital
 InputSigType6=Digital
 InputSigType7=Digital|Analog|Serial|String
 InputSigType8=Digital|Analog|Serial|String
@@ -489,7 +489,7 @@ InputCue1=Initialized
 InputCue2=[~UNUSED~]
 InputCue3=Device_Is
 InputCue4=Device_Default
-InputCue5=[~UNUSED~]
+InputCue5=Device_Default_Select
 InputCue6=[~BeginGroup~]Device_List
 InputCue7=[~UNUSED~]
 InputCue8=[~UNUSED~]
@@ -995,7 +995,7 @@ I1=4
 I2=5
 I3=8
 I4=12
-I5=5
+I5=15
 I6=6
 I7=5
 I8=5
@@ -1424,6 +1424,7 @@ n2I=300
 n1O=50
 mI=350
 I1=1110
+I2=15
 I3=954
 I4=1002
 I5=957
@@ -2659,6 +2660,11 @@ ObjTp=Sg
 H=13
 Nm=__Devices__Devices_Route~
 SgTp=4
+]
+[
+ObjTp=Sg
+H=15
+Nm=Device_Default_Select
 ]
 [
 ObjTp=Sg

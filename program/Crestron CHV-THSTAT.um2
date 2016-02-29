@@ -6,7 +6,7 @@ ObjTp=FSgntr
 Sgntr=UserMacro
 RelVrs=4.03.20
 IntStrVrs=2
-MinSMWVrs=3.00.00
+MinSMWVrs=2.07.04
 MinTIOVrs=0
 SavedBy=SMW3.11.06
 ]
@@ -16,14 +16,14 @@ S0Nd=1
 S1Nd=2
 SLNd=3
 PrNm=Crestron CHV-THSTAT.umc
-DbVr=54.00.012.00
-DvcDbVr=71.05.004.00
+DbVr=54.05.005.00
+DvcDbVr=72.00.001.00
 PgmNm=Adelyte Company
 CltNm=Climate
 Incl=362,378,380,405,407,408,409,478,522,537,554,586,590,611,624,767,830,883,1032,1062,1079,1134,1157,1199,1220,1222,1299,1348,1439,1472,1473,1499,1746,1803,1975,2229,2354,2514,2523,2532,3708,3902,3912,3918,3925,1766,2574,2651,2817,2886,2938,2947,3181,3197,3233,3710,3735,3736,3816,
 McNm=Crestron CHV-THSTAT
-SmVr=981
-DvVr=981
+SmVr=982
+DvVr=982
 TpN1=1
 TpN2=2
 TpN3=3
@@ -51,7 +51,7 @@ Smpl-C=3
 CompilerTimePrecision=Single_Or_Double_Precision
 Exclusions=1,19,20,21,88,89,167,168,179,213,214,215,216,217,225,226,248,249,266,267,310,718,756,854,302,305,
 Hint=Climate
-SMWRev=3.00.00
+SMWRev=2.07.04
 TIORev=0
 S+=1
 HelpID=1055
@@ -577,11 +577,13 @@ ObjVer=1
 PrH=4
 CF=2
 Cmn1=Status\\
-mC=4
+mC=6
 C1=12
-C2=38
-C3=37
-C4=39
+C2=39
+C3=38
+C4=37
+C5=50
+C6=15
 ]
 [
 ObjTp=Sm
@@ -642,6 +644,24 @@ mC=3
 C1=22
 C2=23
 C3=31
+]
+[
+ObjTp=Sm
+H=15
+SmC=3
+Nm=OR
+ObjVer=1
+PrH=11
+CF=2
+n1I=2
+n1O=1
+Cmn1=Cool SP Showing\\
+mI=2
+I1=80
+I2=84
+mO=1
+tO=1
+O1=5
 ]
 [
 ObjTp=Sm
@@ -1606,6 +1626,8 @@ I124=11
 I125=12
 I126=13
 I127=14
+I129=4
+I130=5
 I132=55
 I133=38
 I134=155
@@ -1785,6 +1807,34 @@ I2=1
 mO=1
 tO=1
 O1=43
+]
+[
+ObjTp=Sm
+H=50
+SmC=3
+Nm=OR
+ObjVer=1
+PrH=11
+CF=2
+n1I=2
+n1O=1
+Cmn1=Heat SP Showing\\
+mI=2
+I1=79
+I2=84
+mO=1
+tO=1
+O1=4
+]
+[
+ObjTp=Sg
+H=4
+Nm=__C__Heat_Setpoints_Showing
+]
+[
+ObjTp=Sg
+H=5
+Nm=__C__Cool_Setpoints_Showing
 ]
 [
 ObjTp=Sg
