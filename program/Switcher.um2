@@ -16,14 +16,14 @@ S0Nd=1
 S1Nd=2
 SLNd=3
 PrNm=Switcher.umc
-DbVr=54.00.012.00
-DvcDbVr=71.05.004.00
+DbVr=54.05.005.00
+DvcDbVr=72.00.001.00
 PgmNm=Adelyte Company
 CltNm=Switcher
 Incl=362,378,380,405,407,408,409,478,522,537,554,586,590,611,624,767,830,883,1032,1062,1079,1134,1157,1199,1220,1222,1299,1348,1439,1472,1473,1499,1746,1803,1975,2229,2354,2514,2523,2532,3708,3902,3912,3918,3925,1766,2574,2651,2817,2886,2938,2947,3181,3197,3233,3710,3735,3736,3816,
 McNm=Switcher
-SmVr=981
-DvVr=981
+SmVr=982
+DvVr=982
 TpN1=1
 TpN2=2
 TpN3=3
@@ -71,8 +71,7 @@ MinVariableOutputs=0
 MinVariableOutputsList2=0
 MinVariableOutputsList3=0
 MinVariableParams=0
-SymbolTree=46
-UserSymTreeName=Crescendo
+SymbolTree=32
 InputSigType1=Serial
 InputSigType2=Digital|Analog|Serial|String
 InputSigType3=Digital|Analog|Serial|String
@@ -597,6 +596,25 @@ Pp8=4
 ]
 [
 ObjTp=Sm
+H=7
+SmC=409
+Nm=Logic Wave Pulse
+ObjVer=1
+PrH=36
+CF=2
+n1I=3
+n1O=2
+Cmn1=Once\\
+mI=3
+I1=29
+mO=2
+tO=2
+O1=9
+mP=1
+P1=1d
+]
+[
+ObjTp=Sm
 H=8
 SmC=20
 Nm=Buffer
@@ -837,24 +855,6 @@ mO=2
 tO=2
 O1=28
 O2=7
-]
-[
-ObjTp=Sm
-H=21
-SmC=20
-Nm=Buffer
-ObjVer=1
-PrH=36
-CF=2
-n1I=2
-n1O=1
-Cmn1=Power On (always)\\
-mI=2
-I1=2
-I2=13
-mO=1
-tO=1
-O1=9
 ]
 [
 ObjTp=Sm
@@ -1133,7 +1133,7 @@ CF=2
 Cmn1=Power On\\
 mC=2
 C1=13
-C2=21
+C2=7
 ]
 [
 ObjTp=Sm
@@ -1283,7 +1283,7 @@ O4=48
 mP=67
 P1=
 P2=Bh
-P3=#Sources for Power Off
+P3=\x00[\#Sources for Power Off]\
 P4=#Sources for Input 01
 P5=#Sources for Input 02
 P6=#Sources for Input 03
@@ -1559,7 +1559,7 @@ O43=21
 O52=56
 O53=60
 O54=73
-O241=39
+O241=54
 O257=24
 O277=7
 mP=1

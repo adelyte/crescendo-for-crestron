@@ -5107,6 +5107,20 @@ Sy1=0
 Mx1=0
 ]
 [
+ObjTp=Bw
+H=1
+Lx=0
+Ly=0
+Rx=2161
+Ry=1586
+Xm=-1
+Ym=-1
+SH=289
+Z=100
+Ht=3
+Hi=3
+]
+[
 ObjTp=Et
 H=1
 DvH=743
@@ -114086,7 +114100,7 @@ tO=2
 O1=3071
 mP=3
 P1=Crescendo Cloud - The Loft
-P2=wes@adelyte.com,chris@adelyte.com,austin@adelyte.com,tglaeser@adelyte.com,sahern@adelyte.com
+P2=""
 P3=NYC
 ]
 [
