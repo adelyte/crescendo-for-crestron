@@ -7,6 +7,7 @@
 #CATEGORY "46" "Crescendo Devices" // Custom
 #DEFAULT_VOLATILE
 #ENABLE_DYNAMIC
+// #ENABLE_TRACE
 
 
 #DEFINE_CONSTANT #MESSAGE_LEN 20 // LEN("Auto 65-72 Fan Auto\r")
@@ -212,9 +213,9 @@ FUNCTION UpdateStatus()
     {
 	    MAKESTRING(Description, "%u° Off", CurrentTemperature / 10);
 		MAKESTRING(Mode, "Off");
-		MAKESTRING(SetpointText, "N/A");
-        MAKESTRING(HeatSetpointText, "N/A");
-        MAKESTRING(CoolSetpointText, "N/A");
+		MAKESTRING(SetpointText, " ");
+        MAKESTRING(HeatSetpointText, " ");
+        MAKESTRING(CoolSetpointText, " ");
 	}
     ELSE // Error reading thermostat state.
         MAKESTRING(Description, "Undefined");

@@ -1,0 +1,2316 @@
+[
+Version=1
+]
+[
+ObjTp=FSgntr
+Sgntr=UserMacro
+RelVrs=4.03.20
+IntStrVrs=2
+MinSMWVrs=3.00.00
+MinTIOVrs=0
+SavedBy=SMW3.02.04
+]
+[
+ObjTp=Hd
+S0Nd=1
+S1Nd=2
+SLNd=3
+PrNm=Switcher.umc
+DbVr=54.05.005.00
+DvcDbVr=72.00.001.00
+PgmNm=Adelyte Company
+CltNm=Switcher
+Incl=362,378,380,405,407,408,409,478,522,537,554,586,590,611,624,767,830,883,1032,1062,1079,1134,1157,1199,1220,1222,1299,1348,1439,1472,1473,1499,1746,1803,1975,2229,2354,2514,2523,2532,3708,3902,3912,3918,3925,1766,2574,2651,2817,2886,2938,2947,3181,3197,3233,3710,3735,3736,3816,
+McNm=Switcher
+SmVr=982
+DvVr=982
+TpN1=1
+TpN2=2
+TpN3=3
+TpN4=4
+TpN5=5
+APg=1
+FltTmp=1
+FpCS=0
+EnType=3
+ZeroOnIoOk=0
+Cmn1=Subzone\\Crescendo \\\\For documentation see wiki at\\https://code.
+Cmn2=google.com/p/crescendo-/wiki/Zones#Subzones
+]
+[
+ObjTp=Bk
+Nm1=\
+Sx1=0
+Sy1=0
+Mx1=0
+]
+[
+ObjTp=Symbol
+Name=Switcher
+Code=1
+SmplCName=Switcher.umc
+Smpl-C=3
+CompilerTimePrecision=Single_Or_Double_Precision
+Exclusions=1,19,20,21,88,89,167,168,179,216,225,248,249,266,302,305,213,214,215,217,226,267,310,718,756,854,
+Hint=Switcher
+SMWRev=3.00.00
+TIORev=0
+S+=1
+HelpID=1055
+APg=1
+StdCmd=0
+FltTmp=1
+FpCS=0
+NumFixedInputs=39
+NumFixedOutputs=39
+NumFixedParams=70
+MinVariableInputs=0
+MinVariableInputsList2=0
+MinVariableInputsList3=0
+MinVariableOutputs=0
+MinVariableOutputsList2=0
+MinVariableOutputsList3=0
+MinVariableParams=0
+SymbolTree=32
+InputSigType1=Serial
+InputSigType2=Digital|Analog|Serial|String
+InputSigType3=Digital|Analog|Serial|String
+InputSigType4=Digital|Analog|Serial|String
+InputSigType5=Digital|Analog|Serial|String
+InputSigType6=Digital
+InputSigType7=Digital|Analog|Serial|String
+InputSigType8=Digital|Analog|Serial|String
+InputSigType9=Digital|Analog|Serial|String
+InputSigType10=Analog
+InputSigType11=Analog
+InputSigType12=Digital|Analog|Serial|String
+InputSigType13=Digital|Analog|Serial|String
+InputSigType14=Digital|Analog|Serial|String
+InputSigType15=Digital|Analog|Serial|String
+InputSigType16=Digital|Analog|Serial|String
+InputSigType17=Digital
+InputSigType18=Digital|Analog|Serial|String
+InputSigType19=Digital|Analog|Serial|String
+InputSigType20=Digital|Analog|Serial|String
+InputSigType21=Analog
+InputSigType22=Digital|Analog|Serial|String
+OutputSigType1=Analog
+OutputSigType2=Digital|Analog|Serial|String
+OutputSigType3=Digital|Analog|Serial|String
+OutputSigType4=Digital
+OutputSigType5=Digital
+OutputSigType6=Digital
+OutputSigType7=Digital
+OutputSigType8=Digital|Analog|Serial|String
+OutputSigType9=Digital|Analog|Serial|String
+OutputSigType10=Serial
+OutputSigType11=Digital
+OutputSigType12=Digital
+OutputSigType13=Digital|Analog|Serial|String
+OutputSigType14=Digital|Analog|Serial|String
+OutputSigType15=Digital
+OutputSigType16=Digital
+OutputSigType17=Digital
+OutputSigType18=Digital
+OutputSigType19=Digital|Analog|Serial|String
+OutputSigType20=Digital|Analog|Serial|String
+OutputSigType21=Analog
+OutputSigType22=Serial
+OutputSigType23=Digital|Analog|Serial|String
+OutputSigType24=Digital
+ParamSigType1=String
+ParamSigType2=String
+ParamSigType3=Time|Constant
+ParamSigType4=List
+ParamSigType5=List
+ParamSigType6=String
+ParamSigType7=String
+ParamSigType8=String
+ParamSigType9=String
+ParamSigType10=String
+ParamSigType11=String
+ParamSigType12=String
+ParamSigType13=String
+ParamSigType14=String
+ParamSigType15=String
+ParamSigType16=String
+ParamSigType17=String
+ParamSigType18=String
+ParamSigType19=String
+ParamSigType20=String
+ParamSigType21=String
+ParamSigType22=String
+ParamSigType23=String
+ParamSigType24=String
+ParamSigType25=String
+ParamSigType26=String
+ParamSigType27=String
+ParamSigType28=String
+ParamSigType29=String
+ParamSigType30=String
+ParamSigType31=String
+ParamSigType32=String
+ParamSigType33=String
+ParamSigType34=String
+ParamSigType35=String
+ParamSigType36=String
+ParamSigType37=String
+ParamSigType38=String
+ParamSigType39=String
+ParamSigType40=String
+ParamSigType41=String
+ParamSigType42=String
+ParamSigType43=String
+ParamSigType44=String
+ParamSigType45=String
+ParamSigType46=String
+ParamSigType47=String
+ParamSigType48=String
+ParamSigType49=String
+ParamSigType50=String
+ParamSigType51=String
+ParamSigType52=String
+ParamSigType53=String
+ParamSigType54=String
+ParamSigType55=String
+ParamSigType56=String
+ParamSigType57=String
+ParamSigType58=String
+ParamSigType59=String
+ParamSigType60=String
+ParamSigType61=String
+ParamSigType62=String
+ParamSigType63=String
+ParamSigType64=String
+ParamSigType65=String
+ParamSigType66=String
+ParamSigType67=String
+ParamSigType68=String
+ParamSigType69=String
+ParamSigType70=String
+InputCue1=[Source~]
+InputCue2=[~UNUSED~]
+InputCue3=[~UNUSED~]
+InputCue4=[~UNUSED~]
+InputCue5=[~UNUSED~]
+InputCue6=[Power_Is_On]
+InputCue7=[~UNUSED~]
+InputCue8=[~UNUSED~]
+InputCue9=[~UNUSED~]
+InputCue10=[Volume_Is]
+InputCue11=[Volume_Control_Is]
+InputCue12=[~UNUSED~]
+InputCue13=[~UNUSED~]
+InputCue14=[~UNUSED~]
+InputCue15=[~UNUSED~]
+InputCue16=[~UNUSED~]
+InputCue17=[Mute_Is_On]
+InputCue18=[~UNUSED~]
+InputCue19=[~UNUSED~]
+InputCue20=[~UNUSED~]
+InputCue21=[Input_Is]
+InputCue22=[~UNUSED~]
+InputCue23=[~UNUSED~]
+InputCue24=[~UNUSED~]
+InputCue25=[~UNUSED~]
+InputCue26=[~UNUSED~]
+InputCue27=[~UNUSED~]
+InputCue28=[~UNUSED~]
+InputCue29=[~UNUSED~]
+InputCue30=[~UNUSED~]
+InputCue31=[~UNUSED~]
+InputCue32=[~UNUSED~]
+InputCue33=[~UNUSED~]
+InputCue34=[~UNUSED~]
+InputCue35=[~UNUSED~]
+InputCue36=[~UNUSED~]
+InputCue37=[~UNUSED~]
+InputCue38=[~UNUSED~]
+InputCue39=[~UNUSED~]
+OutputCue1=[Source_Is]
+OutputCue2=[~UNUSED~]
+OutputCue3=[~UNUSED~]
+OutputCue4=[Power]
+OutputCue5=[Power_On/Off]
+OutputCue6=[Power_On]
+OutputCue7=[Power_Off]
+OutputCue8=[~UNUSED~]
+OutputCue9=[~UNUSED~]
+OutputCue10=[Volume~]
+OutputCue11=[Volume_Up]
+OutputCue12=[Volume_Down]
+OutputCue13=[~UNUSED~]
+OutputCue14=[~UNUSED~]
+OutputCue15=[Mute]
+OutputCue16=[Mute_On/Off]
+OutputCue17=[Mute_On]
+OutputCue18=[Mute_Off]
+OutputCue19=[~UNUSED~]
+OutputCue20=[~UNUSED~]
+OutputCue21=[Input]
+OutputCue22=[Input~]
+OutputCue23=[~UNUSED~]
+OutputCue24=[Input_01]
+OutputCue25=[Input_02]
+OutputCue26=[Input_03]
+OutputCue27=[Input_04]
+OutputCue28=[Input_05]
+OutputCue29=[Input_06]
+OutputCue30=[Input_07]
+OutputCue31=[Input_08]
+OutputCue32=[Input_09]
+OutputCue33=[Input_10]
+OutputCue34=[Input_11]
+OutputCue35=[Input_12]
+OutputCue36=[Input_13]
+OutputCue37=[Input_14]
+OutputCue38=[Input_15]
+OutputCue39=[Input_16]
+ParamCue1=Name
+ParamCue2=ID
+ParamCue3=Warm-up Time
+ParamCue4=Volume Control,Ah,Bh,Ch,Dh
+ParamCue5=Input Changes,Ah,Bh
+ParamCue6=Sources for Power Off
+ParamCue7=Sources for Input 01
+ParamCue8=Sources for Input 02
+ParamCue9=Sources for Input 03
+ParamCue10=Sources for Input 04
+ParamCue11=Sources for Input 05
+ParamCue12=Sources for Input 06
+ParamCue13=Sources for Input 07
+ParamCue14=Sources for Input 08
+ParamCue15=Sources for Input 09
+ParamCue16=Sources for Input 10
+ParamCue17=Sources for Input 11
+ParamCue18=Sources for Input 12
+ParamCue19=Sources for Input 13
+ParamCue20=Sources for Input 14
+ParamCue21=Sources for Input 15
+ParamCue22=Sources for Input 16
+ParamCue23=Sources for Input 17
+ParamCue24=Sources for Input 18
+ParamCue25=Sources for Input 19
+ParamCue26=Sources for Input 20
+ParamCue27=Sources for Input 21
+ParamCue28=Sources for Input 22
+ParamCue29=Sources for Input 23
+ParamCue30=Sources for Input 24
+ParamCue31=Sources for Input 25
+ParamCue32=Sources for Input 26
+ParamCue33=Sources for Input 27
+ParamCue34=Sources for Input 28
+ParamCue35=Sources for Input 29
+ParamCue36=Sources for Input 30
+ParamCue37=Sources for Input 31
+ParamCue38=Sources for Input 32
+ParamCue39=Sources for Input 33
+ParamCue40=Sources for Input 34
+ParamCue41=Sources for Input 35
+ParamCue42=Sources for Input 36
+ParamCue43=Sources for Input 37
+ParamCue44=Sources for Input 38
+ParamCue45=Sources for Input 39
+ParamCue46=Sources for Input 40
+ParamCue47=Sources for Input 41
+ParamCue48=Sources for Input 42
+ParamCue49=Sources for Input 43
+ParamCue50=Sources for Input 44
+ParamCue51=Sources for Input 45
+ParamCue52=Sources for Input 46
+ParamCue53=Sources for Input 47
+ParamCue54=Sources for Input 48
+ParamCue55=Sources for Input 49
+ParamCue56=Sources for Input 50
+ParamCue57=Sources for Input 51
+ParamCue58=Sources for Input 52
+ParamCue59=Sources for Input 53
+ParamCue60=Sources for Input 54
+ParamCue61=Sources for Input 55
+ParamCue62=Sources for Input 56
+ParamCue63=Sources for Input 57
+ParamCue64=Sources for Input 58
+ParamCue65=Sources for Input 59
+ParamCue66=Sources for Input 60
+ParamCue67=Sources for Input 61
+ParamCue68=Sources for Input 62
+ParamCue69=Sources for Input 63
+ParamCue70=Sources for Input 64
+MPp=8
+Pp1=1
+Pp2=7
+Pp3=2
+Pp4=6
+Pp5=3
+Pp6=5
+Pp8=4
+FileName=Switcher.umc
+EncodingType=3
+ZeroOnIoOk=0
+]
+[
+ObjTp=Sm
+H=1
+SmC=157
+Nm=Central Control Modules
+ObjVer=1
+CF=2
+n1I=1
+n1O=1
+mI=1
+mO=1
+tO=1
+mP=1
+P1=
+]
+[
+ObjTp=Sm
+H=2
+SmC=157
+Nm=Network Modules
+ObjVer=1
+CF=2
+n1I=1
+n1O=1
+mI=1
+mO=1
+tO=1
+mP=1
+P1=
+]
+[
+ObjTp=Sm
+H=3
+SmC=157
+Nm=Ethernet
+ObjVer=1
+CF=2
+n1I=1
+n1O=1
+mI=1
+mO=1
+tO=1
+mP=1
+P1=
+]
+[
+ObjTp=Sm
+H=4
+SmC=156
+Nm=Logic
+ObjVer=1
+CF=2
+mC=4
+C1=52
+C2=39
+C3=10
+C4=38
+]
+[
+ObjTp=Sm
+H=5
+SmC=157
+Nm=DefineArguments
+ObjVer=1
+CF=2
+n1I=1
+n1O=1
+mC=1
+C1=6
+mI=1
+mO=1
+tO=1
+mP=1
+P1=
+]
+[
+ObjTp=Sm
+H=6
+SmC=55
+Nm=Argument Definition
+ObjVer=1
+PrH=5
+CF=2
+n1I=39
+n1O=39
+mI=39
+I1=39
+I2=14
+I3=14
+I4=14
+I5=14
+I6=33
+I7=14
+I8=14
+I9=14
+I10=47
+I11=8
+I12=14
+I13=14
+I14=14
+I15=14
+I16=14
+I17=50
+I18=14
+I19=14
+I20=14
+I21=46
+I22=14
+I23=14
+I24=14
+I25=14
+I26=14
+I27=14
+I28=14
+I29=14
+I30=14
+I31=14
+I32=14
+I33=14
+I34=14
+I35=14
+I36=14
+I37=14
+I38=14
+I39=14
+mO=39
+tO=39
+O1=35
+O2=14
+O3=14
+O4=52
+O5=4
+O6=9
+O7=10
+O8=14
+O9=14
+O10=11
+O11=27
+O12=25
+O13=14
+O14=14
+O15=15
+O16=153
+O17=17
+O18=18
+O19=14
+O20=14
+O21=28
+O22=7
+O23=14
+O24=171
+O25=155
+O26=156
+O27=157
+O28=158
+O29=159
+O30=160
+O31=161
+O32=162
+O33=163
+O34=164
+O35=165
+O36=166
+O37=167
+O38=168
+O39=169
+mP=70
+P1=Name
+P2=ID
+P3=Warm-up Time
+P4=Volume Control
+P5=Input Changes
+P6=Sources for Power Off
+P7=Sources for Input 01
+P8=Sources for Input 02
+P9=Sources for Input 03
+P10=Sources for Input 04
+P11=Sources for Input 05
+P12=Sources for Input 06
+P13=Sources for Input 07
+P14=Sources for Input 08
+P15=Sources for Input 09
+P16=Sources for Input 10
+P17=Sources for Input 11
+P18=Sources for Input 12
+P19=Sources for Input 13
+P20=Sources for Input 14
+P21=Sources for Input 15
+P22=Sources for Input 16
+P23=Sources for Input 17
+P24=Sources for Input 18
+P25=Sources for Input 19
+P26=Sources for Input 20
+P27=Sources for Input 21
+P28=Sources for Input 22
+P29=Sources for Input 23
+P30=Sources for Input 24
+P31=Sources for Input 25
+P32=Sources for Input 26
+P33=Sources for Input 27
+P34=Sources for Input 28
+P35=Sources for Input 29
+P36=Sources for Input 30
+P37=Sources for Input 31
+P38=Sources for Input 32
+P39=Sources for Input 33
+P40=Sources for Input 34
+P41=Sources for Input 35
+P42=Sources for Input 36
+P43=Sources for Input 37
+P44=Sources for Input 38
+P45=Sources for Input 39
+P46=Sources for Input 40
+P47=Sources for Input 41
+P48=Sources for Input 42
+P49=Sources for Input 43
+P50=Sources for Input 44
+P51=Sources for Input 45
+P52=Sources for Input 46
+P53=Sources for Input 47
+P54=Sources for Input 48
+P55=Sources for Input 49
+P56=Sources for Input 50
+P57=Sources for Input 51
+P58=Sources for Input 52
+P59=Sources for Input 53
+P60=Sources for Input 54
+P61=Sources for Input 55
+P62=Sources for Input 56
+P63=Sources for Input 57
+P64=Sources for Input 58
+P65=Sources for Input 59
+P66=Sources for Input 60
+P67=Sources for Input 61
+P68=Sources for Input 62
+P69=Sources for Input 63
+P70=Sources for Input 64
+MPp=8
+Pp1=1
+Pp2=7
+Pp3=2
+Pp4=6
+Pp5=3
+Pp6=5
+Pp8=4
+]
+[
+ObjTp=Sm
+H=7
+SmC=409
+Nm=Logic Wave Pulse
+ObjVer=1
+PrH=36
+CF=2
+n1I=3
+n1O=2
+Cmn1=Once\\
+mI=3
+I1=29
+mO=2
+tO=2
+O1=9
+mP=1
+P1=1d
+]
+[
+ObjTp=Sm
+H=8
+SmC=20
+Nm=Buffer
+ObjVer=1
+PrH=12
+CF=2
+n1I=2
+n1O=1
+Cmn1=Disconnect Upon Power Off\\
+mI=2
+I1=2
+I2=19
+mO=1
+tO=1
+O1=64
+]
+[
+ObjTp=Sm
+H=9
+SmC=20
+Nm=Buffer
+ObjVer=1
+PrH=48
+CF=2
+n1I=3
+n1O=2
+Cmn1=Volume Up/Down\\
+mI=3
+I1=58
+I2=12
+I3=21
+mO=2
+tO=2
+O1=27
+O2=25
+]
+[
+ObjTp=Sm
+H=10
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=4
+CF=2
+Cmn1=Associations\\
+mC=1
+C1=12
+]
+[
+ObjTp=Sm
+H=11
+SmC=63
+Nm=Serial Substring
+ObjVer=1
+PrH=12
+CF=2
+n1I=1
+n1O=1
+Cmn1=Source Is~\\
+mI=1
+I1=22
+mO=1
+tO=1
+O1=34
+mP=2
+P1=0d
+P2=1d
+]
+[
+ObjTp=Sm
+H=12
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=10
+CF=2
+Cmn1=Source\\
+mC=4
+C1=49
+C2=54
+C3=8
+C4=11
+]
+[
+ObjTp=Sm
+H=13
+SmC=20
+Nm=Buffer
+ObjVer=1
+PrH=36
+CF=2
+n1I=2
+n1O=1
+Cmn1=Power On/Off\\
+mI=2
+I1=57
+I2=66
+mO=1
+tO=1
+O1=4
+]
+[
+ObjTp=Sm
+H=14
+SmC=20
+Nm=Buffer
+ObjVer=1
+PrH=32
+CF=2
+n1I=3
+n1O=2
+Cmn1=Power On/Off\\
+mI=3
+I1=29
+I2=68
+I3=41
+mO=2
+tO=2
+O1=4
+O2=68
+]
+[
+ObjTp=Sm
+H=15
+SmC=3
+Nm=OR
+ObjVer=1
+PrH=42
+CF=2
+n1I=2
+n1O=1
+Cmn1=Volume Control Allows Mute\\
+mI=2
+I1=58
+I2=59
+mO=1
+tO=1
+O1=30
+]
+[
+ObjTp=Sm
+H=16
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=44
+CF=2
+Cmn1=Pulses\\
+mC=5
+C1=17
+C2=28
+C3=51
+C4=60
+C5=67
+]
+[
+ObjTp=Sm
+H=17
+SmC=38
+Nm=Analog Equate
+ObjVer=1
+PrH=16
+CF=2
+n1I=2
+n1O=2
+Cmn1=Input Changes\\
+mI=2
+I1=53
+mO=2
+tO=2
+O1=37
+O2=45
+mP=2
+P1=Ah
+P2=Bh
+]
+[
+ObjTp=Sm
+H=18
+SmC=16
+Nm=Delay
+ObjVer=1
+PrH=40
+CF=2
+n1I=2
+n1O=1
+Cmn1=Warmed Up\\
+mI=2
+I1=29
+I2=57
+mO=1
+tO=1
+O1=44
+mP=1
+P1=#Warm-up Time
+]
+[
+ObjTp=Sm
+H=19
+SmC=38
+Nm=Analog Equate
+ObjVer=1
+PrH=39
+CF=2
+n1I=2
+n1O=4
+Cmn1=Volume Control Is\\
+mI=2
+I1=70
+mO=4
+tO=4
+O1=43
+O2=58
+O3=59
+O4=5
+mP=4
+P1=Ah
+P2=Bh
+P3=Ch
+P4=Dh
+]
+[
+ObjTp=Sm
+H=20
+SmC=46
+Nm=Analog Buffer
+ObjVer=1
+PrH=44
+CF=2
+n1I=3
+n1O=2
+Cmn1=Input, Input~\\
+mI=3
+I1=44
+I2=42
+I3=48
+mO=2
+tO=2
+O1=28
+O2=7
+]
+[
+ObjTp=Sm
+H=22
+SmC=20
+Nm=Buffer
+ObjVer=1
+PrH=40
+CF=2
+n1I=2
+n1O=1
+Cmn1=Signal Map\\
+mI=2
+I1=2
+I2=29
+mO=1
+tO=1
+O1=52
+]
+[
+ObjTp=Sm
+H=23
+SmC=12
+Nm=Set/Reset Latch
+ObjVer=1
+PrH=42
+CF=2
+n1I=2
+n1O=2
+Cmn1=Muted\\
+mI=2
+I1=6
+I2=20
+mO=2
+tO=2
+O1=16
+O2=36
+]
+[
+ObjTp=Sm
+H=24
+SmC=32
+Nm=Analog Initialize
+ObjVer=1
+PrH=39
+CF=2
+n1I=1
+n1O=2
+Cmn1=Configuration\\
+mI=1
+I1=2
+mO=2
+tO=2
+O1=70
+O2=53
+mP=2
+P1=#Volume Control
+P2=#Input Changes
+]
+[
+ObjTp=Sm
+H=25
+SmC=46
+Nm=Analog Buffer
+ObjVer=1
+PrH=39
+CF=2
+n1I=2
+n1O=1
+mI=2
+I1=74
+I2=8
+mO=1
+tO=1
+O1=70
+]
+[
+ObjTp=Sm
+H=26
+SmC=20
+Nm=Buffer
+ObjVer=1
+PrH=38
+CF=2
+n1I=3
+n1O=2
+Cmn1=Pending\\
+mI=3
+I1=2
+I2=33
+I3=50
+mO=2
+tO=2
+O1=1
+O2=1
+]
+[
+ObjTp=Sm
+H=27
+SmC=20
+Nm=Buffer
+ObjVer=1
+PrH=42
+CF=2
+n1I=4
+n1O=3
+Cmn1=Signal Map\\
+mI=4
+I1=2
+I2=16
+I3=17
+I4=18
+mO=3
+tO=3
+O1=15
+O2=153
+O3=153
+]
+[
+ObjTp=Sm
+H=28
+SmC=1309
+Nm=Serial/Analog Logic Wave Pulse
+ObjVer=1
+PrH=16
+CF=2
+n1I=2
+n1O=2
+Cmn1=Input Change When Different\\
+mI=2
+I1=28
+I2=45
+mO=2
+tO=2
+O1=65
+mP=1
+P1=1d
+]
+[
+ObjTp=Sm
+H=29
+SmC=858
+Nm=Make String Permanent
+ObjVer=1
+PrH=44
+CF=2
+n1I=1
+Cmn1=Input$\\
+mI=1
+I1=48
+mP=1
+P1=1d
+]
+[
+ObjTp=Sm
+H=30
+SmC=20
+Nm=Buffer
+ObjVer=1
+PrH=32
+CF=2
+n1I=2
+n1O=1
+Cmn1=Power Off (always)\\
+mI=2
+I1=2
+I2=19
+mO=1
+tO=1
+O1=10
+]
+[
+ObjTp=Sm
+H=31
+SmC=409
+Nm=Logic Wave Pulse
+ObjVer=1
+PrH=42
+CF=2
+n1I=3
+n1O=2
+Cmn1=Mute On/Off!\\
+mI=3
+I1=69
+mO=2
+tO=2
+O1=49
+mP=1
+P1=1d
+]
+[
+ObjTp=Sm
+H=32
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=40
+CF=2
+Cmn1=Power Off\\
+mC=2
+C1=14
+C2=30
+]
+[
+ObjTp=Sm
+H=33
+SmC=20
+Nm=Buffer
+ObjVer=1
+PrH=40
+CF=2
+n1I=5
+n1O=4
+Cmn1=Power On, Power Off\\
+mI=5
+I1=2
+I2=66
+I3=71
+I4=68
+I5=41
+mO=4
+tO=4
+O1=13
+O2=13
+O3=19
+O4=19
+]
+[
+ObjTp=Sm
+H=34
+SmC=12
+Nm=Set/Reset Latch
+ObjVer=1
+PrH=40
+CF=2
+n1I=2
+n1O=2
+Cmn1=Power Is On, Power Is Off\\
+mI=2
+I1=13
+I2=19
+mO=2
+tO=2
+O1=29
+O2=57
+]
+[
+ObjTp=Sm
+H=35
+SmC=32
+Nm=Analog Initialize
+ObjVer=1
+PrH=44
+CF=2
+n1I=1
+n1O=2
+Cmn1=Reset Input Upon Power Off\\
+mI=1
+I1=57
+mO=2
+tO=2
+O1=46
+O2=28
+mP=2
+P1=0d
+P2=0d
+]
+[
+ObjTp=Sm
+H=36
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=40
+CF=2
+Cmn1=Power On\\
+mC=2
+C1=13
+C2=7
+]
+[
+ObjTp=Sm
+H=37
+SmC=56
+Nm=Serial Buffer
+ObjVer=1
+PrH=68
+CF=2
+n1I=2
+n1O=1
+Cmn1=Signal Map\\
+mI=2
+I1=2
+I2=39
+mO=1
+tO=1
+O1=54
+]
+[
+ObjTp=Sm
+H=38
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=4
+CF=2
+Cmn1=Properties\\
+mC=6
+C1=40
+C2=41
+C3=42
+C4=44
+C5=68
+C6=26
+]
+[
+ObjTp=Sm
+H=39
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=4
+CF=2
+Cmn1=Configuration\\
+mC=4
+C1=24
+C2=19
+C3=25
+C4=65
+]
+[
+ObjTp=Sm
+H=40
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=38
+CF=2
+Cmn1=Power\\
+mC=6
+C1=22
+C2=33
+C3=34
+C4=36
+C5=32
+C6=18
+]
+[
+ObjTp=Sm
+H=41
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=38
+CF=2
+Cmn1=Volume\\
+mC=2
+C1=48
+C2=45
+]
+[
+ObjTp=Sm
+H=42
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=38
+CF=2
+Cmn1=Mute\\
+mC=7
+C1=27
+C2=23
+C3=31
+C4=57
+C5=63
+C6=15
+C7=55
+]
+[
+ObjTp=Sm
+H=44
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=38
+CF=2
+Cmn1=Input\\
+mC=5
+C1=46
+C2=29
+C3=20
+C4=35
+C5=16
+]
+[
+ObjTp=Sm
+H=45
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=41
+CF=2
+Cmn1=Relative\\
+mC=1
+C1=47
+]
+[
+ObjTp=Sm
+H=46
+SmC=103
+Nm=IndexOf.usp
+ObjVer=1
+PrH=44
+CF=2
+n2I=1
+n1O=2
+Cmn1=Input, Input$\\
+mI=1
+I1=34
+mO=4
+tO=4
+O1=41
+O2=71
+O3=42
+O4=48
+mP=67
+P1=
+P2=Bh
+P3=\x00[\#Sources for Power Off]\
+P4=#Sources for Input 01
+P5=#Sources for Input 02
+P6=#Sources for Input 03
+P7=#Sources for Input 04
+P8=#Sources for Input 05
+P9=#Sources for Input 06
+P10=#Sources for Input 07
+P11=#Sources for Input 08
+P12=#Sources for Input 09
+P13=#Sources for Input 10
+P14=#Sources for Input 11
+P15=#Sources for Input 12
+P16=#Sources for Input 13
+P17=#Sources for Input 14
+P18=#Sources for Input 15
+P19=#Sources for Input 16
+P20=#Sources for Input 17
+P21=#Sources for Input 18
+P22=#Sources for Input 19
+P23=#Sources for Input 20
+P24=#Sources for Input 21
+P25=#Sources for Input 22
+P26=#Sources for Input 23
+P27=#Sources for Input 24
+P28=#Sources for Input 25
+P29=#Sources for Input 26
+P30=#Sources for Input 27
+P31=#Sources for Input 28
+P32=#Sources for Input 29
+P33=#Sources for Input 30
+P34=#Sources for Input 31
+P35=#Sources for Input 32
+P36=#Sources for Input 33
+P37=#Sources for Input 34
+P38=#Sources for Input 35
+P39=#Sources for Input 36
+P40=#Sources for Input 37
+P41=#Sources for Input 38
+P42=#Sources for Input 39
+P43=#Sources for Input 40
+P44=#Sources for Input 41
+P45=#Sources for Input 42
+P46=#Sources for Input 43
+P47=#Sources for Input 44
+P48=#Sources for Input 45
+P49=#Sources for Input 46
+P50=#Sources for Input 47
+P51=#Sources for Input 48
+P52=#Sources for Input 49
+P53=#Sources for Input 50
+P54=#Sources for Input 51
+P55=#Sources for Input 52
+P56=#Sources for Input 53
+P57=#Sources for Input 54
+P58=#Sources for Input 55
+P59=#Sources for Input 56
+P60=#Sources for Input 57
+P61=#Sources for Input 58
+P62=#Sources for Input 59
+P63=#Sources for Input 60
+P64=#Sources for Input 61
+P65=#Sources for Input 62
+P66=#Sources for Input 63
+P67=#Sources for Input 64
+]
+[
+ObjTp=Sm
+H=47
+SmC=20
+Nm=Buffer
+ObjVer=1
+PrH=45
+CF=2
+n1I=3
+n1O=2
+Cmn1=Volume Up/Down\\
+mI=3
+I1=59
+I2=12
+I3=21
+mO=2
+tO=2
+O1=27
+O2=25
+]
+[
+ObjTp=Sm
+H=48
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=41
+CF=2
+Cmn1=Absolute\\
+mC=2
+C1=9
+C2=50
+]
+[
+ObjTp=Sm
+H=49
+SmC=155
+Nm=Crosspoint.umc
+ObjVer=1
+PrH=12
+CF=2
+n1I=2
+mI=2
+I1=64
+I2=54
+mP=2
+P1=45\[#ID\]h
+P2=00
+]
+[
+ObjTp=Sm
+H=50
+SmC=56
+Nm=Serial Buffer
+ObjVer=1
+PrH=48
+CF=2
+n1I=2
+n1O=1
+Cmn1=Volume~\\
+mI=2
+I1=58
+I2=24
+mO=1
+tO=1
+O1=11
+]
+[
+ObjTp=Sm
+H=51
+SmC=1309
+Nm=Serial/Analog Logic Wave Pulse
+ObjVer=1
+PrH=16
+CF=2
+n1I=2
+n1O=2
+Cmn1=Input Change Always\\
+mI=2
+I1=7
+I2=37
+mO=2
+tO=2
+O1=67
+mP=1
+P1=1d
+]
+[
+ObjTp=Sm
+H=52
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=4
+CF=2
+Cmn1=Model\\
+mC=2
+C1=53
+C2=56
+]
+[
+ObjTp=Sm
+H=53
+SmC=155
+Nm=Self.umc
+ObjVer=1
+PrH=52
+CF=2
+n1I=11
+n1O=11
+mI=11
+mO=11
+tO=11
+O4=23
+O5=55
+O6=61
+O7=62
+O9=76
+O10=75
+O11=77
+mP=5
+P1=#Name
+P2=#ID
+P3=4
+P4=0d
+P5=4d
+]
+[
+ObjTp=Sm
+H=54
+SmC=447
+Nm=Control Crosspoint Routing.
+ObjVer=1
+PrH=12
+CF=2
+n1I=43
+n2I=104
+n1O=43
+Cmn1=45[ID]h\\
+mI=253
+I12=31
+mO=147
+tO=252
+O1=31
+O54=35
+O160=22
+mP=1
+P1=45\[#ID\]h
+]
+[
+ObjTp=Sm
+H=55
+SmC=20
+Nm=Buffer
+ObjVer=1
+PrH=42
+CF=2
+n1I=4
+n1O=3
+Cmn1=Volume Control Allows Mute\\
+mI=4
+I1=30
+I2=56
+I3=60
+I4=73
+mO=3
+tO=3
+O1=69
+O2=40
+O3=26
+]
+[
+ObjTp=Sm
+H=56
+SmC=446
+Nm=Equipment Crosspoint Routing.
+ObjVer=1
+PrH=52
+CF=2
+n1I=143
+n2I=72
+n1O=143
+Cmn1=40[ID]h\\
+mI=290
+I33=29
+I47=43
+I48=58
+I49=59
+I50=5
+I53=16
+I154=23
+I155=55
+I156=61
+I157=62
+I168=35
+I184=47
+I204=46
+I228=76
+I229=75
+I230=77
+mO=215
+tO=289
+O26=64
+O33=66
+O34=68
+O42=12
+O43=21
+O52=56
+O53=60
+O54=73
+O241=54
+O257=24
+O277=7
+mP=1
+P1=40\[#ID\]h
+]
+[
+ObjTp=Sm
+H=57
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=42
+CF=2
+Cmn1=Mute On\\
+mC=2
+C1=58
+C2=62
+]
+[
+ObjTp=Sm
+H=58
+SmC=409
+Nm=Logic Wave Pulse
+ObjVer=1
+PrH=57
+CF=2
+n1I=3
+n1O=2
+Cmn1=Mute On!\\
+mI=3
+I1=40
+mO=2
+tO=2
+O1=6
+mP=1
+P1=1d
+]
+[
+ObjTp=Sm
+H=60
+SmC=3
+Nm=OR
+ObjVer=1
+PrH=16
+CF=2
+n1I=2
+n1O=1
+Cmn1=Input Change\\
+mI=2
+I1=65
+I2=67
+mO=1
+tO=1
+O1=72
+]
+[
+ObjTp=Sm
+H=62
+SmC=20
+Nm=Buffer
+ObjVer=1
+PrH=57
+CF=2
+n1I=3
+n1O=2
+Cmn1=Mute On (always)\\
+mI=3
+I1=36
+I2=6
+I3=49
+mO=2
+tO=2
+O1=17
+O2=40
+]
+[
+ObjTp=Sm
+H=63
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=42
+CF=2
+Cmn1=Mute Off\\
+mC=2
+C1=64
+C2=66
+]
+[
+ObjTp=Sm
+H=64
+SmC=409
+Nm=Logic Wave Pulse
+ObjVer=1
+PrH=63
+CF=2
+n1I=3
+n1O=2
+Cmn1=Mute Off!\\
+mI=3
+I1=26
+mO=2
+tO=2
+O1=20
+mP=1
+P1=1d
+]
+[
+ObjTp=Sm
+H=65
+SmC=492
+Nm=Analog Comparison (Full Set)
+ObjVer=1
+PrH=39
+CF=2
+n1I=2
+n1O=6
+mI=2
+I1=8
+I2=1
+mO=6
+tO=6
+O5=74
+]
+[
+ObjTp=Sm
+H=66
+SmC=20
+Nm=Buffer
+ObjVer=1
+PrH=63
+CF=2
+n1I=6
+n1O=5
+Cmn1=Mute Off (always)\\
+mI=6
+I1=16
+I2=20
+I3=49
+I4=12
+I5=21
+I6=19
+mO=5
+tO=5
+O1=18
+O2=26
+O3=26
+O4=26
+O5=26
+]
+[
+ObjTp=Sm
+H=67
+SmC=38
+Nm=Analog Equate
+ObjVer=1
+PrH=16
+CF=2
+n1I=2
+n1O=16
+Cmn1=Input\\
+mI=2
+I1=28
+I2=72
+mO=16
+tO=16
+O1=171
+O2=155
+O3=156
+O4=157
+O5=158
+O6=159
+O7=160
+O8=161
+O9=162
+O10=163
+O11=164
+O12=165
+O13=166
+O14=167
+O15=168
+O16=169
+mP=16
+P1=01d
+P2=02d
+P3=03d
+P4=04d
+P5=05d
+P6=06d
+P7=07d
+P8=08d
+P9=09d
+P10=10d
+P11=11d
+P12=12d
+P13=13d
+P14=14d
+P15=15d
+P16=16d
+]
+[
+ObjTp=Sm
+H=68
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=38
+CF=2
+Cmn1=Source\\
+mC=1
+C1=37
+]
+[
+ObjTp=Sg
+H=4
+Nm=[Power_On/Off]
+]
+[
+ObjTp=Sg
+H=5
+Nm=__X__Volume_Control_Is_Fixed
+]
+[
+ObjTp=Sg
+H=6
+Nm=__X__Mute_On!
+]
+[
+ObjTp=Sg
+H=7
+Nm=[Input~]
+SgTp=4
+]
+[
+ObjTp=Sg
+H=8
+Nm=[Volume_Control_Is]
+SgTp=2
+]
+[
+ObjTp=Sg
+H=9
+Nm=[Power_On]
+]
+[
+ObjTp=Sg
+H=10
+Nm=[Power_Off]
+]
+[
+ObjTp=Sg
+H=11
+Nm=[Volume~]
+SgTp=4
+]
+[
+ObjTp=Sg
+H=12
+Nm=__X__Volume_Up
+]
+[
+ObjTp=Sg
+H=13
+Nm=__X__Power_On!
+]
+[
+ObjTp=Sg
+H=14
+Nm=[~UNUSED~]
+SgTp=31
+]
+[
+ObjTp=Sg
+H=15
+Nm=[Mute]
+]
+[
+ObjTp=Sg
+H=16
+Nm=__X__Mute_Is_On
+]
+[
+ObjTp=Sg
+H=17
+Nm=[Mute_On]
+]
+[
+ObjTp=Sg
+H=18
+Nm=[Mute_Off]
+]
+[
+ObjTp=Sg
+H=19
+Nm=__X__Power_Off!
+]
+[
+ObjTp=Sg
+H=20
+Nm=__X__Mute_Off!
+]
+[
+ObjTp=Sg
+H=21
+Nm=__X__Volume_Down
+]
+[
+ObjTp=Sg
+H=22
+Nm=__X__Source_Route_Is~
+SgTp=4
+]
+[
+ObjTp=Sg
+H=23
+Nm=__X__ID
+SgTp=2
+]
+[
+ObjTp=Sg
+H=24
+Nm=__X__Volume~
+SgTp=4
+]
+[
+ObjTp=Sg
+H=25
+Nm=[Volume_Down]
+]
+[
+ObjTp=Sg
+H=26
+Nm=__X__Mute_Off
+]
+[
+ObjTp=Sg
+H=27
+Nm=[Volume_Up]
+]
+[
+ObjTp=Sg
+H=28
+Nm=[Input]
+SgTp=2
+]
+[
+ObjTp=Sg
+H=29
+Nm=__X__Power_Is_On
+]
+[
+ObjTp=Sg
+H=30
+Nm=__X__Volume_Control_Allows_Mute
+]
+[
+ObjTp=Sg
+H=31
+Nm=__X__Source_Connected
+]
+[
+ObjTp=Sg
+H=33
+Nm=[Power_Is_On]
+]
+[
+ObjTp=Sg
+H=34
+Nm=__X__Source_Is~
+SgTp=4
+]
+[
+ObjTp=Sg
+H=35
+Nm=[Source_Is]
+SgTp=2
+]
+[
+ObjTp=Sg
+H=36
+Nm=__X__Muted*
+]
+[
+ObjTp=Sg
+H=37
+Nm=__X__Input_Changes_When_Different
+]
+[
+ObjTp=Sg
+H=39
+Nm=[Source~]
+SgTp=4
+]
+[
+ObjTp=Sg
+H=40
+Nm=__X__Mute_On
+]
+[
+ObjTp=Sg
+H=41
+Nm=__X__Input_Found_First
+]
+[
+ObjTp=Sg
+H=42
+Nm=__X__Input
+SgTp=2
+]
+[
+ObjTp=Sg
+H=43
+Nm=__X__Volume_Control_Is_None
+]
+[
+ObjTp=Sg
+H=44
+Nm=__X__Warmed_Up
+]
+[
+ObjTp=Sg
+H=45
+Nm=__X__Input_Changes_Always
+]
+[
+ObjTp=Sg
+H=46
+Nm=[Input_Is]
+SgTp=2
+]
+[
+ObjTp=Sg
+H=47
+Nm=[Volume_Is]
+SgTp=2
+]
+[
+ObjTp=Sg
+H=48
+Nm=__X__Input$
+SgTp=4
+]
+[
+ObjTp=Sg
+H=49
+Nm=__X__Mute_On/Off!
+]
+[
+ObjTp=Sg
+H=50
+Nm=[Mute_Is_On]
+]
+[
+ObjTp=Sg
+H=52
+Nm=[Power]
+]
+[
+ObjTp=Sg
+H=53
+Nm=__X__Input_Changes
+SgTp=2
+]
+[
+ObjTp=Sg
+H=54
+Nm=__X__Source~
+SgTp=4
+]
+[
+ObjTp=Sg
+H=55
+Nm=__X__Route
+SgTp=2
+]
+[
+ObjTp=Sg
+H=56
+Nm=__X__Mute_On/Off_Model
+]
+[
+ObjTp=Sg
+H=57
+Nm=__X__Power_Is_Off
+]
+[
+ObjTp=Sg
+H=58
+Nm=__X__Volume_Control_Is_Absolute
+]
+[
+ObjTp=Sg
+H=59
+Nm=__X__Volume_Control_Is_Relative
+]
+[
+ObjTp=Sg
+H=60
+Nm=__X__Mute_On_Model
+]
+[
+ObjTp=Sg
+H=61
+Nm=__X__Page
+SgTp=2
+]
+[
+ObjTp=Sg
+H=62
+Nm=__X__Icon
+SgTp=2
+]
+[
+ObjTp=Sg
+H=64
+Nm=__X__Source_Disconnect
+]
+[
+ObjTp=Sg
+H=65
+Nm=__X__Input_Change_When_Different
+]
+[
+ObjTp=Sg
+H=66
+Nm=__X__Power_On
+]
+[
+ObjTp=Sg
+H=67
+Nm=__X__Input_Change_Always
+]
+[
+ObjTp=Sg
+H=68
+Nm=__X__Power_Off
+]
+[
+ObjTp=Sg
+H=69
+Nm=__X__Mute_On/Off
+]
+[
+ObjTp=Sg
+H=70
+Nm=__X__Volume_Control_Is
+SgTp=2
+]
+[
+ObjTp=Sg
+H=71
+Nm=__X__Input_Found_Other
+]
+[
+ObjTp=Sg
+H=72
+Nm=__X__Input_Change
+]
+[
+ObjTp=Sg
+H=73
+Nm=__X__Mute_Off_Model
+]
+[
+ObjTp=Sg
+H=74
+Nm=__X__Volume_Control_Option_Is_Defined
+]
+[
+ObjTp=Sg
+H=75
+Nm=__X__Route$
+SgTp=4
+]
+[
+ObjTp=Sg
+H=76
+Nm=__X__Name$
+SgTp=4
+]
+[
+ObjTp=Sg
+H=77
+Nm=__X__Page$
+SgTp=4
+]
+[
+ObjTp=Sg
+H=153
+Nm=[Mute_On/Off]
+]
+[
+ObjTp=Sg
+H=155
+Nm=[Input_02]
+]
+[
+ObjTp=Sg
+H=156
+Nm=[Input_03]
+]
+[
+ObjTp=Sg
+H=157
+Nm=[Input_04]
+]
+[
+ObjTp=Sg
+H=158
+Nm=[Input_05]
+]
+[
+ObjTp=Sg
+H=159
+Nm=[Input_06]
+]
+[
+ObjTp=Sg
+H=160
+Nm=[Input_07]
+]
+[
+ObjTp=Sg
+H=161
+Nm=[Input_08]
+]
+[
+ObjTp=Sg
+H=162
+Nm=[Input_09]
+]
+[
+ObjTp=Sg
+H=163
+Nm=[Input_10]
+]
+[
+ObjTp=Sg
+H=164
+Nm=[Input_11]
+]
+[
+ObjTp=Sg
+H=165
+Nm=[Input_12]
+]
+[
+ObjTp=Sg
+H=166
+Nm=[Input_13]
+]
+[
+ObjTp=Sg
+H=167
+Nm=[Input_14]
+]
+[
+ObjTp=Sg
+H=168
+Nm=[Input_15]
+]
+[
+ObjTp=Sg
+H=169
+Nm=[Input_16]
+]
+[
+ObjTp=Sg
+H=171
+Nm=[Input_01]
+]
+[
+ObjTp=Dp
+H=1
+Tp=1
+NoS=FALSE
+EncFmt=3
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=2
+Tp=1
+NF=17
+DNF=16
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=3
+Tp=1
+NF=63
+DNF=2
+EncFmt=0
+DVLF=1
+VVS=2
+VN=2
+Val1=Ah
+Lbl1=When Different
+Val2=Bh
+Lbl2=Always
+Sgn=0
+]
+[
+ObjTp=Dp
+H=4
+Tp=1
+NoS=FALSE
+EncFmt=3
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=5
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=6
+Tp=1
+SD=(A) None, (B) Absolute, (C) Relative, (D) Fixed
+NF=2
+DNF=2
+EncFmt=0
+DVLF=1
+VVS=2
+VN=4
+Val1=Ah
+Lbl1=None
+Val2=Bh
+Lbl2=Absolute
+Val3=Ch
+Lbl3=Relative
+Val4=Dh
+Lbl4=Fixed
+Sgn=0
+]
+[
+ObjTp=Dp
+H=7
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]

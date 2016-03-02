@@ -6,7 +6,7 @@
   Sgntr=UserSPlus
   RelVrs=1
   IntStrVrs=1
-  SPlusVrs=4.02.26
+  SPlusVrs=4.03.16
   CrossCplrVrs=1.3
 [END]
 [BEGIN]
@@ -20,8 +20,8 @@
   Name=IndexOf
   SmplCName=IndexOf.usp
   Code=1
-  SysRev5=4.000
-  SMWRev=2.02.00
+  SysRev5=4.006
+  SMWRev=3.00.00
   OutputCue1=Found_First
   OutputSigType1=Digital
   OutputCue2=Found_Other
@@ -267,6 +267,7 @@
   SymJam=NonExclusive
   FileName=IndexOf.ush
   SIMPLPlusModuleEncoding=0
+  clz1=AppHelperClasses v2_0
 [END]
 [BEGIN]
   ObjTp=Dp

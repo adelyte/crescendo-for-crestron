@@ -1,0 +1,3058 @@
+[
+Version=1
+]
+[
+ObjTp=FSgntr
+Sgntr=UserMacro
+RelVrs=4.03.20
+IntStrVrs=2
+MinSMWVrs=3.00.00
+MinTIOVrs=0
+SavedBy=SMW3.11.06
+]
+[
+ObjTp=Hd
+S0Nd=1
+S1Nd=2
+SLNd=3
+PrNm=Crestron SWAMP.umc
+DbVr=54.00.012.00
+DvcDbVr=71.05.004.00
+PgmNm=Adelyte Company
+CltNm=Crestron SWAMP
+Incl=362,378,380,405,407,408,409,478,522,537,554,586,590,611,624,767,830,883,1032,1062,1079,1134,1157,1199,1220,1222,1299,1348,1439,1472,1473,1499,1746,1803,1975,2229,2354,2514,2523,2532,3708,3902,3912,3918,3925,1766,2574,2651,2817,2886,2938,2947,3181,3197,3233,3710,3735,3736,3816,3888,4176,4308,4476,4591,4769,
+McNm=Crestron SWAMP
+SmVr=981
+DvVr=981
+TpN1=1
+TpN2=2
+TpN3=3
+TpN4=4
+TpN5=5
+NumDvc=1
+Dvc1=2156
+APg=1
+FltTmp=1
+FpCS=0
+EnType=0
+ZeroOnIoOk=0
+]
+[
+ObjTp=Bk
+Nm1=\
+Sx1=0
+Sy1=0
+Mx1=0
+]
+[
+ObjTp=Symbol
+Name=Crestron SWAMP
+Code=1
+SmplCName=Crestron SWAMP.umc
+Smpl-C=3
+CompilerTimePrecision=Single_Or_Double_Precision
+Exclusions=1,19,20,21,88,89,167,168,179,216,225,248,249,266,302,305,213,214,215,217,226,267,310,718,756,854,
+Hint=Crestron SWAMP
+SMWRev=3.00.00
+TIORev=0
+S+=1
+HelpID=1055
+NumDvc=1
+Dvc1=2156
+APg=1
+StdCmd=0
+FltTmp=1
+FpCS=0
+NumFixedInputs=39
+NumFixedOutputs=39
+NumFixedParams=35
+MinVariableInputs=0
+MinVariableInputsList2=0
+MinVariableInputsList3=0
+MinVariableOutputs=0
+MinVariableOutputsList2=0
+MinVariableOutputsList3=0
+MinVariableParams=0
+SymbolTree=46
+UserSymTreeName=Crescendo
+InputSigType1=Digital|Analog|Serial|String
+InputSigType2=Digital|Analog|Serial|String
+InputSigType3=Digital|Analog|Serial|String
+InputSigType4=Digital|Analog|Serial|String
+InputSigType5=Digital
+InputSigType6=Digital
+InputSigType7=Digital
+InputSigType8=Digital
+InputSigType9=Digital
+InputSigType10=Digital
+InputSigType11=Digital
+InputSigType12=Digital
+InputSigType13=Digital|Analog|Serial|String
+InputSigType14=Digital|Analog|Serial|String
+InputSigType15=Digital|Analog|Serial|String
+InputSigType16=Digital|Analog|Serial|String
+InputSigType17=Digital|Analog|Serial|String
+InputSigType18=Digital|Analog|Serial|String
+InputSigType19=Digital|Analog|Serial|String
+InputSigType20=Digital|Analog|Serial|String
+InputSigType21=Digital|Analog|Serial|String
+InputSigType22=Digital|Analog|Serial|String
+InputSigType23=Digital|Analog|Serial|String
+InputSigType24=Digital|Analog|Serial|String
+InputSigType25=Digital|Analog|Serial|String
+InputSigType26=Digital|Analog|Serial|String
+InputSigType27=Digital|Analog|Serial|String
+InputSigType28=Digital|Analog|Serial|String
+InputSigType29=Digital|Analog|Serial|String
+InputSigType30=Digital|Analog|Serial|String
+InputSigType31=Digital|Analog|Serial|String
+InputSigType32=Analog
+OutputSigType1=Analog
+OutputSigType2=Analog
+OutputSigType3=Digital|Analog|Serial|String
+OutputSigType4=Digital|Analog|Serial|String
+OutputSigType5=Digital
+OutputSigType6=Digital
+OutputSigType7=Digital
+OutputSigType8=Digital
+OutputSigType9=Digital
+OutputSigType10=Digital
+OutputSigType11=Digital
+OutputSigType12=Digital
+OutputSigType13=Digital|Analog|Serial|String
+OutputSigType14=Digital
+OutputSigType15=Digital
+OutputSigType16=Digital
+OutputSigType17=Digital
+OutputSigType18=Digital
+OutputSigType19=Digital
+OutputSigType20=Digital
+OutputSigType21=Digital
+OutputSigType22=Digital|Analog|Serial|String
+OutputSigType23=Analog
+OutputSigType24=Analog
+OutputSigType25=Analog
+OutputSigType26=Analog
+OutputSigType27=Analog
+OutputSigType28=Analog
+OutputSigType29=Analog
+OutputSigType30=Analog
+OutputSigType31=Digital|Analog|Serial|String
+OutputSigType32=Analog
+ParamSigType1=String
+ParamSigType2=String
+ParamSigType3=String
+ParamSigType4=String
+ParamSigType5=String
+ParamSigType6=String
+ParamSigType7=String
+ParamSigType8=String
+ParamSigType9=String
+ParamSigType10=String
+ParamSigType11=String
+ParamSigType12=String
+ParamSigType13=String
+ParamSigType14=String
+ParamSigType15=String
+ParamSigType16=String
+ParamSigType17=String
+ParamSigType18=String
+ParamSigType19=String
+ParamSigType20=String
+ParamSigType21=String
+ParamSigType22=List
+ParamSigType23=List
+ParamSigType24=List
+ParamSigType25=List
+ParamSigType26=List
+ParamSigType27=List
+ParamSigType28=String
+ParamSigType29=String
+ParamSigType30=String
+ParamSigType31=String
+ParamSigType32=String
+ParamSigType33=String
+ParamSigType34=String
+ParamSigType35=String
+InputCue1=[~UNUSED~]
+InputCue2=[~UNUSED~]
+InputCue3=[~UNUSED~]
+InputCue4=[~UNUSED~]
+InputCue5=Output_1_Mute_Is_On
+InputCue6=Output_2_Mute_Is_On
+InputCue7=Output_3_Mute_Is_On
+InputCue8=Output_4_Mute_Is_On
+InputCue9=Output_5_Mute_Is_On
+InputCue10=Output_6_Mute_Is_On
+InputCue11=Output_7_Mute_Is_On
+InputCue12=Output_8_Mute_Is_On
+InputCue13=[~UNUSED~]
+InputCue14=[~UNUSED~]
+InputCue15=[~UNUSED~]
+InputCue16=[~UNUSED~]
+InputCue17=[~UNUSED~]
+InputCue18=[~UNUSED~]
+InputCue19=[~UNUSED~]
+InputCue20=[~UNUSED~]
+InputCue21=[~UNUSED~]
+InputCue22=[~UNUSED~]
+InputCue23=[~UNUSED~]
+InputCue24=[~UNUSED~]
+InputCue25=[~UNUSED~]
+InputCue26=[~UNUSED~]
+InputCue27=[~UNUSED~]
+InputCue28=[~UNUSED~]
+InputCue29=[~UNUSED~]
+InputCue30=[~UNUSED~]
+InputCue31=[~UNUSED~]
+InputCue32=Output_1_Volume_Is
+InputCue33=Output_2_Volume_Is
+InputCue34=Output_3_Volume_Is
+InputCue35=Output_4_Volume_Is
+InputCue36=Output_5_Volume_Is
+InputCue37=Output_6_Volume_Is
+InputCue38=Output_7_Volume_Is
+InputCue39=Output_8_Volume_Is
+OutputCue1=SPDIF_1_Input
+OutputCue2=SPDIF_2_Input
+OutputCue3=[~UNUSED~]
+OutputCue4=[~UNUSED~]
+OutputCue5=Output_1_Mute_On
+OutputCue6=Output_2_Mute_On
+OutputCue7=Output_3_Mute_On
+OutputCue8=Output_4_Mute_On
+OutputCue9=Output_5_Mute_On
+OutputCue10=Output_6_Mute_On
+OutputCue11=Output_7_Mute_On
+OutputCue12=Output_8_Mute_On
+OutputCue13=[~UNUSED~]
+OutputCue14=Output_1_Mute_Off
+OutputCue15=Output_2_Mute_Off
+OutputCue16=Output_3_Mute_Off
+OutputCue17=Output_4_Mute_Off
+OutputCue18=Output_5_Mute_Off
+OutputCue19=Output_6_Mute_Off
+OutputCue20=Output_7_Mute_Off
+OutputCue21=Output_8_Mute_Off
+OutputCue22=[~UNUSED~]
+OutputCue23=Output_1_Input
+OutputCue24=Output_2_Input
+OutputCue25=Output_3_Input
+OutputCue26=Output_4_Input
+OutputCue27=Output_5_Input
+OutputCue28=Output_6_Input
+OutputCue29=Output_7_Input
+OutputCue30=Output_8_Input
+OutputCue31=[~UNUSED~]
+OutputCue32=Output_1_Volume
+OutputCue33=Output_2_Volume
+OutputCue34=Output_3_Volume
+OutputCue35=Output_4_Volume
+OutputCue36=Output_5_Volume
+OutputCue37=Output_6_Volume
+OutputCue38=Output_7_Volume
+OutputCue39=Output_8_Volume
+ParamCue1=SPDIF 1 ID
+ParamCue2=SPDIF 2 ID
+ParamCue3=Output 1 ID
+ParamCue4=Output 2 ID
+ParamCue5=Output 3 ID
+ParamCue6=Output 4 ID
+ParamCue7=Output 5 ID
+ParamCue8=Output 6 ID
+ParamCue9=Output 7 ID
+ParamCue10=Output 8 ID
+ParamCue11=Sources for Power Off
+ParamCue12=Sources for Input 01
+ParamCue13=Sources for Input 02
+ParamCue14=Sources for Input 03
+ParamCue15=Sources for Input 04
+ParamCue16=Sources for Input 05
+ParamCue17=Sources for Input 06
+ParamCue18=Sources for Input 07
+ParamCue19=Sources for Input 08
+ParamCue20=Sources for Input 09
+ParamCue21=Sources for Input 10
+ParamCue22=Sources for Input 11
+ParamCue23=Sources for Input 12
+ParamCue24=Sources for Input 13
+ParamCue25=Sources for Input 14
+ParamCue26=Sources for Input 15
+ParamCue27=Sources for Input 16
+ParamCue28=Sources for Input 17
+ParamCue29=Sources for Input 18
+ParamCue30=Sources for Input 19
+ParamCue31=Sources for Input 20
+ParamCue32=Sources for Input 21
+ParamCue33=Sources for Input 22
+ParamCue34=Sources for Input 23
+ParamCue35=Sources for Input 24
+MPp=30
+Pp1=102
+Pp2=8
+Pp3=9
+Pp4=10
+Pp5=49
+Pp6=50
+Pp7=51
+Pp8=52
+Pp11=81
+Pp12=2
+Pp13=3
+Pp14=4
+Pp15=5
+Pp16=6
+Pp17=7
+Pp18=53
+Pp19=54
+Pp20=82
+Pp21=83
+Pp28=92
+Pp29=93
+Pp30=94
+FileName=Crestron SWAMP.umc
+EncodingType=0
+ZeroOnIoOk=0
+]
+[
+ObjTp=Sm
+H=1
+SmC=157
+Nm=Central Control Modules
+ObjVer=1
+CF=2
+n1I=1
+n1O=1
+mI=1
+mO=1
+tO=1
+mP=1
+P1=
+]
+[
+ObjTp=Sm
+H=2
+SmC=157
+Nm=Network Modules
+ObjVer=1
+CF=2
+n1I=1
+n1O=1
+mI=1
+mO=1
+tO=1
+mP=1
+P1=
+]
+[
+ObjTp=Sm
+H=3
+SmC=157
+Nm=Ethernet
+ObjVer=1
+CF=2
+n1I=1
+n1O=1
+mI=1
+mO=1
+tO=1
+mP=1
+P1=
+]
+[
+ObjTp=Sm
+H=4
+SmC=156
+Nm=Logic
+ObjVer=1
+CF=2
+mC=10
+C1=11
+C2=7
+C3=20
+C4=28
+C5=35
+C6=42
+C7=49
+C8=56
+C9=140
+C10=139
+]
+[
+ObjTp=Sm
+H=5
+SmC=157
+Nm=DefineArguments
+ObjVer=1
+CF=2
+n1I=1
+n1O=1
+mC=1
+C1=6
+mI=1
+mO=1
+tO=1
+mP=1
+P1=
+]
+[
+ObjTp=Sm
+H=6
+SmC=55
+Nm=Argument Definition
+ObjVer=1
+PrH=5
+CF=2
+n1I=39
+n1O=39
+mI=39
+I1=5
+I2=5
+I3=5
+I4=5
+I5=75
+I6=36
+I7=4
+I8=9
+I9=40
+I10=45
+I11=71
+I12=77
+I13=5
+I14=5
+I15=5
+I16=5
+I17=5
+I18=5
+I19=5
+I20=5
+I21=5
+I22=5
+I23=5
+I24=5
+I25=5
+I26=5
+I27=5
+I28=5
+I29=5
+I30=5
+I31=5
+I32=33
+I33=37
+I34=53
+I35=55
+I36=126
+I37=127
+I38=134
+I39=135
+mO=39
+tO=39
+O1=79
+O2=11
+O3=5
+O4=5
+O5=8
+O6=15
+O7=6
+O8=17
+O9=18
+O10=19
+O11=21
+O12=23
+O13=5
+O14=26
+O15=39
+O16=52
+O17=56
+O18=60
+O19=61
+O20=62
+O21=63
+O22=5
+O23=78
+O24=118
+O25=51
+O26=47
+O27=28
+O28=29
+O29=64
+O30=65
+O31=5
+O32=13
+O33=10
+O34=66
+O35=49
+O36=67
+O37=68
+O38=69
+O39=73
+mP=35
+P1=SPDIF 1 ID
+P2=SPDIF 2 ID
+P3=Output 1 ID
+P4=Output 2 ID
+P5=Output 3 ID
+P6=Output 4 ID
+P7=Output 5 ID
+P8=Output 6 ID
+P9=Output 7 ID
+P10=Output 8 ID
+P11=Sources for Power Off
+P12=Sources for Input 01
+P13=Sources for Input 02
+P14=Sources for Input 03
+P15=Sources for Input 04
+P16=Sources for Input 05
+P17=Sources for Input 06
+P18=Sources for Input 07
+P19=Sources for Input 08
+P20=Sources for Input 09
+P21=Sources for Input 10
+P22=Sources for Input 11
+P23=Sources for Input 12
+P24=Sources for Input 13
+P25=Sources for Input 14
+P26=Sources for Input 15
+P27=Sources for Input 16
+P28=Sources for Input 17
+P29=Sources for Input 18
+P30=Sources for Input 19
+P31=Sources for Input 20
+P32=Sources for Input 21
+P33=Sources for Input 22
+P34=Sources for Input 23
+P35=Sources for Input 24
+MPp=30
+Pp1=102
+Pp2=8
+Pp3=9
+Pp4=10
+Pp5=49
+Pp6=50
+Pp7=51
+Pp8=52
+Pp11=81
+Pp12=2
+Pp13=3
+Pp14=4
+Pp15=5
+Pp16=6
+Pp17=7
+Pp18=53
+Pp19=54
+Pp20=82
+Pp21=83
+Pp28=92
+Pp29=93
+Pp30=94
+]
+[
+ObjTp=Sm
+H=7
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=4
+CF=2
+Cmn1=Output 2\\
+mC=2
+C1=8
+C2=9
+]
+[
+ObjTp=Sm
+H=8
+SmC=155
+Nm=Switcher.umc
+ObjVer=1
+PrH=7
+CF=2
+n1I=39
+n1O=39
+Cmn1=\\\\
+mI=39
+I10=37
+I17=36
+mO=39
+tO=39
+O10=7
+O11=12
+O12=14
+O17=15
+O18=39
+O21=118
+mP=70
+P1=Output 2
+P2=#Output 2 ID
+P3=0s
+P4=Bh
+P5=Ah
+P6=#Sources for Power Off
+P7=#Sources for Input 01
+P8=#Sources for Input 02
+P9=#Sources for Input 03
+P10=#Sources for Input 04
+P11=#Sources for Input 05
+P12=#Sources for Input 06
+P13=#Sources for Input 07
+P14=#Sources for Input 08
+P15=#Sources for Input 09
+P16=#Sources for Input 10
+P17=#Sources for Input 11
+P18=#Sources for Input 12
+P19=#Sources for Input 13
+P20=#Sources for Input 14
+P21=#Sources for Input 15
+P22=#Sources for Input 16
+P23=#Sources for Input 17
+P24=#Sources for Input 18
+P25=#Sources for Input 19
+P26=#Sources for Input 20
+P27=#Sources for Input 21
+P28=#Sources for Input 22
+P29=#Sources for Input 23
+P30=#Sources for Input 24
+P31=""
+P32=""
+P33=""
+P34=""
+P35=""
+P36=""
+P37=""
+P38=""
+P39=""
+P40=""
+P41=""
+P42=""
+P43=""
+P44=""
+P45=""
+P46=""
+P47=""
+P48=""
+P49=""
+P50=""
+P51=""
+P52=""
+P53=""
+P54=""
+P55=""
+P56=""
+P57=""
+P58=""
+P59=""
+P60=""
+P61=""
+P62=""
+P63=""
+P64=""
+P65=""
+P66=""
+P67=""
+P68=""
+P69=""
+P70=""
+]
+[
+ObjTp=Sm
+H=9
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=7
+CF=2
+Cmn1=Volume\\
+mC=4
+C1=10
+C2=14
+C3=17
+C4=19
+]
+[
+ObjTp=Sm
+H=10
+SmC=540
+Nm=Analog Ramp (Bounds Limited)
+ObjVer=1
+PrH=9
+CF=2
+n1I=3
+n1O=1
+Cmn1=Output 2 Volume\\
+mI=3
+I1=12
+I2=14
+mO=1
+tO=1
+O1=10
+mP=4
+P1=8.0s
+P2=0%
+P3=100%
+P4=0%
+]
+[
+ObjTp=Sm
+H=11
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=4
+CF=2
+Cmn1=Output 1\\
+mC=2
+C1=12
+C2=13
+]
+[
+ObjTp=Sm
+H=12
+SmC=155
+Nm=Switcher.umc
+ObjVer=1
+PrH=11
+CF=2
+n1I=39
+n1O=39
+Cmn1=\\\\
+mI=39
+I10=33
+I17=75
+mO=39
+tO=39
+O10=34
+O11=30
+O12=31
+O17=8
+O18=26
+O21=78
+mP=70
+P1=Output 1
+P2=#Output 1 ID
+P3=0s
+P4=Bh
+P5=Ah
+P6=#Sources for Power Off
+P7=#Sources for Input 01
+P8=#Sources for Input 02
+P9=#Sources for Input 03
+P10=#Sources for Input 04
+P11=#Sources for Input 05
+P12=#Sources for Input 06
+P13=#Sources for Input 07
+P14=#Sources for Input 08
+P15=#Sources for Input 09
+P16=#Sources for Input 10
+P17=#Sources for Input 11
+P18=#Sources for Input 12
+P19=#Sources for Input 13
+P20=#Sources for Input 14
+P21=#Sources for Input 15
+P22=#Sources for Input 16
+P23=#Sources for Input 17
+P24=#Sources for Input 18
+P25=#Sources for Input 19
+P26=#Sources for Input 20
+P27=#Sources for Input 21
+P28=#Sources for Input 22
+P29=#Sources for Input 23
+P30=#Sources for Input 24
+P31=""
+P32=""
+P33=""
+P34=""
+P35=""
+P36=""
+P37=""
+P38=""
+P39=""
+P40=""
+P41=""
+P42=""
+P43=""
+P44=""
+P45=""
+P46=""
+P47=""
+P48=""
+P49=""
+P50=""
+P51=""
+P52=""
+P53=""
+P54=""
+P55=""
+P56=""
+P57=""
+P58=""
+P59=""
+P60=""
+P61=""
+P62=""
+P63=""
+P64=""
+P65=""
+P66=""
+P67=""
+P68=""
+P69=""
+P70=""
+]
+[
+ObjTp=Sm
+H=13
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=11
+CF=2
+Cmn1=Volume\\
+mC=4
+C1=18
+C2=15
+C3=16
+C4=22
+]
+[
+ObjTp=Sm
+H=14
+SmC=96
+Nm=Serial to Analog
+ObjVer=1
+PrH=9
+CF=2
+n1I=1
+n1O=1
+Cmn1=Volume~ to Volume#\\
+mI=1
+I1=7
+mO=1
+tO=1
+O1=16
+mP=1
+P1=0200h
+]
+[
+ObjTp=Sm
+H=15
+SmC=96
+Nm=Serial to Analog
+ObjVer=1
+PrH=13
+CF=2
+n1I=1
+n1O=1
+Cmn1=Volume~ to Volume#\\
+mI=1
+I1=34
+mO=1
+tO=1
+O1=38
+mP=1
+P1=0200h
+]
+[
+ObjTp=Sm
+H=16
+SmC=24
+Nm=Analog Scaler
+ObjVer=1
+PrH=13
+CF=2
+n1I=1
+n1O=1
+Cmn1=Volume# to Volume%\\
+mI=1
+I1=38
+mO=1
+tO=1
+O1=32
+mP=3
+P1=1%
+P2=1d
+P3=0d
+]
+[
+ObjTp=Sm
+H=17
+SmC=24
+Nm=Analog Scaler
+ObjVer=1
+PrH=9
+CF=2
+n1I=1
+n1O=1
+Cmn1=Volume# to Volume%\\
+mI=1
+I1=16
+mO=1
+tO=1
+O1=20
+mP=3
+P1=1%
+P2=1d
+P3=0d
+]
+[
+ObjTp=Sm
+H=18
+SmC=540
+Nm=Analog Ramp (Bounds Limited)
+ObjVer=1
+PrH=13
+CF=2
+n1I=3
+n1O=1
+Cmn1=Output 1 Volume\\
+mI=3
+I1=30
+I2=31
+mO=1
+tO=1
+O1=13
+mP=4
+P1=8.0s
+P2=0%
+P3=100%
+P4=0%
+]
+[
+ObjTp=Sm
+H=19
+SmC=66
+Nm=Analog Rate Limiter
+ObjVer=1
+PrH=9
+CF=2
+n1I=1
+n1O=1
+Cmn1=Output 2 Volume\\
+mI=1
+I1=20
+mO=1
+tO=1
+O1=10
+mP=1
+P1=8.0s
+]
+[
+ObjTp=Sm
+H=20
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=4
+CF=2
+Cmn1=Output 3\\
+mC=2
+C1=21
+C2=23
+]
+[
+ObjTp=Sm
+H=21
+SmC=155
+Nm=Switcher.umc
+ObjVer=1
+PrH=20
+CF=2
+n1I=39
+n1O=39
+Cmn1=\\\\
+mI=39
+I10=53
+I17=4
+mO=39
+tO=39
+O10=22
+O11=24
+O12=25
+O17=6
+O18=52
+O21=51
+mP=70
+P1=Output 3
+P2=#Output 3 ID
+P3=0s
+P4=Bh
+P5=Ah
+P6=#Sources for Power Off
+P7=#Sources for Input 01
+P8=#Sources for Input 02
+P9=#Sources for Input 03
+P10=#Sources for Input 04
+P11=#Sources for Input 05
+P12=#Sources for Input 06
+P13=#Sources for Input 07
+P14=#Sources for Input 08
+P15=#Sources for Input 09
+P16=#Sources for Input 10
+P17=#Sources for Input 11
+P18=#Sources for Input 12
+P19=#Sources for Input 13
+P20=#Sources for Input 14
+P21=#Sources for Input 15
+P22=#Sources for Input 16
+P23=#Sources for Input 17
+P24=#Sources for Input 18
+P25=#Sources for Input 19
+P26=#Sources for Input 20
+P27=#Sources for Input 21
+P28=#Sources for Input 22
+P29=#Sources for Input 23
+P30=#Sources for Input 24
+P31=""
+P32=""
+P33=""
+P34=""
+P35=""
+P36=""
+P37=""
+P38=""
+P39=""
+P40=""
+P41=""
+P42=""
+P43=""
+P44=""
+P45=""
+P46=""
+P47=""
+P48=""
+P49=""
+P50=""
+P51=""
+P52=""
+P53=""
+P54=""
+P55=""
+P56=""
+P57=""
+P58=""
+P59=""
+P60=""
+P61=""
+P62=""
+P63=""
+P64=""
+P65=""
+P66=""
+P67=""
+P68=""
+P69=""
+P70=""
+]
+[
+ObjTp=Sm
+H=22
+SmC=66
+Nm=Analog Rate Limiter
+ObjVer=1
+PrH=13
+CF=2
+n1I=1
+n1O=1
+Cmn1=Output 1 Volume\\
+mI=1
+I1=32
+mO=1
+tO=1
+O1=13
+mP=1
+P1=8.0s
+]
+[
+ObjTp=Sm
+H=23
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=20
+CF=2
+Cmn1=Volume\\
+mC=4
+C1=24
+C2=25
+C3=26
+C4=27
+]
+[
+ObjTp=Sm
+H=24
+SmC=540
+Nm=Analog Ramp (Bounds Limited)
+ObjVer=1
+PrH=23
+CF=2
+n1I=3
+n1O=1
+Cmn1=Output 3 Volume\\
+mI=3
+I1=24
+I2=25
+mO=1
+tO=1
+O1=66
+mP=4
+P1=8.0s
+P2=0%
+P3=100%
+P4=0%
+]
+[
+ObjTp=Sm
+H=25
+SmC=96
+Nm=Serial to Analog
+ObjVer=1
+PrH=23
+CF=2
+n1I=1
+n1O=1
+Cmn1=Volume~ to Volume#\\
+mI=1
+I1=22
+mO=1
+tO=1
+O1=27
+mP=1
+P1=0200h
+]
+[
+ObjTp=Sm
+H=26
+SmC=24
+Nm=Analog Scaler
+ObjVer=1
+PrH=23
+CF=2
+n1I=1
+n1O=1
+Cmn1=Volume# to Volume%\\
+mI=1
+I1=27
+mO=1
+tO=1
+O1=35
+mP=3
+P1=1%
+P2=1d
+P3=0d
+]
+[
+ObjTp=Sm
+H=27
+SmC=66
+Nm=Analog Rate Limiter
+ObjVer=1
+PrH=23
+CF=2
+n1I=1
+n1O=1
+Cmn1=Output 3 Volume\\
+mI=1
+I1=35
+mO=1
+tO=1
+O1=66
+mP=1
+P1=8.0s
+]
+[
+ObjTp=Sm
+H=28
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=4
+CF=2
+Cmn1=Output 4\\
+mC=2
+C1=29
+C2=30
+]
+[
+ObjTp=Sm
+H=29
+SmC=155
+Nm=Switcher.umc
+ObjVer=1
+PrH=28
+CF=2
+n1I=39
+n1O=39
+Cmn1=\\\\
+mI=39
+I10=55
+I17=9
+mO=39
+tO=39
+O10=41
+O11=42
+O12=43
+O17=17
+O18=56
+O21=47
+mP=70
+P1=Output 4
+P2=#Output 4 ID
+P3=0s
+P4=Bh
+P5=Ah
+P6=#Sources for Power Off
+P7=#Sources for Input 01
+P8=#Sources for Input 02
+P9=#Sources for Input 03
+P10=#Sources for Input 04
+P11=#Sources for Input 05
+P12=#Sources for Input 06
+P13=#Sources for Input 07
+P14=#Sources for Input 08
+P15=#Sources for Input 09
+P16=#Sources for Input 10
+P17=#Sources for Input 11
+P18=#Sources for Input 12
+P19=#Sources for Input 13
+P20=#Sources for Input 14
+P21=#Sources for Input 15
+P22=#Sources for Input 16
+P23=#Sources for Input 17
+P24=#Sources for Input 18
+P25=#Sources for Input 19
+P26=#Sources for Input 20
+P27=#Sources for Input 21
+P28=#Sources for Input 22
+P29=#Sources for Input 23
+P30=#Sources for Input 24
+P31=""
+P32=""
+P33=""
+P34=""
+P35=""
+P36=""
+P37=""
+P38=""
+P39=""
+P40=""
+P41=""
+P42=""
+P43=""
+P44=""
+P45=""
+P46=""
+P47=""
+P48=""
+P49=""
+P50=""
+P51=""
+P52=""
+P53=""
+P54=""
+P55=""
+P56=""
+P57=""
+P58=""
+P59=""
+P60=""
+P61=""
+P62=""
+P63=""
+P64=""
+P65=""
+P66=""
+P67=""
+P68=""
+P69=""
+P70=""
+]
+[
+ObjTp=Sm
+H=30
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=28
+CF=2
+Cmn1=Volume\\
+mC=4
+C1=31
+C2=32
+C3=33
+C4=34
+]
+[
+ObjTp=Sm
+H=31
+SmC=540
+Nm=Analog Ramp (Bounds Limited)
+ObjVer=1
+PrH=30
+CF=2
+n1I=3
+n1O=1
+Cmn1=Output 4 Volume\\
+mI=3
+I1=42
+I2=43
+mO=1
+tO=1
+O1=49
+mP=4
+P1=8.0s
+P2=0%
+P3=100%
+P4=0%
+]
+[
+ObjTp=Sm
+H=32
+SmC=96
+Nm=Serial to Analog
+ObjVer=1
+PrH=30
+CF=2
+n1I=1
+n1O=1
+Cmn1=Volume~ to Volume#\\
+mI=1
+I1=41
+mO=1
+tO=1
+O1=44
+mP=1
+P1=0200h
+]
+[
+ObjTp=Sm
+H=33
+SmC=24
+Nm=Analog Scaler
+ObjVer=1
+PrH=30
+CF=2
+n1I=1
+n1O=1
+Cmn1=Volume# to Volume%\\
+mI=1
+I1=44
+mO=1
+tO=1
+O1=46
+mP=3
+P1=1%
+P2=1d
+P3=0d
+]
+[
+ObjTp=Sm
+H=34
+SmC=66
+Nm=Analog Rate Limiter
+ObjVer=1
+PrH=30
+CF=2
+n1I=1
+n1O=1
+Cmn1=Output 4 Volume\\
+mI=1
+I1=46
+mO=1
+tO=1
+O1=49
+mP=1
+P1=8.0s
+]
+[
+ObjTp=Sm
+H=35
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=4
+CF=2
+Cmn1=Output 5\\
+mC=2
+C1=36
+C2=37
+]
+[
+ObjTp=Sm
+H=36
+SmC=155
+Nm=Switcher.umc
+ObjVer=1
+PrH=35
+CF=2
+n1I=39
+n1O=39
+Cmn1=\\\\
+mI=39
+I10=126
+I17=40
+mO=39
+tO=39
+O10=48
+O11=50
+O12=54
+O17=18
+O18=60
+O21=28
+mP=70
+P1=Output 5
+P2=#Output 5 ID
+P3=0s
+P4=Bh
+P5=Ah
+P6=#Sources for Power Off
+P7=#Sources for Input 01
+P8=#Sources for Input 02
+P9=#Sources for Input 03
+P10=#Sources for Input 04
+P11=#Sources for Input 05
+P12=#Sources for Input 06
+P13=#Sources for Input 07
+P14=#Sources for Input 08
+P15=#Sources for Input 09
+P16=#Sources for Input 10
+P17=#Sources for Input 11
+P18=#Sources for Input 12
+P19=#Sources for Input 13
+P20=#Sources for Input 14
+P21=#Sources for Input 15
+P22=#Sources for Input 16
+P23=#Sources for Input 17
+P24=#Sources for Input 18
+P25=#Sources for Input 19
+P26=#Sources for Input 20
+P27=#Sources for Input 21
+P28=#Sources for Input 22
+P29=#Sources for Input 23
+P30=#Sources for Input 24
+P31=""
+P32=""
+P33=""
+P34=""
+P35=""
+P36=""
+P37=""
+P38=""
+P39=""
+P40=""
+P41=""
+P42=""
+P43=""
+P44=""
+P45=""
+P46=""
+P47=""
+P48=""
+P49=""
+P50=""
+P51=""
+P52=""
+P53=""
+P54=""
+P55=""
+P56=""
+P57=""
+P58=""
+P59=""
+P60=""
+P61=""
+P62=""
+P63=""
+P64=""
+P65=""
+P66=""
+P67=""
+P68=""
+P69=""
+P70=""
+]
+[
+ObjTp=Sm
+H=37
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=35
+CF=2
+Cmn1=Volume\\
+mC=4
+C1=38
+C2=39
+C3=40
+C4=41
+]
+[
+ObjTp=Sm
+H=38
+SmC=540
+Nm=Analog Ramp (Bounds Limited)
+ObjVer=1
+PrH=37
+CF=2
+n1I=3
+n1O=1
+Cmn1=Output 5 Volume\\
+mI=3
+I1=50
+I2=54
+mO=1
+tO=1
+O1=67
+mP=4
+P1=8.0s
+P2=0%
+P3=100%
+P4=0%
+]
+[
+ObjTp=Sm
+H=39
+SmC=96
+Nm=Serial to Analog
+ObjVer=1
+PrH=37
+CF=2
+n1I=1
+n1O=1
+Cmn1=Volume~ to Volume#\\
+mI=1
+I1=48
+mO=1
+tO=1
+O1=57
+mP=1
+P1=0200h
+]
+[
+ObjTp=Sm
+H=40
+SmC=24
+Nm=Analog Scaler
+ObjVer=1
+PrH=37
+CF=2
+n1I=1
+n1O=1
+Cmn1=Volume# to Volume%\\
+mI=1
+I1=57
+mO=1
+tO=1
+O1=58
+mP=3
+P1=1%
+P2=1d
+P3=0d
+]
+[
+ObjTp=Sm
+H=41
+SmC=66
+Nm=Analog Rate Limiter
+ObjVer=1
+PrH=37
+CF=2
+n1I=1
+n1O=1
+Cmn1=Output 5 Volume\\
+mI=1
+I1=58
+mO=1
+tO=1
+O1=67
+mP=1
+P1=8.0s
+]
+[
+ObjTp=Sm
+H=42
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=4
+CF=2
+Cmn1=Output 6\\
+mC=2
+C1=43
+C2=44
+]
+[
+ObjTp=Sm
+H=43
+SmC=155
+Nm=Switcher.umc
+ObjVer=1
+PrH=42
+CF=2
+n1I=39
+n1O=39
+Cmn1=\\\\
+mI=39
+I10=127
+I17=45
+mO=39
+tO=39
+O10=59
+O11=70
+O12=72
+O17=19
+O18=61
+O21=29
+mP=70
+P1=Output 6
+P2=#Output 6 ID
+P3=0s
+P4=Bh
+P5=Ah
+P6=#Sources for Power Off
+P7=#Sources for Input 01
+P8=#Sources for Input 02
+P9=#Sources for Input 03
+P10=#Sources for Input 04
+P11=#Sources for Input 05
+P12=#Sources for Input 06
+P13=#Sources for Input 07
+P14=#Sources for Input 08
+P15=#Sources for Input 09
+P16=#Sources for Input 10
+P17=#Sources for Input 11
+P18=#Sources for Input 12
+P19=#Sources for Input 13
+P20=#Sources for Input 14
+P21=#Sources for Input 15
+P22=#Sources for Input 16
+P23=#Sources for Input 17
+P24=#Sources for Input 18
+P25=#Sources for Input 19
+P26=#Sources for Input 20
+P27=#Sources for Input 21
+P28=#Sources for Input 22
+P29=#Sources for Input 23
+P30=#Sources for Input 24
+P31=""
+P32=""
+P33=""
+P34=""
+P35=""
+P36=""
+P37=""
+P38=""
+P39=""
+P40=""
+P41=""
+P42=""
+P43=""
+P44=""
+P45=""
+P46=""
+P47=""
+P48=""
+P49=""
+P50=""
+P51=""
+P52=""
+P53=""
+P54=""
+P55=""
+P56=""
+P57=""
+P58=""
+P59=""
+P60=""
+P61=""
+P62=""
+P63=""
+P64=""
+P65=""
+P66=""
+P67=""
+P68=""
+P69=""
+P70=""
+]
+[
+ObjTp=Sm
+H=44
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=42
+CF=2
+Cmn1=Volume\\
+mC=4
+C1=45
+C2=46
+C3=47
+C4=48
+]
+[
+ObjTp=Sm
+H=45
+SmC=540
+Nm=Analog Ramp (Bounds Limited)
+ObjVer=1
+PrH=44
+CF=2
+n1I=3
+n1O=1
+Cmn1=Output 6 Volume\\
+mI=3
+I1=70
+I2=72
+mO=1
+tO=1
+O1=68
+mP=4
+P1=8.0s
+P2=0%
+P3=100%
+P4=0%
+]
+[
+ObjTp=Sm
+H=46
+SmC=96
+Nm=Serial to Analog
+ObjVer=1
+PrH=44
+CF=2
+n1I=1
+n1O=1
+Cmn1=Volume~ to Volume#\\
+mI=1
+I1=59
+mO=1
+tO=1
+O1=74
+mP=1
+P1=0200h
+]
+[
+ObjTp=Sm
+H=47
+SmC=24
+Nm=Analog Scaler
+ObjVer=1
+PrH=44
+CF=2
+n1I=1
+n1O=1
+Cmn1=Volume# to Volume%\\
+mI=1
+I1=74
+mO=1
+tO=1
+O1=76
+mP=3
+P1=1%
+P2=1d
+P3=0d
+]
+[
+ObjTp=Sm
+H=48
+SmC=66
+Nm=Analog Rate Limiter
+ObjVer=1
+PrH=44
+CF=2
+n1I=1
+n1O=1
+Cmn1=Output 6 Volume\\
+mI=1
+I1=76
+mO=1
+tO=1
+O1=68
+mP=1
+P1=8.0s
+]
+[
+ObjTp=Sm
+H=49
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=4
+CF=2
+Cmn1=Output 7\\
+mC=2
+C1=50
+C2=51
+]
+[
+ObjTp=Sm
+H=50
+SmC=155
+Nm=Switcher.umc
+ObjVer=1
+PrH=49
+CF=2
+n1I=39
+n1O=39
+Cmn1=\\\\
+mI=39
+I10=134
+I17=71
+mO=39
+tO=39
+O10=80
+O11=81
+O12=82
+O17=21
+O18=62
+O21=64
+mP=70
+P1=Output 7
+P2=#Output 7 ID
+P3=0s
+P4=Bh
+P5=Ah
+P6=#Sources for Power Off
+P7=#Sources for Input 01
+P8=#Sources for Input 02
+P9=#Sources for Input 03
+P10=#Sources for Input 04
+P11=#Sources for Input 05
+P12=#Sources for Input 06
+P13=#Sources for Input 07
+P14=#Sources for Input 08
+P15=#Sources for Input 09
+P16=#Sources for Input 10
+P17=#Sources for Input 11
+P18=#Sources for Input 12
+P19=#Sources for Input 13
+P20=#Sources for Input 14
+P21=#Sources for Input 15
+P22=#Sources for Input 16
+P23=#Sources for Input 17
+P24=#Sources for Input 18
+P25=#Sources for Input 19
+P26=#Sources for Input 20
+P27=#Sources for Input 21
+P28=#Sources for Input 22
+P29=#Sources for Input 23
+P30=#Sources for Input 24
+P31=""
+P32=""
+P33=""
+P34=""
+P35=""
+P36=""
+P37=""
+P38=""
+P39=""
+P40=""
+P41=""
+P42=""
+P43=""
+P44=""
+P45=""
+P46=""
+P47=""
+P48=""
+P49=""
+P50=""
+P51=""
+P52=""
+P53=""
+P54=""
+P55=""
+P56=""
+P57=""
+P58=""
+P59=""
+P60=""
+P61=""
+P62=""
+P63=""
+P64=""
+P65=""
+P66=""
+P67=""
+P68=""
+P69=""
+P70=""
+]
+[
+ObjTp=Sm
+H=51
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=49
+CF=2
+Cmn1=Volume\\
+mC=4
+C1=52
+C2=53
+C3=54
+C4=55
+]
+[
+ObjTp=Sm
+H=52
+SmC=540
+Nm=Analog Ramp (Bounds Limited)
+ObjVer=1
+PrH=51
+CF=2
+n1I=3
+n1O=1
+Cmn1=Output 7 Volume\\
+mI=3
+I1=81
+I2=82
+mO=1
+tO=1
+O1=69
+mP=4
+P1=8.0s
+P2=0%
+P3=100%
+P4=0%
+]
+[
+ObjTp=Sm
+H=53
+SmC=96
+Nm=Serial to Analog
+ObjVer=1
+PrH=51
+CF=2
+n1I=1
+n1O=1
+Cmn1=Volume~ to Volume#\\
+mI=1
+I1=80
+mO=1
+tO=1
+O1=83
+mP=1
+P1=0200h
+]
+[
+ObjTp=Sm
+H=54
+SmC=24
+Nm=Analog Scaler
+ObjVer=1
+PrH=51
+CF=2
+n1I=1
+n1O=1
+Cmn1=Volume# to Volume%\\
+mI=1
+I1=83
+mO=1
+tO=1
+O1=84
+mP=3
+P1=1%
+P2=1d
+P3=0d
+]
+[
+ObjTp=Sm
+H=55
+SmC=66
+Nm=Analog Rate Limiter
+ObjVer=1
+PrH=51
+CF=2
+n1I=1
+n1O=1
+Cmn1=Output 7 Volume\\
+mI=1
+I1=84
+mO=1
+tO=1
+O1=69
+mP=1
+P1=8.0s
+]
+[
+ObjTp=Sm
+H=56
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=4
+CF=2
+Cmn1=Output 8\\
+mC=2
+C1=57
+C2=58
+]
+[
+ObjTp=Sm
+H=57
+SmC=155
+Nm=Switcher.umc
+ObjVer=1
+PrH=56
+CF=2
+n1I=39
+n1O=39
+Cmn1=\\\\
+mI=39
+I10=135
+I17=77
+mO=39
+tO=39
+O10=85
+O11=86
+O12=87
+O17=23
+O18=63
+O21=65
+mP=70
+P1=Output 8
+P2=#Output 8 ID
+P3=0s
+P4=Bh
+P5=Ah
+P6=#Sources for Power Off
+P7=#Sources for Input 01
+P8=#Sources for Input 02
+P9=#Sources for Input 03
+P10=#Sources for Input 04
+P11=#Sources for Input 05
+P12=#Sources for Input 06
+P13=#Sources for Input 07
+P14=#Sources for Input 08
+P15=#Sources for Input 09
+P16=#Sources for Input 10
+P17=#Sources for Input 11
+P18=#Sources for Input 12
+P19=#Sources for Input 13
+P20=#Sources for Input 14
+P21=#Sources for Input 15
+P22=#Sources for Input 16
+P23=#Sources for Input 17
+P24=#Sources for Input 18
+P25=#Sources for Input 19
+P26=#Sources for Input 20
+P27=#Sources for Input 21
+P28=#Sources for Input 22
+P29=#Sources for Input 23
+P30=#Sources for Input 24
+P31=""
+P32=""
+P33=""
+P34=""
+P35=""
+P36=""
+P37=""
+P38=""
+P39=""
+P40=""
+P41=""
+P42=""
+P43=""
+P44=""
+P45=""
+P46=""
+P47=""
+P48=""
+P49=""
+P50=""
+P51=""
+P52=""
+P53=""
+P54=""
+P55=""
+P56=""
+P57=""
+P58=""
+P59=""
+P60=""
+P61=""
+P62=""
+P63=""
+P64=""
+P65=""
+P66=""
+P67=""
+P68=""
+P69=""
+P70=""
+]
+[
+ObjTp=Sm
+H=58
+SmC=156
+Nm=SUBSYSTEM
+ObjVer=1
+PrH=56
+CF=2
+Cmn1=Volume\\
+mC=4
+C1=59
+C2=60
+C3=61
+C4=62
+]
+[
+ObjTp=Sm
+H=59
+SmC=540
+Nm=Analog Ramp (Bounds Limited)
+ObjVer=1
+PrH=58
+CF=2
+n1I=3
+n1O=1
+Cmn1=Output 8 Volume\\
+mI=3
+I1=86
+I2=87
+mO=1
+tO=1
+O1=73
+mP=4
+P1=8.0s
+P2=0%
+P3=100%
+P4=0%
+]
+[
+ObjTp=Sm
+H=60
+SmC=96
+Nm=Serial to Analog
+ObjVer=1
+PrH=58
+CF=2
+n1I=1
+n1O=1
+Cmn1=Volume~ to Volume#\\
+mI=1
+I1=85
+mO=1
+tO=1
+O1=88
+mP=1
+P1=0200h
+]
+[
+ObjTp=Sm
+H=61
+SmC=24
+Nm=Analog Scaler
+ObjVer=1
+PrH=58
+CF=2
+n1I=1
+n1O=1
+Cmn1=Volume# to Volume%\\
+mI=1
+I1=88
+mO=1
+tO=1
+O1=89
+mP=3
+P1=1%
+P2=1d
+P3=0d
+]
+[
+ObjTp=Sm
+H=62
+SmC=66
+Nm=Analog Rate Limiter
+ObjVer=1
+PrH=58
+CF=2
+n1I=1
+n1O=1
+Cmn1=Output 8 Volume\\
+mI=1
+I1=89
+mO=1
+tO=1
+O1=73
+mP=1
+P1=8.0s
+]
+[
+ObjTp=Sm
+H=139
+SmC=155
+Nm=Switcher.umc
+ObjVer=1
+PrH=4
+CF=2
+n1I=39
+n1O=39
+Cmn1=SPDIF 2\\
+mI=39
+mO=39
+tO=39
+O21=11
+mP=70
+P1=SPDIF 2
+P2=#SPDIF 2 ID
+P3=0s
+P4=Ah
+P5=Ah
+P6=#Sources for Power Off
+P7=#Sources for Input 01
+P8=#Sources for Input 02
+P9=#Sources for Input 03
+P10=#Sources for Input 04
+P11=#Sources for Input 05
+P12=#Sources for Input 06
+P13=#Sources for Input 07
+P14=#Sources for Input 08
+P15=#Sources for Input 09
+P16=#Sources for Input 10
+P17=#Sources for Input 11
+P18=#Sources for Input 12
+P19=#Sources for Input 13
+P20=#Sources for Input 14
+P21=#Sources for Input 15
+P22=#Sources for Input 16
+P23=#Sources for Input 17
+P24=#Sources for Input 19
+P25=#Sources for Input 19
+P26=#Sources for Input 20
+P27=#Sources for Input 21
+P28=#Sources for Input 22
+P29=#Sources for Input 23
+P30=#Sources for Input 24
+P31=""
+P32=""
+P33=""
+P34=""
+P35=""
+P36=""
+P37=""
+P38=""
+P39=""
+P40=""
+P41=""
+P42=""
+P43=""
+P44=""
+P45=""
+P46=""
+P47=""
+P48=""
+P49=""
+P50=""
+P51=""
+P52=""
+P53=""
+P54=""
+P55=""
+P56=""
+P57=""
+P58=""
+P59=""
+P60=""
+P61=""
+P62=""
+P63=""
+P64=""
+P65=""
+P66=""
+P67=""
+P68=""
+P69=""
+P70=""
+]
+[
+ObjTp=Sm
+H=140
+SmC=155
+Nm=Switcher.umc
+ObjVer=1
+PrH=4
+CF=2
+n1I=39
+n1O=39
+Cmn1=SPDIF 1\\
+mI=39
+mO=39
+tO=39
+O21=79
+mP=70
+P1=SPDIF 1
+P2=#SPDIF 1 ID
+P3=0s
+P4=Ah
+P5=Ah
+P6=#Sources for Power Off
+P7=#Sources for Input 01
+P8=#Sources for Input 02
+P9=#Sources for Input 03
+P10=#Sources for Input 04
+P11=#Sources for Input 05
+P12=#Sources for Input 06
+P13=#Sources for Input 07
+P14=#Sources for Input 08
+P15=#Sources for Input 09
+P16=#Sources for Input 10
+P17=#Sources for Input 11
+P18=#Sources for Input 12
+P19=#Sources for Input 13
+P20=#Sources for Input 14
+P21=#Sources for Input 15
+P22=#Sources for Input 16
+P23=#Sources for Input 17
+P24=#Sources for Input 19
+P25=#Sources for Input 19
+P26=#Sources for Input 20
+P27=#Sources for Input 21
+P28=#Sources for Input 22
+P29=#Sources for Input 23
+P30=#Sources for Input 24
+P31=""
+P32=""
+P33=""
+P34=""
+P35=""
+P36=""
+P37=""
+P38=""
+P39=""
+P40=""
+P41=""
+P42=""
+P43=""
+P44=""
+P45=""
+P46=""
+P47=""
+P48=""
+P49=""
+P50=""
+P51=""
+P52=""
+P53=""
+P54=""
+P55=""
+P56=""
+P57=""
+P58=""
+P59=""
+P60=""
+P61=""
+P62=""
+P63=""
+P64=""
+P65=""
+P66=""
+P67=""
+P68=""
+P69=""
+P70=""
+]
+[
+ObjTp=Sg
+H=4
+Nm=Output_3_Mute_Is_On
+]
+[
+ObjTp=Sg
+H=5
+Nm=[~UNUSED~]
+SgTp=31
+]
+[
+ObjTp=Sg
+H=6
+Nm=Output_3_Mute_On
+]
+[
+ObjTp=Sg
+H=7
+Nm=__X__Output_2_Volume~
+SgTp=4
+]
+[
+ObjTp=Sg
+H=8
+Nm=Output_1_Mute_On
+]
+[
+ObjTp=Sg
+H=9
+Nm=Output_4_Mute_Is_On
+]
+[
+ObjTp=Sg
+H=10
+Nm=Output_2_Volume
+SgTp=2
+]
+[
+ObjTp=Sg
+H=11
+Nm=SPDIF_2_Input
+SgTp=2
+]
+[
+ObjTp=Sg
+H=12
+Nm=__X__Output_2_Volume_Up
+]
+[
+ObjTp=Sg
+H=13
+Nm=Output_1_Volume
+SgTp=2
+]
+[
+ObjTp=Sg
+H=14
+Nm=__X__Output_2_Volume_Down
+]
+[
+ObjTp=Sg
+H=15
+Nm=Output_2_Mute_On
+]
+[
+ObjTp=Sg
+H=16
+Nm=__X__Output_2_Volume#
+SgTp=2
+]
+[
+ObjTp=Sg
+H=17
+Nm=Output_4_Mute_On
+]
+[
+ObjTp=Sg
+H=18
+Nm=Output_5_Mute_On
+]
+[
+ObjTp=Sg
+H=19
+Nm=Output_6_Mute_On
+]
+[
+ObjTp=Sg
+H=20
+Nm=__X__Output_2_Volume%
+SgTp=2
+]
+[
+ObjTp=Sg
+H=21
+Nm=Output_7_Mute_On
+]
+[
+ObjTp=Sg
+H=22
+Nm=__X__Output_3_Volume~
+SgTp=4
+]
+[
+ObjTp=Sg
+H=23
+Nm=Output_8_Mute_On
+]
+[
+ObjTp=Sg
+H=24
+Nm=__X__Output_3_Volume_Up
+]
+[
+ObjTp=Sg
+H=25
+Nm=__X__Output_3_Volume_Down
+]
+[
+ObjTp=Sg
+H=26
+Nm=Output_1_Mute_Off
+]
+[
+ObjTp=Sg
+H=27
+Nm=__X__Output_3_Volume#
+SgTp=2
+]
+[
+ObjTp=Sg
+H=28
+Nm=Output_5_Input
+SgTp=2
+]
+[
+ObjTp=Sg
+H=29
+Nm=Output_6_Input
+SgTp=2
+]
+[
+ObjTp=Sg
+H=30
+Nm=__X__Output_1_Volume_Up
+]
+[
+ObjTp=Sg
+H=31
+Nm=__X__Output_1_Volume_Down
+]
+[
+ObjTp=Sg
+H=32
+Nm=__X__Output_1_Volume%
+SgTp=2
+]
+[
+ObjTp=Sg
+H=33
+Nm=Output_1_Volume_Is
+SgTp=2
+]
+[
+ObjTp=Sg
+H=34
+Nm=__X__Output_1_Volume~
+SgTp=4
+]
+[
+ObjTp=Sg
+H=35
+Nm=__X__Output_3_Volume%
+SgTp=2
+]
+[
+ObjTp=Sg
+H=36
+Nm=Output_2_Mute_Is_On
+]
+[
+ObjTp=Sg
+H=37
+Nm=Output_2_Volume_Is
+SgTp=2
+]
+[
+ObjTp=Sg
+H=38
+Nm=__X__Output_1_Volume#
+SgTp=2
+]
+[
+ObjTp=Sg
+H=39
+Nm=Output_2_Mute_Off
+]
+[
+ObjTp=Sg
+H=40
+Nm=Output_5_Mute_Is_On
+]
+[
+ObjTp=Sg
+H=41
+Nm=__X__Output_4_Volume~
+SgTp=4
+]
+[
+ObjTp=Sg
+H=42
+Nm=__X__Output_4_Volume_Up
+]
+[
+ObjTp=Sg
+H=43
+Nm=__X__Output_4_Volume_Down
+]
+[
+ObjTp=Sg
+H=44
+Nm=__X__Output_4_Volume#
+SgTp=2
+]
+[
+ObjTp=Sg
+H=45
+Nm=Output_6_Mute_Is_On
+]
+[
+ObjTp=Sg
+H=46
+Nm=__X__Output_4_Volume%
+SgTp=2
+]
+[
+ObjTp=Sg
+H=47
+Nm=Output_4_Input
+SgTp=2
+]
+[
+ObjTp=Sg
+H=48
+Nm=__X__Output_5_Volume~
+SgTp=4
+]
+[
+ObjTp=Sg
+H=49
+Nm=Output_4_Volume
+SgTp=2
+]
+[
+ObjTp=Sg
+H=50
+Nm=__X__Output_5_Volume_Up
+]
+[
+ObjTp=Sg
+H=51
+Nm=Output_3_Input
+SgTp=2
+]
+[
+ObjTp=Sg
+H=52
+Nm=Output_3_Mute_Off
+]
+[
+ObjTp=Sg
+H=53
+Nm=Output_3_Volume_Is
+SgTp=2
+]
+[
+ObjTp=Sg
+H=54
+Nm=__X__Output_5_Volume_Down
+]
+[
+ObjTp=Sg
+H=55
+Nm=Output_4_Volume_Is
+SgTp=2
+]
+[
+ObjTp=Sg
+H=56
+Nm=Output_4_Mute_Off
+]
+[
+ObjTp=Sg
+H=57
+Nm=__X__Output_5_Volume#
+SgTp=2
+]
+[
+ObjTp=Sg
+H=58
+Nm=__X__Output_5_Volume%
+SgTp=2
+]
+[
+ObjTp=Sg
+H=59
+Nm=__X__Output_6_Volume~
+SgTp=4
+]
+[
+ObjTp=Sg
+H=60
+Nm=Output_5_Mute_Off
+]
+[
+ObjTp=Sg
+H=61
+Nm=Output_6_Mute_Off
+]
+[
+ObjTp=Sg
+H=62
+Nm=Output_7_Mute_Off
+]
+[
+ObjTp=Sg
+H=63
+Nm=Output_8_Mute_Off
+]
+[
+ObjTp=Sg
+H=64
+Nm=Output_7_Input
+SgTp=2
+]
+[
+ObjTp=Sg
+H=65
+Nm=Output_8_Input
+SgTp=2
+]
+[
+ObjTp=Sg
+H=66
+Nm=Output_3_Volume
+SgTp=2
+]
+[
+ObjTp=Sg
+H=67
+Nm=Output_5_Volume
+SgTp=2
+]
+[
+ObjTp=Sg
+H=68
+Nm=Output_6_Volume
+SgTp=2
+]
+[
+ObjTp=Sg
+H=69
+Nm=Output_7_Volume
+SgTp=2
+]
+[
+ObjTp=Sg
+H=70
+Nm=__X__Output_6_Volume_Up
+]
+[
+ObjTp=Sg
+H=71
+Nm=Output_7_Mute_Is_On
+]
+[
+ObjTp=Sg
+H=72
+Nm=__X__Output_6_Volume_Down
+]
+[
+ObjTp=Sg
+H=73
+Nm=Output_8_Volume
+SgTp=2
+]
+[
+ObjTp=Sg
+H=74
+Nm=__X__Output_6_Volume#
+SgTp=2
+]
+[
+ObjTp=Sg
+H=75
+Nm=Output_1_Mute_Is_On
+]
+[
+ObjTp=Sg
+H=76
+Nm=__X__Output_6_Volume%
+SgTp=2
+]
+[
+ObjTp=Sg
+H=77
+Nm=Output_8_Mute_Is_On
+]
+[
+ObjTp=Sg
+H=78
+Nm=Output_1_Input
+SgTp=2
+]
+[
+ObjTp=Sg
+H=79
+Nm=SPDIF_1_Input
+SgTp=2
+]
+[
+ObjTp=Sg
+H=80
+Nm=__X__Output_7_Volume~
+SgTp=4
+]
+[
+ObjTp=Sg
+H=81
+Nm=__X__Output_7_Volume_Up
+]
+[
+ObjTp=Sg
+H=82
+Nm=__X__Output_7_Volume_Down
+]
+[
+ObjTp=Sg
+H=83
+Nm=__X__Output_7_Volume#
+SgTp=2
+]
+[
+ObjTp=Sg
+H=84
+Nm=__X__Output_7_Volume%
+SgTp=2
+]
+[
+ObjTp=Sg
+H=85
+Nm=__X__Output_8_Volume~
+SgTp=4
+]
+[
+ObjTp=Sg
+H=86
+Nm=__X__Output_8_Volume_Up
+]
+[
+ObjTp=Sg
+H=87
+Nm=__X__Output_8_Volume_Down
+]
+[
+ObjTp=Sg
+H=88
+Nm=__X__Output_8_Volume#
+SgTp=2
+]
+[
+ObjTp=Sg
+H=89
+Nm=__X__Output_8_Volume%
+SgTp=2
+]
+[
+ObjTp=Sg
+H=118
+Nm=Output_2_Input
+SgTp=2
+]
+[
+ObjTp=Sg
+H=126
+Nm=Output_5_Volume_Is
+SgTp=2
+]
+[
+ObjTp=Sg
+H=127
+Nm=Output_6_Volume_Is
+SgTp=2
+]
+[
+ObjTp=Sg
+H=134
+Nm=Output_7_Volume_Is
+SgTp=2
+]
+[
+ObjTp=Sg
+H=135
+Nm=Output_8_Volume_Is
+SgTp=2
+]
+[
+ObjTp=Dp
+H=2
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=3
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=4
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=5
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=6
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=7
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=8
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=9
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=10
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=49
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=50
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=51
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=52
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=53
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=54
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=81
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=82
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=83
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=92
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=93
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=94
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+[
+ObjTp=Dp
+H=102
+Tp=1
+NoS=FALSE
+EncFmt=0
+DVLF=1
+Sgn=0
+]

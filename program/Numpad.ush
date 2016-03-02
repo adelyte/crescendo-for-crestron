@@ -6,7 +6,7 @@
   Sgntr=UserSPlus
   RelVrs=1
   IntStrVrs=1
-  SPlusVrs=4.02.26
+  SPlusVrs=4.03.16
   CrossCplrVrs=1.3
 [END]
 [BEGIN]
@@ -21,8 +21,8 @@
   Name=Numpad
   SmplCName=Numpad.usp
   Code=1
-  SysRev5=4.000
-  SMWRev=2.02.00
+  SysRev5=4.006
+  SMWRev=3.00.00
   InputCue1=di_Enter
   InputSigType1=Digital
   InputCue2=di_Clear
@@ -89,6 +89,7 @@
   SymJam=NonExclusive
   FileName=Numpad.ush
   SIMPLPlusModuleEncoding=0
+  clz1=AppHelperClasses v2_0
 [END]
 [BEGIN]
   ObjTp=Dp

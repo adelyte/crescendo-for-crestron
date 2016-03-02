@@ -1,0 +1,275 @@
+/*
+ * Adelyte Company
+ * www.adelyte.com
+ */
+
+#SYMBOL_NAME "Devices Controller"
+#CATEGORY "46" "Crescendo" // Custom
+#DEFAULT_VOLATILE
+#ENABLE_DYNAMIC
+//#ENABLE_TRACE
+
+
+// Constants
+
+#DEFINE_CONSTANT #TEXT_LEN    48
+#DEFINE_CONSTANT #ITEMS_MAX   48
+#DEFINE_CONSTANT #DEVICES_MAX 99
+
+
+// Inputs and Outputs
+
+DIGITAL_INPUT Initialize;
+DIGITAL_INPUT Device_Default_Select, Item_Select[#ITEMS_MAX];
+
+DIGITAL_OUTPUT _SKIP_, _SKIP_, Item_Matches[#ITEMS_MAX];
+
+ANALOG_INPUT Device_Is, Device_Default;
+STRING_INPUT Default_Available_Devices[#DEVICES_MAX];
+ANALOG_INPUT Device_Icon_Is[#DEVICES_MAX];
+STRING_INPUT  Device_Name_Is[#DEVICES_MAX][#TEXT_LEN], Device_Description_Is[#DEVICES_MAX][#TEXT_LEN];
+
+ANALOG_OUTPUT Items_Size;
+STRING_OUTPUT Device_Set; // NOTE: If SIMPL+ were case sensitive, this would be `Device`.
+ANALOG_OUTPUT Item_Icon_Is[#ITEMS_MAX];
+STRING_OUTPUT Item_Name_Is[#ITEMS_MAX], Item_Description_Is[#ITEMS_MAX];
+
+INTEGER_PARAMETER Device_Type;
+
+    #BEGIN_PARAMETER_PROPERTIES Device_Type
+
+        propValidUnits = unitDecimal|unitHex;
+
+    #END_PARAMETER_PROPERTIES
+
+STRING_PARAMETER Devices[#ITEMS_MAX];
+
+    #BEGIN_PARAMETER_PROPERTIES Devices
+
+        propValidUnits = unitString;
+
+    #END_PARAMETER_PROPERTIES
+
+
+// Utility Functions
+
+INTEGER_FUNCTION IdToIndex(INTEGER id)
+{
+    INTEGER index;
+
+    id = LOW(id);
+    index = ATOI(ITOHEX(id));
+
+    RETURN(index);
+}
+
+INTEGER_FUNCTION IndexToId(INTEGER index)
+{
+    INTEGER id;
+
+    id = HEXTOI(ITOA(index));
+
+    RETURN(id);
+}
+
+
+// List Functions
+
+STRING  __Devices__[#DEVICES_MAX];
+
+INTEGER __Item_Device__[#ITEMS_MAX], __Device_Item__[#DEVICES_MAX];
+
+INTEGER_FUNCTION ItemToDevice(INTEGER item)
+{
+    INTEGER device;
+
+    device = __Item_Device__[item];
+
+    RETURN(device);
+}
+
+INTEGER_FUNCTION DeviceToItem(INTEGER device)
+{
+    INTEGER item;
+
+    device = LOW(device); // Extract only the ID from the route
+
+    item = __Device_Item__[device];
+
+    TRACE("DeviceToItem(%02X) = %u", device, item);
+
+    RETURN(item);
+}
+
+
+// User Events
+
+PUSH Item_Select
+{
+    INTEGER item, device;
+
+    item = GETLASTMODIFIEDARRAYINDEX();
+    device = ItemToDevice(item);
+
+    IF(device = 0) TERMINATEEVENT;
+
+    MAKESTRING(Device_Set, "%c%c", Device_Type << 4, IndexToId(device));
+}
+
+PUSH Device_Default_Select
+{
+    MAKESTRING(Device_Set, "%c%c", Device_Type << 4, LOW(Device_Default));
+}
+
+
+// Move List
+
+FUNCTION UpdateItemMatches()
+{
+    INTEGER item;
+
+    SETARRAY(Item_Matches, 0);
+
+    item = DeviceToItem(IdToIndex(Device_Is));
+    IF(item = 0)
+    {
+        item = DeviceToItem(IdToIndex(Device_Default));
+        
+        IF(item = 0)
+        {
+            RETURN;
+        }
+    }
+
+    Item_Matches[item] = 1;
+}
+                                                  
+FUNCTION UpdateItemIcon(INTEGER device)
+{
+    INTEGER item;
+
+    item = DeviceToItem(device);
+    IF(item = 0)
+    {
+        RETURN;
+    }
+
+    Item_Icon_Is[item] = Device_Icon_Is[device];
+}
+
+FUNCTION UpdateItemDescription(INTEGER device)
+{
+    INTEGER item;
+                   
+    item = DeviceToItem(device);
+    IF(item = 0)
+    {
+        RETURN;
+    }
+
+    Item_Description_Is[item] = Device_Description_Is[device];
+}
+
+FUNCTION UpdateList()
+{
+    INTEGER i, item, device;
+
+    IF(__Devices__ = "")
+    {
+	    IF(Devices != "")
+	    {
+	        __Devices__ = Devices;
+	    }
+	    ELSE IF(Default_Available_Devices != "")
+	    {
+	        __Devices__ = Default_Available_Devices;
+	    }
+	    ELSE
+	    {
+	        FOR(i = 1 TO #DEVICES_MAX)
+	        {
+	            IF(Device_Name_Is[i] != "")
+	            {
+	                MAKESTRING(__Devices__, "%s%c", __Devices__, IndexToId(i));
+	            }
+	        }
+	    }
+    }
+
+    Items_Size = LEN(__Devices__);
+
+    FOR(item = 1 TO Items_Size)
+    {
+        device = BYTE(__Devices__, item);
+        device = IdToIndex(device);
+
+        __Item_Device__[item] = device;
+        __Device_Item__[device] = item;
+
+        Item_Name_Is[item] = Device_Name_Is[device];
+
+        UpdateItemIcon(device);
+        UpdateItemDescription(device);
+    }
+
+    UpdateItemMatches();
+}
+
+
+// System Events
+
+CHANGE Device_Is
+{
+    TRACE("CHANGE Device_Is");
+    UpdateItemMatches();
+}
+
+CHANGE Device_Default
+{
+    TRACE("CHANGE Device_Default");
+    UpdateItemMatches();
+}
+
+CHANGE Device_Icon_Is
+{
+    INTEGER device;
+
+    device = GETLASTMODIFIEDARRAYINDEX();
+
+    UpdateItemIcon(device);
+}
+
+CHANGE Device_Description_Is
+{
+    INTEGER device;
+
+    device = GETLASTMODIFIEDARRAYINDEX();
+
+    UpdateItemDescription(device);
+}
+
+
+// Initialization
+
+FUNCTION __Init__()
+{
+    __Devices__ = "";
+
+    SETARRAY(__Item_Device__, 0);
+    SETARRAY(__Device_Item__, 0);
+
+    UpdateList();
+}
+
+PUSH Initialize
+{
+    __Init__();
+}
+
+
+// Runtime
+
+FUNCTION Main()
+{
+    WAITFORINITIALIZATIONCOMPLETE();
+}

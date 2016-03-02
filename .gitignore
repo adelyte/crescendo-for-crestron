@@ -3,4 +3,5 @@ graphics/*.ced
 *.asv
 *.ASV
 *.zip
+!graphics/*.Core3/*.zip
 *CrosspointList.txt
