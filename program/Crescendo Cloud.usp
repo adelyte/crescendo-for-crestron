@@ -94,6 +94,10 @@ FUNCTION __Connect__()
     {
         TRACE("Crescendo Cloud: ERROR %d connecting socket to address '%s' on port  %u", status, Hosts[__Host__], #CRESCENDO_CLOUD_PORT);
     }
+    ELSE
+    {
+        GENERATEUSERNOTICE("Crescendo Cloud: CONNECTED to address '%s' on port  %u", Hosts[__Host__], #CRESCENDO_CLOUD_PORT);
+    }
 }
 
 FUNCTION Send(STRING tx)
@@ -304,7 +308,7 @@ The system last started on: Sunday, December 06, 2015 at 14:36:36
     count = end - start;
     days = MID(console, start, count);
 
-    start = end + 1;
+    start = end + 6;
     end = FIND("\r\n", console, start);
     count = end - start;
     timestamp = MID(console, start, count);

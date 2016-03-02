@@ -644,6 +644,11 @@ FUNCTION UpdateWatchListen()
 
     room = IdToIndex(Room_Is);
 
+    IF(room = 0)
+    {
+        RETURN;
+    }
+
     IF(Room_Sources_Is[room] != "")
     {
         __Sources__ = Room_Sources_Is[room];
