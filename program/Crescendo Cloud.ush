@@ -15,8 +15,8 @@
 [BEGIN]
   ObjTp=Symbol
   Exclusions=1,19,20,21,88,89,167,168,179,213,214,215,216,217,225,226,248,249,266,267,310,718,756,854,
-  Exclusions_CDS=
-  Inclusions_CDS=5,6
+  Exclusions_CDS=5
+  Inclusions_CDS=6
   Name=Crescendo Cloud
   SmplCName=Crescendo Cloud.usp
   Code=1
