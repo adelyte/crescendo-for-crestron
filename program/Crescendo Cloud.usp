@@ -84,16 +84,24 @@ STRING_PARAMETER Serial_Key[#KEY_VALUE_SIZE][250];
 */ 
 
 
-// Hash Table (simple hash table with linear probing)
-
+// Hash Table
 /*
-Benchmark (RMC3): ~5s
-Digital Hash Table: 998 keys, 27 collisions (2%)
-Analog Hash Table: 396 keys, 68 collisions (17%)
-Serial Hash Table: 297 keys, 25 collisions (8%)
+Hash Table with Linear Probing
+  Benchmarks
+    RMC3: over 2,100 ops/sec for HashGet() vs 50 ops/sec for linear search
+    PRO2: over 1,600 ops/sec for HashGet() vs 65 ops/sec for linear search  
+
+Kernighan and Ritchie Hash Function
+  Benchmarks
+    RMC3: over 13,000 ops/sec
+    PRO2: over  1,700 ops/sec
+
+  Digital Hash Table: 998 keys, 27 collisions (2%) # sequential keys
+  Analog Hash Table:  396 keys, 68 collisions (17%)
+  Serial Hash Table:  297 keys, 25 collisions (8%)
 */
 
-INTEGER_FUNCTION JavaHashCode(STRING key)
+INTEGER_FUNCTION HashCode(STRING key)
 {
     INTEGER i, hash;
 
@@ -105,71 +113,10 @@ INTEGER_FUNCTION JavaHashCode(STRING key)
     hash = 0;
     FOR(i = 1 TO LEN(key))
     {
-        hash = 31 * hash + BYTE(key, i);
+        hash = 31 * hash + BYTE(key, i); // multiplication is computed modulo
     }
 
-    hash = hash MOD #KEY_VALUE_SIZEx2;
-
-    RETURN(hash);
-}
-
-/*
-Benchmark (RMC3): ~7s
-Digital Hash Table: 998 keys, 238 collisions (23%)
-Analog Hash Table: 396 keys, 44 collisions (11%)
-Serial Hash Table: 297 keys, 25 collisions (8%)
-*/
-
-INTEGER __Pearson_Table__[255];
-
-INTEGER_FUNCTION PearsonHashCode(STRING key)
-{
-    INTEGER i, key_length, hash_low, hash_high, index, char, hash;
-
-    key_length = LEN(key);
-    IF(key_length = 0)
-    {
-        RETURN(#KEY_VALUE_SIZEx2);
-    }
-
-    hash_low = 0;
-    hash_high = 0xFF;
-    FOR(i = 1 TO key_length)
-    {
-        char = BYTE(key, i);
-
-        index = hash_low ^ char;
-        hash_low = __Pearson_Table__[index];
-
-        index = hash_high ^ char;
-        hash_high = __Pearson_Table__[index];
-    }
-
-    hash = hash_high << 8 | hash_low;
-    hash = hash MOD #KEY_VALUE_SIZEx2;
-
-    RETURN(hash);
-}
-
-INTEGER __Hash_Code__;
-
-INTEGER_FUNCTION HashCode(STRING key)
-{
-    INTEGER hash;
-
-    CSWITCH(__Hash_Code__)
-    {
-        CASE(1):
-        {
-            hash = JavaHashCode(key);
-            BREAK;
-        }
-        CASE(2):
-        {
-            hash = PearsonHashCode(key);
-            BREAK;
-        }
-    }
+    hash = hash UMOD #KEY_VALUE_SIZEx2; // lazy mod with slight bias to low values
 
     RETURN(hash);
 }
@@ -615,7 +562,13 @@ CHANGE Console_Rx
 
     IF(__Prompt__ = "")
     {
+        IF(LEN(Console_Rx) = 0)
+        {
+            TERMINATEEVENT;
+        }
+
         __Prompt__ = REMOVE(">", Console_Rx);
+        GENERATEUSERNOTICE("Crescendo Cloud: PROMPT is '%s'", __Prompt__);
 
         CLEARBUFFER(Console_Rx);
         TERMINATEEVENT;
@@ -1022,19 +975,19 @@ FUNCTION __Inspect__()
 
     IF(analog_keys > 0)
     {
-        PRINT("Analog Hash Table: %u keys, %u collisions (%u%%)\n", analog_keys, analog_collisions, MULDIV(analog_collisions, 100, analog_keys));
+        PRINT("Analog Hash Table:  %u keys, %u collisions (%u%%)\n", analog_keys, analog_collisions, MULDIV(analog_collisions, 100, analog_keys));
     }
 
     IF(serial_keys > 0)
     {
-        PRINT("Serial Hash Table: %u keys, %u collisions (%u%%)\n", serial_keys, serial_collisions, MULDIV(serial_collisions, 100, serial_keys));
+        PRINT("Serial Hash Table:  %u keys, %u collisions (%u%%)\n", serial_keys, serial_collisions, MULDIV(serial_collisions, 100, serial_keys));
     }
 }
 
 CHANGE User_Program_Command
 {
-    INTEGER i, hash, start, end, benchmark;
-    STRING rx[255];
+    INTEGER i, j, hash, start, end, benchmark;
+    STRING key[255];
 
     IF(User_Program_Command = "cloud inspect")
     {
@@ -1042,39 +995,72 @@ CHANGE User_Program_Command
     }
     ELSE IF(User_Program_Command = "cloud inspect all")
     {
-        PRINT("\n\nStarting Inspection ...\n");
-        FOR(__Hash_Code__ = 1 TO 2)
-        {
-            __Init__();
-            __Inspect__();
-        }
-
-        __Hash_Code__ = 1;
+        PRINT("\nStarting Inspection ...\n");
+        __Init__();
+        __Inspect__();
     }
     ELSE IF(User_Program_Command = "cloud benchmark")
     {
-        PRINT("\n\nStarting Benchmark ...\n");
-        FOR(__Hash_Code__ = 1 TO 2)
-        {
-	        start = GETHSECONDS();
-	        FOR(i = 1 TO 65534)
-	        {
-	            hash = HashCode("benchmark-this-key-74");
-	        }
-	        end = GETHSECONDS();
-	
-	        IF(end > start)
-	        {
-	            benchmark = end - start;
-	        }
-	        ELSE
-	        {
-	            benchmark = (65535 - start + 1) + end;
-	        }
-	        PRINT("HashCode %u: %u\n",__Hash_Code__, benchmark);
-        }
+        PRINT("\nStarting Benchmark ...\n");
 
-        __Hash_Code__ = 1;
+        start = GETHSECONDS();
+        FOR(i = 1 TO 30000)
+        {
+            hash = HashCode("benchmark-this-key-74");
+        }
+        end = GETHSECONDS();
+
+        IF(end > start)
+        {
+            benchmark = end - start;
+        }
+        ELSE
+        {
+            benchmark = (65535 - start + 1) + end;
+        }
+        PRINT("HashCode('benchmark-this-key-74') 30,000 times in %u hsecs\n", benchmark);
+
+        start = GETHSECONDS();
+        FOR(i = 1 TO 30000)
+        {
+            hash = DigitalHashGet(Digital_Key[RANDOM(1, 998)]);
+        }
+        end = GETHSECONDS();
+
+        IF(end > start)
+        {
+            benchmark = end - start;
+        }
+        ELSE
+        {
+            benchmark = (65535 - start + 1) + end;
+        }
+        PRINT("DigitalHashGet() 30,000 times in %u hsecs\n", benchmark);
+
+        start = GETHSECONDS();
+        FOR(i = 1 TO 3000)
+        {
+            key = Digital_Key[RANDOM(1, 998)];
+
+            FOR(j = 1 TO #KEY_VALUE_SIZE)
+            {
+                IF(Digital_Key[j] = key)
+                {
+                    BREAK;
+                }
+            }
+        }
+        end = GETHSECONDS();
+
+        IF(end > start)
+        {
+            benchmark = end - start;
+        }
+        ELSE
+        {
+            benchmark = (65535 - start + 1) + end;
+        }
+        PRINT("FindKey() 3000 times in %u hsecs\n", benchmark);
     }
     ELSE IF(User_Program_Command = "cloud init")
     {
@@ -1082,8 +1068,8 @@ CHANGE User_Program_Command
     }
     ELSE IF(LEFT(User_Program_Command, 10) = "cloud hash")
     {
-        rx = RIGHT(User_Program_Command, LEN(User_Program_Command) - 11);
-        hash = HashCode(rx);
+        key = RIGHT(User_Program_Command, LEN(User_Program_Command) - 11);
+        hash = HashCode(key);
         PRINT("cloud hash is %04u\n", hash);
     }
 }
@@ -1096,273 +1082,8 @@ FUNCTION Main()
     __Parsing__ = 0;
     __Prompt__ = "";
     __Rx_Buffer__ = "";
-    __Hash_Code__ = 1; // JavaHashCode
 
     WAITFORINITIALIZATIONCOMPLETE();
-
-    // Pearson Hash Substitution Table
-    /* RUBY
-        (0..255).to_a.shuffle.each_with_index do |n, i|
-            value = "0x#{n.to_s(16).upcase.rjust(2, '0')}"
-            puts "    __Pearson_Table__[#{i.to_s.rjust(3, '0')}] = #{value};"
-        end
-    */
-    __Pearson_Table__[000] = 0x25;
-    __Pearson_Table__[001] = 0xDE;
-    __Pearson_Table__[002] = 0xED;
-    __Pearson_Table__[003] = 0x64;
-    __Pearson_Table__[004] = 0x7B;
-    __Pearson_Table__[005] = 0x54;
-    __Pearson_Table__[006] = 0xE9;
-    __Pearson_Table__[007] = 0x98;
-    __Pearson_Table__[008] = 0x21;
-    __Pearson_Table__[009] = 0x01;
-    __Pearson_Table__[010] = 0xD7;
-    __Pearson_Table__[011] = 0x92;
-    __Pearson_Table__[012] = 0xA3;
-    __Pearson_Table__[013] = 0x7F;
-    __Pearson_Table__[014] = 0xD1;
-    __Pearson_Table__[015] = 0x29;
-    __Pearson_Table__[016] = 0x48;
-    __Pearson_Table__[017] = 0xE3;
-    __Pearson_Table__[018] = 0xFD;
-    __Pearson_Table__[019] = 0x91;
-    __Pearson_Table__[020] = 0x3D;
-    __Pearson_Table__[021] = 0x00;
-    __Pearson_Table__[022] = 0xB2;
-    __Pearson_Table__[023] = 0x88;
-    __Pearson_Table__[024] = 0x5C;
-    __Pearson_Table__[025] = 0x75;
-    __Pearson_Table__[026] = 0xE0;
-    __Pearson_Table__[027] = 0x8F;
-    __Pearson_Table__[028] = 0x0A;
-    __Pearson_Table__[029] = 0x26;
-    __Pearson_Table__[030] = 0x86;
-    __Pearson_Table__[031] = 0x18;
-    __Pearson_Table__[032] = 0xD5;
-    __Pearson_Table__[033] = 0xEE;
-    __Pearson_Table__[034] = 0x4B;
-    __Pearson_Table__[035] = 0xF6;
-    __Pearson_Table__[036] = 0xC2;
-    __Pearson_Table__[037] = 0xEF;
-    __Pearson_Table__[038] = 0x9A;
-    __Pearson_Table__[039] = 0xF9;
-    __Pearson_Table__[040] = 0xEC;
-    __Pearson_Table__[041] = 0x24;
-    __Pearson_Table__[042] = 0xAE;
-    __Pearson_Table__[043] = 0xDD;
-    __Pearson_Table__[044] = 0xE7;
-    __Pearson_Table__[045] = 0x5B;
-    __Pearson_Table__[046] = 0xFB;
-    __Pearson_Table__[047] = 0x53;
-    __Pearson_Table__[048] = 0x2C;
-    __Pearson_Table__[049] = 0xF5;
-    __Pearson_Table__[050] = 0x0D;
-    __Pearson_Table__[051] = 0xC3;
-    __Pearson_Table__[052] = 0x0E;
-    __Pearson_Table__[053] = 0x5D;
-    __Pearson_Table__[054] = 0x06;
-    __Pearson_Table__[055] = 0x19;
-    __Pearson_Table__[056] = 0xD8;
-    __Pearson_Table__[057] = 0xCC;
-    __Pearson_Table__[058] = 0x95;
-    __Pearson_Table__[059] = 0x16;
-    __Pearson_Table__[060] = 0x7A;
-    __Pearson_Table__[061] = 0x7C;
-    __Pearson_Table__[062] = 0xAB;
-    __Pearson_Table__[063] = 0x9C;
-    __Pearson_Table__[064] = 0xCB;
-    __Pearson_Table__[065] = 0x74;
-    __Pearson_Table__[066] = 0xEB;
-    __Pearson_Table__[067] = 0x96;
-    __Pearson_Table__[068] = 0x47;
-    __Pearson_Table__[069] = 0xE6;
-    __Pearson_Table__[070] = 0x40;
-    __Pearson_Table__[071] = 0x2F;
-    __Pearson_Table__[072] = 0x45;
-    __Pearson_Table__[073] = 0xB1;
-    __Pearson_Table__[074] = 0x8C;
-    __Pearson_Table__[075] = 0x8D;
-    __Pearson_Table__[076] = 0x5F;
-    __Pearson_Table__[077] = 0x52;
-    __Pearson_Table__[078] = 0x1C;
-    __Pearson_Table__[079] = 0xBC;
-    __Pearson_Table__[080] = 0x4F;
-    __Pearson_Table__[081] = 0xF3;
-    __Pearson_Table__[082] = 0xB7;
-    __Pearson_Table__[083] = 0xC1;
-    __Pearson_Table__[084] = 0x05;
-    __Pearson_Table__[085] = 0xD9;
-    __Pearson_Table__[086] = 0x1E;
-    __Pearson_Table__[087] = 0x46;
-    __Pearson_Table__[088] = 0xA0;
-    __Pearson_Table__[089] = 0x76;
-    __Pearson_Table__[090] = 0x17;
-    __Pearson_Table__[091] = 0x5E;
-    __Pearson_Table__[092] = 0xF7;
-    __Pearson_Table__[093] = 0x11;
-    __Pearson_Table__[094] = 0xFC;
-    __Pearson_Table__[095] = 0x90;
-    __Pearson_Table__[096] = 0x83;
-    __Pearson_Table__[097] = 0xC7;
-    __Pearson_Table__[098] = 0xE4;
-    __Pearson_Table__[099] = 0x22;
-    __Pearson_Table__[100] = 0x4C;
-    __Pearson_Table__[101] = 0x28;
-    __Pearson_Table__[102] = 0x32;
-    __Pearson_Table__[103] = 0x56;
-    __Pearson_Table__[104] = 0xB9;
-    __Pearson_Table__[105] = 0xB8;
-    __Pearson_Table__[106] = 0x93;
-    __Pearson_Table__[107] = 0x6D;
-    __Pearson_Table__[108] = 0xD2;
-    __Pearson_Table__[109] = 0x97;
-    __Pearson_Table__[110] = 0x27;
-    __Pearson_Table__[111] = 0x89;
-    __Pearson_Table__[112] = 0x9F;
-    __Pearson_Table__[113] = 0xB3;
-    __Pearson_Table__[114] = 0xF4;
-    __Pearson_Table__[115] = 0x6C;
-    __Pearson_Table__[116] = 0x4D;
-    __Pearson_Table__[117] = 0xAA;
-    __Pearson_Table__[118] = 0xCA;
-    __Pearson_Table__[119] = 0x85;
-    __Pearson_Table__[120] = 0xB4;
-    __Pearson_Table__[121] = 0xE1;
-    __Pearson_Table__[122] = 0x8A;
-    __Pearson_Table__[123] = 0x2D;
-    __Pearson_Table__[124] = 0xAF;
-    __Pearson_Table__[125] = 0xD0;
-    __Pearson_Table__[126] = 0x77;
-    __Pearson_Table__[127] = 0x9E;
-    __Pearson_Table__[128] = 0xB5;
-    __Pearson_Table__[129] = 0x67;
-    __Pearson_Table__[130] = 0x07;
-    __Pearson_Table__[131] = 0x81;
-    __Pearson_Table__[132] = 0xC6;
-    __Pearson_Table__[133] = 0x08;
-    __Pearson_Table__[134] = 0x70;
-    __Pearson_Table__[135] = 0xBD;
-    __Pearson_Table__[136] = 0x3E;
-    __Pearson_Table__[137] = 0x44;
-    __Pearson_Table__[138] = 0xDC;
-    __Pearson_Table__[139] = 0x7D;
-    __Pearson_Table__[140] = 0x8E;
-    __Pearson_Table__[141] = 0xBE;
-    __Pearson_Table__[142] = 0x3A;
-    __Pearson_Table__[143] = 0xBF;
-    __Pearson_Table__[144] = 0x62;
-    __Pearson_Table__[145] = 0x94;
-    __Pearson_Table__[146] = 0x30;
-    __Pearson_Table__[147] = 0x6F;
-    __Pearson_Table__[148] = 0x42;
-    __Pearson_Table__[149] = 0xB0;
-    __Pearson_Table__[150] = 0x79;
-    __Pearson_Table__[151] = 0xF0;
-    __Pearson_Table__[152] = 0x65;
-    __Pearson_Table__[153] = 0x23;
-    __Pearson_Table__[154] = 0x0F;
-    __Pearson_Table__[155] = 0x09;
-    __Pearson_Table__[156] = 0xA4;
-    __Pearson_Table__[157] = 0xEA;
-    __Pearson_Table__[158] = 0x6B;
-    __Pearson_Table__[159] = 0x04;
-    __Pearson_Table__[160] = 0xD3;
-    __Pearson_Table__[161] = 0x4A;
-    __Pearson_Table__[162] = 0xAC;
-    __Pearson_Table__[163] = 0x58;
-    __Pearson_Table__[164] = 0x84;
-    __Pearson_Table__[165] = 0x57;
-    __Pearson_Table__[166] = 0xE2;
-    __Pearson_Table__[167] = 0xCE;
-    __Pearson_Table__[168] = 0x02;
-    __Pearson_Table__[169] = 0x34;
-    __Pearson_Table__[170] = 0x68;
-    __Pearson_Table__[171] = 0x38;
-    __Pearson_Table__[172] = 0x66;
-    __Pearson_Table__[173] = 0xAD;
-    __Pearson_Table__[174] = 0x82;
-    __Pearson_Table__[175] = 0x2B;
-    __Pearson_Table__[176] = 0xA2;
-    __Pearson_Table__[177] = 0x6E;
-    __Pearson_Table__[178] = 0xA7;
-    __Pearson_Table__[179] = 0x5A;
-    __Pearson_Table__[180] = 0x71;
-    __Pearson_Table__[181] = 0xB6;
-    __Pearson_Table__[182] = 0x61;
-    __Pearson_Table__[183] = 0xE8;
-    __Pearson_Table__[184] = 0xCD;
-    __Pearson_Table__[185] = 0x49;
-    __Pearson_Table__[186] = 0x3B;
-    __Pearson_Table__[187] = 0x0B;
-    __Pearson_Table__[188] = 0x2A;
-    __Pearson_Table__[189] = 0x63;
-    __Pearson_Table__[190] = 0x39;
-    __Pearson_Table__[191] = 0x55;
-    __Pearson_Table__[192] = 0x12;
-    __Pearson_Table__[193] = 0xC0;
-    __Pearson_Table__[194] = 0x1D;
-    __Pearson_Table__[195] = 0xFA;
-    __Pearson_Table__[196] = 0x1A;
-    __Pearson_Table__[197] = 0x14;
-    __Pearson_Table__[198] = 0x87;
-    __Pearson_Table__[199] = 0xBA;
-    __Pearson_Table__[200] = 0xA1;
-    __Pearson_Table__[201] = 0xFF;
-    __Pearson_Table__[202] = 0xC4;
-    __Pearson_Table__[203] = 0xD6;
-    __Pearson_Table__[204] = 0x51;
-    __Pearson_Table__[205] = 0x78;
-    __Pearson_Table__[206] = 0x20;
-    __Pearson_Table__[207] = 0x36;
-    __Pearson_Table__[208] = 0xA6;
-    __Pearson_Table__[209] = 0x9B;
-    __Pearson_Table__[210] = 0x15;
-    __Pearson_Table__[211] = 0xD4;
-    __Pearson_Table__[212] = 0x72;
-    __Pearson_Table__[213] = 0x3F;
-    __Pearson_Table__[214] = 0xC9;
-    __Pearson_Table__[215] = 0x8B;
-    __Pearson_Table__[216] = 0x4E;
-    __Pearson_Table__[217] = 0x41;
-    __Pearson_Table__[218] = 0xA9;
-    __Pearson_Table__[219] = 0x33;
-    __Pearson_Table__[220] = 0x60;
-    __Pearson_Table__[221] = 0xA5;
-    __Pearson_Table__[222] = 0x0C;
-    __Pearson_Table__[223] = 0x13;
-    __Pearson_Table__[224] = 0x3C;
-    __Pearson_Table__[225] = 0x03;
-    __Pearson_Table__[226] = 0xBB;
-    __Pearson_Table__[227] = 0xF1;
-    __Pearson_Table__[228] = 0x73;
-    __Pearson_Table__[229] = 0xDA;
-    __Pearson_Table__[230] = 0xF2;
-    __Pearson_Table__[231] = 0x31;
-    __Pearson_Table__[232] = 0x35;
-    __Pearson_Table__[233] = 0x43;
-    __Pearson_Table__[234] = 0x69;
-    __Pearson_Table__[235] = 0xA8;
-    __Pearson_Table__[236] = 0x80;
-    __Pearson_Table__[237] = 0xC5;
-    __Pearson_Table__[238] = 0xCF;
-    __Pearson_Table__[239] = 0xE5;
-    __Pearson_Table__[240] = 0xFE;
-    __Pearson_Table__[241] = 0x9D;
-    __Pearson_Table__[242] = 0x1F;
-    __Pearson_Table__[243] = 0x1B;
-    __Pearson_Table__[244] = 0x7E;
-    __Pearson_Table__[245] = 0x59;
-    __Pearson_Table__[246] = 0xDB;
-    __Pearson_Table__[247] = 0x10;
-    __Pearson_Table__[248] = 0x99;
-    __Pearson_Table__[249] = 0xC8;
-    __Pearson_Table__[250] = 0x6A;
-    __Pearson_Table__[251] = 0x50;
-    __Pearson_Table__[252] = 0x2E;
-    __Pearson_Table__[253] = 0xDF;
-    __Pearson_Table__[254] = 0xF8;
-    __Pearson_Table__[255] = 0x37;
 
     // Client-side Load Balancing
     permutation = RANDOM(1, 6);
