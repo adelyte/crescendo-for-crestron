@@ -24,8 +24,8 @@ DbVr=54.05.005.00
 DvcDbVr=72.05.001.00
 PgmNm=Adelyte Company
 CltNm=Crescendo 2.0 "The Loft"
-SmVr=983
-DvVr=983
+SmVr=982
+DvVr=982
 TpN1=1
 TpN2=2
 TpN3=3
@@ -4889,7 +4889,21 @@ ObjTp=Bk
 Nm1=\
 Sx1=0
 Sy1=0
-Mx1=0
+Mx1=1
+]
+[
+ObjTp=Bw
+H=1
+Lx=0
+Ly=0
+Rx=746
+Ry=633
+Xm=-1
+Ym=-1
+SH=289
+Z=100
+Ht=1
+Hi=1
 ]
 [
 ObjTp=Et
