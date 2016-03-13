@@ -47,8 +47,10 @@ DIGITAL_OUTPUT Digital_Value[#KEY_VALUE_SIZE], _SKIP_;
 STRING_OUTPUT Console_Tx;
 BUFFER_INPUT  Console_Rx[65534];
 
-STRING_INPUT  Cloud_Tx[255], User_Program_Command[255];
-STRING_OUTPUT Cloud_Rx, _SKIP_;
+STRING_INPUT  Cloud_Tx[255];
+STRING_OUTPUT Cloud_Rx, _SKIP_, _SKIP_;
+
+STRING_INPUT  User_Program_Command[255], _SKIP_;
 
 ANALOG_INPUT  Analog_Value_Is[#KEY_VALUE_SIZE], _SKIP_;
 STRING_OUTPUT Analog_Value[#KEY_VALUE_SIZE], _SKIP_; // Analog values are set with strings
@@ -62,7 +64,7 @@ STRING_PARAMETER Project[32];
 STRING_PARAMETER Users[250];
 STRING_PARAMETER Server_Region[15];
 
-STRING_PARAMETER Digital_Key[#KEY_VALUE_SIZE][250], _SKIP_, _SKIP_, _SKIP_, _SKIP_;
+STRING_PARAMETER Digital_Key[#KEY_VALUE_SIZE][250], _SKIP_, _SKIP_, _SKIP_, _SKIP_, _SKIP_;
 STRING_PARAMETER Analog_Key[#KEY_VALUE_SIZE][250], _SKIP_;
 STRING_PARAMETER Serial_Key[#KEY_VALUE_SIZE][250];
 
@@ -349,10 +351,12 @@ STRUCTURE SYSTEM
 {
     STRING model[16], firmware[30], serial_code[8];
     STRING system_key[32];
-    STRING mac_address[18], ip_address[15];
+    STRING mac_address[40], ip_address[40]; // may contain two addresses
     STRING uptime[20];
     STRING program_runtime[30], program_path[1023], program_file[255];
     STRING program_name[255], program_compiled_at[20];
+    STRING memory_free[10], memory_used[10];
+    STRING cpu_idle[6];
 };
 
 SYSTEM Processor;
@@ -447,12 +451,13 @@ Include4.dat: 2.02.046
     SendKeyValue("program-compiled-at", Processor.program_compiled_at);
 }
 
-FUNCTION GetIpConfig()
+#IF_SERIES3
+FUNCTION GetNetwork()
 {
     SendConsole("ipconfig");
 }
 
-FUNCTION SetIpConfig(STRING console)
+FUNCTION SetNetwork(STRING console)
 {
 /* EXAMPLE:
 Ethernet Adapter [LAN9217]:
@@ -483,6 +488,52 @@ Ethernet Adapter [LAN9217]:
     SendKeyValue("mac-address", Processor.mac_address);
     SendKeyValue("local-ip-address", Processor.ip_address);
 }
+#ENDIF
+
+#IF_SERIES2
+FUNCTION GetNetwork()
+{
+    SendConsole("est");
+}
+
+FUNCTION SetNetwork(STRING console)
+{
+/* EXAMPLE
+Ethernet Status: LAN A        LAN B
+  Link Status:   OK           No Link 
+  Link Speed:    100 Mbps     n/a
+  Full Duplex:   YES          n/a
+Ethernet Parameters:
+  Enabled:     On
+  MAC Address(es): 00.10.7f.37.5c.9b        NOT_FOUND
+  IP Address:  192.168.001.051    Not Loaded
+  Subnet Mask: 255.255.255.000    Not Loaded
+  Def Router : 192.168.001.001
+  DHCP:        Off
+  WINS:        Off
+  Host Name:   ADELYTEPRO2
+  Domain Name: (none entered)
+  SSL:         OFF,Off
+*/
+
+    INTEGER start, end, count;
+
+    // MAC Address
+    start = FIND("MAC Address(es).... : ", console) + 22;
+    end = FIND("\n", console, start);
+    count = end - start;
+    Processor.mac_address = MID(console, start, count);
+
+    // IP Address
+    start = FIND("IP Address ........ : ", console) + 22;
+    end = FIND("\n", console, start);
+    count = end - start;
+    Processor.ip_address = MID(console, start, count);
+
+    SendKeyValue("mac-address", Processor.mac_address);
+    SendKeyValue("local-ip-address", Processor.ip_address);
+}
+#ENDIF
 
 FUNCTION GetUptime()
 {
@@ -505,7 +556,7 @@ The system last started on: Sunday, December 06, 2015 at 14:36:36
     days = MID(console, start, count);
 
     start = end + 6;
-    end = FIND("\r\n", console, start);
+    end = FIND("\n", console, start);
     count = end - start;
     timestamp = MID(console, start, count);
 
@@ -513,6 +564,113 @@ The system last started on: Sunday, December 06, 2015 at 14:36:36
 
     SendKeyValue("uptime", Processor.uptime);
 }
+
+#IF_SERIES3
+FUNCTION GetMemory()
+{
+    SendConsole("ramfree");
+}
+
+FUNCTION SetMemory(STRING console)
+{
+/* EXAMPLE
+38 percent of memory in use
+199446528 total bytes of physical memory
+75534336 bytes actually used
+123912192 bytes free
+0 bytes reclaimable
+*/
+
+    INTEGER start, end, count;
+
+    start = FIND("physical memory\n", console) + 17;
+    end = FIND(" bytes actually used\n", console);
+    count = end - start;
+    Processor.memory_used = MID(console, start, count);
+
+    start = FIND("\n", console, end) + 2;
+    end = FIND(" bytes free\n", console);
+    count = end - start;
+    Processor.memory_free = MID(console, start, count);
+
+    SendKeyValue("memory-free", Processor.memory_free);
+    SendKeyValue("memory-used", Processor.memory_used);
+}
+
+FUNCTION GetLoad()
+{
+    SendConsole("cpuload");
+}
+
+FUNCTION SetLoad(STRING console)
+{
+/* EXAMPLE
+CPU:LOAD 4%
+*/
+    INTEGER load;
+
+    load = ATOI(console);
+    Processor.cpu_idle = ITOA(100 - load);
+
+    SendKeyValue("cpu-idle", Processor.cpu_idle);
+}
+#ENDIF
+
+#IF_SERIES2
+FUNCTION GetMemory()
+{
+    SendConsole("heapfree");
+}
+
+FUNCTION SetMemory(STRING console)
+{
+/* EXAMPLE
+42427372 bytes free
+24681492 bytes used
+Blk starts at 81DC0D9C
+*/
+
+    INTEGER start, end, count;
+
+    start = 1;
+    end = FIND(" bytes free\n", console);
+    count = end - start;
+    Processor.memory_free = MID(console, start, count);
+
+    start = FIND("\n", console, end) + 2;
+    end = FIND(" bytes used\n", console);
+    count = end - start;
+    Processor.memory_used = MID(console, start, count);
+
+    SendKeyValue("memory-free", Processor.memory_free);
+    SendKeyValue("memory-used", Processor.memory_used);
+}
+
+FUNCTION GetLoad()
+{
+    SendConsole("top");
+}
+
+FUNCTION SetLoad(STRING console)
+{
+/* EXAMPLE
+Sorting...
+
+thread=ReaLIdle	utilization=99.56%
+thread=TCP_Read	utilization=0.2%
+thread=ERR TASK	utilization=0.2%
+*/
+
+    INTEGER start, end, count;
+
+    start = FIND("thread=ReaLIdle	utilization=", console) + 30;
+    end = FIND("%\n", console, start);
+    count = end - start;
+    Processor.cpu_idle = MID(console, start, count);
+
+    SendKeyValue("cpu-idle", Processor.cpu_idle);
+}
+#ENDIF
 
 FUNCTION SetKeyValues()
 {
@@ -552,6 +710,9 @@ FUNCTION Heartbeat()
     {
         Heartbeat();
     }
+
+    GetMemory();
+    GetLoad();
 }
 
 STRING __Prompt__[16];
@@ -562,15 +723,9 @@ CHANGE Console_Rx
 
     IF(__Prompt__ = "")
     {
-        IF(LEN(Console_Rx) = 0)
-        {
-            TERMINATEEVENT;
-        }
-
         __Prompt__ = REMOVE(">", Console_Rx);
         GENERATEUSERNOTICE("Crescendo Cloud: PROMPT is '%s'", __Prompt__);
 
-        CLEARBUFFER(Console_Rx);
         TERMINATEEVENT;
     }
 
@@ -585,11 +740,11 @@ CHANGE Console_Rx
     IF(__Console_Tx__ = "ver")
     {
         SetVersion(rx);
-        GetIpConfig();
+        GetNetwork();
     }
     ELSE IF(__Console_Tx__ = "ipconfig")
     {
-        SetIpConfig(rx);
+        SetNetwork(rx);
         GetProgCom();
     }
     ELSE IF(__Console_Tx__ = "progcom")
@@ -605,7 +760,35 @@ CHANGE Console_Rx
     }
     ELSE
     {
-        SendKeyValue(__Console_Tx__, rx);
+        // NOTE: the compiler does not allow the `ELSE IF` statements to be placed inline
+	    #IF_SERIES3
+	    IF(__Console_Tx__ = "ramfree")
+	    {
+	        SetMemory(rx);
+	    }
+	    ELSE IF(__Console_Tx__ = "cpuload")
+	    {
+	        SetLoad(rx);
+	    }
+        ELSE
+        {
+            SendKeyValue(__Console_Tx__, rx);
+        }
+	    #ENDIF
+	    #IF_SERIES2
+	    IF(__Console_Tx__ = "heapfree")
+	    {
+	        SetMemory(rx);
+	    }
+	    ELSE IF(__Console_Tx__ = "top")
+	    {
+	        SetLoad(rx);
+	    }
+        ELSE
+        {
+            SendKeyValue(__Console_Tx__, rx);
+        }
+	    #ENDIF
     }
 }
 
@@ -1079,6 +1262,7 @@ FUNCTION Main()
     STRING regions[7][3];
     INTEGER permutation;
 
+    __Host__ = 0;
     __Parsing__ = 0;
     __Prompt__ = "";
     __Rx_Buffer__ = "";
@@ -1718,6 +1902,4 @@ FUNCTION Main()
             }
         }
     }
-
-    __Host__ = 0;
 }
