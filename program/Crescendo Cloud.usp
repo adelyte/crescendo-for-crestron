@@ -8,8 +8,10 @@
 #DEFAULT_VOLATILE
 #ENABLE_DYNAMIC
 
-// Debug Settings
-// #DEFINE_CONSTANT #DEBUG 1
+// Compiler Settings
+// #DEFINE_CONSTANT #DEBUG 1   // Enable trace statements etc
+// #DEFINE_CONSTANT #DEVELOP 1 // Use staging server rather than production servers
+#DEFINE_CONSTANT #EMBED 1   // Suppress properties incompatible with parameter substitution
 
 #IF_DEFINED #DEBUG
 #ENABLE_TRACE
@@ -21,8 +23,6 @@
 #DEFINE_CONSTANT #KEY_VALUE_SIZEx2 1996
 
 // Server IP Addresses
-#DEFINE_CONSTANT #DEVELOP 1
-
 #IF_DEFINED #DEVELOP
 #DEFINE_CONSTANT #CRESCENDO_CLOUD_HOST_SIZE 1
 #DEFINE_CONSTANT #CRESCENDO_CLOUD_HOST_DEV "159.203.101.192"
@@ -81,7 +81,28 @@ STRING_PARAMETER Digital_Key[#KEY_VALUE_SIZE][250], _SKIP_, _SKIP_, _SKIP_, _SKI
 STRING_PARAMETER Analog_Key[#KEY_VALUE_SIZE][250], _SKIP_;
 STRING_PARAMETER Serial_Key[#KEY_VALUE_SIZE][250];
 
-/*
+#IF_NOT_DEFINED #EMBED
+#BEGIN_PARAMETER_PROPERTIES Digital_Key
+
+  propValidUnits = unitString;
+  propDefaultValue = "";
+
+#END_PARAMETER_PROPERTIES
+
+#BEGIN_PARAMETER_PROPERTIES Analog_Key
+
+  propValidUnits = unitString;
+  propDefaultValue = "";
+
+#END_PARAMETER_PROPERTIES
+
+#BEGIN_PARAMETER_PROPERTIES Serial_Key
+
+  propValidUnits = unitString;
+  propDefaultValue = "";
+
+#END_PARAMETER_PROPERTIES
+
 #BEGIN_PARAMETER_PROPERTIES Server_Region
 
   propValidUnits = unitString;
@@ -96,7 +117,7 @@ STRING_PARAMETER Serial_Key[#KEY_VALUE_SIZE][250];
     { "TOR", "Toronto"};
 
 #END_PARAMETER_PROPERTIES
-*/ 
+#ENDIF 
 
 
 // Hash Table
