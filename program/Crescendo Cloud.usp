@@ -11,7 +11,7 @@
 // Compiler Settings
 // #DEFINE_CONSTANT #DEBUG 1   // Enable trace statements etc
 // #DEFINE_CONSTANT #DEVELOP 1 // Use staging server rather than production servers
-#DEFINE_CONSTANT #EMBED 1   // Suppress properties incompatible with parameter substitution
+// #DEFINE_CONSTANT #EMBED 1   // Suppress properties incompatible with parameter substitution
 
 #IF_DEFINED #DEBUG
 #ENABLE_TRACE
@@ -1049,7 +1049,7 @@ CHANGE Analog_Value_Is
 
     IF(Connected)
     {
-        SendKeyValue(Analog_Key[index], ITOA(LOW(Analog_Value_Is[index]))); // FIXME: hack route to ID
+        SendKeyValue(Analog_Key[index], ITOA(Analog_Value_Is[index])); // FIXME: hack route to ID
     }
 }
 

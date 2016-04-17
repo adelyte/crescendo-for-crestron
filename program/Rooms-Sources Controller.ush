@@ -21,7 +21,7 @@
   SmplCName=Rooms-Sources Controller.usp
   Code=1
   SysRev5=4.000
-  SMWRev=2.02.00
+  SMWRev=3.00.00
   InputCue1=Initialize
   InputSigType1=Digital
   InputCue2=Move_Room[1]
