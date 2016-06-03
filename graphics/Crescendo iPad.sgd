@@ -1,8 +1,8 @@
 [
 ObjTp=FSgntr
 Sgntr=SGD
-RelVrs=1
-VTProeVer=6.0.02
+RelVrs=3
+VTProeVer=6.0.07
 Schema=1
 CRCGUID=EABDA645-0FB1-4FA7-982A-D95C66152754
 ]
@@ -18,6 +18,8 @@ ObjTp=Symbol
 Name=Crescendo iPad_[Source] Media Player_Media Player Application.ced
 Hint=Media Player Application (Smart Object ID=10)
 Code=1
+SGControlType=Media Player Application
+SGControlName=Media Player Application
 GUID=6F7AEB87-4708-4CAD-A3FF-000EF8D1890B
 SmplCName=Crescendo iPad_[Source] Media Player_Media Player Application.ced
 SMWRev=4.02.19
@@ -98,6 +100,8 @@ ObjTp=Symbol
 Name=Crescendo iPad_[Main] Menu_Watch_Watch Menu.ced
 Hint=Watch Menu (Smart Object ID=3)
 Code=2
+SGControlType=Subpage Reference List Vertical
+SGControlName=Watch Menu
 GUID=A3694821-862F-4A96-980B-4D67386142B5
 SmplCName=Crescendo iPad_[Main] Menu_Watch_Watch Menu.ced
 SMWRev=4.02.20
@@ -1673,6 +1677,8 @@ ObjTp=Symbol
 Name=Crescendo iPad_[Main] Menu_Room_Rooms Menu.ced
 Hint=Rooms Menu (Smart Object ID=1)
 Code=3
+SGControlType=Subpage Reference List Vertical
+SGControlName=Rooms Menu
 GUID=BB280D63-1385-490A-A51D-8E8A20271FDB
 SmplCName=Crescendo iPad_[Main] Menu_Room_Rooms Menu.ced
 SMWRev=4.02.20
@@ -3056,6 +3062,8 @@ ObjTp=Symbol
 Name=Crescendo iPad_[Main] Menu_Listen_Listen Menu.ced
 Hint=Listen Menu (Smart Object ID=2)
 Code=4
+SGControlType=Subpage Reference List Vertical
+SGControlName=Listen Menu
 GUID=D639B68A-5871-4F6B-BC9B-44D3F5166AFA
 SmplCName=Crescendo iPad_[Main] Menu_Listen_Listen Menu.ced
 SMWRev=4.02.20
@@ -4631,6 +4639,8 @@ ObjTp=Symbol
 Name=Crescendo iPad_[Device] Climate_Climate Menu.ced
 Hint=Climate Menu (Smart Object ID=8)
 Code=5
+SGControlType=Subpage Reference List Vertical
+SGControlName=Climate Menu
 GUID=F24A949B-5E12-459D-AA14-B181CC46D348
 SmplCName=Crescendo iPad_[Device] Climate_Climate Menu.ced
 SMWRev=4.02.20
@@ -6014,6 +6024,8 @@ ObjTp=Symbol
 Name=Crescendo iPad_[Device] Lighting_Lighting Menu.ced
 Hint=Lighting Menu (Smart Object ID=6)
 Code=6
+SGControlType=Subpage Reference List Vertical
+SGControlName=Lighting Menu
 GUID=0EE85AAE-D3FD-44FF-AC97-B0BCA190FD4D
 SmplCName=Crescendo iPad_[Device] Lighting_Lighting Menu.ced
 SMWRev=4.02.20
@@ -7397,6 +7409,8 @@ ObjTp=Symbol
 Name=Crescendo iPad_[Main] Menu_Sharing_Sharing Menu.ced
 Hint=Sharing Menu (Smart Object ID=4)
 Code=7
+SGControlType=Subpage Reference List Vertical
+SGControlName=Sharing Menu
 GUID=048D9D94-451F-40C7-ABF8-30BD7F074A23
 SmplCName=Crescendo iPad_[Main] Menu_Sharing_Sharing Menu.ced
 SMWRev=4.02.20
