@@ -18,11 +18,11 @@
 
 // Inputs and Outputs
 
-DIGITAL_INPUT Initialize;
+DIGITAL_INPUT Initialize, Room_Exists[#ROOMS_MAX];
 
 STRING_INPUT Default_Sources[#TEXT_LEN], Room_Sources_Is[#ROOMS_MAX][#TEXT_LEN];
 
-STRING_OUTPUT _SKIP_, _SKIP_, Room_Sources_Out[#ROOMS_MAX];
+STRING_OUTPUT _SKIP_, Room_Sources_Out[#ROOMS_MAX];
 
 // Functions
 
@@ -46,29 +46,11 @@ CHANGE Default_Sources
 		}
 		ELSE
 		{
-   	     Room_Sources_Out[room] = Default_Sources;
+   	     	IF(Room_Exists[room] > 0)
+				Room_Sources_Out[room] = Default_Sources;
 		}
 	}
 }
-
-/*CHANGE Room_Sources_Is
-{
-	integer index;
-	index = GETLASTMODIFIEDARRAYINDEX();
-
-	IF(LEN(Room_Sources_Is[index]) > 0)
-	{
-		Room_Sources_Out[index] = Room_Sources_Is[index];
-	}
-	ELSE IF(Room_Sources_Is[index] = "0")
-	{
-    	Room_Sources_Out[index] = "";
-	}
-	ELSE
-	{
-        Room_Sources_Out[index] = Default_Sources;
-	}
-}*/
 
 
 // Initialization
