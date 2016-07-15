@@ -2,6 +2,7 @@ SPLsWork/
 graphics/*.ced
 *.asv
 *.ASV
+*.hash
 *.zip
 !graphics/*.Core3/*.zip
 *CrosspointList.txt
