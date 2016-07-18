@@ -10,8 +10,10 @@
 
 #DEFINE_CONSTANT #VERSION "1.1.0"
 
+
 // Compiler Settings
-// #DEFINE_CONSTANT #DEBUG 1   // Enable trace statements etc
+
+#DEFINE_CONSTANT #DEBUG 1   // Enable trace statements etc
 #DEFINE_CONSTANT #DEVELOP 1 // Use staging server rather than production servers
 #DEFINE_CONSTANT #EMBED 1   // Suppress properties incompatible with parameter substitution
 
@@ -21,20 +23,21 @@
 #ENDIF
 
 // Input/Output Sizes
-#DEFINE_CONSTANT #KEY_VALUE_SIZE    998 // Default  998
-#DEFINE_CONSTANT #KEY_VALUE_SIZEx2 1996 // Default 1996
+#DEFINE_CONSTANT #KEY_VALUE_SIZE    998
+#DEFINE_CONSTANT #KEY_VALUE_SIZEx2 1996
 #DEFINE_CONSTANT #KEY_VALUE_ENABLE    1 // Compile with optional Enable inputs
 
 // Server IP Addresses
 #IF_DEFINED #DEVELOP
 #DEFINE_CONSTANT #CRESCENDO_CLOUD_HOST_SIZE 1
-#DEFINE_CONSTANT #CRESCENDO_CLOUD_HOST_DEV "159.203.101.192"
+#DEFINE_CONSTANT #CRESCENDO_CLOUD_HOST_DEV "192.168.1.102" // "159.203.101.192"
 #ENDIF
 
 #IF_NOT_DEFINED #DEVELOP
-#DEFINE_CONSTANT #CRESCENDO_CLOUD_HOST_SIZE 10
+#DEFINE_CONSTANT #CRESCENDO_CLOUD_HOST_SIZE 11
 #DEFINE_CONSTANT #CRESCENDO_CLOUD_HOST_AMS2 "82.196.14.206"
 #DEFINE_CONSTANT #CRESCENDO_CLOUD_HOST_AMS3 "188.166.5.178"
+#DEFINE_CONSTANT #CRESCENDO_CLOUD_HOST_BLR1 "139.59.2.51"
 #DEFINE_CONSTANT #CRESCENDO_CLOUD_HOST_FRA1 "46.101.140.132"
 #DEFINE_CONSTANT #CRESCENDO_CLOUD_HOST_LON1 "178.62.92.82"
 #DEFINE_CONSTANT #CRESCENDO_CLOUD_HOST_NYC1 "192.81.215.136"
@@ -53,9 +56,10 @@
 
 
 // Inputs and Outputs
+#DEFINE_CONSTANT #CONSOLE_LEN 65534
 
-DIGITAL_INPUT  Connect, Disconnect, _SKIP_;
-DIGITAL_OUTPUT Connected, _SKIP_, _SKIP_;
+DIGITAL_INPUT  Connect, Disconnect, _SKIP_, _SKIP_;
+DIGITAL_OUTPUT Connected, _SKIP_, _SKIP_, _SKIP_;
 
 #IF_SERIES2
 DIGITAL_INPUT  _SKIP_;
@@ -73,7 +77,7 @@ DIGITAL_INPUT  Digital_Value_Is[#KEY_VALUE_SIZE], _SKIP_;
 DIGITAL_OUTPUT Digital_Value[#KEY_VALUE_SIZE], _SKIP_;
 
 STRING_OUTPUT Console_Tx;
-BUFFER_INPUT  Console_Rx[65534];
+BUFFER_INPUT  Console_Rx[#CONSOLE_LEN];
 
 STRING_INPUT  Cloud_Tx[255];
 STRING_OUTPUT Cloud_Rx, _SKIP_;
@@ -92,6 +96,7 @@ STRING_OUTPUT Serial_Value[#KEY_VALUE_SIZE];
 TCP_CLIENT Client[4095];
 
 STRING_PARAMETER Project[32];
+STRING_PARAMETER Password[255];
 STRING_PARAMETER Users[250];
 STRING_PARAMETER Server_Region[15];
 #IF_SERIES2
@@ -106,6 +111,22 @@ STRING_PARAMETER _SKIP_;
 STRING_PARAMETER Analog_Key[#KEY_VALUE_SIZE][250], _SKIP_;
 STRING_PARAMETER Serial_Key[#KEY_VALUE_SIZE][250];
 
+#BEGIN_PARAMETER_PROPERTIES Password
+
+    propValidUnits = unitString;
+    propDefaultValue = "Password";
+    propShortDescription = "Reserved for future use.";
+
+#END_PARAMETER_PROPERTIES
+
+#BEGIN_PARAMETER_PROPERTIES Users
+
+    propValidUnits = unitString;
+    propDefaultValue = "";
+    propShortDescription = "email@example.com[, other.email@example.com]";
+
+#END_PARAMETER_PROPERTIES
+
 #IF_NOT_DEFINED #EMBED
 #BEGIN_PARAMETER_PROPERTIES Server_Region
 
@@ -113,6 +134,7 @@ STRING_PARAMETER Serial_Key[#KEY_VALUE_SIZE][250];
     propDefaultValue = "NYC";
     propList =
       { "AMS", "Amsterdam" },
+      { "BLR", "Bangalore" },
       { "FRA", "Frankfurt"},
       { "LON", "London"},
       { "NYC", "New York"},
@@ -127,7 +149,7 @@ STRING_PARAMETER Serial_Key[#KEY_VALUE_SIZE][250];
 #BEGIN_PARAMETER_PROPERTIES Serial_Code
 
     propValidUnits = unitString;
-    propDefaultValue = "00000000";
+    propDefaultValue = "";
     propShortDescription = "Eight-character, zero-padded serial code, e.g. '01234567'.";
 
 #END_PARAMETER_PROPERTIES
@@ -364,11 +386,11 @@ FUNCTION __Connect__()
     status = SOCKETCONNECTCLIENT(Client, Hosts[__Host__], #CRESCENDO_CLOUD_PORT, 1);
     IF(status < 0)
     {
-        TRACE("Crescendo Cloud: ERROR %d connecting socket to address '%s' on port  %u", status, Hosts[__Host__], #CRESCENDO_CLOUD_PORT);
+        TRACE("Crescendo Cloud> ERROR %d connecting socket to address '%s' on port  %u", status, Hosts[__Host__], #CRESCENDO_CLOUD_PORT);
     }
     ELSE
     {
-        GENERATEUSERNOTICE("Crescendo Cloud: CONNECTED to address '%s' on port  %u", Hosts[__Host__], #CRESCENDO_CLOUD_PORT);
+        GENERATEUSERNOTICE("Crescendo Cloud> CONNECTED to address '%s' on port  %u", Hosts[__Host__], #CRESCENDO_CLOUD_PORT);
     }
 }
 
@@ -376,12 +398,12 @@ FUNCTION Send(STRING tx)
 {
     SIGNED_INTEGER status;
 
-    TRACE("Crescendo Cloud: Send '%s'", tx);
+    TRACE("Crescendo Cloud> Send '%s'", tx);
 
     status = SOCKETSEND(Client, tx);
     IF(status < 0)
     {
-        TRACE("Crescendo Cloud: ERROR %d connecting socket to address '%s' on port  %u", status, Hosts[__Host__], #CRESCENDO_CLOUD_PORT);
+        TRACE("Crescendo Cloud> ERROR %d connecting socket to address '%s' on port  %u", status, Hosts[__Host__], #CRESCENDO_CLOUD_PORT);
     }
 }
 
@@ -416,11 +438,6 @@ FUNCTION SendConsoleDirect(STRING shell, STRING command)
     MAKESTRING(Console_Tx, "%s\n", command);
 }
 
-FUNCTION GetVersion()
-{
-    SendConsole("ver");
-}
-
 STRUCTURE SYSTEM
 {
     STRING model[16], firmware[30], serial_code[8];
@@ -431,14 +448,52 @@ STRUCTURE SYSTEM
     STRING program_name[255], program_compiled_at[20];
     STRING memory_free[10], memory_used[10];
     STRING cpu_idle[6];
+	STRING reboot_message[255];
+	INTEGER rebooted;
 };
 
 SYSTEM Processor;
 
+
+// Console Commands and Parsers
+
+/* VERSION
+RMC3>ver ?
+VERSION [-v]
+    -v : show extended version info.
+
+RMC3>ver
+RMC3 Cntrl Eng [v1.012.0017 (Aug 26 2015), #00ABCDEF]
+
+RMC3>ver -v
+RMC3 Cntrl Eng [v1.012.0017 (Aug 26 2015), #00ABCDEF]
+Build: 07:21:20  Aug 26 2015 (2428.13240)
+Applications:  1.0.5714.29559
+Updater: 1.4.20
+Bootloader: 1.18.00
+RMC3-SetupProgram: 1.003.0000 
+IOPVersion: FPGA [v09] slot:7 
+
+PRO2>ver ?
+VERSION [-v]
+    -v : show extended version info.
+
+PRO2>ver
+PRO2 Cntrl Eng [v4.008.0026 (Jan 28 2015), #00000000]
+
+PRO2>ver -v
+PRO2 Cntrl Eng [v4.008.0026 (Jan 28 2015), #00000000]
+Build Number: 258410458
+10:51:33    Jan 28 2015
+*/
+
+FUNCTION GetVersion()
+{
+    SendConsole("ver");
+}
+
 FUNCTION SetVersion(STRING console)
 {
-// EXAMPLE: MC3 Cntrl Eng [v1.010.0060 (Sep 29 2014), #00765E2F]
-    
     INTEGER start, end, count;
 
     // Model
@@ -471,6 +526,195 @@ FUNCTION SetVersion(STRING console)
     SendKeyValue("users", Users);
 }
 
+/* IPCONFIG or ESTATUS
+RMC3>ipconfig ?
+usage : ipconfig [/all | /renew [adapter index] | /release [adapter index] ] /flushdns
+    ?    Display this help message. 
+    /all  Display full configuration information.
+    /release   Release the IP address for the specified adapter 
+    /renew     Renew the IP address for the specified adapter 
+    /flushdns  Clear the name resolution client cache 
+ The default is to display only the IP address, subnet mask and default gateway for each adapter bound to TCP/IP. 
+
+RMC3>ipconfig
+Ethernet Adapter [CPSW3G1]:
+     Link Status ....... : OK 
+     DHCP .............. : OFF 
+     MAC Address(es).... : 00.10.7f.12.34.56 
+     IP Address ........ : 192.168.1.10 
+     Subnet Mask ....... : 255.255.255.0 
+     IPv6 Address....... : fe80::5da1:8a37:47b1:122a%2 
+     Default Gateway ... : 192.168.1.1 
+
+     DNS Servers........ : 192.168.1.1 (DHCP)
+
+PRO2>est ?
+ESTATUS
+    No parameter needed
+
+PRO2>est
+Ethernet Status: LAN A        LAN B
+  Link Status:   OK           No Link 
+  Link Speed:    100 Mbps     n/a
+  Full Duplex:   YES          n/a
+Ethernet Parameters:
+  Enabled:     On
+  MAC Address(es): 00.10.7f.12.34.56        NOT_FOUND
+  IP Address:  192.168.001.011    Not Loaded
+  Subnet Mask: 255.255.255.000    Not Loaded
+  Def Router : 192.168.001.001
+  DHCP:        Off
+  WINS:        Off
+  Host Name:   ADELYTE-PRO2
+  Domain Name: (none entered)
+  SSL:         OFF,Off
+DNS Server Information:
+  Server  IP_Address.
+    1    192.168.1.1       (static)
+Console Client Parameters:
+ Enabled: Off
+ Console Server IP Address: 0.0.0.0 
+ Console Server Port Number: 0 
+ Console Client Max Retries: 100 
+ Console Client Idle Timeout (In Seconds): 900 
+ Console Client Disconnected. 
+IP Table:
+CIP_ID  Type    Status     DevID  Port   IP Address/SiteName
+*/
+
+#IF_SERIES3
+FUNCTION GetNetwork()
+{
+    SendConsole("ipconfig");
+}
+
+FUNCTION SetNetwork(STRING console)
+{
+    INTEGER start, end, count;
+
+    // MAC Address
+    start = FIND("MAC Address(es).... : ", console) + 22;
+    end = FIND("\n", console, start);
+    count = end - start;
+    Processor.mac_address = MID(console, start, count);
+
+    // IP Address
+    start = FIND("IP Address ........ : ", console) + 22;
+    end = FIND("\n", console, start);
+    count = end - start;
+    Processor.ip_address = MID(console, start, count);
+
+    SendKeyValue("mac-address", Processor.mac_address);
+    SendKeyValue("local-ip-address", Processor.ip_address);
+}
+#ELSE
+FUNCTION GetNetwork()
+{
+    SendConsole("est");
+}
+
+FUNCTION SetNetwork(STRING console)
+{
+    INTEGER start, end, count;
+
+    // MAC Address
+    start = FIND("MAC Address(es): ", console) + 17;
+    count = 17; // LEN("00.00.00.00.00.00")
+    Processor.mac_address = MID(console, start, count);
+
+    // IP Address
+    start = FIND("IP Address: ", console) + 12;
+    count = 15; // LEN("000.000.000.000")
+    Processor.ip_address = MID(console, start, count);
+
+    SendKeyValue("mac-address", Processor.mac_address);
+    SendKeyValue("local-ip-address", Processor.ip_address);
+}
+#ENDIF
+
+/* NVRAMREBOOT
+RMC3>nvramreboot ?
+NVRAMREBOOT [SHOW]
+    SHOW - display the last reboot message in NVRAM
+
+RMC3>nvramreboot
+11:11:50  3-11-2016 HW Watchdog timeout
+
+RMC3>nvramreboot show
+11:11:50  3-11-2016 HW Watchdog timeout
+
+PRO2>nvramreboot ?
+NVRAMREBOOT [OFF | ON | SHOW]
+    OFF - disable writing reboot messages to NVRAM
+    ON - enable writing reboot messages to NVRAM
+    SHOW - display the last reboot message in NVRAM
+
+PRO2>nvramreboot
+NVRAM reboot message: ON
+
+PRO2>nvramreboot show
+Msg: REBOOT: 14:07:10  7-17-16  PRO2 v4.008.0026 514, HW Watchdog, Task=CONSOLE , RAM=20579512, PC=80787b94, Stk=8057a252,80579af6,80500cf2,8057c73e,80503dfc,80546e9a,806cdb30,806d25bc,0,
+*/
+
+FUNCTION GetReboot()
+{
+    SendConsole("nvramreboot show");
+}
+
+FUNCTION SetReboot(STRING console)
+{
+	SendKeyValue("reboot-message", console);
+}
+
+/* PROGCOMMENTS
+RMC3>progcom ?
+PROGCOMMENTS[:program#]
+    program#: number of program to execute. (default=1)
+    No arguments necessary.
+
+RMC3>progcom
+
+Program Boot Directory: \SIMPL\app01
+Source File:  C:\crestron\adelyte_newcomb-old-agency\program\Newcomb CP3
+Program File: Newcomb CP3.smw
+System Name:  Newcomb
+Programmer:   Adelyte Company
+Compiled On:  7/15/2016 3:55 PM
+Compiler Rev: 3.03
+SYMLIB Rev:   998
+IOLIB Rev:    998
+IOPCFG Rev:   4.1.75
+CrestronDB:   57.00.003.00
+Source Env:   SIMPL Windows v4.03.24
+Target Rack:  CP3
+Config Rev:   22
+Include4.dat: 2.04.027
+Friendly Name:Main
+read me...
+
+PRO2>progcom ?
+PROGCOMMENTS
+    No arguments necessary.
+
+PRO2>progcom
+
+Program Boot Directory: \
+Source File:  C:\Crestron\crescendo-cloud-driver\2-Series\Crescendo Cloud PRO2
+Program File: Crescendo Cloud PRO2.smw
+System Name:  {Not Specified}
+Programmer:   Adelyte Company
+Compiled On:  7/17/2016 3:21 PM
+Compiler Rev: 3.03
+SYMLIB Rev:   1001
+IOLIB Rev:    1001
+IOPCFG Rev:   2.1.176
+CrestronDB:   57.00.003.00
+Source Env:   SIMPL Windows v4.03.24
+Target Rack:  PRO2
+Config Rev:   22
+Include4_2Series.dat: 1.80
+*/
+
 FUNCTION GetProgCom()
 {
     SendConsole("progcom");
@@ -478,24 +722,6 @@ FUNCTION GetProgCom()
 
 FUNCTION SetProgCom(STRING console)
 {
-/* EXAMPLE:
-Program Boot Directory: \SIMPL\app01
-Source File:  C:\Users\wes\Code\adelyte_van-de-grift-deer-valley\Lighting\Van de Grift Deer Pointe CP3\Programs\Van de Grift Deer Pointe CP3
-Program File: Van de Grift Deer Pointe CP3.smw
-System Name:  Van de Grift Deer Pointe CP3
-Programmer:   D3 Pro 3.02.008
-Compiled On:  12/2/2015 5:37 PM
-Compiler Rev: 3.03
-SYMLIB Rev:   956
-IOLIB Rev:    956
-IOPCFG Rev:   4.1.75
-CrestronDB:   52.05.013.00
-Source Env:   SIMPL Windows v4.03.14
-Target Rack:  CP3
-Config Rev:   22
-Include4.dat: 2.02.046
-*/
-
     INTEGER start, end, count;
 
     start = FIND("Directory: ", console) + 11;
@@ -530,98 +756,23 @@ Include4.dat: 2.02.046
     SendKeyValue("program-compiled-at", Processor.program_compiled_at);
 }
 
-#IF_SERIES3
-FUNCTION GetNetwork()
-{
-    SendConsole("ipconfig");
-}
+/* UPTIME
+RMC3>uptime ?
+UPTIME
+    no parameters needed
 
-FUNCTION SetNetwork(STRING console)
-{
-/* EXAMPLE:
-Ethernet Adapter [LAN9217]:
-      Link Status ....... : OK 
-      DHCP .............. : OFF 
-      MAC Address(es).... : 00.10.7f.1f.57.05 
-      IP Address ........ : 10.0.0.151 
-      Subnet Mask ....... : 255.255.255.0 
-      IPv6 Address....... : fe80::210:7fff:fe1f:5705%5 
-      Default Gateway ... : 10.0.0.1 
-      DNS Servers........ : None 
- */
+RMC3>uptime
+The system has been running for 0 days 01:06:07.751
+The system last started on: Sunday, July 17, 2016 at 17:47:40
 
-    INTEGER start, end, count;
+PRO2>uptime ?
+UPTIME 
+    no parameters needed
 
-    // MAC Address
-    start = FIND("MAC Address(es).... : ", console) + 22;
-    end = FIND("\n", console, start);
-    count = end - start;
-    Processor.mac_address = MID(console, start, count);
-
-    // IP Address
-    start = FIND("IP Address ........ : ", console) + 22;
-    end = FIND("\n", console, start);
-    count = end - start;
-    Processor.ip_address = MID(console, start, count);
-
-    SendKeyValue("mac-address", Processor.mac_address);
-    SendKeyValue("local-ip-address", Processor.ip_address);
-}
-#ELSE
-FUNCTION GetNetwork()
-{
-    SendConsole("est");
-}
-
-FUNCTION SetNetwork(STRING console)
-{
-/* EXAMPLE
-Ethernet Status: LAN A
-  Link Status:   OK      
-  Link Speed:    100 Mbps
-  Full Duplex:   YES     
-Ethernet Parameters:
-  Enabled:     On
-  MAC Address(es): 00.10.7f.07.31.e0  
-  IP Address:  192.168.002.050    
-  Subnet Mask: 255.255.255.000    
-  Def Router : 192.168.002.002
-  DHCP:        On
-  WINS:        Off
-  Host Name:   CP2E
-  Domain Name: CP3N.crestron
-  SSL:         OFF,Off
-  DHCP Server: 192.168.2.2
-  DHCP Lease Obtained/Renewed: Mon May 23, 2016 19:10:36
-  DHCP Lease Expires:          Mon May 23, 2016 20:10:36
-  DHCP Lease Renew:            Mon May 23, 2016 19:40:36
-  DHCP Lease Rebind:           Mon May 23, 2016 20:03:06
-DNS Server Information:
-  Server  IP_Address.
-	1    192.168.2.2       (DHCP)
-IP Table:
-CIP_ID  Type    Status     DevID  Port   IP Address/SiteName
-    50  CIP     UNKNOWN           41794  192.168.002.101
+PRO2>uptime
+The system has been running for 0 days 01:04:40.61
+The system last started on: Sun Jul 17, 2016 at 20:49:59
 */
-
-    INTEGER start, end, count;
-
-    // MAC Address
-    start = FIND("MAC Address(es): ", console) + 17;
-    end = FIND("\n", console, start);
-    count = end - start;
-    Processor.mac_address = MID(console, start, count);
-
-    // IP Address
-    start = FIND("IP Address: ", console) + 12;
-    end = FIND("\n", console, start);
-    count = end - start;
-    Processor.ip_address = MID(console, start, count);
-
-    SendKeyValue("mac-address", Processor.mac_address);
-    SendKeyValue("local-ip-address", Processor.ip_address);
-}
-#ENDIF
 
 FUNCTION GetUptime()
 {
@@ -630,11 +781,6 @@ FUNCTION GetUptime()
 
 FUNCTION SetUptime(STRING console)
 {
-/* EXAMPLE
-The system has been running for 1 days 20:57:04.00
-The system last started on: Sunday, December 06, 2015 at 14:36:36
-*/
-
     INTEGER start, end, count;
     STRING days[5], timestamp[16];
 
@@ -653,6 +799,29 @@ The system last started on: Sunday, December 06, 2015 at 14:36:36
     SendKeyValue("uptime", Processor.uptime);
 }
 
+/* RAMFREE or HEAPFREE
+RMC3>ramfree ?
+RAMFREE
+    no parameters needed
+
+RMC3>ramfree
+46 percent of memory in use
+199446528 total bytes of physical memory
+91566080 bytes actually used
+107880448 bytes free
+0 bytes reclaimable
+
+PRO2>heapfree ?
+HEAPFREE [Max|#num]
+    Max - find Maximum contiguous free block
+    #num - allocate block of this size
+
+PRO2>heapfree
+20626908 bytes free
+12927524 bytes used
+Blk starts at 80C53934
+*/
+
 #IF_SERIES3
 FUNCTION GetMemory()
 {
@@ -661,14 +830,6 @@ FUNCTION GetMemory()
 
 FUNCTION SetMemory(STRING console)
 {
-/* EXAMPLE
-38 percent of memory in use
-199446528 total bytes of physical memory
-75534336 bytes actually used
-123912192 bytes free
-0 bytes reclaimable
-*/
-
     INTEGER start, end, count;
 
     start = FIND("physical memory\n", console) + 17;
@@ -684,24 +845,6 @@ FUNCTION SetMemory(STRING console)
     SendKeyValue("memory-free", Processor.memory_free);
     SendKeyValue("memory-used", Processor.memory_used);
 }
-
-FUNCTION GetLoad()
-{
-    SendConsole("cpuload");
-}
-
-FUNCTION SetLoad(STRING console)
-{
-/* EXAMPLE
-CPU:LOAD 4%
-*/
-    INTEGER load;
-
-    load = ATOI(console);
-    Processor.cpu_idle = ITOA(100 - load);
-
-    SendKeyValue("cpu-idle", Processor.cpu_idle);
-}
 #ELSE
 FUNCTION GetMemory()
 {
@@ -710,12 +853,6 @@ FUNCTION GetMemory()
 
 FUNCTION SetMemory(STRING console)
 {
-/* EXAMPLE
-20655852 bytes free
-12898580 bytes used
-Blk starts at 80C5D84C
-*/
-
     INTEGER start, end, count;
 
     start = 1;
@@ -731,7 +868,44 @@ Blk starts at 80C5D84C
     SendKeyValue("memory-free", Processor.memory_free);
     SendKeyValue("memory-used", Processor.memory_used);
 }
+#ENDIF
 
+/* CPULOAD or TOP
+RMC3>cpuload ?
+CPULOAD
+    no parameters needed
+
+RMC3>cpuload
+CPU:LOAD 8%
+
+PRO2>top ?
+TOP
+
+PRO2>top
+Sorting...
+
+thread=ReaLIdle utilization=99.57%
+thread=TIMER    utilization=0.1%
+thread=TCP_Read utilization=0.1%
+thread=LISR utilization=0.1%
+*/
+
+#IF_SERIES3
+FUNCTION GetLoad()
+{
+    SendConsole("cpuload");
+}
+
+FUNCTION SetLoad(STRING console)
+{
+    INTEGER load;
+
+    load = ATOI(console);
+    Processor.cpu_idle = ITOA(100 - load);
+
+    SendKeyValue("cpu-idle", Processor.cpu_idle);
+}
+#ELSE
 FUNCTION GetLoad()
 {
     SendConsole("top");
@@ -739,14 +913,9 @@ FUNCTION GetLoad()
 
 FUNCTION SetLoad(STRING console)
 {
-/* EXAMPLE
-thread=ReaLIdle	utilization=91.47%
-thread=LogicPro	utilization=4.44%
-*/
-
     INTEGER start, end, count;
 
-    start = FIND("thread=ReaLIdle	utilization=", console) + 28;
+    start = FIND("thread=ReaLIdle\x09utilization=", console) + 28;
     end = FIND("%\n", console, start);
     count = end - start;
     Processor.cpu_idle = MID(console, start, count);
@@ -763,19 +932,19 @@ FUNCTION SetKeyValues()
   {
     IF(Digital_Key[index] != "")
     {
-	    #IF_DEFINED #KEY_VALUE_ENABLE
+        #IF_DEFINED #KEY_VALUE_ENABLE
         IF(Enable_Digital_Key[index])
         {
-		    IF(Digital_Value_Is[index])
-	        {
-	            SendKeyValue(Digital_Key[index], "true");
-	        }
-	        ELSE
-	        {
-	            SendKeyValue(Digital_Key[index], "false");
-	        }
+            IF(Digital_Value_Is[index])
+            {
+                SendKeyValue(Digital_Key[index], "true");
+            }
+            ELSE
+            {
+                SendKeyValue(Digital_Key[index], "false");
+            }
         }
-	    #ENDIF
+        #ENDIF
         #IF_NOT_DEFINED #KEY_VALUE_ENABLE
         IF(Digital_Value_Is[index])
         {
@@ -793,9 +962,9 @@ FUNCTION SetKeyValues()
         #IF_DEFINED #KEY_VALUE_ENABLE
         IF(Enable_Analog_Key[index])
         {
-		    SendKeyValue(Analog_Key[index], ITOA(Analog_Value_Is[index]));
+            SendKeyValue(Analog_Key[index], ITOA(Analog_Value_Is[index]));
         }
-	    #ENDIF
+        #ENDIF
         #IF_NOT_DEFINED #KEY_VALUE_ENABLE
         SendKeyValue(Analog_Key[index], ITOA(Analog_Value_Is[index]));
         #ENDIF
@@ -806,9 +975,9 @@ FUNCTION SetKeyValues()
         #IF_DEFINED #KEY_VALUE_ENABLE
         IF(Enable_Serial_Key[index])
         {
-		    SendKeyValue(Serial_Key[index], Serial_Value_Is[index]);
+            SendKeyValue(Serial_Key[index], Serial_Value_Is[index]);
         }
-	    #ENDIF
+        #ENDIF
         #IF_NOT_DEFINED #KEY_VALUE_ENABLE
         SendKeyValue(Serial_Key[index], Serial_Value_Is[index]);
         #ENDIF
@@ -833,12 +1002,12 @@ STRING __Prompt__[16];
 
 CHANGE Console_Rx
 {
-    STRING rx[4095], prompt[16];
+    STRING rx[#CONSOLE_LEN], prompt[16];
 
     IF(__Prompt__ = "")
     {
         __Prompt__ = REMOVE(">", Console_Rx);
-        GENERATEUSERNOTICE("Crescendo Cloud: PROMPT is '%s'", __Prompt__);
+        GENERATEUSERNOTICE("Crescendo Cloud> PROMPT is '%s'", __Prompt__);
 
         TERMINATEEVENT;
     }
@@ -851,12 +1020,30 @@ CHANGE Console_Rx
         TERMINATEEVENT;
     }
 
+    #IF_SERIES3
     IF(__Console_Tx__ = "ver")
     {
         SetVersion(rx);
         GetNetwork();
     }
+    ELSE IF(__Console_Tx__ = "ipconfig")
+    {
+        SetNetwork(rx);
 
+		IF(Processor.rebooted)
+		{
+        	GetReboot();
+		}
+		ELSE
+		{
+        	GetProgCom();
+		}
+    }
+    ELSE IF(__Console_Tx__ = "nvramreboot show")
+    {
+        SetReboot(rx);
+        GetProgCom();
+    }
     ELSE IF(__Console_Tx__ = "progcom")
     {
         SetProgCom(rx);
@@ -868,47 +1055,58 @@ CHANGE Console_Rx
         Heartbeat();
         SetKeyValues();
     }
+    ELSE IF(__Console_Tx__ = "ramfree")
+    {
+        SetMemory(rx);
+    }
+    ELSE IF(__Console_Tx__ = "cpuload")
+    {
+        SetLoad(rx);
+    }
     ELSE
     {
-        // NOTE: the compiler does not allow the `ELSE IF` statements to be placed inline
-	    #IF_SERIES3
-	    IF(__Console_Tx__ = "ramfree")
-	    {
-	        SetMemory(rx);
-	    }
-	    ELSE IF(__Console_Tx__ = "ipconfig")
-	    {
-	        SetNetwork(rx);
-	        GetProgCom();
-	    }
-	    ELSE IF(__Console_Tx__ = "cpuload")
-	    {
-	        SetLoad(rx);
-	    }
-        ELSE
-        {
-            SendKeyValue(__Console_Tx__, rx);
-        }
-	    #ELSE
-	    IF(__Console_Tx__ = "heapfree")
-	    {
-	        SetMemory(rx);
-	    }
-	    ELSE IF(__Console_Tx__ = "est")
-	    {
-	        SetNetwork(rx);
-	        GetProgCom();
-	    }
-	    ELSE IF(__Console_Tx__ = "top")
-	    {
-	        SetLoad(rx);
-	    }
-        ELSE
-        {
-            SendKeyValue(__Console_Tx__, rx);
-        }
-	    #ENDIF
+        SendKeyValue(__Console_Tx__, rx);
     }
+    #ELSE
+    IF(__Console_Tx__ = "ver")
+    {
+        SetVersion(rx);
+        GetNetwork();
+    }
+    ELSE IF(__Console_Tx__ = "est")
+    {
+        SetNetwork(rx);
+        GetReboot();
+    }
+    ELSE IF(__Console_Tx__ = "nvramreboot show")
+    {
+        SetReboot(rx);
+        GetProgCom();
+    }
+    ELSE IF(__Console_Tx__ = "progcom")
+    {
+        SetProgCom(rx);
+        GetUptime();
+    }
+    ELSE IF(__Console_Tx__ = "uptime")
+    {
+        SetUptime(rx);
+        Heartbeat();
+        SetKeyValues();
+    }
+    ELSE IF(__Console_Tx__ = "heapfree")
+    {
+        SetMemory(rx);
+    }
+    ELSE IF(__Console_Tx__ = "top")
+    {
+        SetLoad(rx);
+    }
+    ELSE
+    {
+        SendKeyValue(__Console_Tx__, rx);
+    }
+    #ENDIF
 }
 
 
@@ -941,6 +1139,11 @@ FUNCTION __Init__()
         SerialHashSet(Serial_Key[i], i);
     }
 
+    IF(Processor.rebooted)
+    {
+        SendKeyValue("rebooted", "true");
+    }
+
     GetVersion();
 }
 
@@ -962,7 +1165,7 @@ SOCKETSTATUS Client
     SIGNED_INTEGER status;
 
     status = SOCKETGETSTATUS();
-    TRACE("Crescendo Cloud: STATUS %d", status);
+    TRACE("Crescendo Cloud> TCP Status: %d", status);
 
     CSWITCH(status)
     {
@@ -970,15 +1173,8 @@ SOCKETSTATUS Client
         CASE(4): // Connection broken remotely
         {
             __Host__ = (__Host__ + 1) MOD #CRESCENDO_CLOUD_HOST_SIZE;
-            
-            WAIT(2000, WAIT_RECONNECT)
-            {
-                __Connect__();
-            }
-        }
-        DEFAULT:
-        {
-            CANCELWAIT(WAIT_RECONNECT);
+
+            __Connect__();
         }
     }
 }
@@ -1013,7 +1209,7 @@ SOCKETRECEIVE Client
     INTEGER i, value;
     STRING rx[255], key[250];
 
-    TRACE("Crescendo Cloud: SocketRxBuf: '%s'", Client.SocketRxBuf);
+    TRACE("Crescendo Cloud> SocketRxBuf: '%s'", Client.SocketRxBuf);
 
     __Rx_Buffer__ = __Rx_Buffer__ + Client.SocketRxBuf;
     CLEARBUFFER(Client.SocketRxBuf);
@@ -1029,7 +1225,7 @@ SOCKETRECEIVE Client
     {
         rx = REMOVE(#MESSAGE_DELIMITER, __Rx_Buffer__);
 
-        TRACE("Crescendo Cloud: rx: '%s'", rx);
+        TRACE("Crescendo Cloud> rx: '%s'", rx);
         rx = LEFT(rx, LEN(rx) - 2); // trim delimiter
   
         #IF_DEFINED #DEBUG
@@ -1039,7 +1235,7 @@ SOCKETRECEIVE Client
         key = REMOVE(#MESSAGE_KEY_DELIMITER, rx);
         key = LEFT(key, LEN(key) - 3); // trim delimiter
   
-        TRACE("Crescendo Cloud: key:value %s:%s", key, rx);
+        TRACE("Crescendo Cloud> key:value %s:%s", key, rx);
   
         IF("shell" = LEFT(key, 5))
         {
@@ -1224,26 +1420,26 @@ FUNCTION __Inspect__()
         IF(key != "")
         {
             digital_keys = digital_keys + 1;
-	        hash = HashCode(key);
-	
-	        match = "==";
-		    FOR(j = 0 TO #KEY_VALUE_SIZEx2 - 1)
-		    {
-		        slot = (hash + j) MOD #KEY_VALUE_SIZEx2;
-		
-		        IF(i = __Digital_Key_Hash_Table__[slot])
-		        {
-		            BREAK;
-		        }
-		    }
+            hash = HashCode(key);
+    
+            match = "==";
+            FOR(j = 0 TO #KEY_VALUE_SIZEx2 - 1)
+            {
+                slot = (hash + j) MOD #KEY_VALUE_SIZEx2;
+        
+                IF(i = __Digital_Key_Hash_Table__[slot])
+                {
+                    BREAK;
+                }
+            }
 
             IF(slot != hash)
             {
                 match = "<>";
                 digital_collisions = digital_collisions + 1;
             }
-	
-	        PRINT("D-%03u %04u %s %04u +%u | %s\n", i, hash, match, slot, j, key);
+    
+            PRINT("D-%03u %04u %s %04u +%u | %s\n", i, hash, match, slot, j, key);
         }
     }
 
@@ -1253,26 +1449,26 @@ FUNCTION __Inspect__()
         IF(key != "")
         {
             analog_keys = analog_keys + 1;
-	        hash = HashCode(key);
-	
-	        match = "==";
-		    FOR(j = 0 TO #KEY_VALUE_SIZEx2 - 1)
-		    {
-		        slot = (hash + j) MOD #KEY_VALUE_SIZEx2;
-		
-		        IF(i = __Analog_Key_Hash_Table__[slot])
-		        {
-		            BREAK;
-		        }
-		    }
+            hash = HashCode(key);
+    
+            match = "==";
+            FOR(j = 0 TO #KEY_VALUE_SIZEx2 - 1)
+            {
+                slot = (hash + j) MOD #KEY_VALUE_SIZEx2;
+        
+                IF(i = __Analog_Key_Hash_Table__[slot])
+                {
+                    BREAK;
+                }
+            }
 
             IF(slot != hash)
             {
                 match = "<>";
                 analog_collisions = analog_collisions + 1;
             }
-	
-	        PRINT("A-%03u %04u %s %04u +%u | %s\n", i, hash, match, slot, j, key);
+    
+            PRINT("A-%03u %04u %s %04u +%u | %s\n", i, hash, match, slot, j, key);
         }
     }
 
@@ -1282,26 +1478,26 @@ FUNCTION __Inspect__()
         IF(key != "")
         {
             serial_keys = serial_keys + 1;
-	        hash = HashCode(key);
-	
-	        match = "==";
-		    FOR(j = 0 TO #KEY_VALUE_SIZEx2 - 1)
-		    {
-		        slot = (hash + j) MOD #KEY_VALUE_SIZEx2;
-		
-		        IF(i = __Serial_Key_Hash_Table__[slot])
-		        {
-		            BREAK;
-		        }
-		    }
+            hash = HashCode(key);
+    
+            match = "==";
+            FOR(j = 0 TO #KEY_VALUE_SIZEx2 - 1)
+            {
+                slot = (hash + j) MOD #KEY_VALUE_SIZEx2;
+        
+                IF(i = __Serial_Key_Hash_Table__[slot])
+                {
+                    BREAK;
+                }
+            }
 
             IF(slot != hash)
             {
                 match = "<>";
                 serial_collisions = serial_collisions + 1;
             }
-	
-	        PRINT("S-%03u %04u %s %04u +%u | %s\n", i, hash, match, slot, j, key);
+    
+            PRINT("S-%03u %04u %s %04u +%u | %s\n", i, hash, match, slot, j, key);
         }
     }
 
@@ -1421,6 +1617,8 @@ FUNCTION Main()
     __Prompt__ = "";
     __Rx_Buffer__ = "";
 
+    Processor.rebooted = 1;
+
     WAITFORINITIALIZATIONCOMPLETE();
 
     #IF_DEFINED #DEVELOP
@@ -1437,86 +1635,188 @@ FUNCTION Main()
         {
             CASE(1):
             {
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(2):
             {
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(3):
             {
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(4):
             {
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(5):
             {
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(6):
             {
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
+                BREAK;
+            }
+        }
+    }
+    ELSE IF(Server_Region = "BLR")
+    {
+        CSWITCH(permutation)
+        {
+            CASE(1):
+            {
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SFO1;
+                BREAK;
+            }
+            CASE(2):
+            {
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SFO1;
+                BREAK;
+            }
+            CASE(3):
+            {
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SFO1;
+                BREAK;
+            }
+            CASE(4):
+            {
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SFO1;
+                BREAK;
+            }
+            CASE(5):
+            {
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SFO1;
+                BREAK;
+            }
+            CASE(6):
+            {
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SFO1;
                 BREAK;
             }
         }
@@ -1527,86 +1827,92 @@ FUNCTION Main()
         {
             CASE(1):
             {
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(2):
             {
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(3):
             {
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(4):
             {
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(5):
             {
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(6):
             {
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
         }
@@ -1617,86 +1923,92 @@ FUNCTION Main()
         {
             CASE(1):
             {
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(2):
             {
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(3):
             {
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(4):
             {
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(5):
             {
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(6):
             {
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
         }
@@ -1707,86 +2019,92 @@ FUNCTION Main()
         {
             CASE(1):
             {
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(2):
             {
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(3):
             {
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(4):
             {
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(5):
             {
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(6):
             {
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
         }
@@ -1797,86 +2115,92 @@ FUNCTION Main()
         {
             CASE(1):
             {
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_BLR1;
                 BREAK;
             }
             CASE(2):
             {
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_BLR1;
                 BREAK;
             }
             CASE(3):
             {
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_BLR1;
                 BREAK;
             }
             CASE(4):
             {
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_BLR1;
                 BREAK;
             }
             CASE(5):
             {
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_BLR1;
                 BREAK;
             }
             CASE(6):
             {
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_BLR1;
                 BREAK;
             }
         }
@@ -1887,86 +2211,92 @@ FUNCTION Main()
         {
             CASE(1):
             {
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_LON1;
                 BREAK;
             }
             CASE(2):
             {
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_LON1;
                 BREAK;
             }
             CASE(3):
             {
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_LON1;
                 BREAK;
             }
             CASE(4):
             {
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_LON1;
                 BREAK;
             }
             CASE(5):
             {
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_LON1;
                 BREAK;
             }
             CASE(6):
             {
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_LON1;
                 BREAK;
             }
         }
@@ -1977,86 +2307,92 @@ FUNCTION Main()
         {
             CASE(1):
             {
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(2):
             {
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(3):
             {
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(4):
             {
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(5):
             {
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
             CASE(6):
             {
-                Hosts[6] = #CRESCENDO_CLOUD_HOST_AMS3;
-                Hosts[7] = #CRESCENDO_CLOUD_HOST_AMS2;
-                Hosts[5] = #CRESCENDO_CLOUD_HOST_LON1;
-                Hosts[8] = #CRESCENDO_CLOUD_HOST_FRA1;
-                Hosts[1] = #CRESCENDO_CLOUD_HOST_NYC2;
-                Hosts[2] = #CRESCENDO_CLOUD_HOST_NYC1;
-                Hosts[3] = #CRESCENDO_CLOUD_HOST_NYC3;
-                Hosts[0] = #CRESCENDO_CLOUD_HOST_TOR1;
-                Hosts[4] = #CRESCENDO_CLOUD_HOST_SFO1;
-                Hosts[9] = #CRESCENDO_CLOUD_HOST_SGP1;
+                Hosts[00] = #CRESCENDO_CLOUD_HOST_TOR1;
+                Hosts[01] = #CRESCENDO_CLOUD_HOST_NYC3;
+                Hosts[02] = #CRESCENDO_CLOUD_HOST_NYC2;
+                Hosts[03] = #CRESCENDO_CLOUD_HOST_NYC1;
+                Hosts[04] = #CRESCENDO_CLOUD_HOST_SFO1;
+                Hosts[05] = #CRESCENDO_CLOUD_HOST_LON1;
+                Hosts[06] = #CRESCENDO_CLOUD_HOST_AMS3;
+                Hosts[07] = #CRESCENDO_CLOUD_HOST_AMS2;
+                Hosts[08] = #CRESCENDO_CLOUD_HOST_FRA1;
+                Hosts[09] = #CRESCENDO_CLOUD_HOST_BLR1;
+                Hosts[10] = #CRESCENDO_CLOUD_HOST_SGP1;
                 BREAK;
             }
         }

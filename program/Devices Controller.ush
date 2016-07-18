@@ -21,7 +21,7 @@
   SmplCName=Devices Controller.usp
   Code=1
   SysRev5=4.000
-  SMWRev=3.00.00
+  SMWRev=2.02.00
   InputCue1=Initialize
   InputSigType1=Digital
   InputCue2=Device_Default_Select
