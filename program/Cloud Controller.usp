@@ -1,0 +1,74 @@
+/*
+ * Adelyte Company
+ * www.adelyte.com
+ */
+
+#SYMBOL_NAME "Cloud Controller"
+#CATEGORY "46" "Crescendo" // Custom
+#DEFAULT_VOLATILE
+#ENABLE_DYNAMIC
+// #ENABLE_TRACE
+
+
+// Constants
+
+#DEFINE_CONSTANT #TEXT_LEN    48
+#DEFINE_CONSTANT #ROOMS_MAX   99
+
+
+// Inputs and Outputs
+
+DIGITAL_INPUT Initialize, Room_Exists[#ROOMS_MAX];
+
+STRING_INPUT Default_Sources[#TEXT_LEN], Room_Sources_Is[#ROOMS_MAX][#TEXT_LEN];
+
+STRING_OUTPUT _SKIP_, Room_Sources_Out[#ROOMS_MAX];
+
+// Functions
+
+// Events
+
+CHANGE Default_Sources
+{
+	integer room;
+
+	DELAY(500);
+
+	FOR(room = 1 TO #ROOMS_MAX)
+	{
+    	IF(LEN(Room_Sources_Is[room]) > 0)
+		{
+			Room_Sources_Out[room] = Room_Sources_Is[room];
+		}
+		ELSE IF(Room_Sources_Is[room] = "0")
+		{
+    		Room_Sources_Out[room] = "";
+		}
+		ELSE
+		{
+   	     	IF(Room_Exists[room] > 0)
+				Room_Sources_Out[room] = Default_Sources;
+		}
+	}
+}
+
+
+// Initialization
+
+FUNCTION __Init__()
+{
+
+}
+
+PUSH Initialize
+{
+    __Init__();
+}
+
+
+// Runtime
+
+FUNCTION Main()
+{
+    WAITFORINITIALIZATIONCOMPLETE();
+}

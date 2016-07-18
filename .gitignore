@@ -3,6 +3,7 @@ graphics/*.ced
 *.asv
 *.ASV
 *.err
+*.hash
 *.zip
 !graphics/*.Core3/*.zip
 *CrosspointList.txt
