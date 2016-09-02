@@ -1,0 +1,31 @@
+<Device Model="CP3N">
+   <Network Type="Cresnet" Id="01">
+      <Device Model="CHV-TSTAT/CHV-THSTAT (v2.0)" DeviceId="81" Name="C-01  Media Room"/>
+      <Device Model="CHV-TSTAT/CHV-THSTAT (v2.0)" DeviceId="82" Name="C-02  Master Suite"/>
+      <Device Model="CHV-TSTAT/CHV-THSTAT (v2.0)" DeviceId="83" Name="C-03  Guest Suite"/>
+   </Network>
+   <Network Type="Ethernet" Id="02">
+      <Device Model="Crestron App" DeviceId="03" Name="T-01  iPad 1"/>
+      <Device Model="Crestron App" DeviceId="04" Name="T-02  iPad 2"/>
+      <Device Model="Crestron App" DeviceId="05" Name="T-03  iPhone 1"/>
+      <Device Model="Crestron App" DeviceId="06" Name="T-04  iPhone 2"/>
+      <Device Model="CEN-GWEXER" DeviceId="0F">
+         <Network Type="Slot" Id="03">
+            <Device Model="HR-150" DeviceId="03" Name="H-01  Kitchen"/>
+         </Network>
+         <Network Type="Slot" Id="04">
+            <Device Model="HR-150" DeviceId="04" Name="H-02  Master Bed"/>
+         </Network>
+         <Network Type="RF">
+            <Device Model="HR-150" DeviceId="03" Name="H-01  Kitchen"/>
+            <Device Model="HR-150" DeviceId="04" Name="H-02  Master Bed"/>
+            <Device Model="TSR-302 (EX)" DeviceId="05" Name="T-05  TSR-302 (EX) Media Room"/>
+            <Device Model="INET-IOEX-IRCOM" DeviceId="0F" Name="Master Bedroom"/>
+         </Network>
+         <Network Type="Cresnet"/>
+      </Device>
+      <Device Model="CEN-NSP-1" DeviceId="31" Name="S-81  Internet Radio"/>
+      <Device Model="SWAMP-24x8 (Ethernet)." DeviceId="3F" Name="X-01/10"/>
+      <Device Model="DM-MD6x4" DeviceId="40" Name="X-41/44"/>
+   </Network>
+</Device>

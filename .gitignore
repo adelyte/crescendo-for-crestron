@@ -1,9 +1,10 @@
-SPLsWork/
-graphics/*.ced
+SPlsWork
 *.asv
 *.ASV
+*.ced
 *.err
 *.hash
+*.sm2
 *.zip
 !graphics/*.Core3/*.zip
 *CrosspointList.txt
