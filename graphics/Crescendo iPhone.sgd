@@ -2,7 +2,7 @@
 ObjTp=FSgntr
 Sgntr=SGD
 RelVrs=3
-VTProeVer=6.0.07
+VTProeVer=6.1.03
 Schema=1
 CRCGUID=0C783F70-4EA5-47D9-A1B9-5C1AD667898F
 ]
@@ -2862,7 +2862,7 @@ Name=Crescendo iPhone_[Source] Media Player_Media Player Application.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
-CedMod=Media Server Object Router v3.0.cmc
+CedMod=Media Server Object Router v4.0.cmc
 ]
 ;================================================================================
 [
