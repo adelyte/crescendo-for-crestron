@@ -203,7 +203,7 @@ PUSH Watch_Source
 
     IF(source = 0) TERMINATEEVENT;
 
-    MAKESTRING(Room_Source[Room_Is], "\x50%c", IndexToId(source));
+    MAKESTRING(Room_Source[IdToIndex(Room_Is)], "\x50%c", IndexToId(source));
     MAKESTRING(Control_Source_Set, "\x50%c", IndexToId(source));
 }
 
@@ -216,7 +216,7 @@ PUSH Listen_Source
 
     IF(source = 0) TERMINATEEVENT;
 
-    MAKESTRING(Room_Source[Room_Is], "\x50%c", IndexToId(source));
+    MAKESTRING(Room_Source[IdToIndex(Room_Is)], "\x50%c", IndexToId(source));
     MAKESTRING(Control_Source_Set, "\x50%c", IndexToId(source));
 }
 
