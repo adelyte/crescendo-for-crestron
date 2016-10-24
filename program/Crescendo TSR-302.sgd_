@@ -1,8 +1,8 @@
 [
 ObjTp=FSgntr
 Sgntr=SGD
-RelVrs=1
-VTProeVer=6.0.02
+RelVrs=3
+VTProeVer=6.0.07
 Schema=1
 CRCGUID=9634E8B8-4135-466D-9BD7-F4CB1A2D77EF
 ]
@@ -18,6 +18,8 @@ ObjTp=Symbol
 Name=Crescendo TSR-302_[Sources] DVR_DVR Presets.ced
 Hint=DVR Presets (Smart Object ID=11)
 Code=1
+SGControlType=Button List Vertical
+SGControlName=DVR Presets
 GUID=AC59D824-A93A-497F-9ED6-6D7E3A8BAF73
 SmplCName=Crescendo TSR-302_[Sources] DVR_DVR Presets.ced
 SMWRev=4.02.19
@@ -225,6 +227,8 @@ ObjTp=Symbol
 Name=Crescendo TSR-302_[Sources] Media Player_Media Player Application.ced
 Hint=Media Player Application (Smart Object ID=10)
 Code=2
+SGControlType=Media Player Application
+SGControlName=Media Player Application
 GUID=FFD49ECD-DD99-40DA-A950-DF02AE1E027E
 SmplCName=Crescendo TSR-302_[Sources] Media Player_Media Player Application.ced
 SMWRev=4.02.19
@@ -305,6 +309,8 @@ ObjTp=Symbol
 Name=Crescendo TSR-302_[Main] Listen_Listen.ced
 Hint=Listen (Smart Object ID=2)
 Code=3
+SGControlType=Subpage Reference List Vertical
+SGControlName=Listen
 GUID=73B96BF1-B275-462F-A168-EE8BD4A66803
 SmplCName=Crescendo TSR-302_[Main] Listen_Listen.ced
 SMWRev=4.02.20
@@ -1880,6 +1886,8 @@ ObjTp=Symbol
 Name=Crescendo TSR-302_[Main] Watch_Watch.ced
 Hint=Watch (Smart Object ID=3)
 Code=4
+SGControlType=Subpage Reference List Vertical
+SGControlName=Watch
 GUID=74A31019-CFFE-4A8D-980C-E8424040BE97
 SmplCName=Crescendo TSR-302_[Main] Watch_Watch.ced
 SMWRev=4.02.20
@@ -3455,6 +3463,8 @@ ObjTp=Symbol
 Name=Crescendo TSR-302_[Main] Room_Rooms.ced
 Hint=Rooms (Smart Object ID=1)
 Code=5
+SGControlType=Subpage Reference List Vertical
+SGControlName=Rooms
 GUID=D24D1254-641C-498F-8714-14FF74E32F57
 SmplCName=Crescendo TSR-302_[Main] Room_Rooms.ced
 SMWRev=4.02.20
@@ -4838,6 +4848,8 @@ ObjTp=Symbol
 Name=Crescendo TSR-302_[Main] Sharing_Sharing.ced
 Hint=Sharing (Smart Object ID=4)
 Code=6
+SGControlType=Subpage Reference List Vertical
+SGControlName=Sharing
 GUID=E1C04AA2-4FF9-486A-8B6E-E70A6DD20F24
 SmplCName=Crescendo TSR-302_[Main] Sharing_Sharing.ced
 SMWRev=4.02.20

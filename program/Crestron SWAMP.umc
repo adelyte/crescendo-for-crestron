@@ -4,7 +4,7 @@ Version=1
 [
 ObjTp=FSgntr
 Sgntr=UserMacro
-RelVrs=4.05.03
+RelVrs=4.05.04
 IntStrVrs=2
 MinSMWVrs=3.00.00
 MinTIOVrs=0
@@ -16,14 +16,14 @@ S0Nd=1
 S1Nd=2
 SLNd=3
 PrNm=Crestron SWAMP.umc
-DbVr=58.05.002.00
-DvcDbVr=78.05.001.00
+DbVr=59.00.002.00
+DvcDbVr=79.05.002.00
 PgmNm=Adelyte Company
 CltNm=Crestron SWAMP
 Incl=362,378,380,405,407,408,409,478,522,537,554,586,590,611,624,767,830,883,1032,1062,1079,1134,1157,1199,1220,1222,1299,1348,1439,1472,1473,1499,1746,1803,1975,2229,2354,2514,2523,2532,3708,3902,3912,3918,3925,1766,2574,2651,2817,2886,2938,2947,3181,3197,3233,3710,3735,3736,3816,3888,4176,4308,4476,4591,4769,
 McNm=Crestron SWAMP
-SmVr=1010
-DvVr=1010
+SmVr=1012
+DvVr=1012
 TpN1=1
 TpN2=2
 TpN3=3
@@ -529,6 +529,7 @@ I10=37
 I17=36
 mO=39
 tO=39
+O6=91
 O10=7
 O11=12
 O12=14
@@ -616,11 +617,12 @@ ObjVer=1
 PrH=7
 CF=2
 Cmn1=Volume\\
-mC=4
+mC=5
 C1=10
 C2=14
 C3=17
 C4=19
+C5=64
 ]
 [
 ObjTp=Sm
@@ -674,6 +676,7 @@ I10=33
 I17=75
 mO=39
 tO=39
+O6=90
 O10=34
 O11=30
 O12=31
@@ -761,11 +764,12 @@ ObjVer=1
 PrH=11
 CF=2
 Cmn1=Volume\\
-mC=4
+mC=5
 C1=18
 C2=15
 C3=16
 C4=22
+C5=63
 ]
 [
 ObjTp=Sm
@@ -918,6 +922,7 @@ I10=53
 I17=4
 mO=39
 tO=39
+O6=92
 O10=22
 O11=24
 O12=25
@@ -1024,11 +1029,12 @@ ObjVer=1
 PrH=20
 CF=2
 Cmn1=Volume\\
-mC=4
+mC=5
 C1=24
 C2=25
 C3=26
 C4=27
+C5=65
 ]
 [
 ObjTp=Sm
@@ -1141,6 +1147,7 @@ I10=55
 I17=9
 mO=39
 tO=39
+O6=93
 O10=41
 O11=42
 O12=43
@@ -1228,11 +1235,12 @@ ObjVer=1
 PrH=28
 CF=2
 Cmn1=Volume\\
-mC=4
+mC=5
 C1=31
 C2=32
 C3=33
 C4=34
+C5=66
 ]
 [
 ObjTp=Sm
@@ -1345,6 +1353,7 @@ I10=126
 I17=40
 mO=39
 tO=39
+O6=94
 O10=48
 O11=50
 O12=54
@@ -1432,11 +1441,12 @@ ObjVer=1
 PrH=35
 CF=2
 Cmn1=Volume\\
-mC=4
+mC=5
 C1=38
 C2=39
 C3=40
 C4=41
+C5=67
 ]
 [
 ObjTp=Sm
@@ -1549,6 +1559,7 @@ I10=127
 I17=45
 mO=39
 tO=39
+O6=95
 O10=59
 O11=70
 O12=72
@@ -1636,11 +1647,12 @@ ObjVer=1
 PrH=42
 CF=2
 Cmn1=Volume\\
-mC=4
+mC=5
 C1=45
 C2=46
 C3=47
 C4=48
+C5=68
 ]
 [
 ObjTp=Sm
@@ -1753,6 +1765,7 @@ I10=134
 I17=71
 mO=39
 tO=39
+O6=96
 O10=80
 O11=81
 O12=82
@@ -1840,11 +1853,12 @@ ObjVer=1
 PrH=49
 CF=2
 Cmn1=Volume\\
-mC=4
+mC=5
 C1=52
 C2=53
 C3=54
 C4=55
+C5=69
 ]
 [
 ObjTp=Sm
@@ -1957,6 +1971,7 @@ I10=135
 I17=77
 mO=39
 tO=39
+O6=97
 O10=85
 O11=86
 O12=87
@@ -2044,11 +2059,12 @@ ObjVer=1
 PrH=56
 CF=2
 Cmn1=Volume\\
-mC=4
+mC=5
 C1=59
 C2=60
 C3=61
 C4=62
+C5=70
 ]
 [
 ObjTp=Sm
@@ -2131,6 +2147,150 @@ tO=1
 O1=73
 mP=1
 P1=8.0s
+]
+[
+ObjTp=Sm
+H=63
+SmC=46
+Nm=Analog Buffer
+ObjVer=1
+PrH=13
+CF=2
+n1I=2
+n1O=1
+Cmn1=Sync Volume\\
+mI=2
+I1=90
+I2=33
+mO=1
+tO=1
+O1=13
+]
+[
+ObjTp=Sm
+H=64
+SmC=46
+Nm=Analog Buffer
+ObjVer=1
+PrH=9
+CF=2
+n1I=2
+n1O=1
+Cmn1=Sync Volume\\
+mI=2
+I1=91
+I2=37
+mO=1
+tO=1
+O1=10
+]
+[
+ObjTp=Sm
+H=65
+SmC=46
+Nm=Analog Buffer
+ObjVer=1
+PrH=23
+CF=2
+n1I=2
+n1O=1
+Cmn1=Sync Volume\\
+mI=2
+I1=92
+I2=53
+mO=1
+tO=1
+O1=66
+]
+[
+ObjTp=Sm
+H=66
+SmC=46
+Nm=Analog Buffer
+ObjVer=1
+PrH=30
+CF=2
+n1I=2
+n1O=1
+Cmn1=Sync Volume\\
+mI=2
+I1=93
+I2=55
+mO=1
+tO=1
+O1=49
+]
+[
+ObjTp=Sm
+H=67
+SmC=46
+Nm=Analog Buffer
+ObjVer=1
+PrH=37
+CF=2
+n1I=2
+n1O=1
+Cmn1=Sync Volume\\
+mI=2
+I1=94
+I2=126
+mO=1
+tO=1
+O1=67
+]
+[
+ObjTp=Sm
+H=68
+SmC=46
+Nm=Analog Buffer
+ObjVer=1
+PrH=44
+CF=2
+n1I=2
+n1O=1
+Cmn1=Sync Volume\\
+mI=2
+I1=95
+I2=127
+mO=1
+tO=1
+O1=68
+]
+[
+ObjTp=Sm
+H=69
+SmC=46
+Nm=Analog Buffer
+ObjVer=1
+PrH=51
+CF=2
+n1I=2
+n1O=1
+Cmn1=Sync Volume\\
+mI=2
+I1=96
+I2=134
+mO=1
+tO=1
+O1=69
+]
+[
+ObjTp=Sm
+H=70
+SmC=46
+Nm=Analog Buffer
+ObjVer=1
+PrH=58
+CF=2
+n1I=2
+n1O=1
+Cmn1=Sync Volume\\
+mI=2
+I1=97
+I2=135
+mO=1
+tO=1
+O1=73
 ]
 [
 ObjTp=Sm
@@ -2781,6 +2941,46 @@ ObjTp=Sg
 H=89
 Nm=__X__Output_8_Volume%
 SgTp=2
+]
+[
+ObjTp=Sg
+H=90
+Nm=__X__Output_1_Power_On
+]
+[
+ObjTp=Sg
+H=91
+Nm=__X__Output_2_Power_On
+]
+[
+ObjTp=Sg
+H=92
+Nm=__X__Output_3_Power_On
+]
+[
+ObjTp=Sg
+H=93
+Nm=__X__Output_4_Power_On
+]
+[
+ObjTp=Sg
+H=94
+Nm=__X__Output_5_Power_On
+]
+[
+ObjTp=Sg
+H=95
+Nm=__X__Output_6_Power_On
+]
+[
+ObjTp=Sg
+H=96
+Nm=__X__Output_7_Power_On
+]
+[
+ObjTp=Sg
+H=97
+Nm=__X__Output_8_Power_On
 ]
 [
 ObjTp=Sg
