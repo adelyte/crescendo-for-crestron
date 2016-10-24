@@ -1,0 +1,16 @@
+<Device Model="MC3.">
+   <Network Type="Cresnet" Id="01">
+      <Device Model="CHV-TSTAT/CHV-THSTAT (v2.0)" DeviceId="81" Name="C-01  Theater"/>
+   </Network>
+   <Network Type="Ethernet" Id="02">
+      <Device Model="Crestron App" DeviceId="03" Name="T-01  iPad 1"/>
+      <Device Model="Crestron App" DeviceId="04" Name="T-02  iPad 2"/>
+      <Device Model="Crestron App" DeviceId="05" Name="T-03  iPhone 1"/>
+      <Device Model="Crestron App" DeviceId="06" Name="T-04  iPhone 2"/>
+      <Device Model="CEN-NSP-1" DeviceId="31" Name="S-81  Internet Radio"/>
+   </Network>
+   <Network Type="RF" Id="03">
+      <Device Model="HR-150" DeviceId="03" Name="H-01  Theater"/>
+      <Device Model="TSR-302 (EX)" DeviceId="04" Name="T-05  Theater"/>
+   </Network>
+</Device>

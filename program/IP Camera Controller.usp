@@ -1,0 +1,161 @@
+/*
+ * Adelyte Company
+ * www.adelyte.com
+ */
+
+#SYMBOL_NAME "IP Camera Controller"
+#CATEGORY "46" "Crescendo" // Custom
+#DEFAULT_VOLATILE
+#ENABLE_DYNAMIC
+//#ENABLE_TRACE
+
+
+// Constants
+
+#DEFINE_CONSTANT #TEXT_LEN    48
+#DEFINE_CONSTANT #URL_LEN     255
+#DEFINE_CONSTANT #ITEMS_MAX   48
+#DEFINE_CONSTANT #DEVICES_MAX 24
+
+
+// Inputs and Outputs
+
+DIGITAL_INPUT Initialize, Next, Previous;
+DIGITAL_INPUT Device_Default_Select, Item_Select[#ITEMS_MAX];
+
+DIGITAL_OUTPUT _SKIP_, _SKIP_, _SKIP_, _SKIP_, Item_Selected[#ITEMS_MAX];
+
+ANALOG_OUTPUT Items_Size, Scroll_To_Item;
+STRING_OUTPUT Active_URL;
+ANALOG_OUTPUT Item_Icon_Is[#ITEMS_MAX];
+STRING_OUTPUT Item_Name_Is[#ITEMS_MAX];
+
+INTEGER_PARAMETER Device_Default;
+
+    #BEGIN_PARAMETER_PROPERTIES Device_Default
+
+        propValidUnits = unitDecimal;
+
+    #END_PARAMETER_PROPERTIES
+
+INTEGER_PARAMETER Page_Size;
+
+    #BEGIN_PARAMETER_PROPERTIES Page_Size
+
+        propValidUnits = unitDecimal;
+
+    #END_PARAMETER_PROPERTIES
+
+    
+STRING_PARAMETER Device_Name[#ITEMS_MAX][#TEXT_LEN];
+
+    #BEGIN_PARAMETER_PROPERTIES Device_Name
+
+        propValidUnits = unitString;
+
+    #END_PARAMETER_PROPERTIES
+
+STRING_PARAMETER Device_URL[#ITEMS_MAX][#URL_LEN];
+
+    #BEGIN_PARAMETER_PROPERTIES Device_URL
+
+        propValidUnits = unitString;
+
+    #END_PARAMETER_PROPERTIES
+
+
+// User Events
+
+INTEGER __Selected__;
+
+FUNCTION __Select(INTEGER item)
+{
+    INTEGER page;
+    
+    __Selected__ = item - 1;
+
+    SETARRAY(Item_Selected, 0);
+    Item_Selected[item] = 1;
+    
+    page = __Selected__ / Page_Size;
+    Scroll_To_Item = page * Page_Size + 1;
+    
+    Active_URL = Device_URL[item]; 
+}
+
+PUSH Item_Select
+{
+    INTEGER item;
+    
+    item = GETLASTMODIFIEDARRAYINDEX();
+    
+    __Select(item);
+}
+
+PUSH Device_Default_Select
+{
+    __Select(Device_Default);
+}
+
+PUSH Next
+{
+    INTEGER i, item;
+    
+    FOR(i = 1 TO #DEVICES_MAX)
+    {
+        item = (__Selected__ + i) MOD #DEVICES_MAX + 1;
+        
+        IF(LEN(Device_Name[item]) > 0)
+        {
+            __Select(item);
+            BREAK;
+        }
+    }  
+}
+
+PUSH Previous
+{
+    INTEGER i, item;
+    
+    FOR(i = #DEVICES_MAX TO 1 STEP -1)
+    {
+        item = (__Selected__ + #DEVICES_MAX - 1 + i) MOD #DEVICES_MAX + 1;
+        
+        IF(LEN(Device_Name[item]) > 0)
+        {
+            __Select(item);
+            BREAK;
+        }
+    }
+}
+
+// Initialization
+
+PUSH Initialize
+{
+    INTEGER i, size;
+    
+    size = 0;
+    
+    FOR(i = 1 TO #DEVICES_MAX)
+    {
+        IF(LEN(Device_Name[i]) = 0)
+        {
+            CONTINUE;
+        }
+        
+        Item_Name_Is[i] = Device_Name[i];
+            
+        size = size + 1;    
+    }
+    
+    Items_Size = size;
+}
+
+
+// Runtime
+
+FUNCTION Main()
+{
+    WAITFORINITIALIZATIONCOMPLETE();
+}
