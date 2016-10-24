@@ -2,7 +2,7 @@
 ObjTp=FSgntr
 Sgntr=SGD
 RelVrs=3
-VTProeVer=6.0.07
+VTProeVer=6.1.03
 Schema=1
 CRCGUID=9634E8B8-4135-466D-9BD7-F4CB1A2D77EF
 ]
@@ -301,7 +301,7 @@ Name=Crescendo TSR-302_[Sources] Media Player_Media Player Application.ced
 ;Cedver is the version of the Smart Graphics control, not the CED file format.
 ;If the control definition changes, increment this.
 CedVer=1
-CedMod=Media Server Object Router v3.0.cmc
+CedMod=Media Server Object Router v4.0.cmc
 ]
 ;================================================================================
 [
