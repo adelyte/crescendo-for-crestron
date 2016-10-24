@@ -23,7 +23,7 @@ CmVr=3.03
 DbVr=59.00.002.00
 DvcDbVr=79.05.002.00
 PgmNm=Adelyte Company
-CltNm=Crescendo - The Loft
+CltNm=Crescendo Demo - The Loft
 SmVr=1012
 DvVr=1012
 TpN1=1
@@ -109276,6 +109276,8 @@ CedVer=1
 CedMod=
 GUID=0EE85AAE-D3FD-44FF-AC97-B0BCA190FD4D
 Hint=Lighting Menu (Smart Object ID=6)
+SGControlType=Subpage Reference List Vertical
+SGControlName=Lighting Menu
 ]
 [
 ObjTp=CED
@@ -109338,6 +109340,8 @@ CedVer=1
 CedMod=
 GUID=0EE85AAE-D3FD-44FF-AC97-B0BCA190FD4D
 Hint=Lighting Menu (Smart Object ID=6)
+SGControlType=Subpage Reference List Vertical
+SGControlName=Lighting Menu
 ]
 [
 ObjTp=CED
