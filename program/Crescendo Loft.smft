@@ -9,7 +9,7 @@
       <Device Model="Crestron App" DeviceId="04" Name="T-02  iPad 2"/>
       <Device Model="Crestron App" DeviceId="05" Name="T-03  iPhone 1"/>
       <Device Model="Crestron App" DeviceId="06" Name="T-04  iPhone 2"/>
-      <Device Model="CEN-GWEXER" DeviceId="0F">
+      <Device Model="CEN-RFGW-EX (Ethernet)" DeviceId="0F">
          <Network Type="RF">
             <Device Model="HR-150" DeviceId="03" Name="H-01  Kitchen"/>
             <Device Model="HR-150" DeviceId="04" Name="H-02  Master Bed"/>

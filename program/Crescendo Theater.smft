@@ -10,7 +10,7 @@
       <Device Model="CEN-NSP-1" DeviceId="31" Name="S-81  Internet Radio"/>
    </Network>
    <Network Type="RF" Id="03">
-      <Device Model="HR-150" DeviceId="03" Name="H-01  Theater"/>
-      <Device Model="TSR-302 (EX)" DeviceId="04" Name="T-05  Theater"/>
+      <Device Model="TSR-302 (EX)" DeviceId="03" Name="T-05  Theater"/>
+      <Device Model="HR-150" DeviceId="0F" Name="H-01  Theater"/>
    </Network>
 </Device>
