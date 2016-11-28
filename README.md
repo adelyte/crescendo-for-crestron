@@ -2,6 +2,10 @@
 
 Crescendo is the only free and open-source software framework for Crestron control systems. Crescendo is designed by [Adelyte Company](https://www.adelyte.com/) and maintained by the company and the community. Please visit the [project page](https://www.adelyte.com/crestron/crescendo) and [documentation](https://www.adelyte.com/crestron/crescendo/docs) for more information.
 
+## Getting Started
+
+[Crescendo 2 "The Loft" Walkthrough](https://vimeo.com/193417532) on vimeo.
+
 ## Questions and Issues
 
 Please submit a GitHub Issue for any question or issue.
