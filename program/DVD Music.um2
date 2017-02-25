@@ -68,8 +68,7 @@ MinVariableOutputs=0
 MinVariableOutputsList2=0
 MinVariableOutputsList3=0
 MinVariableParams=0
-SymbolTree=46
-UserSymTreeName=Crescendo Devices
+SymbolTree=32
 InputSigType1=Digital|Analog|Serial|String
 OutputSigType1=Digital|Analog|Serial|String
 ParamSigType1=String
@@ -2135,7 +2134,6 @@ I350=139
 I351=140
 I352=141
 I353=142
-I573=4
 mO=595
 tO=718
 O1=7
@@ -2173,12 +2171,6 @@ mC=3
 C1=15
 C2=13
 C3=8
-]
-[
-ObjTp=Sg
-H=4
-Nm=__S__Preset_Value
-SgTp=2
 ]
 [
 ObjTp=Sg
