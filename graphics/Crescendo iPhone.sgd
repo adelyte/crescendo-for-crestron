@@ -4,13 +4,13 @@ Sgntr=SGD
 RelVrs=3
 VTProeVer=6.1.04
 Schema=1
-CRCGUID=0C783F70-4EA5-47D9-A1B9-5C1AD667898F
+CRCGUID=E8E8DEE6-BE18-4FEB-97BD-FE64D4FC08D8
 ]
 ;================================================================================
 [
 ObjTp=Hd
 ProjectFile=Crescendo iPhone.vtp
-VtpGuid=AFFEB46F-760C-4D13-BD5C-9CBCE5AE6878
+VtpGuid=8190D4FA-BD03-4B4C-B76A-568AA871D72C
 ]
 ;================================================================================
 [
@@ -20,7 +20,7 @@ Hint=Lighting Menu (Smart Object ID=6)
 Code=1
 SGControlType=Subpage Reference List Vertical
 SGControlName=Lighting Menu
-GUID=F0934FDF-6EAE-4506-A3E0-F5934C3256A6
+GUID=5AE22719-1348-45F5-8D06-2B1748117130
 SmplCName=Crescendo iPhone_[Device] Lighting_Menu_Lighting Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
@@ -1405,7 +1405,7 @@ Hint=Climate Menu (Smart Object ID=8)
 Code=2
 SGControlType=Subpage Reference List Vertical
 SGControlName=Climate Menu
-GUID=F8197C9B-82A8-4745-A7FE-255EE18EEEE6
+GUID=4045F8C1-7E27-44AA-97E5-58088E61C982
 SmplCName=Crescendo iPhone_[Device] Climate_Menu_Climate Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
@@ -2790,7 +2790,7 @@ Hint=Media Player Application (Smart Object ID=10)
 Code=3
 SGControlType=Media Player Application
 SGControlName=Media Player Application
-GUID=E2757433-1840-426A-BDEF-03AA859FA2EB
+GUID=001B60D0-7D48-40E1-85F9-E1F1094D5897
 SmplCName=Crescendo iPhone_[Source] Media Player_Media Player Application.ced
 SMWRev=4.02.19
 Expand=expand_random
@@ -2872,7 +2872,7 @@ Hint=Rooms Menu (Smart Object ID=1)
 Code=4
 SGControlType=Subpage Reference List Vertical
 SGControlName=Rooms Menu
-GUID=F4E92978-1072-4909-A695-99018E194FA8
+GUID=78BA3C0A-88CB-4895-9BC1-7AFD2A2DD1F8
 SmplCName=Crescendo iPhone_[Main] Menu_Room_Rooms Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
@@ -4257,7 +4257,7 @@ Hint=Watch Menu (Smart Object ID=3)
 Code=5
 SGControlType=Subpage Reference List Vertical
 SGControlName=Watch Menu
-GUID=EA4F042F-6465-46AE-96F1-EE9B1D874A99
+GUID=38D68035-51A4-4F55-B747-707883320603
 SmplCName=Crescendo iPhone_[Main] Menu_Watch_Watch Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
@@ -5834,7 +5834,7 @@ Hint=Listen Menu (Smart Object ID=2)
 Code=6
 SGControlType=Subpage Reference List Vertical
 SGControlName=Listen Menu
-GUID=C2AB2E0F-941B-4E93-85E5-6D73A10A213E
+GUID=4A550E99-80E8-4AB4-A8C6-9CB4882381C9
 SmplCName=Crescendo iPhone_[Main] Menu_Listen_Listen Menu.ced
 SMWRev=4.02.20
 Expand=expand_random
@@ -7411,7 +7411,7 @@ Hint=Sharing Menu (Smart Object ID=4)
 Code=7
 SGControlType=Subpage Reference List Vertical
 SGControlName=Sharing Menu
-GUID=CECEC961-153E-45F4-AD05-E97B787DCC96
+GUID=FC3F9BFF-BCA2-4822-8D07-8574F0DFA634
 SmplCName=Crescendo iPhone_[Main] Menu_Sharing_Sharing Menu.ced
 SMWRev=4.02.20
 Expand=expand_random

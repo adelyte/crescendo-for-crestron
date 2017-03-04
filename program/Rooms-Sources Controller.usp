@@ -323,7 +323,7 @@ FUNCTION UpdateMoveSource(INTEGER room)
     ELSE
     {
         Move_Source_Name_Is[move] = "Off";
-        Move_Source_Icon_Is[move] = 0;
+        Move_Source_Icon_Is[move] = 102;
     }
 }
 
