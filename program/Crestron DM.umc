@@ -4,7 +4,7 @@ Version=1
 [
 ObjTp=FSgntr
 Sgntr=UserMacro
-RelVrs=4.03.20
+RelVrs=4.06.01
 IntStrVrs=2
 MinSMWVrs=3.00.00
 MinTIOVrs=0
@@ -16,15 +16,15 @@ S0Nd=1
 S1Nd=2
 SLNd=3
 PrNm=Crestron DM.umc
-DbVr=54.00.012.00
-DvcDbVr=71.05.004.00
+DbVr=61.06.001.00
+DvcDbVr=82.00.002.00
 PgmNm=Adelyte
 CltNm=Crestron DM
 JpNo=RC1
 Incl=362,378,380,405,407,408,409,478,522,537,554,586,590,611,624,767,830,883,1032,1062,1079,1134,1157,1199,1220,1222,1299,1348,1439,1472,1473,1499,1746,1803,1975,2229,2354,2514,2523,2532,3708,3902,3912,3918,3925,1766,2574,2651,2817,2886,2938,2947,3181,3197,3233,3710,3735,3736,3816,3888,4176,4308,4476,4591,4769,
 McNm=Crestron DM
-SmVr=981
-DvVr=981
+SmVr=1024
+DvVr=1024
 TpN1=1
 TpN2=2
 TpN3=3
@@ -375,7 +375,7 @@ mI=39
 mO=39
 tO=39
 O21=26
-mP=70
+mP=71
 P1=Output 2
 P2=#Output 2 ID
 P3=0s
@@ -446,6 +446,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sm
@@ -462,7 +463,7 @@ mI=39
 mO=39
 tO=39
 O21=28
-mP=70
+mP=71
 P1=Output 3
 P2=#Output 3 ID
 P3=0s
@@ -533,6 +534,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sm
@@ -549,7 +551,7 @@ mI=39
 mO=39
 tO=39
 O21=30
-mP=70
+mP=71
 P1=Output 4
 P2=#Output 4 ID
 P3=0s
@@ -620,6 +622,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sm
@@ -636,7 +639,7 @@ mI=39
 mO=39
 tO=39
 O21=32
-mP=70
+mP=71
 P1=Output 5
 P2=#Output 5 ID
 P3=0s
@@ -707,6 +710,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sm
@@ -723,7 +727,7 @@ mI=39
 mO=39
 tO=39
 O21=34
-mP=70
+mP=71
 P1=Output 6
 P2=#Output 6 ID
 P3=0s
@@ -794,6 +798,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sm
@@ -810,7 +815,7 @@ mI=39
 mO=39
 tO=39
 O21=36
-mP=70
+mP=71
 P1=Output 7
 P2=#Output 7 ID
 P3=0s
@@ -881,6 +886,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sm
@@ -897,7 +903,7 @@ mI=39
 mO=39
 tO=39
 O21=38
-mP=70
+mP=71
 P1=Output 8
 P2=#Output 8 ID
 P3=0s
@@ -968,6 +974,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sm
@@ -1059,7 +1066,7 @@ mI=39
 mO=39
 tO=39
 O21=55
-mP=70
+mP=71
 P1=Output 1
 P2=#Output 1 ID
 P3=0s
@@ -1130,6 +1137,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sg
