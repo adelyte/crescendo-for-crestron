@@ -73807,8 +73807,6 @@ I73=2132
 I102=2
 mO=873
 tO=873
-O67=1421
-O68=1422
 O872=2132
 mP=7
 P1=Sonos
@@ -119956,16 +119954,6 @@ Nm=X-72__Volume_Down
 ObjTp=Sg
 H=1420
 Nm=C-03__Mode_Is_Auto
-]
-[
-ObjTp=Sg
-H=1421
-Nm=power_on
-]
-[
-ObjTp=Sg
-H=1422
-Nm=power_off
 ]
 [
 ObjTp=Sg
