@@ -29,20 +29,20 @@ STRING_OUTPUT  Index$;
 
 INTEGER_PARAMETER Search_Type;
 
-	#BEGIN_PARAMETER_PROPERTIES Search_Type
+    #BEGIN_PARAMETER_PROPERTIES Search_Type
 
-		propValidUnits = unitHex;
-		// propList = { 0xA, "Equal ==" }, { 0xB, "Match =~" }; TODO: 2012-03-02 shows "10h" and "11h" in SIMPL
+        propValidUnits = unitHex;
+        // propList = { 0xA, "Equal ==" }, { 0xB, "Match =~" }; TODO: 2012-03-02 shows "10h" and "11h" in SIMPL
 
-	#END_PARAMETER_PROPERTIES
+    #END_PARAMETER_PROPERTIES
 
 STRING_PARAMETER Elements[#ELEMENTS_SIZE][#ELEMENT_LEN];
 
-	#BEGIN_PARAMETER_PROPERTIES Elements
+    #BEGIN_PARAMETER_PROPERTIES Elements
 
-		propValidUnits = unitString;
+        propValidUnits = unitString;
 
-	#END_PARAMETER_PROPERTIES
+    #END_PARAMETER_PROPERTIES
 
 
 // Functions
@@ -53,10 +53,10 @@ STRING  __Search_String__[#ELEMENT_LEN]; // NOTE: statically allocated local var
 FUNCTION Initialize()
 {
     FOR(__Elements_Size__ = #ELEMENTS_SIZE TO 1 STEP -1)
-	{
-		IF(Elements[__Elements_Size__] != "")
-			BREAK;
-	}
+    {
+        IF(Elements[__Elements_Size__] != "")
+            BREAK;
+    }
 
     __Initialized__ = 1;
 
@@ -89,14 +89,14 @@ CHANGE Search$
     }
 
     CSWITCH(Search_Type)
-	{
-		CASE(#SEARCH_EQUAL):
-		{
-    		FOR(i = 1 TO __Elements_Size__)
+    {
+        CASE(#SEARCH_EQUAL):
+        {
+            FOR(i = 1 TO __Elements_Size__)
             {
-				IF(Elements[i] = __Search_String__)
-				{
-					IF(i = 1)
+                IF(Elements[i] = __Search_String__)
+                {
+                    IF(i = 1)
                     {
                         Found_First = 1;
                     }
@@ -111,19 +111,20 @@ CHANGE Search$
 
                     Found_First = 0;
                     Found_Other = 0;
-					TERMINATEEVENT;
-				}
+                    TERMINATEEVENT;
+                }
             }
 
-			BREAK;
-		}
-		CASE(#SEARCH_MATCH):
-		{
-			FOR(i = 1 TO __Elements_Size__)
+            GENERATEUSERWARNING("IndexOf Equal '%s' NOT FOUND", __Search_String__);
+            BREAK;
+        }
+        CASE(#SEARCH_MATCH):
+        {
+            FOR(i = 1 TO __Elements_Size__)
             {
-				IF(FIND(__Search_String__, Elements[i]) > 0)
-        		{
-            		IF(i = 1)
+                IF(FIND(__Search_String__, Elements[i]) > 0)
+                {
+                    IF(i = 1)
                     {
                         Found_First = 1;
                     }
@@ -138,12 +139,13 @@ CHANGE Search$
 
                     Found_First = 0;
                     Found_Other = 0;
-					TERMINATEEVENT;
-        		}
+                    TERMINATEEVENT;
+                }
             }
 
-			BREAK;
-		}
+            GENERATEUSERWARNING("IndexOf Match '\\x%02X' NOT FOUND", CHR(__Search_String__));
+            BREAK;
+        }
     }
 }
 
