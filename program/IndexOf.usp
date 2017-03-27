@@ -45,29 +45,11 @@ STRING_PARAMETER Elements[#ELEMENTS_SIZE][#ELEMENT_LEN];
 	#END_PARAMETER_PROPERTIES
 
 
-// Functions
-
-INTEGER __Initialized__, __Elements_Size__;
-STRING  __Search_String__[#ELEMENT_LEN]; // NOTE: statically allocated local variable
-
-FUNCTION Initialize()
-{
-    FOR(__Elements_Size__ = #ELEMENTS_SIZE TO 1 STEP -1)
-	{
-		IF(Elements[__Elements_Size__] != "")
-			BREAK;
-	}
-
-    __Initialized__ = 1;
-
-    TRACE("%s Initialize() __Elements_Size__ = %u", GETSYMBOLINSTANCENAME(), __Elements_Size__);
-}
-
-
 // Events
 
 CHANGE Search$
 {
+    STRING __Search_String__[#ELEMENT_LEN];
     INTEGER i;
 
     __Search_String__ = Search$;
@@ -77,22 +59,11 @@ CHANGE Search$
         TERMINATEEVENT;
     }
 
-    IF(__Search_String__ = "Initialize()")
-    {
-        Initialize();
-        TERMINATEEVENT;
-    }
-
-    IF(__Initialized__ = 0)
-    {
-        Initialize();
-    }
-
     CSWITCH(Search_Type)
 	{
 		CASE(#SEARCH_EQUAL):
 		{
-    		FOR(i = 1 TO __Elements_Size__)
+    		FOR(i = 1 TO #ELEMENTS_SIZE)
             {
 				IF(Elements[i] = __Search_String__)
 				{
@@ -119,7 +90,7 @@ CHANGE Search$
 		}
 		CASE(#SEARCH_MATCH):
 		{
-			FOR(i = 1 TO __Elements_Size__)
+			FOR(i = 1 TO #ELEMENTS_SIZE)
             {
 				IF(FIND(__Search_String__, Elements[i]) > 0)
         		{
@@ -145,12 +116,4 @@ CHANGE Search$
 			BREAK;
 		}
     }
-}
-
-
-// Runtime
-
-FUNCTION Main()
-{
-    __Initialized__ = 0;
 }
