@@ -29,45 +29,27 @@ STRING_OUTPUT  Index$;
 
 INTEGER_PARAMETER Search_Type;
 
-    #BEGIN_PARAMETER_PROPERTIES Search_Type
+	#BEGIN_PARAMETER_PROPERTIES Search_Type
 
-        propValidUnits = unitHex;
-        // propList = { 0xA, "Equal ==" }, { 0xB, "Match =~" }; TODO: 2012-03-02 shows "10h" and "11h" in SIMPL
+		propValidUnits = unitHex;
+		// propList = { 0xA, "Equal ==" }, { 0xB, "Match =~" }; TODO: 2012-03-02 shows "10h" and "11h" in SIMPL
 
-    #END_PARAMETER_PROPERTIES
+	#END_PARAMETER_PROPERTIES
 
 STRING_PARAMETER Elements[#ELEMENTS_SIZE][#ELEMENT_LEN];
 
-    #BEGIN_PARAMETER_PROPERTIES Elements
+	#BEGIN_PARAMETER_PROPERTIES Elements
 
-        propValidUnits = unitString;
+		propValidUnits = unitString;
 
-    #END_PARAMETER_PROPERTIES
-
-
-// Functions
-
-INTEGER __Initialized__, __Elements_Size__;
-STRING  __Search_String__[#ELEMENT_LEN]; // NOTE: statically allocated local variable
-
-FUNCTION Initialize()
-{
-    FOR(__Elements_Size__ = #ELEMENTS_SIZE TO 1 STEP -1)
-    {
-        IF(Elements[__Elements_Size__] != "")
-            BREAK;
-    }
-
-    __Initialized__ = 1;
-
-    TRACE("%s Initialize() __Elements_Size__ = %u", GETSYMBOLINSTANCENAME(), __Elements_Size__);
-}
+	#END_PARAMETER_PROPERTIES
 
 
 // Events
 
 CHANGE Search$
 {
+    STRING __Search_String__[#ELEMENT_LEN];
     INTEGER i;
 
     __Search_String__ = Search$;
@@ -77,26 +59,15 @@ CHANGE Search$
         TERMINATEEVENT;
     }
 
-    IF(__Search_String__ = "Initialize()")
-    {
-        Initialize();
-        TERMINATEEVENT;
-    }
-
-    IF(__Initialized__ = 0)
-    {
-        Initialize();
-    }
-
     CSWITCH(Search_Type)
-    {
-        CASE(#SEARCH_EQUAL):
-        {
-            FOR(i = 1 TO __Elements_Size__)
+	{
+		CASE(#SEARCH_EQUAL):
+		{
+    		FOR(i = 1 TO #ELEMENTS_SIZE)
             {
-                IF(Elements[i] = __Search_String__)
-                {
-                    IF(i = 1)
+				IF(Elements[i] = __Search_String__)
+				{
+					IF(i = 1)
                     {
                         Found_First = 1;
                     }
@@ -111,20 +82,19 @@ CHANGE Search$
 
                     Found_First = 0;
                     Found_Other = 0;
-                    TERMINATEEVENT;
-                }
+					TERMINATEEVENT;
+				}
             }
 
-            GENERATEUSERWARNING("IndexOf Equal '%s' NOT FOUND", __Search_String__);
-            BREAK;
-        }
-        CASE(#SEARCH_MATCH):
-        {
-            FOR(i = 1 TO __Elements_Size__)
+			BREAK;
+		}
+		CASE(#SEARCH_MATCH):
+		{
+			FOR(i = 1 TO #ELEMENTS_SIZE)
             {
-                IF(FIND(__Search_String__, Elements[i]) > 0)
-                {
-                    IF(i = 1)
+				IF(FIND(__Search_String__, Elements[i]) > 0)
+        		{
+            		IF(i = 1)
                     {
                         Found_First = 1;
                     }
@@ -139,20 +109,11 @@ CHANGE Search$
 
                     Found_First = 0;
                     Found_Other = 0;
-                    TERMINATEEVENT;
-                }
+					TERMINATEEVENT;
+        		}
             }
 
-            GENERATEUSERWARNING("IndexOf Match '\\x%02X' NOT FOUND", CHR(__Search_String__));
-            BREAK;
-        }
+			BREAK;
+		}
     }
-}
-
-
-// Runtime
-
-FUNCTION Main()
-{
-    __Initialized__ = 0;
 }
