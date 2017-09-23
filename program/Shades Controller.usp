@@ -1,0 +1,77 @@
+/*******************************************************************************************
+* Adelyte Company
+* www.adelyte.com
+*/
+
+#SYMBOL_NAME "Shades Controller"
+#CATEGORY "46" "Crescendo" // Custom
+#DEFAULT_VOLATILE
+#ENABLE_DYNAMIC
+#HELP_BEGIN
+   Module used in Shades Module that calculate itens numbers and all close and all open feedback
+#HELP_END
+
+// Constants
+#DEFINE_CONSTANT #TEXT_LEN    48
+#DEFINE_CONSTANT #SHADES_MAX  12
+
+
+// Inputs and Outputs
+
+
+STRING_INPUT  Shade_Name[#SHADES_MAX][#TEXT_LEN];
+
+ANALOG_INPUT Shade_FeedBack[#SHADES_MAX];
+ANALOG_OUTPUT Shades_Qty;
+DIGITAL_OUTPUT All_Open_fb, All_Close_fb;
+
+FUNCTION UpdateList()
+{
+    INTEGER item, shades;
+    shades=0;
+    FOR(item = 1 TO #SHADES_MAX)
+    {
+         IF(Shade_Name[item] != "" & Shade_Name[item] != "--")
+         {
+             shades=shades+1;
+         }
+    }
+    Shades_Qty=shades;
+}
+
+CHANGE Shade_FeedBack
+{
+    INTEGER item, AllClose, AllOpen;
+    AllClose=1;
+    AllOpen=1;
+    FOR(item = 1 TO Shades_Qty)
+    {
+        IF(Shade_FeedBack[item] != 65535)
+        { 
+            AllOpen=0;
+        }
+        IF(Shade_FeedBack[item] != 0)
+        { 
+            AllClose=0;
+        }
+    }
+    All_Open_fb =  AllOpen;
+    All_Close_fb = AllClose;
+}
+
+CHANGE Shade_Name
+{
+    UpdateList();
+}
+
+
+
+// Runtime
+
+FUNCTION Main()
+{
+    WAITFORINITIALIZATIONCOMPLETE();
+    UpdateList();
+
+    
+}
