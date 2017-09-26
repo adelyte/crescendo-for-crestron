@@ -23,6 +23,8 @@ BUFFER_INPUT  SettingsRX[255];
 
 DIGITAL_OUTPUT _SKIP_, _SKIP_;
 DIGITAL_OUTPUT ModeHeat, ModeCool, ModeAuto, ModeOff;
+DIGITAL_OUTPUT _SKIP_, _SKIP_;
+DIGITAL_OUTPUT Set_Point_Type_Single, Set_Point_Type_Double;
 DIGITAL_OUTPUT _SKIP_, _SKIP_, _SKIP_, _SKIP_, _SKIP_, _SKIP_, _SKIP_, _SKIP_;
 DIGITAL_OUTPUT FanAuto, FanOn;
 DIGITAL_OUTPUT HumidifierAuto, HumidifierOff;
@@ -30,6 +32,13 @@ ANALOG_OUTPUT  _SKIP_;
 ANALOG_OUTPUT  SetHeatSetpoint, SetCoolSetpoint, SetHumiditySetpoint;
 STRING_OUTPUT  SettingsTX;
 STRING_OUTPUT  Description, Mode, CurrentTempText, SetpointText, HeatSetpointText, CoolSetpointText;
+STRING_PARAMETER Set_Point_Type[1];
+
+    #BEGIN_PARAMETER_PROPERTIES Set_Point_Type
+
+        propValidUnits = unitString;
+
+    #END_PARAMETER_PROPERTIES
 
 
 PUSH SendSettings
@@ -43,10 +52,12 @@ PUSH SendSettings
     ELSE IF(ModeIsCool)
         MAKESTRING(message, "Cool %u", CoolSetpoint / 10);
     ELSE IF(ModeIsAuto)
+        //IF(Set_Point_Type="1")
+        //    MAKESTRING(message, "Auto %u",  CoolSetpoint / 10);
+        //ELSE
         MAKESTRING(message, "Auto %u-%u", HeatSetpoint / 10, CoolSetpoint / 10);
     ELSE IF(ModeIsOff)
         message = "Off ";
-    
     IF(FanIsAuto)
         message = message + " Fan Auto";
     ELSE IF(FanIsOn)
@@ -178,7 +189,16 @@ FUNCTION UpdateStatus()
     STRING Calling[7];
 
 	MAKESTRING(CurrentTempText, "%u°", CurrentTemperature / 10);
-    
+    IF(Set_Point_Type="1")
+    {
+        Set_Point_Type_Single=1;
+        Set_Point_Type_Double=0;
+    }
+    ELSE
+    {
+		Set_Point_Type_Double=1;
+        Set_Point_Type_Single=0;
+    }
     IF(CallingHeat1 || CallingHeat2 || CallingAuxHeat)
         MAKESTRING(Calling, "Heating");
     ELSE IF(CallingCool1 || CallingCool2)
@@ -190,8 +210,16 @@ FUNCTION UpdateStatus()
     {
 		MAKESTRING(Description, "%s %u°", Calling, CurrentTemperature / 10);
 		MAKESTRING(Mode, "Heat");
-		MAKESTRING(SetpointText, "%u°", HeatSetpoint / 10);
-        MAKESTRING(HeatSetpointText, "%u°", HeatSetpoint / 10);
+		IF(Set_Point_Type="1")
+    	{
+			MAKESTRING(SetpointText, "%u°", CoolSetpoint / 10);
+        	MAKESTRING(CoolSetpointText, "%u°", CoolSetpoint / 10);
+		}
+		ELSE
+		{
+			MAKESTRING(SetpointText, "%u°", HeatSetpoint / 10);
+        	MAKESTRING(HeatSetpointText, "%u°", HeatSetpoint / 10);
+		}
 	}
     ELSE IF(ModeIsCool)
     {
