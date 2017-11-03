@@ -1,0 +1,77 @@
+/*******************************************************************************************
+* Adelyte Company
+* www.adelyte.com
+*/
+
+#SYMBOL_NAME "Lighting Controller"
+#CATEGORY "46" "Crescendo" // Custom
+#DEFAULT_VOLATILE
+#ENABLE_DYNAMIC
+#HELP_BEGIN
+   Module used in Lighting Module that calculate itens numbers and all Off and ON
+#HELP_END
+
+// Constants
+#DEFINE_CONSTANT #TEXT_LEN    48
+#DEFINE_CONSTANT #CHANNELS_MAX  15
+
+
+// Inputs and Outputs
+
+
+STRING_INPUT  Channel_Name[#CHANNELS_MAX][#TEXT_LEN];
+
+ANALOG_INPUT Channel_FeedBack[#CHANNELS_MAX];
+ANALOG_OUTPUT Channels_Qty;
+DIGITAL_OUTPUT All_On_fb, All_Off_fb;
+
+FUNCTION UpdateList()
+{
+    INTEGER item, channels;
+    channels=0;
+    FOR(item = 1 TO #CHANNELS_MAX)
+    {
+         IF(Channel_Name[item] != "" & Channel_Name[item] != "--")
+         {
+             channels=channels+1;
+         }
+    }
+    Channels_Qty=channels;
+}
+
+CHANGE Channel_FeedBack
+{
+    INTEGER item, AllOff, AllOn;
+    AllOff=1;
+    AllOn=1;
+    FOR(item = 1 TO Channels_Qty)
+    {
+        IF(Channel_FeedBack[item] != 65535)
+        { 
+            AllOn=0;
+        }
+        IF(Channel_FeedBack[item] != 0)
+        { 
+            AllOff=0;
+        }
+    }
+    All_On_fb =  AllOn;
+    All_Off_fb = AllOff;
+}
+
+CHANGE Channel_Name
+{
+    UpdateList();
+}
+
+
+
+// Runtime
+
+FUNCTION Main()
+{
+    WAITFORINITIALIZATIONCOMPLETE();
+    UpdateList();
+
+    
+}

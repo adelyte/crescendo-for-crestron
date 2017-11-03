@@ -74,9 +74,9 @@
   OutputSigType7=Digital
   OutputCue8=[~UNUSED~]
   OutputSigType8=Digital
-  OutputCue9=[~UNUSED~]
+  OutputCue9=Set_Point_Type_Single
   OutputSigType9=Digital
-  OutputCue10=[~UNUSED~]
+  OutputCue10=Set_Point_Type_Double
   OutputSigType10=Digital
   OutputCue11=[~UNUSED~]
   OutputSigType11=Digital
@@ -86,14 +86,22 @@
   OutputSigType13=Digital
   OutputCue14=[~UNUSED~]
   OutputSigType14=Digital
-  OutputCue15=FanAuto
+  OutputCue15=[~UNUSED~]
   OutputSigType15=Digital
-  OutputCue16=FanOn
+  OutputCue16=[~UNUSED~]
   OutputSigType16=Digital
-  OutputCue17=HumidifierAuto
+  OutputCue17=[~UNUSED~]
   OutputSigType17=Digital
-  OutputCue18=HumidifierOff
+  OutputCue18=[~UNUSED~]
   OutputSigType18=Digital
+  OutputCue19=FanAuto
+  OutputSigType19=Digital
+  OutputCue20=FanOn
+  OutputSigType20=Digital
+  OutputCue21=HumidifierAuto
+  OutputSigType21=Digital
+  OutputCue22=HumidifierOff
+  OutputSigType22=Digital
   InputList2Cue1=CurrentTemperature
   InputList2SigType1=Analog
   InputList2Cue2=HeatSetpoint
@@ -127,16 +135,18 @@
   OutputList2Cue11=CoolSetpointText
   OutputList2SigType11=Serial
   ParamCue1=[Reference Name]
+  ParamCue2=Set_Point_Type
+  ParamSigType2=String
   MinVariableInputs=18
   MaxVariableInputs=18
   MinVariableInputsList2=5
   MaxVariableInputsList2=5
-  MinVariableOutputs=18
-  MaxVariableOutputs=18
+  MinVariableOutputs=22
+  MaxVariableOutputs=22
   MinVariableOutputsList2=11
   MaxVariableOutputsList2=11
-  MinVariableParams=0
-  MaxVariableParams=0
+  MinVariableParams=1
+  MaxVariableParams=1
   Expand=expand_separately
   Expand2=expand_separately
   ProgramTree=Logic
@@ -152,7 +162,8 @@
   CompilerParamCode5=14
   NumFixedParams=1
   Pp1=1
-  MPp=1
+  Pp2=2
+  MPp=2
   NVStorage=10
   ParamSigType1=String
   SmplCInputCue1=o#
@@ -170,4 +181,12 @@
   H=1
   Tp=1
   NoS=False
+[END]
+[BEGIN]
+  ObjTp=Dp
+  H=2
+  Tp=1
+  HD=False
+  NoS=False
+  VVS=0
 [END]
