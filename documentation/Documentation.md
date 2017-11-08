@@ -35,3 +35,33 @@ To configure shades modules in your system:
 
 
 ----------
+
+
+
+### Lights ###
+
+To configure lights modules in your system:
+1 - Add one module Lights (99% without configurations)
+2 - Add one module Light for Room ( You can control up to 15 zones/channels Dimmered or on off with same module, with independent controls). 
+3 - Configure this module:
+	- Name -> Unique name of room
+	- ID -> First module is 01, incremente by 1 for other modules.
+	- Button Label (1 to 15) -> Name of Button/Preset(Ex. Left, By, Night, etc.)
+	- Channel Type (1 to 15) -> Select onde type Dimmer or OnOff (this show slider or on off button in interface).
+	- Channel Name (1 to 15) -_ Name of Channel/Zone of eletric circuits (Ex. Front, Left, Closet, etc.)
+	- Hold Time - Time in seconds that you need  hold the button to save a lights cene (ex. 5s)
+	- Fade Time  - Time in seconds that a dimmered channel/zone delay to change of level ( ex 5s to go of on to off)
+	If you connect [press_01] to preset1 the button 1 will be a preset cene 1, to save a cene, press for "hold time" seconds and the indicator will flash 5 times to indicate thar cene was save.
+	If you channel/zone is on off user light1_on_off to control it, else if is dimmered use analogic zone1_level to control the zone, and zone1_feedback to receiva a fb of zone.
+
+
+----------
+
+Shutdown
+[All Home Off Close] - Close all shades, off climate, off Multimidia, off al lights of home.
+[All Room A/V Off  ] - Power off all Multimidias of home.
+[Room Off Close    ] - Close all shades, off climate, off Multimidia, off al lights of room.
+( Multimidia Room Off) - Power off multimidia of room.
+
+
+

@@ -5,7 +5,7 @@
       <Device Model="CHV-TSTATA,CHV-THSTATA," DeviceId="83" Name="C-03  Guest Suite"/>
    </Network>
    <Network Type="Ethernet" Id="02">
-      <Device Model="Crestron_App" DeviceId="03" Name="T-01  iPad 1"/>
+      <Device Model="Crestron_App" DeviceId="03" Name="T-01 iPad 1"/>
       <Device Model="Crestron_App" DeviceId="04" Name="T-02  iPad 2"/>
       <Device Model="Crestron_App" DeviceId="05" Name="T-03  iPhone 1"/>
       <Device Model="Crestron_App" DeviceId="06" Name="T-04  iPhone 2"/>
