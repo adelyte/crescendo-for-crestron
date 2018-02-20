@@ -90,6 +90,7 @@
   FileName=Numpad.ush
   SIMPLPlusModuleEncoding=0
   clz1=AppHelperClasses v2_0
+  clz2=Crestron.MediaPlayerValidator
 [END]
 [BEGIN]
   ObjTp=Dp
