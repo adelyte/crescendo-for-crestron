@@ -223,13 +223,34 @@ PUSH Listen_Source
 PUSH Share_Source
 {
     INTEGER share, room;
+    STRING  __Sources__[#SOURCES_MAX];
 
     share = GETLASTMODIFIEDARRAYINDEX();
     room = ShareToRoom(share);
 
     IF(room = 0) TERMINATEEVENT;
+    
+    IF(Room_Sources_Is[room] = "")
+    {
+        __Sources__ = Default_Available_Sources;
+    }
+    ELSE IF(Room_Sources_Is[room] = "\x00")
+    {
+        __Sources__ = "";
+    }
+    ELSE
+    {
+        __Sources__ = Room_Sources_Is[room];
+    }
 
-    MAKESTRING(Room_Source[room], "\x50%c", Source_Is);
+    IF(FIND(CHR(Source_Is), __Sources__))
+    {
+        MAKESTRING(Room_Source[room], "\x50%c", Source_Is);
+    }
+    ELSE IF(FIND(CHR(#AUDIO_VIDEO_ID_OFFSET + Source_Is), __Sources__))
+    {
+        MAKESTRING(Room_Source[room], "\x50%c", #AUDIO_VIDEO_ID_OFFSET + Source_Is);
+    }
 }
 
 PUSH Share_Power_Off
@@ -753,13 +774,21 @@ FUNCTION UpdateShareVisible(INTEGER room)
         RETURN;
     }
 
-    IF(room = Room_Is)
+    IF(room = IdToIndex(Room_Is))
     {
         Share_Visible[share] = 0;
     }
     ELSE
     {
         Share_Visible[share] = FIND(CHR(Source_Is), __Sources__);
+
+        IF(Share_Visible[share] = 0)
+        {
+            IF(Source_Is < #AUDIO_VIDEO_ID_OFFSET)
+            {
+                Share_Visible[share] = FIND(CHR(#AUDIO_VIDEO_ID_OFFSET + Source_Is), __Sources__);  
+            }
+        }
     }
 }
 
