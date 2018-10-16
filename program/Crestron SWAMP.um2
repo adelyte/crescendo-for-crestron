@@ -4,7 +4,7 @@ Version=1
 [
 ObjTp=FSgntr
 Sgntr=UserMacro
-RelVrs=4.05.04
+RelVrs=4.06.01
 IntStrVrs=2
 MinSMWVrs=3.00.00
 MinTIOVrs=0
@@ -16,14 +16,14 @@ S0Nd=1
 S1Nd=2
 SLNd=3
 PrNm=Crestron SWAMP.umc
-DbVr=59.00.002.00
-DvcDbVr=79.05.002.00
+DbVr=61.06.001.00
+DvcDbVr=82.00.002.00
 PgmNm=Adelyte Company
 CltNm=Crestron SWAMP
 Incl=362,378,380,405,407,408,409,478,522,537,554,586,590,611,624,767,830,883,1032,1062,1079,1134,1157,1199,1220,1222,1299,1348,1439,1472,1473,1499,1746,1803,1975,2229,2354,2514,2523,2532,3708,3902,3912,3918,3925,1766,2574,2651,2817,2886,2938,2947,3181,3197,3233,3710,3735,3736,3816,3888,4176,4308,4476,4591,4769,
 McNm=Crestron SWAMP
-SmVr=1012
-DvVr=1012
+SmVr=1024
+DvVr=1024
 TpN1=1
 TpN2=2
 TpN3=3
@@ -343,7 +343,7 @@ SmC=156
 Nm=Logic
 ObjVer=1
 CF=2
-mC=10
+mC=11
 C1=11
 C2=7
 C3=20
@@ -354,6 +354,7 @@ C7=49
 C8=56
 C9=140
 C10=139
+C11=71
 ]
 [
 ObjTp=Sm
@@ -536,7 +537,7 @@ O12=14
 O17=15
 O18=39
 O21=118
-mP=70
+mP=71
 P1=Output 2
 P2=#Output 2 ID
 P3=0s
@@ -607,6 +608,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sm
@@ -683,7 +685,7 @@ O12=31
 O17=8
 O18=26
 O21=78
-mP=70
+mP=71
 P1=Output 1
 P2=#Output 1 ID
 P3=0s
@@ -754,6 +756,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sm
@@ -929,7 +932,7 @@ O12=25
 O17=6
 O18=52
 O21=51
-mP=70
+mP=71
 P1=Output 3
 P2=#Output 3 ID
 P3=0s
@@ -1000,6 +1003,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sm
@@ -1154,7 +1158,7 @@ O12=43
 O17=17
 O18=56
 O21=47
-mP=70
+mP=71
 P1=Output 4
 P2=#Output 4 ID
 P3=0s
@@ -1225,6 +1229,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sm
@@ -1360,7 +1365,7 @@ O12=54
 O17=18
 O18=60
 O21=28
-mP=70
+mP=71
 P1=Output 5
 P2=#Output 5 ID
 P3=0s
@@ -1431,6 +1436,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sm
@@ -1566,7 +1572,7 @@ O12=72
 O17=19
 O18=61
 O21=29
-mP=70
+mP=71
 P1=Output 6
 P2=#Output 6 ID
 P3=0s
@@ -1637,6 +1643,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sm
@@ -1772,7 +1779,7 @@ O12=82
 O17=21
 O18=62
 O21=64
-mP=70
+mP=71
 P1=Output 7
 P2=#Output 7 ID
 P3=0s
@@ -1843,6 +1850,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sm
@@ -1978,7 +1986,7 @@ O12=87
 O17=23
 O18=63
 O21=65
-mP=70
+mP=71
 P1=Output 8
 P2=#Output 8 ID
 P3=0s
@@ -2049,6 +2057,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sm
@@ -2160,7 +2169,7 @@ n1I=2
 n1O=1
 Cmn1=Sync Volume\\
 mI=2
-I1=90
+I1=98
 I2=33
 mO=1
 tO=1
@@ -2178,7 +2187,7 @@ n1I=2
 n1O=1
 Cmn1=Sync Volume\\
 mI=2
-I1=91
+I1=99
 I2=37
 mO=1
 tO=1
@@ -2196,7 +2205,7 @@ n1I=2
 n1O=1
 Cmn1=Sync Volume\\
 mI=2
-I1=92
+I1=100
 I2=53
 mO=1
 tO=1
@@ -2214,7 +2223,7 @@ n1I=2
 n1O=1
 Cmn1=Sync Volume\\
 mI=2
-I1=93
+I1=101
 I2=55
 mO=1
 tO=1
@@ -2232,7 +2241,7 @@ n1I=2
 n1O=1
 Cmn1=Sync Volume\\
 mI=2
-I1=94
+I1=102
 I2=126
 mO=1
 tO=1
@@ -2250,7 +2259,7 @@ n1I=2
 n1O=1
 Cmn1=Sync Volume\\
 mI=2
-I1=95
+I1=103
 I2=127
 mO=1
 tO=1
@@ -2268,7 +2277,7 @@ n1I=2
 n1O=1
 Cmn1=Sync Volume\\
 mI=2
-I1=96
+I1=104
 I2=134
 mO=1
 tO=1
@@ -2286,11 +2295,43 @@ n1I=2
 n1O=1
 Cmn1=Sync Volume\\
 mI=2
-I1=97
+I1=105
 I2=135
 mO=1
 tO=1
 O1=73
+]
+[
+ObjTp=Sm
+H=71
+SmC=21
+Nm=Multiple One Shots
+ObjVer=1
+PrH=4
+CF=2
+n1I=9
+n1O=8
+mI=9
+I2=90
+I3=91
+I4=92
+I5=93
+I6=94
+I7=95
+I8=96
+I9=97
+mO=8
+tO=8
+O1=98
+O2=99
+O3=100
+O4=101
+O5=102
+O6=103
+O7=104
+O8=105
+mP=1
+P1=1.0s
 ]
 [
 ObjTp=Sm
@@ -2307,7 +2348,7 @@ mI=39
 mO=39
 tO=39
 O21=11
-mP=70
+mP=71
 P1=SPDIF 2
 P2=#SPDIF 2 ID
 P3=0s
@@ -2378,6 +2419,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sm
@@ -2394,7 +2436,7 @@ mI=39
 mO=39
 tO=39
 O21=79
-mP=70
+mP=71
 P1=SPDIF 1
 P2=#SPDIF 1 ID
 P3=0s
@@ -2465,6 +2507,7 @@ P67=""
 P68=""
 P69=""
 P70=""
+P71=1t
 ]
 [
 ObjTp=Sg
@@ -2981,6 +3024,46 @@ Nm=__X__Output_7_Power_On
 ObjTp=Sg
 H=97
 Nm=__X__Output_8_Power_On
+]
+[
+ObjTp=Sg
+H=98
+Nm=__X__Output_1_Power_On...
+]
+[
+ObjTp=Sg
+H=99
+Nm=__X__Output_2_Power_On...
+]
+[
+ObjTp=Sg
+H=100
+Nm=__X__Output_3_Power_On...
+]
+[
+ObjTp=Sg
+H=101
+Nm=__X__Output_4_Power_On...
+]
+[
+ObjTp=Sg
+H=102
+Nm=__X__Output_5_Power_On...
+]
+[
+ObjTp=Sg
+H=103
+Nm=__X__Output_6_Power_On...
+]
+[
+ObjTp=Sg
+H=104
+Nm=__X__Output_7_Power_On...
+]
+[
+ObjTp=Sg
+H=105
+Nm=__X__Output_8_Power_On...
 ]
 [
 ObjTp=Sg
