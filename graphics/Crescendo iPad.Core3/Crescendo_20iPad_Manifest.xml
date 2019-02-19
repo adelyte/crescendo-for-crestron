@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='ISO-8859-1' ?>
 <File Type='Manifest' Version='6.1.0' ObjectDisplayList='4'>
-<Project FileName='Crescendo_20iPad.zip' Size='2681703' Build='20180305112602'>
+<Project FileName='Crescendo_20iPad.zip' Size='2988080' Build='20190219135858'>
 <Sources>
-<Source FileName='Crescendo_20iPad.xml' Size='538' Type='Application' Build='20180305112602' MinimumSGVersion='2.11.05.00' />
+<Source FileName='Crescendo_20iPad.xml' Size='538' Type='Application' Build='20190219135857' MinimumSGVersion='2.11.05.00' />
 </Sources>
 </Project>
 </File>
