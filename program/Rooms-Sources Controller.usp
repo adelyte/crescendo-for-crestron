@@ -661,7 +661,7 @@ FUNCTION UpdateListen(INTEGER source)
 
 FUNCTION UpdateWatchListen()
 {
-    INTEGER i, room, source;
+    INTEGER i, room, source, watch_size, listen_size;
 
     room = IdToIndex(Room_Is);
 
@@ -690,9 +690,9 @@ FUNCTION UpdateWatchListen()
             }
         }
     }
-
-    Watches_Size = 0;
-    Listens_Size = 0;
+    
+    watch_size = 0;
+    listen_size = 0;
 
     SETARRAY(__Watch_Source__, 0);
     SETARRAY(__Source_Watch__, 0);
@@ -708,17 +708,19 @@ FUNCTION UpdateWatchListen()
 
         IF(Source_Has_Video[source])
         {
-            Watches_Size = Watches_Size + 1;
-            __Watch_Source__[Watches_Size] = source;
-            __Source_Watch__[source] = Watches_Size;
+            watch_size = watch_size + 1;
+            Watches_Size = watch_size;
+            __Watch_Source__[watch_size] = source;
+            __Source_Watch__[source] = watch_size;
 
             UpdateWatch(source);
         }
         ELSE
         {
-            Listens_Size = Listens_Size + 1;
-            __Listen_Source__[Listens_Size] = source;
-            __Source_Listen__[source] = Listens_Size;
+            listen_size = listen_size + 1;
+            Listens_Size = listen_size;
+            __Listen_Source__[listen_size] = source;
+            __Source_Listen__[source] = listen_size;
 
             UpdateListen(source);
         }
